@@ -23,21 +23,29 @@ public class HttpRequest {
 
     private static RequestQueue queue;
 
-    public static void initRequestQueue(Context context){
+    public static void initRequestQueue(Context context) {
         queue = Volley.newRequestQueue(context);
     }
 
-    public static void baseHttpRequest(String url,final Map<String,String> map,Response.Listener<String> listener){
-        if (queue==null)return;
+    public static <T> void baseHttpPostRequest(String url, final Map<String, String> map, final HttpResponseHandler httpResponseHandler, final Class<T> tClass) {
+        if (queue == null) return;
 
         Response.ErrorListener errorListener = new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                Log.e(TAG,"volley http response Error : "+volleyError.getMessage(), volleyError);
+                Log.e(TAG, "volley http response Error : " + volleyError.getMessage(), volleyError);
             }
         };
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, listener, errorListener){
+        Response.Listener listener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+                Log.d("MainActivity", "response : " + s);
+                httpResponseHandler.response(s, tClass);
+            }
+        };
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, listener, errorListener) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 return map;
@@ -47,15 +55,14 @@ public class HttpRequest {
         queue.add(stringRequest);
     }
 
+    public static <T> void login(String username, String password, String gender, String pushKey, Class<T> tClass, HttpResponseHandler httpResponseHandler) {
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("username", username);
+        map.put("password", password);
+        map.put("gender", gender);
+        map.put("pushKey", pushKey);
 
-    public static void login(String username,String password,String gender,String pushKey,Response.Listener<String> listener){
-        Map<String,String> map = new HashMap<String, String>();
-        map.put("username",username);
-        map.put("password",password);
-        map.put("gender",gender);
-        map.put("pushKey",pushKey);
-
-        baseHttpRequest("http://www.baidu.com", map, listener);
+        baseHttpPostRequest("http://www.baidu.com", map, httpResponseHandler, tClass);
 
     }
 }

@@ -2,10 +2,9 @@ package com.eason.here;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 
-import com.android.volley.Response;
 import com.eason.here.HttpUtil.HttpRequest;
+import com.eason.here.HttpUtil.HttpResponseHandler;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -17,10 +16,10 @@ public class MainActivity extends ActionBarActivity {
 
         HttpRequest.initRequestQueue(this);
 
-        HttpRequest.login("haha","123456","female","22222",new Response.Listener<String>() {
+        HttpRequest.login("haha","123456","female","22222",null,new HttpResponseHandler(){
             @Override
-            public void onResponse(String s) {
-                Log.d("MainActivity", "response : " + s);
+            public void getResult() {
+
             }
         });
     }
