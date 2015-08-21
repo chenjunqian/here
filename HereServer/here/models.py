@@ -10,5 +10,7 @@ class User(models.Model):
 	
 class Location(models.Model):
 	longitude = models.CharField(max_length=30)
-	latitude = models.CharField(max_length=30)	
+	latitude = models.CharField(max_length=30)
 	user = User()
+	like = models.CharField(max_length=30)
+	time = modle.DateTimeField(auto_now_add=True)

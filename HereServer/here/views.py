@@ -74,7 +74,9 @@ def updateUserLocation(request):
 			resultData['user'] = user
 			resultData['longitude'] = longitude
 			resultData['latitude'] = latitude
-			Location.objects.create(longitude = longitude,latitude = latitude,user = user)
+			resultData['like'] = like
+			resultData['time'] = time
+			Location.objects.create(longitude = longitude,latitude = latitude,user = user,like = like,time = time)
 			dict['resultData'] = resultData
 		else:
 			dict['errorMessage'] = "username_or_password_invalid"
