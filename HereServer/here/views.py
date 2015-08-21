@@ -2,7 +2,7 @@
 import simplejson
 from django.shortcuts import render
 from django.http import HttpResponse
-from models import User
+from models import User,Location
 
 def login(request):
 	dict = {}
@@ -48,7 +48,7 @@ def register(request):
 			resultData['username'] = username
 			resultData['password'] = password
 			resultData['pushKey'] = pushKey
-			User.objects.create(username = username,password = password)
+			User.objects.create(username = username,password = password,gender = gender)
 			dict['resultData'] = resultData
 		else:
 			dict['errorMessage'] = "username_or_password_invalid"
@@ -68,3 +68,21 @@ def updateUserLocation(request):
 		longitude = request.POST.get('longitude')
 		latitude = request.POST.get('latitude')
 		user = request.POST.get('user')
+		if longitude and latitude and user:
+			dict['errorMessage'] = "update_user_location_success"
+			dict['status'] = "0"
+			resultData['user'] = user
+			resultData['longitude'] = longitude
+			resultData['latitude'] = latitude
+			Location.objects.create(longitude = longitude,latitude = latitude,user = user)
+			dict['resultData'] = resultData
+		else:
+			dict['errorMessage'] = "username_or_password_invalid"
+			dict['status'] = "8004"
+		json = simplejson.dumps(dict)
+		return HttpResponse(json)
+	else:
+		dict['errorMessage'] = "POST_FAILED"
+		dict['status'] = "8002"
+		json  = simplejson.dumps(dict)
+		return HttpResponse("POST failed")
