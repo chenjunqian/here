@@ -42,12 +42,14 @@ def register(request):
 		password = request.POST.get('password')
 		gender = request.POST.get('gender')
 		pushKey = request.POST.get('pushKey')
+		avatar = request.POST.get('avatar')
 		if username and password :
 			dict['errorMessage'] = "register_success"
 			dict['status'] = "0"
 			resultData['username'] = username
 			resultData['password'] = password
 			resultData['pushKey'] = pushKey
+			resultData['avatar'] = avatar
 			User.objects.create(username = username,password = password,gender = gender)
 			dict['resultData'] = resultData
 		else:
