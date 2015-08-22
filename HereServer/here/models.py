@@ -7,6 +7,7 @@ class User(models.Model):
 	password = models.CharField(max_length=30)
 	gender = models.CharField(max_length=30)
 	pushKey = models.CharField(max_length=30)
+	avatar = models.FileField(upload_to='./avatar/')
 	
 class Location(models.Model):
 	longitude = models.CharField(max_length=30)
