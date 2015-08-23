@@ -15,4 +15,4 @@ class Location(models.Model):
 	latitude = models.CharField(max_length=30)
 	user = User()
 	like = models.IntegerField()
-	time = modle.DateTimeField(auto_now_add=True)
+	time = models.DateTimeField(auto_now_add=True)
