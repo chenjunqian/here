@@ -30,7 +30,8 @@
             android:layout_width="35dp"
             android:layout_height="20dp"
             android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true" />
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp" />
 
         <TextView
             android:id="@+id/main_page_tag_text_view"
@@ -54,7 +55,8 @@
             android:layout_width="35dp"
             android:layout_height="20dp"
             android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true" />
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp" />
 
         <TextView
             android:id="@+id/user_list_text_view"
@@ -78,7 +80,8 @@
             android:layout_width="35dp"
             android:layout_height="20dp"
             android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true" />
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp" />
 
         <TextView
             android:id="@+id/setting_text_view"
@@ -98,11 +101,12 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
             android:id="@+id/login_image_view"
             android:layout_width="35dp"
-            android:layout_height="20dp" />
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp" />
 
         <TextView
             android:id="@+id/login_text_view"
@@ -111,7 +115,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/login_image_view"
-            android:textSize="15sp"
-            android:text="登录" />
+            android:text="登录"
+            android:textSize="15sp" />
     </RelativeLayout>
 </LinearLayout>

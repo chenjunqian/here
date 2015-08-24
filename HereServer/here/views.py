@@ -90,3 +90,9 @@ def updateUserLocation(request):
 		dict['status'] = "8002"
 		json  = simplejson.dumps(dict)
 		return HttpResponse("POST failed")
+		
+def getLocationByLocation(request):
+	dict[]
+	resultData = []
+	if request.method == 'POST'
+		
