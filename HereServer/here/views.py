@@ -95,4 +95,7 @@ def getLocationByLocation(request):
 	dict[]
 	resultData = []
 	if request.method == 'POST'
+		longitude = request.POST.get('longitude')
+		latitude = request.POST.get('latitude')
+		# some sql to get the Location 
 		
