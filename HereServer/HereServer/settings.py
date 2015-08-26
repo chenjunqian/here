@@ -78,11 +78,11 @@ WSGI_APPLICATION = 'HereServer.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'csvt',
+        'NAME': 'heredb',
         'USER':'root',
         'PASSWORD':'70233374',
         'HOST':'',
-        'PORT':'',
+        'PORT':'8000,
     }
 }
 
