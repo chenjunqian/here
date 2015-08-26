@@ -1,5 +1,6 @@
 # coding:utf-8
 import simplejson
+import MySQLdb
 from django.shortcuts import render
 from django.http import HttpResponse
 from models import User,Location
@@ -70,6 +71,9 @@ def updateUserLocation(request):
 		longitude = request.POST.get('longitude')
 		latitude = request.POST.get('latitude')
 		user = request.POST.get('user')
+		like = request.port.get('like')
+		time = request.port.get('time')
+		city = request.POST.get('city')
 		if longitude and latitude and user:
 			dict['errorMessage'] = "update_user_location_success"
 			dict['status'] = "0"
@@ -78,7 +82,8 @@ def updateUserLocation(request):
 			resultData['latitude'] = latitude
 			resultData['like'] = like
 			resultData['time'] = time
-			Location.objects.create(longitude = longitude,latitude = latitude,user = user,like = like,time = time)
+			resultData['city'] = city
+			Location.objects.create(longitude = longitude,latitude = latitude,user = user,like = like,time = time,city = city)
 			dict['resultData'] = resultData
 		else:
 			dict['errorMessage'] = "username_or_password_invalid"
@@ -97,5 +102,11 @@ def getLocationByLocation(request):
 	if request.method == 'POST'
 		longitude = request.POST.get('longitude')
 		latitude = request.POST.get('latitude')
-		# some sql to get the Location 
+		city = request.POST.get('city')
+		conn = MySQLdb.connect(host='localhost',user='root',passwd='70233374',port=3306,db='heredb')
+		cur = conn.cursor()
+		query = "select * from Location where city='%s'"
+		cur.execute(query,city)
+		
+		
 		
