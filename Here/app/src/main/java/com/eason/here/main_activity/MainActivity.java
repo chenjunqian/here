@@ -1,6 +1,5 @@
 package com.eason.here.main_activity;
 
-import android.app.Activity;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -8,10 +7,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.eason.here.BaseActivity;
 import com.eason.here.R;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends BaseActivity {
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
@@ -25,10 +25,14 @@ public class MainActivity extends Activity {
 
     }
 
+    /*
+        初始化控件
+     */
     private void initView() {
         toolbar = (android.support.v7.widget.Toolbar)findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.app_name);
         drawerLayout = (DrawerLayout) findViewById(R.id.main_drawer_layout);
+        //将toolbar与Drawerlayout绑定起来
         actionBarDrawerToggle = new ActionBarDrawerToggle(
                 this,
                 drawerLayout,

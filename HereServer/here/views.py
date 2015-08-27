@@ -74,7 +74,7 @@ def updateUserLocation(request):
 		like = request.port.get('like')
 		time = request.port.get('time')
 		city = request.POST.get('city')
-		if longitude and latitude and user:
+		if longitude and latitude and user and city:
 			dict['errorMessage'] = "update_user_location_success"
 			dict['status'] = "0"
 			resultData['user'] = user

@@ -8,7 +8,6 @@ public class User {
     private String username ;
     private String password ;
     private String gender ;
-    private String pushKey ;
     private String avatar ;
     private String birthday;
 
@@ -34,14 +33,6 @@ public class User {
 
     public void setGender(String gender) {
         this.gender = gender;
-    }
-
-    public String getPushKey() {
-        return pushKey;
-    }
-
-    public void setPushKey(String pushKey) {
-        this.pushKey = pushKey;
     }
 
     public String getAvatar() {

@@ -4,6 +4,19 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="登录"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
     <LinearLayout
         android:id="@+id/login_operation_layout"
         android:layout_width="match_parent"
@@ -20,10 +33,11 @@
             android:background="@null"
             android:hint="用户名" />
 
+        <!-- 分割线 -->
         <View
-            android:background="#213242"
             android:layout_width="match_parent"
-            android:layout_height="1dp">
+            android:layout_height="1dp"
+            android:background="#213242">
 
         </View>
 
@@ -33,6 +47,35 @@
             android:layout_height="40dp"
             android:background="@null"
             android:hint="密码" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/login_page_login_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="40dp"
+            android:text="登录"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/login_page_register_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_weight="1"
+            android:text="注册"
+            android:textSize="15sp" />
 
     </LinearLayout>
 
