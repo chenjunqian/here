@@ -73,7 +73,6 @@ def updateUserLocation(request):
 		latitude = request.POST.get('latitude')
 		user = request.POST.get('user')
 		like = request.port.get('like')
-		time = request.port.get('time')
 		city = request.POST.get('city')
 		if longitude and latitude and user and city:
 			dict['errorMessage'] = "update_user_location_success"
@@ -82,7 +81,6 @@ def updateUserLocation(request):
 			resultData['longitude'] = longitude
 			resultData['latitude'] = latitude
 			resultData['like'] = like
-			resultData['time'] = time
 			resultData['city'] = city
 			Location.objects.create(longitude = longitude,latitude = latitude,user = user,like = like,time = time,city = city)
 			dict['resultData'] = resultData

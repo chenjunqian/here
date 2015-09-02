@@ -14,6 +14,5 @@ class Location(models.Model):
 	longitude = models.CharField(max_length=30)
 	latitude = models.CharField(max_length=30)
 	city = models.CharField(max_length=30)
-	user = User()
+	user = models.ForeignKey(User)
 	like = models.IntegerField()
-	time = models.DateTimeField(auto_now_add=True)
