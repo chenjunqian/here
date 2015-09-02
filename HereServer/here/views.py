@@ -107,6 +107,3 @@ def getLocationByLocation(request):
 		cur = conn.cursor()
 		query = "select * from Location where city='%s'"
 		cur.execute(query,city)
-		
-		
-		

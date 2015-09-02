@@ -80,9 +80,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'heredb',
         'USER':'root',
-        'PASSWORD':'70233374',
-        'HOST':'',
-        'PORT':'8000,
+        'PASSWORD':'root',
+        'HOST':'127.0.0.1',
+        'PORT':'3307'
     }
 }
 

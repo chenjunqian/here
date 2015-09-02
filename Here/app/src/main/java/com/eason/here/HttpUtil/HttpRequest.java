@@ -65,4 +65,6 @@ public class HttpRequest {
         baseHttpPostRequest("http://www.baidu.com", map, httpResponseHandler, tClass);
 
     }
+
+
 }
