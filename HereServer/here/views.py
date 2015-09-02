@@ -4,6 +4,7 @@ import MySQLdb
 from django.shortcuts import render
 from django.http import HttpResponse
 from models import User,Location
+from django.db import connection
 
 def login(request):
 	dict = {}
@@ -103,7 +104,7 @@ def getLocationByLocation(request):
 		longitude = request.POST.get('longitude')
 		latitude = request.POST.get('latitude')
 		city = request.POST.get('city')
-		conn = MySQLdb.connect(host='localhost',user='root',passwd='70233374',port=3306,db='heredb')
-		cur = conn.cursor()
-		query = "select * from Location where city='%s'"
-		cur.execute(query,city)
+		try:
+			cur = connection.cursor()
+			query = "select * from Location where city='%s'"
+			cur.execute(query,city)
