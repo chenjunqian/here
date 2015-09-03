@@ -10,9 +10,12 @@ class User(models.Model):
 	avatar = models.FileField(upload_to='./avatar/')
 	birthday = models.CharField(max_length=30)
 	
+	def __str__(self):
+		return self.username
+	
 class Location(models.Model):
 	longitude = models.CharField(max_length=30)
 	latitude = models.CharField(max_length=30)
 	city = models.CharField(max_length=30)
-	user = models.ForeignKey(User)
+	user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
 	like = models.IntegerField()
