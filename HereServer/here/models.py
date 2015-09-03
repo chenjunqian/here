@@ -10,7 +10,7 @@ class User(models.Model):
 	avatar = models.FileField(upload_to='./avatar/')
 	birthday = models.CharField(max_length=30)
 	
-	def __str__(self):
+	def getUsername(self):
 		return self.username
 	
 class Location(models.Model):

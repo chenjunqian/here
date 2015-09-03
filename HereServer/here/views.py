@@ -14,23 +14,24 @@ def login(request):
 		password = request.POST.get('password')
 		gender = request.POST.get('gender')
 		pushKey = request.POST.get('pushKey')
+		
 		try:
 			cur = connection.cursor()
-			query = 'select * from here_user where username = %s , password = %s'
+			query = 'select * from here_user where username = %s and password = %s'
 			value = [username,password]
-			user = cur.execute(query,value)
-		if user:
-			dict['errorMessage'] = "login_success"
-			dict['status'] = "0"
-			resultData['username'] = username
-			resultData['password'] = password
-			resultData['pushKey'] = pushKey
-			resultData['gender'] = gender
-			dict['resultData'] = resultData
-
-		else:
-			dict['errorMessage'] = "no_such_user"
-			dict['status'] = "8003"
+			cur.execute(query,value)
+			user = cur.fetchall()
+			if user:
+				dict['errorMessage'] = "login_success"
+				dict['status'] = "0"
+				resultData['username'] = username
+				resultData['password'] = password
+				resultData['pushKey'] = pushKey
+				resultData['gender'] = gender
+				dict['resultData'] = resultData
+			else:
+				dict['errorMessage'] = "no_such_user"
+				dict['status'] = "8003"
 
 		json  = simplejson.dumps(dict)
 		return HttpResponse(json)
@@ -49,15 +50,28 @@ def register(request):
 		gender = request.POST.get('gender')
 		pushKey = request.POST.get('pushKey')
 		avatar = request.POST.get('avatar')
+		birthday = request.port.get('birthday')
 		if username and password :
-			dict['errorMessage'] = "register_success"
-			dict['status'] = "0"
-			resultData['username'] = username
-			resultData['password'] = password
-			resultData['pushKey'] = pushKey
-			resultData['avatar'] = avatar
-			User.objects.create(username = username,password = password,gender = gender)
-			dict['resultData'] = resultData
+			
+			try:
+				cur = connection.cursor()
+				query = 'select * from here_user where username = %s'
+				cur.execute(query,username)
+				user = cur.fetchall()
+				if user:
+					dict['errorMessage'] = "username_is_exist"
+					dict['status'] = "8005"
+				else:
+					dict['errorMessage'] = "register_success"
+					dict['status'] = "0"
+					resultData['username'] = username
+					resultData['password'] = password
+					resultData['pushKey'] = pushKey
+					resultData['avatar'] = avatar
+					resultData['gender'] = gender
+					resultData['birthday'] = birthday
+					User.objects.create(username=username,password=password,gender=gender,avatar=avatar,pushKey=pushKey,birthday=birthday)
+					dict['resultData'] = resultData
 		else:
 			dict['errorMessage'] = "username_or_password_invalid"
 			dict['status'] = "8004"
@@ -86,7 +100,7 @@ def updateUserLocation(request):
 			resultData['latitude'] = latitude
 			resultData['like'] = like
 			resultData['city'] = city
-			Location.objects.create(longitude = longitude,latitude = latitude,user = user,like = like,time = time,city = city)
+			Location.objects.create(longitude=longitude,latitude=latitude,user=user,like=like,time=time,city=city)
 			dict['resultData'] = resultData
 		else:
 			dict['errorMessage'] = "username_or_password_invalid"
