@@ -14,7 +14,11 @@ def login(request):
 		password = request.POST.get('password')
 		gender = request.POST.get('gender')
 		pushKey = request.POST.get('pushKey')
-		user = User.objects.filter(username__exact = username,password__exact = password)
+		try:
+			cur = connection.cursor()
+			query = 'select * from here_user where username = %s , password = %s'
+			value = [username,password]
+			user = cur.execute(query,value)
 		if user:
 			dict['errorMessage'] = "login_success"
 			dict['status'] = "0"

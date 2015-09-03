@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = (
@@ -81,7 +80,7 @@ DATABASES = {
         'NAME': 'heredb',
         'USER':'root',
         'PASSWORD':'root',
-        'HOST':'127.0.0.1',
+        'HOST':'/tmp/mysql.sock',
         'PORT':'3307'
     }
 }
