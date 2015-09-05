@@ -72,9 +72,8 @@ def register(request):
 					resultData['birthday'] = birthday
 					# User.objects.create(username=username,password=password,gender=gender,avatar=avatar,pushKey=pushKey,birthday=birthday)
 					cursor = connection.cursor()
-					query = "insert into here_user username=%s and password=%s and pushKey=%s and avatar=%s and gender=%s and birthday=%s"
-					value = [username,password,pushKey,avatar,gender,birthday]
-					cursor.execute(query,value)
+					query = "insert into here_user(username,password,gender,pushkey,birthday) values(%s,%s,%s,%s,%s)"
+					cursor.execute(query,(username,password,pushKey,gender,birthday))
 					dict['resultData'] = resultData
 		else:
 			dict['errorMessage'] = "username_or_password_invalid"
@@ -104,7 +103,8 @@ def updateUserLocation(request):
 			resultData['latitude'] = latitude
 			resultData['like'] = like
 			resultData['city'] = city
-			Location.objects.create(longitude=longitude,latitude=latitude,user=user,like=like,time=time,city=city)
+			# Location.objects.create(longitude=longitude,latitude=latitude,user=user,like=like,time=time,city=city)
+			
 			dict['resultData'] = resultData
 		else:
 			dict['errorMessage'] = "username_or_password_invalid"

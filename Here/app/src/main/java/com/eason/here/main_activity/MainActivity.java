@@ -1,29 +1,28 @@
 package com.eason.here.main_activity;
 
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.location.Location;
-import android.location.LocationManager;
-import android.content.Context;
-import android.location.LocationListener;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.graphics.Color;
 
-import com.amap.api.maps2d.AMap;
-import com.amap.api.maps2d.MapView;
-import com.amap.api.maps2d.LocationSource;
-import  com.amap.api.location.AMapLocationListener;
-import  com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationListener;
 import com.amap.api.location.LocationManagerProxy;
 import com.amap.api.location.LocationProviderProxy;
+import com.amap.api.maps2d.AMap;
+import com.amap.api.maps2d.LocationSource;
+import com.amap.api.maps2d.MapView;
+import com.amap.api.maps2d.model.BitmapDescriptorFactory;
+import com.amap.api.maps2d.model.LatLng;
+import com.amap.api.maps2d.model.MarkerOptions;
+import com.amap.api.maps2d.model.MyLocationStyle;
 import com.eason.here.BaseActivity;
 import com.eason.here.R;
-import com.amap.api.maps2d.model.BitmapDescriptorFactory;
-import com.amap.api.maps2d.model.MyLocationStyle;
 
 
 
@@ -32,10 +31,14 @@ public class MainActivity extends BaseActivity implements LocationSource,AMapLoc
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private android.support.v7.widget.Toolbar toolbar;
+
     private MapView mapView;
     private AMap aMap;
     private OnLocationChangedListener mListener;
     private LocationManagerProxy mAMapLocationManager;
+
+    private Double geoLat;
+    private Double geoLon;
 
 
     @Override
@@ -44,6 +47,7 @@ public class MainActivity extends BaseActivity implements LocationSource,AMapLoc
         setContentView(R.layout.activity_main);
         initView(savedInstanceState);
     }
+
     /*
         初始化控件
      */
@@ -79,16 +83,19 @@ public class MainActivity extends BaseActivity implements LocationSource,AMapLoc
 
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
     }
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         actionBarDrawerToggle.syncState();
     }
+
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         actionBarDrawerToggle.onConfigurationChanged(newConfig);
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -97,6 +104,7 @@ public class MainActivity extends BaseActivity implements LocationSource,AMapLoc
         }
         return super.onOptionsItemSelected(item);
     }
+
     private void setUpMap() {
         // 自定义系统定位小蓝点
         MyLocationStyle myLocationStyle = new MyLocationStyle();
@@ -112,48 +120,63 @@ public class MainActivity extends BaseActivity implements LocationSource,AMapLoc
         aMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
         //aMap.setMyLocationType()
     }
+
     @Override
     protected void onResume() {
         super.onResume();
         mapView.onResume();
     }
+
     @Override
     protected void onPause() {
         super.onPause();
         mapView.onPause();
         deactivate();
     }
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         mapView.onSaveInstanceState(outState);
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         mapView.onDestroy();
     }
-    @Override
-    public void onLocationChanged(Location location) {
-    }
 
     @Override
-    public void onProviderDisabled(String provider) {
-    }
+    public void onLocationChanged(Location location) {}
 
     @Override
-    public void onProviderEnabled(String provider) {
-    }
+    public void onProviderDisabled(String provider) {}
+
+    @Override
+    public void onProviderEnabled(String provider) {}
 
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
     }
+
     @Override
     public void onLocationChanged(AMapLocation aLocation) {
         if (mListener != null && aLocation != null) {
             mListener.onLocationChanged(aLocation);// 显示系统小蓝点
+
+            //获取位置信息
+            geoLat = aLocation.getLatitude();
+            geoLon = aLocation.getLongitude();
+            Log.d("MainActivity","geoLat : "+geoLat+" geoLon : "+geoLon);
+
+            if (geoLon==null||geoLat==null)return;
+            //添加用户覆盖物
+            LatLng userCurrentLatLng = new LatLng(geoLat,geoLon);
+            aMap.addMarker(new MarkerOptions().anchor(0.5f,0.5f).
+                    position(userCurrentLatLng).title("您").draggable(false));
         }
     }
+
     @Override
     public void activate(OnLocationChangedListener listener) {
         mListener = listener;
@@ -170,6 +193,7 @@ public class MainActivity extends BaseActivity implements LocationSource,AMapLoc
                     LocationProviderProxy.AMapNetwork, 2000, 10, this);
         }
     }
+
     @Override
     public void deactivate() {
         mListener = null;
