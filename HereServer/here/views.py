@@ -70,7 +70,11 @@ def register(request):
 					resultData['avatar'] = avatar
 					resultData['gender'] = gender
 					resultData['birthday'] = birthday
-					User.objects.create(username=username,password=password,gender=gender,avatar=avatar,pushKey=pushKey,birthday=birthday)
+					# User.objects.create(username=username,password=password,gender=gender,avatar=avatar,pushKey=pushKey,birthday=birthday)
+					cursor = connection.cursor()
+					query = "insert into here_user username=%s and password=%s and pushKey=%s and avatar=%s and gender=%s and birthday=%s"
+					value = [username,password,pushKey,avatar,gender,birthday]
+					cursor.execute(query,value)
 					dict['resultData'] = resultData
 		else:
 			dict['errorMessage'] = "username_or_password_invalid"
