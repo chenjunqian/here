@@ -159,6 +159,7 @@ public class MainActivity extends BaseActivity implements LocationSource,AMapLoc
         mListener = listener;
         if (mAMapLocationManager == null) {
             mAMapLocationManager = LocationManagerProxy.getInstance(this);
+            //mAMapLocationManager.setGpsEnable(false);
 			/*
 			 * mAMapLocManager.setGpsEnable(false);
 			 * 1.0.2版本新增方法，设置true表示混合定位中包含gps定位，false表示纯网络定位，默认是true Location
