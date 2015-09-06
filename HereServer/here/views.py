@@ -57,8 +57,8 @@ def register(request):
 				cur = connection.cursor()
 				query = 'select * from here_user where username = %s'
 				cur.execute(query,username)
-				user = cur.fetchall()
-				if user:
+				userResult = cur.fetchall()
+				if userResult:
 					dict['errorMessage'] = "username_is_exist"
 					dict['status'] = "8005"
 				else:
@@ -71,9 +71,17 @@ def register(request):
 					resultData['gender'] = gender
 					resultData['birthday'] = birthday
 					# User.objects.create(username=username,password=password,gender=gender,avatar=avatar,pushKey=pushKey,birthday=birthday)
-					cursor = connection.cursor()
-					query = "insert into here_user(username,password,gender,pushkey,birthday) values(%s,%s,%s,%s,%s)"
-					cursor.execute(query,(username,password,pushKey,gender,birthday))
+					# cursor = connection.cursor()
+					# query = "insert into here_user(username,password,gender,pushkey,birthday) values(%s,%s,%s,%s,%s)"
+					# cursor.execute(query,(username,password,pushKey,gender,birthday))
+					user = User()
+					user.username = username
+					user.password = password
+					user.pushKey = pushKey
+					user.avatar = avatar
+					user.birthday = birthday
+					user.gender = gender
+					user.save()
 					dict['resultData'] = resultData
 		else:
 			dict['errorMessage'] = "username_or_password_invalid"
@@ -103,8 +111,7 @@ def updateUserLocation(request):
 			resultData['latitude'] = latitude
 			resultData['like'] = like
 			resultData['city'] = city
-			# Location.objects.create(longitude=longitude,latitude=latitude,user=user,like=like,time=time,city=city)
-			
+						
 			dict['resultData'] = resultData
 		else:
 			dict['errorMessage'] = "username_or_password_invalid"

@@ -38,7 +38,7 @@ public class MainMapFragment extends Fragment implements LocationSource,AMapLoca
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.main_map_fragment_layout,container,false);
+        View rootView = inflater.inflate(R.layout.fragment_main_map_layout,container,false);
 
         //显示地图
         mapView = (MapView)rootView.findViewById(R.id.map);

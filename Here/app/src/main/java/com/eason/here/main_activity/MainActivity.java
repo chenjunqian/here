@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -36,9 +37,11 @@ public class MainActivity extends BaseActivity{
             switch (msg.what){
                 case CHANGE_TOOL_BAR_TITLE_MAIN:
                     toolbar.setTitle("HERE");
+
                     break;
                 case CHANGE_TOOL_BAR_TITLE_SETTING:
                     toolbar.setTitle("设置");
+                    Log.d("MainActivity", "CHANGE_TOOL_BAR_TITLE_SETTING");
             }
         }
     };
@@ -57,6 +60,7 @@ public class MainActivity extends BaseActivity{
     private void initView(Bundle savedInstanceState) {
         toolbar = (android.support.v7.widget.Toolbar)findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.app_name);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.universal_white));
         drawerLayout = (DrawerLayout) findViewById(R.id.main_drawer_layout);
 
         //将toolbar与Drawerlayout绑定起来
@@ -132,6 +136,7 @@ public class MainActivity extends BaseActivity{
                 }
                 transaction.replace(R.id.main_fragment_frame_layout, mainMapFragment);
                 msg.what = CHANGE_TOOL_BAR_TITLE_MAIN;
+                handler.sendEmptyMessage(msg.what);
                 break;
 
             case IntentUtil.SETTING_FRAGMENT:
@@ -148,10 +153,12 @@ public class MainActivity extends BaseActivity{
                 }
                 transaction.replace(R.id.main_fragment_frame_layout,nearUserListFragment);
                 msg.what = CHANGE_TOOL_BAR_TITLE_SETTING;
+                handler.sendEmptyMessage(msg.what);
                 break;
         }
 
-        handler.sendMessage(msg);
+        drawerLayout.closeDrawers();
+
         transaction.commit();
     }
 }

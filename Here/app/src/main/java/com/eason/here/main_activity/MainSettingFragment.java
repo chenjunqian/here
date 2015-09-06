@@ -16,7 +16,7 @@ public class MainSettingFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.main_setting_fragment_layout,container,false);
+        View root = inflater.inflate(R.layout.fragment_main_setting_layout,container,false);
 
         return root;
     }

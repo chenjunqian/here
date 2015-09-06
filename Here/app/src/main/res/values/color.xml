@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 全局通用颜色-->
+    <color name="universal_title_background_green">#86C21F</color>
+    <color name="universal_white">#FFFFFF</color>
+    <color name="universal_transparent">#00000000</color>
+</resources>
