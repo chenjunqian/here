@@ -15,15 +15,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <fragment
-            android:id="@+id/main_map_fragment"
-            android:name="com.eason.here.main_activity.MainMapFragment"
+        <FrameLayout
+            android:id="@+id/main_fragment_frame_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        </fragment>
+            <!--<fragment-->
+                <!--android:id="@+id/main_map_fragment"-->
+                <!--android:name="com.eason.here.main_activity.MainMapFragment"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent">-->
 
+            <!--</fragment>-->
+
+            <!--<fragment-->
+                <!--android:name="com.eason.here.main_activity.MainSettingFragment"-->
+                <!--android:id="@+id/main_setting_fragment"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent">-->
+
+            <!--</fragment>-->
+
+        </FrameLayout>
 
         <fragment
             android:id="@+id/main_left_menu_fragment"

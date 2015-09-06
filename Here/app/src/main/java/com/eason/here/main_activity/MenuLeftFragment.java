@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.eason.here.R;
+import com.eason.here.model.IntentUtil;
 
 /**
  * Created by Eason on 8/22/15.
@@ -39,15 +40,17 @@ public class MenuLeftFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
+        MainActivity mainActivity = (MainActivity)getActivity();
+
         switch (v.getId()) {
             case R.id.main_page_tag_layout:
-
+                mainActivity.setFragmentTransaction(IntentUtil.MAIN_MAP_FRAGMENT);
                 break;
             case R.id.user_list_item_layout:
 
                 break;
             case R.id.setting_item_layout:
-
+                mainActivity.setFragmentTransaction(IntentUtil.SETTING_FRAGMENT);
                 break;
             case R.id.login_item_layout:
 
