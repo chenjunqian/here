@@ -1,14 +1,13 @@
 package com.eason.here.main_activity;
 
-import android.content.res.Configuration;
+import android.app.Fragment;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationListener;
@@ -21,88 +20,66 @@ import com.amap.api.maps2d.model.BitmapDescriptorFactory;
 import com.amap.api.maps2d.model.LatLng;
 import com.amap.api.maps2d.model.MarkerOptions;
 import com.amap.api.maps2d.model.MyLocationStyle;
-import com.eason.here.BaseActivity;
 import com.eason.here.R;
 
-
-
-public class MainActivity extends BaseActivity implements LocationSource,AMapLocationListener{
-
-    private DrawerLayout drawerLayout;
-    private ActionBarDrawerToggle actionBarDrawerToggle;
-    private android.support.v7.widget.Toolbar toolbar;
+/**
+ * Created by Eason on 9/6/15.
+ */
+public class MainMapFragment extends Fragment implements LocationSource,AMapLocationListener {
 
     private MapView mapView;
     private AMap aMap;
-    private OnLocationChangedListener mListener;
+    private LocationSource.OnLocationChangedListener mListener;
     private LocationManagerProxy mAMapLocationManager;
 
     private Double geoLat;
     private Double geoLon;
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        initView(savedInstanceState);
-    }
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-    /*
-        初始化控件
-     */
-    private void initView(Bundle savedInstanceState) {
-        toolbar = (android.support.v7.widget.Toolbar)findViewById(R.id.toolbar);
-        toolbar.setTitle(R.string.app_name);
-        drawerLayout = (DrawerLayout) findViewById(R.id.main_drawer_layout);
+        View rootView = inflater.inflate(R.layout.main_map_fragment_layout,container,false);
+
         //显示地图
-        mapView = (MapView)findViewById(R.id.map);
+        mapView = (MapView)rootView.findViewById(R.id.map);
         mapView.onCreate(savedInstanceState);
         if (aMap == null) {
             aMap = mapView.getMap();
             setUpMap();
         }
-        //将toolbar与Drawerlayout绑定起来
-        actionBarDrawerToggle = new ActionBarDrawerToggle(
-                this,
-                drawerLayout,
-                toolbar,
-                R.string.app_name,
-                R.string.action_settings){
 
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                invalidateOptionsMenu();
-            }
-
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                invalidateOptionsMenu();
-            }
-        };
-
-        drawerLayout.setDrawerListener(actionBarDrawerToggle);
+        return rootView;
     }
 
     @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        actionBarDrawerToggle.syncState();
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        actionBarDrawerToggle.onConfigurationChanged(newConfig);
+    public void onResume() {
+        super.onResume();
+        mapView.onResume();
+        deactivate();
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public void onPause() {
+        super.onPause();
+        mapView.onPause();
+    }
 
-        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mapView.onDestroy();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mapView.onSaveInstanceState(outState);
     }
 
     private void setUpMap() {
@@ -121,30 +98,6 @@ public class MainActivity extends BaseActivity implements LocationSource,AMapLoc
         //aMap.setMyLocationType()
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mapView.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        mapView.onPause();
-        deactivate();
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        mapView.onSaveInstanceState(outState);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mapView.onDestroy();
-    }
 
     @Override
     public void onLocationChanged(Location location) {}
@@ -167,7 +120,7 @@ public class MainActivity extends BaseActivity implements LocationSource,AMapLoc
             //获取位置信息
             geoLat = aLocation.getLatitude();
             geoLon = aLocation.getLongitude();
-            Log.d("MainActivity","geoLat : "+geoLat+" geoLon : "+geoLon);
+            Log.d("MainActivity", "geoLat : " + geoLat + " geoLon : " + geoLon);
 
             if (geoLon==null||geoLat==null)return;
             //添加用户覆盖物
@@ -181,7 +134,7 @@ public class MainActivity extends BaseActivity implements LocationSource,AMapLoc
     public void activate(OnLocationChangedListener listener) {
         mListener = listener;
         if (mAMapLocationManager == null) {
-            mAMapLocationManager = LocationManagerProxy.getInstance(this);
+            mAMapLocationManager = LocationManagerProxy.getInstance(getActivity());
             //mAMapLocationManager.setGpsEnable(false);
 			/*
 			 * mAMapLocManager.setGpsEnable(false);
@@ -203,4 +156,5 @@ public class MainActivity extends BaseActivity implements LocationSource,AMapLoc
         }
         mAMapLocationManager = null;
     }
+
 }

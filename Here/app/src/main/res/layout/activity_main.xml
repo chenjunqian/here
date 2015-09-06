@@ -15,19 +15,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <fragment
+            android:id="@+id/main_map_fragment"
+            android:name="com.eason.here.main_activity.MainMapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            !-- 引入布局文件 -->
-
-            <com.amap.api.maps2d.MapView xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/map"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent" />
-
-        </LinearLayout>
+        </fragment>
 
 
         <fragment
