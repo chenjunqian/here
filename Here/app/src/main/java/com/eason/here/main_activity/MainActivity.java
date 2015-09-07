@@ -40,6 +40,7 @@ public class MainActivity extends BaseActivity{
                     break;
                 case CHANGE_TOOL_BAR_TITLE_SETTING:
                     toolbar.setTitle("设置");
+                    break;
             }
         }
     };
@@ -128,6 +129,7 @@ public class MainActivity extends BaseActivity{
 
         switch (fragmentIndex){
 
+            //切换到主页
             case IntentUtil.MAIN_MAP_FRAGMENT:
                 if (mainMapFragment==null){
                     mainMapFragment = new MainMapFragment();
@@ -137,21 +139,24 @@ public class MainActivity extends BaseActivity{
                 handler.sendEmptyMessage(msg.what);
                 break;
 
+            //切换到设置页面
             case IntentUtil.SETTING_FRAGMENT:
 
                 if (settingFragment==null){
                     settingFragment = new MainSettingFragment();
                 }
                 transaction.replace(R.id.main_fragment_frame_layout, settingFragment);
+                msg.what = CHANGE_TOOL_BAR_TITLE_SETTING;
+                handler.sendEmptyMessage(msg.what);
                 break;
 
+            //切换到附近事件列表显示页面
             case IntentUtil.NEAR_USER_FRAGMENT:
                 if (nearUserListFragment==null){
                     nearUserListFragment = new NearUserListFragment();
                 }
                 transaction.replace(R.id.main_fragment_frame_layout,nearUserListFragment);
-                msg.what = CHANGE_TOOL_BAR_TITLE_SETTING;
-                handler.sendEmptyMessage(msg.what);
+
                 break;
         }
 
