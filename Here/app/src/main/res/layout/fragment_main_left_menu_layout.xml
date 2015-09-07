@@ -41,6 +41,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/main_page_tag_image_view"
+            android:textColor="@color/universal_item_text_color_black"
             android:text="首页"
             android:textSize="15sp" />
     </RelativeLayout>
@@ -66,6 +67,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/user_list_image_view"
+            android:textColor="@color/universal_item_text_color_black"
             android:text="列表"
             android:textSize="15sp" />
     </RelativeLayout>
@@ -91,6 +93,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/setting_image_view"
+            android:textColor="@color/universal_item_text_color_black"
             android:text="设置"
             android:textSize="15sp" />
     </RelativeLayout>
@@ -116,6 +119,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/login_image_view"
+            android:textColor="@color/universal_item_text_color_black"
             android:text="登录"
             android:textSize="15sp" />
     </RelativeLayout>

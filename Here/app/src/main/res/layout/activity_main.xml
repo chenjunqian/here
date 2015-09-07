@@ -5,44 +5,23 @@
     android:background="@color/universal_white"
     android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:minHeight="@dimen/universal_title_height"
-        android:background="@color/universal_title_background_green"
-        app:titleMarginStart="10dp"
-        app:navigationIcon="@drawable/icon"
-        android:layout_height="@dimen/universal_title_height">
+    <include
+        layout="@layout/tool_bar"
+        android:id="@+id/tool_bar">
 
-    </android.support.v7.widget.Toolbar>
+    </include>
 
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/main_drawer_layout"
-        android:background="@color/universal_transparent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/universal_transparent">
 
         <FrameLayout
             android:id="@+id/main_fragment_frame_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <!--<fragment-->
-                <!--android:id="@+id/main_map_fragment"-->
-                <!--android:name="com.eason.here.main_activity.MainMapFragment"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent">-->
-
-            <!--</fragment>-->
-
-            <!--<fragment-->
-                <!--android:name="com.eason.here.main_activity.MainSettingFragment"-->
-                <!--android:id="@+id/main_setting_fragment"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent">-->
-
-            <!--</fragment>-->
 
         </FrameLayout>
 

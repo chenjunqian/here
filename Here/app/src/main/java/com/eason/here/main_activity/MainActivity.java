@@ -8,7 +8,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -36,12 +35,11 @@ public class MainActivity extends BaseActivity{
         public void handleMessage(Message msg) {
             switch (msg.what){
                 case CHANGE_TOOL_BAR_TITLE_MAIN:
-                    toolbar.setTitle("HERE");
+                    toolbar.setTitle("Here");
 
                     break;
                 case CHANGE_TOOL_BAR_TITLE_SETTING:
                     toolbar.setTitle("设置");
-                    Log.d("MainActivity", "CHANGE_TOOL_BAR_TITLE_SETTING");
             }
         }
     };
@@ -58,7 +56,7 @@ public class MainActivity extends BaseActivity{
         初始化控件
      */
     private void initView(Bundle savedInstanceState) {
-        toolbar = (android.support.v7.widget.Toolbar)findViewById(R.id.toolbar);
+        toolbar = (android.support.v7.widget.Toolbar)findViewById(R.id.tool_bar);
         toolbar.setTitle(R.string.app_name);
         toolbar.setTitleTextColor(getResources().getColor(R.color.universal_white));
         drawerLayout = (DrawerLayout) findViewById(R.id.main_drawer_layout);

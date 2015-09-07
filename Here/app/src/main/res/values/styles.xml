@@ -1,14 +1,9 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-    </style>
-
-    <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
-        <item name="colorPrimary">@color/universal_title_background_green</item>
-        <item name="colorPrimaryDark">@color/universal_title_background_green</item>
-        <item name="colorAccent">@color/universal_title_background_green</item>
+        <item name="android:windowActionBar">false</item>
     </style>
 
 </resources>
