@@ -5,6 +5,7 @@ from django.db import models
 class User(models.Model):
 	username = models.CharField(max_length=30)
 	password = models.CharField(max_length=30)
+	nickname = models.CharField(max_length=30,blank=True)
 	gender = models.CharField(max_length=30)
 	pushKey = models.CharField(max_length=30)
 	avatar = models.FileField(upload_to='./avatar/',blank=True)
