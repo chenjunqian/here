@@ -18,6 +18,7 @@ import com.amap.api.maps2d.LocationSource;
 import com.amap.api.maps2d.MapView;
 import com.amap.api.maps2d.model.BitmapDescriptorFactory;
 import com.amap.api.maps2d.model.LatLng;
+import com.amap.api.maps2d.model.Marker;
 import com.amap.api.maps2d.model.MarkerOptions;
 import com.amap.api.maps2d.model.MyLocationStyle;
 import com.eason.here.R;
@@ -31,6 +32,8 @@ public class MainMapFragment extends Fragment implements LocationSource,AMapLoca
     private AMap aMap;
     private LocationSource.OnLocationChangedListener mListener;
     private LocationManagerProxy mAMapLocationManager;
+    private MarkerOptions myMarkOption;
+    private Marker myMark;
 
     private Double geoLat;
     private Double geoLon;
@@ -43,10 +46,10 @@ public class MainMapFragment extends Fragment implements LocationSource,AMapLoca
         //显示地图
         mapView = (MapView)rootView.findViewById(R.id.map);
         mapView.onCreate(savedInstanceState);
-        if (aMap == null) {
+//        if (aMap == null) {
             aMap = mapView.getMap();
             setUpMap();
-        }
+//        }
 
         return rootView;
     }
@@ -61,7 +64,7 @@ public class MainMapFragment extends Fragment implements LocationSource,AMapLoca
     public void onResume() {
         super.onResume();
         mapView.onResume();
-        deactivate();
+//        deactivate();
     }
 
     @Override
@@ -83,6 +86,16 @@ public class MainMapFragment extends Fragment implements LocationSource,AMapLoca
     }
 
     private void setUpMap() {
+        mAMapLocationManager = LocationManagerProxy.getInstance(getActivity());
+        //mAMapLocationManager.setGpsEnable(false);
+			/*
+			 * mAMapLocManager.setGpsEnable(false);
+			 * 1.0.2版本新增方法，设置true表示混合定位中包含gps定位，false表示纯网络定位，默认是true Location
+			 * API定位采用GPS和网络混合定位方式
+			 * ，第一个参数是定位provider，第二个参数时间最短是2000毫秒，第三个参数距离间隔单位是米，第四个参数是定位监听者
+			 */
+        mAMapLocationManager.requestLocationData(
+                LocationProviderProxy.AMapNetwork, 2000, 10, this);
         // 自定义系统定位小蓝点
         MyLocationStyle myLocationStyle = new MyLocationStyle();
         myLocationStyle.myLocationIcon(BitmapDescriptorFactory
@@ -96,6 +109,7 @@ public class MainMapFragment extends Fragment implements LocationSource,AMapLoca
         aMap.getUiSettings().setMyLocationButtonEnabled(true);// 设置默认定位按钮是否显示
         aMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
         //aMap.setMyLocationType()
+        myMarkOption = new MarkerOptions();
     }
 
 
@@ -125,9 +139,18 @@ public class MainMapFragment extends Fragment implements LocationSource,AMapLoca
             if (geoLon==null||geoLat==null)return;
             //添加用户覆盖物
             LatLng userCurrentLatLng = new LatLng(geoLat,geoLon);
-            aMap.addMarker(new MarkerOptions().anchor(0.5f,0.5f).
-                    position(userCurrentLatLng).title("您").draggable(false));
+            if (myMark!=null){
+                myMark.destroy();
+            }
+            myMarkOption.anchor(0.5f,0.5f).
+                    position(userCurrentLatLng).title("您").draggable(false);
+            myMark = aMap.addMarker(myMarkOption);
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
     }
 
     @Override

@@ -2,5 +2,72 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <EditText
+        android:id="@+id/register_username_input_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="@string/username"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#213242">
+    </View>
+    <EditText
+        android:id="@+id/register_password_input_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="@string/password" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#213242">
+    </View>
+    <EditText
+        android:id="@+id/register_gender_input_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="@string/gender" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#213242">
+    </View>
+    <EditText
+        android:id="@+id/register_avatar_input_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="@string/avatar" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#213242">
+    </View>
+    <EditText
+        android:id="@+id/register_birthday_input_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="@string/birthday" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#213242">
+    </View>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/register_page_login_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/register"
+            android:textSize="15sp" />
+
+    </LinearLayout>
 
 </LinearLayout>
