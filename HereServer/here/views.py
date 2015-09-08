@@ -50,13 +50,14 @@ def register(request):
 		gender = request.POST.get('gender')
 		pushKey = request.POST.get('pushKey')
 		avatar = request.POST.get('avatar')
-		birthday = request.port.get('birthday')
+		birthday = request.POST.get('birthday')
+		nickname = request.POST.get('nickname')
 		if username and password :
 			
 			try:
 				cur = connection.cursor()
 				query = 'select * from here_user where username = %s'
-				cur.execute(query,username)
+				cur.execute(query,[username])
 				userResult = cur.fetchall()
 				if userResult:
 					dict['errorMessage'] = "username_is_exist"
@@ -70,6 +71,7 @@ def register(request):
 					resultData['avatar'] = avatar
 					resultData['gender'] = gender
 					resultData['birthday'] = birthday
+					resultData['nickname'] = nickname
 					# User.objects.create(username=username,password=password,gender=gender,avatar=avatar,pushKey=pushKey,birthday=birthday)
 					# cursor = connection.cursor()
 					# query = "insert into here_user(username,password,gender,pushkey,birthday) values(%s,%s,%s,%s,%s)"
@@ -77,6 +79,7 @@ def register(request):
 					user = User()
 					user.username = username
 					user.password = password
+					user.nickname = nickname
 					user.pushKey = pushKey
 					user.avatar = avatar
 					user.birthday = birthday
@@ -133,5 +136,7 @@ def getLocationByLocation(request):
 		city = request.POST.get('city')
 		try:
 			cur = connection.cursor()
-			query = "select * from Location where city='%s'"
-			cur.execute(query,city)
+			query = "select * from Location where city=%s"
+			cur.execute(query,[city])
+			loc = cur.fetchall()
+			
