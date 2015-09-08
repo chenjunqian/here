@@ -96,6 +96,7 @@ public class MainMapFragment extends Fragment implements LocationSource,AMapLoca
 			 */
         mAMapLocationManager.requestLocationData(
                 LocationProviderProxy.AMapNetwork, 2000, 10, this);
+
         // 自定义系统定位小蓝点
         MyLocationStyle myLocationStyle = new MyLocationStyle();
         myLocationStyle.myLocationIcon(BitmapDescriptorFactory

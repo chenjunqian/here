@@ -35,10 +35,12 @@ public class MainActivity extends BaseActivity{
         public void handleMessage(Message msg) {
             switch (msg.what){
                 case CHANGE_TOOL_BAR_TITLE_MAIN:
+                    //跳转时改变Toobar相应的标题
                     toolbar.setTitle("Here");
 
                     break;
                 case CHANGE_TOOL_BAR_TITLE_SETTING:
+                    //跳转时改变Toobar相应的标题
                     toolbar.setTitle("设置");
                     break;
             }
@@ -160,8 +162,7 @@ public class MainActivity extends BaseActivity{
                 break;
         }
 
-        drawerLayout.closeDrawers();
-
+        drawerLayout.closeDrawers();//点击Item后关闭Drawerlayout
         transaction.commit();
     }
 }
