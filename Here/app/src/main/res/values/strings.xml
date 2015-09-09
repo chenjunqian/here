@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Here</string>
-
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <!-- 注册页面-->
     <string name="username">用户名</string>
     <string name="password">密码</string>
     <string name="gender">性别</string>
@@ -10,4 +11,7 @@
     <string name="birthday">生日</string>
     <string name="login">登录</string>
     <string name="register">注册</string>
+    <string name="email_phone_edit_text_hint">请输入手机号或者邮箱</string>
+
+
 </resources>

@@ -20,7 +20,9 @@ from here import views
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^login/',views.login,name = 'login'),
+    url(r'^login',views.login,name = 'login'),
+    url(r'^register',views.register,name = 'register'),
     url(r'^update_user_location',views.updateUserLocation,name = 'updateUserLocation'),
+    url(r'^checkUserIsExist',views.checkUserIsExist,name = 'checkUserIsExist'),
     url(r'^admin/', include(admin.site.urls)),
 )

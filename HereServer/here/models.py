@@ -17,6 +17,7 @@ class Location(models.Model):
 	city = models.CharField(max_length=30)
 	user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
 	like = models.IntegerField()
+	shareContent = models.CharField(max_length=200,blank=True)
 	
 class TestModel(models.Model):
 	girl = models.CharField(max_length=30)

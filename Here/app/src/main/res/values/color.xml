@@ -7,4 +7,5 @@
     <color name="universal_transparent">#00000000</color>
     <color name="ColorPrimary">#86C21F</color>
     <color name="universal_item_text_color_black">#ff000000</color>
+    <color name="universal_layout_background_color">#f3f3f3</color>
 </resources>

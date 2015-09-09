@@ -10,6 +10,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.eason.here.model.User;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,7 +29,10 @@ public class HttpRequest {
     }
 
     public static <T> void baseHttpPostRequest(String url, final Map<String, String> map, final HttpResponseHandler httpResponseHandler, final Class<T> tClass) {
-        if (queue == null) return;
+        if (queue == null){
+            Log.e(TAG,"The volley queue is null");
+            return;
+        }
 
         Response.ErrorListener errorListener = new Response.ErrorListener() {
             @Override
@@ -55,16 +59,55 @@ public class HttpRequest {
         queue.add(stringRequest);
     }
 
-    public static <T> void login(String username, String password, String gender, String pushKey, Class<T> tClass, HttpResponseHandler httpResponseHandler) {
+    /**
+     * 登录
+     * @param username
+     * @param password
+     * @param pushKey
+     * @param tClass
+     * @param httpResponseHandler
+     * @param <T>
+     */
+    public static <T> void login(String username, String password, String pushKey,
+                                 Class<T> tClass, HttpResponseHandler httpResponseHandler) {
         Map<String, String> map = new HashMap<String, String>();
         map.put("username", username);
         map.put("password", password);
-        map.put("gender", gender);
         map.put("pushKey", pushKey);
 
         baseHttpPostRequest("http://www.baidu.com", map, httpResponseHandler, tClass);
 
     }
 
+    /**
+     * 注册
+     * @param username
+     * @param password
+     * @param pushKey
+     * @param nickname
+     * @param tClass
+     * @param httpResponseHandler
+     * @param <T>
+     */
+    public static <T> void register(String username, String password, String pushKey, String nickname,
+                                    Class<T> tClass, HttpResponseHandler httpResponseHandler) {
+
+        Map<String,String> map = new HashMap<String,String>();
+        map.put("username", username);
+        map.put("password", password);
+        map.put("pushKey", pushKey);
+        map.put("nickname",nickname);
+
+        baseHttpPostRequest(HttpConfig.String_Url_Register,map,httpResponseHandler, User.class);
+    }
+
+    public static <T> void checkUserIsExist(String username ,Class<T> tClass,
+                                            HttpResponseHandler httpResponseHandler){
+
+        Map<String,String> map = new HashMap<String,String>();
+        map.put("username",username);
+
+        baseHttpPostRequest(HttpConfig.String_Url_Check_User_Is_Exist,map,httpResponseHandler,tClass);
+    }
 
 }

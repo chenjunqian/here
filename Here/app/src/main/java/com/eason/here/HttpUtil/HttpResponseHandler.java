@@ -27,6 +27,7 @@ public class HttpResponseHandler implements IObserverHandler {
                 JSONObject resultData;
                 if (resultVO.getResultData()!=null&&t!=null){
                     resultData = (JSONObject) responseJson.get("resultData");
+                    if (resultData==null)return;
                     result = gson.fromJson(resultData.toString(),t);
                     resultVO.setResultData(result);
                 }

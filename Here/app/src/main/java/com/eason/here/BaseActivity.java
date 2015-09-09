@@ -6,9 +6,6 @@ import android.app.ActivityManager.RunningAppProcessInfo;
 import android.content.Context;
 import android.os.Bundle;
 
-import com.eason.here.model.LoginStatus;
-import com.eason.here.util.SharePreferencesUtil;
-
 import java.util.List;
 
 /**
@@ -20,12 +17,6 @@ public class BaseActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        inittAppUtil(this);
-    }
-
-    private void inittAppUtil(Context context){
-        SharePreferencesUtil.init(context);
-        LoginStatus.init(context);
     }
 
     /**
