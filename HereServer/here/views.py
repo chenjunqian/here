@@ -16,25 +16,23 @@ def login(request):
 		gender = request.POST.get('gender')
 		pushKey = request.POST.get('pushKey')
 		
-		try:
-			cur = connection.cursor()
-			query = 'select * from here_user where username = %s and password = %s'
-			value = [username,password]
-			cur.execute(query,value)
-			user = cur.fetchall()
-			if user:
-				dict['errorMessage'] = "login_success"
-				dict['status'] = "0"
-				resultData['username'] = username
-				resultData['password'] = password
-				resultData['pushKey'] = pushKey
-				resultData['gender'] = gender
-				dict['resultData'] = resultData
-			else:
-				dict['errorMessage'] = "no_such_user"
-				dict['status'] = "8003"
-
-		json  = simplejson.dumps(dict)
+		cur = connection.cursor()
+		query = 'select * from here_user where username = %s and password = %s'
+		value = [username,password]
+		cur.execute(query,value)
+		user = cur.fetchall()
+		if user:
+			dict['errorMessage'] = "login_success"
+			dict['status'] = "0"
+			resultData['username'] = username
+			resultData['password'] = password
+			resultData['pushKey'] = pushKey
+			resultData['gender'] = gender
+			dict['resultData'] = resultData
+		else:
+			dict['errorMessage'] = "no_such_user"
+			dict['status'] = "8003"
+		json = simplejson.dumps(dict)
 		return HttpResponse(json)
 	else:
 		dict['errorMessage'] = "POST failed"
@@ -55,38 +53,37 @@ def register(request):
 		nickname = request.POST.get('nickname')
 		if username and password :
 			
-			try:
-				cur = connection.cursor()
-				query = 'select * from here_user where username = %s'
-				cur.execute(query,[username])
-				userResult = cur.fetchall()
-				if userResult:
-					dict['errorMessage'] = "username_is_exist"
-					dict['status'] = "8005"
-				else:
-					dict['errorMessage'] = "register_success"
-					dict['status'] = "0"
-					resultData['username'] = username
-					resultData['password'] = password
-					resultData['pushKey'] = pushKey
-					resultData['avatar'] = avatar
-					resultData['gender'] = gender
-					resultData['birthday'] = birthday
-					resultData['nickname'] = nickname
-					# User.objects.create(username=username,password=password,gender=gender,avatar=avatar,pushKey=pushKey,birthday=birthday)
-					# cursor = connection.cursor()
-					# query = "insert into here_user(username,password,gender,pushkey,birthday) values(%s,%s,%s,%s,%s)"
-					# cursor.execute(query,(username,password,pushKey,gender,birthday))
-					user = User()
-					user.username = username
-					user.password = password
-					user.nickname = nickname
-					user.pushKey = pushKey
-					user.avatar = avatar
-					user.birthday = birthday
-					user.gender = gender
-					user.save()
-					dict['resultData'] = resultData
+			cur = connection.cursor()
+			query = 'select * from here_user where username = %s'
+			cur.execute(query,[username])
+			userResult = cur.fetchall()
+			if userResult:
+				dict['errorMessage'] = "username_is_exist"
+				dict['status'] = "8005"
+			else:
+				dict['errorMessage'] = "register_success"
+				dict['status'] = "0"
+				resultData['username'] = username
+				resultData['password'] = password
+				resultData['pushKey'] = pushKey
+				resultData['avatar'] = avatar
+				resultData['gender'] = gender
+				resultData['birthday'] = birthday
+				resultData['nickname'] = nickname
+				# User.objects.create(username=username,password=password,gender=gender,avatar=avatar,pushKey=pushKey,birthday=birthday)
+				# cursor = connection.cursor()
+				# query = "insert into here_user(username,password,gender,pushkey,birthday) values(%s,%s,%s,%s,%s)"
+				# cursor.execute(query,(username,password,pushKey,gender,birthday))
+				user = User()
+				user.username = username
+				user.password = password
+				user.nickname = nickname
+				user.pushKey = pushKey
+				user.avatar = avatar
+				user.birthday = birthday
+				user.gender = gender
+				user.save()
+				dict['resultData'] = resultData
 		else:
 			dict['errorMessage'] = "username_or_password_invalid"
 			dict['status'] = "8004"
@@ -100,7 +97,6 @@ def register(request):
 
 # 根据用户名，判断该用户是否已经注册
 def checkUserIsExist(request):
-	print "username"
 	dict = {}
 	resultData = {}
 	if request.method == 'POST':
@@ -135,9 +131,9 @@ def checkUserIsExist(request):
 
 # 用户发帖上传位置信息以及内容
 def updateUserLocation(request):
-	dict[]
+	dict = {}
 	resultData = {}
-	if request.method == 'POST'
+	if request.method == 'POST':
 		longitude = request.POST.get('longitude')
 		latitude = request.POST.get('latitude')
 		shareContent = request.POST.get('shareContent')
@@ -166,15 +162,14 @@ def updateUserLocation(request):
 		
 # 根据用户的地理经纬度，来获取他周围的定位信息
 def getLocationByLocation(request):
-	dict[]
+	dict = {}
 	resultData = []
-	if request.method == 'POST'
+	if request.method == 'POST':
 		longitude = request.POST.get('longitude')
 		latitude = request.POST.get('latitude')
 		city = request.POST.get('city')
-		try:
-			cur = connection.cursor()
-			query = "select * from Location where city=%s"
-			cur.execute(query,[city])
-			loc = cur.fetchall()
+		cur = connection.cursor()
+		query = "select * from Location where city=%s"
+		cur.execute(query,[city])
+		loc = cur.fetchall()
 			
