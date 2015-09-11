@@ -27,4 +27,8 @@ public class IntentUtil {
      */
     public static final int NEAR_USER_FRAGMENT = 0x4;
 
+    /**
+     * 由主页页跳转到登录呀
+     */
+    public static final int MAIN_TO_LOGIN_PAGE = 0x5;
 }

@@ -99,7 +99,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
      * @param pushKey
      */
     private void login(String userAccount,String userPassword,String pushKey){
-        
+
         LoginHandler loginHandler = new LoginHandler(){
             @Override
             public void getResult() {
@@ -126,7 +126,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
             switch (requestCode){
                 case IntentUtil.LOGIN_TO_REGISTER_REQUEST_CODE://如果是注册逻辑结束的requestCode则在这里处理
-
+                    setResult(RESULT_OK);
                     break;
             }
         }
