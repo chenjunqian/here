@@ -2,13 +2,20 @@ package com.eason.here.login_register;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.eason.here.BaseActivity;
+import com.eason.here.HttpUtil.HttpRequest;
+import com.eason.here.HttpUtil.LoginHandler;
 import com.eason.here.R;
+import com.eason.here.model.ErroCode;
 import com.eason.here.model.IntentUtil;
+import com.eason.here.model.User;
 import com.eason.here.util.CommonUtil;
 
 /**
@@ -23,6 +30,20 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
     private String userAccount;//用户登录账号
     private String userPassword;//用户登录密码
+
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what){
+                case ErroCode.ERROR_CODE_CLIENT_DATA_ERROR:
+                    Toast.makeText(LoginActivity.this,"网络状态出了点问题",Toast.LENGTH_SHORT).show();
+                    break;
+                case ErroCode.ERROR_CODE_USER_OR_PASSWORD_INVALID:
+                    Toast.makeText(LoginActivity.this,"账户名或者密码错误",Toast.LENGTH_SHORT).show();
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +70,16 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                 userAccount = userAccountEditText.getText().toString();
                 userPassword = passwordEditText.getText().toString();
 
-                if (CommonUtil.isEmptyString(userAccount)||CommonUtil.isEmptyString(userPassword)){
+                if (CommonUtil.isEmptyString(userAccount)){
+                    Toast.makeText(LoginActivity.this,"请输入账号",Toast.LENGTH_SHORT).show();
+                    return;
+                }else if (CommonUtil.isEmptyString(userPassword)){
+                    Toast.makeText(LoginActivity.this,"请输入密码",Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 //登录逻辑
+                login(userAccount,userPassword,"");
 
                 break;
             case R.id.login_page_register_btn:
@@ -64,6 +90,32 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
                 break;
         }
+    }
+
+    /**
+     * 登录请求
+     * @param userAccount
+     * @param userPassword
+     * @param pushKey
+     */
+    private void login(String userAccount,String userPassword,String pushKey){
+        
+        LoginHandler loginHandler = new LoginHandler(){
+            @Override
+            public void getResult() {
+                if (this.resultVO==null){
+                    handler.sendEmptyMessage(new Message().what = ErroCode.ERROR_CODE_CLIENT_DATA_ERROR);
+                    return;
+                }else if (this.resultVO.getStatus()== ErroCode.ERROR_CODE_USER_OR_PASSWORD_INVALID){
+                    handler.sendEmptyMessage(new Message().what=ErroCode.ERROR_CODE_USER_OR_PASSWORD_INVALID);
+                    return;
+                }else if (this.resultVO.getStatus()== ErroCode.ERROR_CODE_CORRECT){
+
+                }
+            }
+        };
+
+        HttpRequest.login(userAccount,userPassword,pushKey,User.class,loginHandler);
     }
 
     @Override

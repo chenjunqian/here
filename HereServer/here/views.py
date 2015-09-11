@@ -30,7 +30,7 @@ def login(request):
 			resultData['gender'] = gender
 			dict['resultData'] = resultData
 		else:
-			dict['errorMessage'] = "no_such_user"
+			dict['errorMessage'] = "no_such_user_or_password_is_invalid"
 			dict['status'] = "8003"
 		json = simplejson.dumps(dict)
 		return HttpResponse(json)
@@ -59,7 +59,7 @@ def register(request):
 			userResult = cur.fetchall()
 			if userResult:
 				dict['errorMessage'] = "username_is_exist"
-				dict['status'] = "8005"
+				dict['status'] = "8002"
 			else:
 				dict['errorMessage'] = "register_success"
 				dict['status'] = "0"
@@ -86,12 +86,12 @@ def register(request):
 				dict['resultData'] = resultData
 		else:
 			dict['errorMessage'] = "username_or_password_invalid"
-			dict['status'] = "8004"
+			dict['status'] = "8001"
 		json = simplejson.dumps(dict)
 		return HttpResponse(json)
 	else:
 		dict['errorMessage'] = "POST_FAILED"
-		dict['status'] = "8002"
+		dict['status'] = "8001"
 		json  = simplejson.dumps(dict)
 		return HttpResponse("POST failed")
 
@@ -109,8 +109,8 @@ def checkUserIsExist(request):
 				dict['status'] = 0
 				dict['errorMessage'] = "user_is_exist"
 			else:
-				dict['status'] = 8005
-				dict['errorMessage'] = "user_is_exist"
+				dict['status'] = 8003
+				dict['errorMessage'] = "user_is_not_exist"
 
 			resultData['objects'] = "objects"
 			dict['resultData'] = resultData
@@ -119,13 +119,13 @@ def checkUserIsExist(request):
 
 		else:
 			dict['errorMessage'] = "username_is_null"
-			dict['status'] = 8002
+			dict['status'] = 8001
 			json  = simplejson.dumps(dict)
 			return HttpResponse("POST failed")
 
 	else:
 		dict['errorMessage'] = "POST_FAILED"
-		dict['status'] = 8002
+		dict['status'] = 8001
 		json  = simplejson.dumps(dict)
 		return HttpResponse("POST failed")
 
@@ -151,12 +151,12 @@ def updateUserLocation(request):
 			dict['resultData'] = resultData
 		else:
 			dict['errorMessage'] = "username_or_password_invalid"
-			dict['status'] = "8004"
+			dict['status'] = "8001"
 		json = simplejson.dumps(dict)
 		return HttpResponse(json)
 	else:
 		dict['errorMessage'] = "POST_FAILED"
-		dict['status'] = "8002"
+		dict['status'] = "8001"
 		json  = simplejson.dumps(dict)
 		return HttpResponse("POST failed")
 		

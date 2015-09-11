@@ -43,7 +43,8 @@ public class RegisterActivity extends BaseActivity {
                     Toast.makeText(RegisterActivity.this,"该账户已经注册",Toast.LENGTH_SHORT).show();
                     return;
                 }else{
-
+                    Toast.makeText(RegisterActivity.this,
+                            "验证成功",Toast.LENGTH_SHORT).show();
                 }
 
             }
