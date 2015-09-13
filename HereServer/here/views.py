@@ -24,10 +24,12 @@ def login(request):
 		if user:
 			dict['errorMessage'] = "login_success"
 			dict['status'] = "0"
-			resultData['username'] = username
-			resultData['password'] = password
-			resultData['pushKey'] = pushKey
-			resultData['gender'] = gender
+			resultData['username'] = user[0][1]
+			resultData['password'] = user[0][2]
+			resultData['nickname'] = user[0][3]
+			resultData['gender'] = user[0][4]
+			resultData['pushKey'] = user[0][5]
+			resultData['birthday'] = user[0][7]
 			dict['resultData'] = resultData
 		else:
 			dict['errorMessage'] = "no_such_user_or_password_is_invalid"
