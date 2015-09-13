@@ -75,7 +75,7 @@ public class HttpRequest {
         map.put("password", password);
         map.put("pushKey", pushKey);
 
-        baseHttpPostRequest("http://www.baidu.com", map, httpResponseHandler, tClass);
+        baseHttpPostRequest(HttpConfig.String_Url_Login, map, httpResponseHandler, tClass);
 
     }
 

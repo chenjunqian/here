@@ -55,22 +55,11 @@ public class MenuLeftFragment extends Fragment implements View.OnClickListener {
                 mainActivity.setFragmentTransaction(IntentUtil.SETTING_FRAGMENT);
                 break;
             case R.id.login_item_layout:
+                mainActivity.setFragmentTransaction(IntentUtil.MAIN_TO_LOGIN_PAGE);
                 Intent intent=new Intent(this.getActivity(),LoginActivity.class);
-                startActivityForResult(intent,IntentUtil.MAIN_TO_LOGIN_PAGE);
+                getActivity().startActivityForResult(intent,IntentUtil.MAIN_TO_LOGIN_PAGE);
                 break;
         }
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode!= getActivity().RESULT_OK)return;
-
-        switch (requestCode){
-            case IntentUtil.MAIN_TO_LOGIN_PAGE:
-
-                break;
-        }
-    }
 }

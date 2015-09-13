@@ -110,7 +110,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                     handler.sendEmptyMessage(new Message().what=ErroCode.ERROR_CODE_USER_OR_PASSWORD_INVALID);
                     return;
                 }else if (this.resultVO.getStatus()== ErroCode.ERROR_CODE_CORRECT){
-
+                    setResult(RESULT_OK);
+                    finish();
                 }
             }
         };

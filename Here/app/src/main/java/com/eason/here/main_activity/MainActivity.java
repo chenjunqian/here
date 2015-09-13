@@ -3,6 +3,7 @@ package com.eason.here.main_activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
@@ -171,9 +172,30 @@ public class MainActivity extends BaseActivity{
                 transaction.replace(R.id.main_fragment_frame_layout,nearUserListFragment);
 
                 break;
+
+            case IntentUtil.MAIN_TO_LOGIN_PAGE:
+                /**
+                 * 在这里什么都不需要做，因为只需要关闭Drawerlayout
+                 */
+                break;
         }
 
         drawerLayout.closeDrawers();//点击Item后关闭Drawerlayout
         transaction.commit();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode!=RESULT_OK){
+            return;
+        }
+
+        switch (requestCode){
+            case IntentUtil.MAIN_TO_LOGIN_PAGE:
+
+                break;
+        }
     }
 }
