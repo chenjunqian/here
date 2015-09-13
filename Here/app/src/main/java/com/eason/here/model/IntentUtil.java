@@ -31,4 +31,10 @@ public class IntentUtil {
      * 由主页页跳转到登录呀
      */
     public static final int MAIN_TO_LOGIN_PAGE = 0x5;
+
+    /**
+     * 跳转到注册页面的个人信息填写Fragment
+     */
+    public static final int REGISTER_USER_INFO_PAGE = 0x6;
+
 }

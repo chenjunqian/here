@@ -137,8 +137,7 @@ public class MainActivity extends BaseActivity{
      * @param fragmentIndex
      */
     public void setFragmentTransaction(int fragmentIndex){
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
         Message msg = new Message();
 
         switch (fragmentIndex){

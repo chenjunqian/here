@@ -1,69 +1,50 @@
 package com.eason.here.login_register;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import com.eason.here.BaseActivity;
-import com.eason.here.HttpUtil.HttpRequest;
-import com.eason.here.HttpUtil.HttpResponseHandler;
 import com.eason.here.R;
-import com.eason.here.util.CommonUtil;
+import com.eason.here.model.IntentUtil;
 
 /**
  * Created by Eason on 8/28/15.
  */
 public class RegisterActivity extends BaseActivity {
 
-    private EditText emailPhoneEditText;
-    private Button nextBtn;
-    private String username;
+    private RegisterVerifyFragment registerVerifyFragment;
+
+    public static String userAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        initView();
+        initFragmentParam();
     }
 
-    private void initView(){
-        emailPhoneEditText = (EditText)findViewById(R.id.register_page_email_phone_edit_text);
-        nextBtn = (Button)findViewById(R.id.register_page_email_phone_next_button);
+    private void initFragmentParam(){
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        registerVerifyFragment = new RegisterVerifyFragment();
+        transaction.replace(R.id.register_page_activity_contain_layout, registerVerifyFragment);
+        transaction.commit();
+    }
 
-        //检测用户名是否存在的回调函数
-        final HttpResponseHandler checkUserIsExistHandler = new HttpResponseHandler(){
-            @Override
-            public void getResult() {
-                if (this.resultVO==null){
-                    Toast.makeText(RegisterActivity.this,"网络发生了一些问题",Toast.LENGTH_SHORT).show();
-                    return;
-                }else if (this.resultVO.getStatus()==0){
-                    Toast.makeText(RegisterActivity.this,"该账户已经注册",Toast.LENGTH_SHORT).show();
-                    return;
-                }else{
-                    Toast.makeText(RegisterActivity.this,
-                            "验证成功",Toast.LENGTH_SHORT).show();
-                }
+    public void setFragmentTransaction(int fragmentType){
 
-            }
-        };
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
 
-        nextBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                username = emailPhoneEditText.getText().toString();
+        switch (fragmentType){
+            case IntentUtil.REGISTER_USER_INFO_PAGE:
 
-                //检测用户输入格式是否正确
-                if (!CommonUtil.isEmail(username)&&!CommonUtil.isMobileNO(username)){
-                    Toast.makeText(RegisterActivity.this,
-                            "请输入正确格式的手机号或者邮箱",Toast.LENGTH_SHORT).show();
-                    return;
-                }
+                fragmentTransaction.hide(registerVerifyFragment);
+                fragmentTransaction.add(R.id.register_page_activity_contain_layout,new RegisterUserInfoFragment());
+                break;
+        }
 
-                HttpRequest.checkUserIsExist(username,Object.class,checkUserIsExistHandler);
-            }
-        });
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 }

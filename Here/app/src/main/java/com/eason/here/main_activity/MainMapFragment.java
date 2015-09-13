@@ -21,12 +21,13 @@ import com.amap.api.maps2d.model.LatLng;
 import com.amap.api.maps2d.model.Marker;
 import com.amap.api.maps2d.model.MarkerOptions;
 import com.amap.api.maps2d.model.MyLocationStyle;
+import com.eason.here.BaseFragment;
 import com.eason.here.R;
 
 /**
  * Created by Eason on 9/6/15.
  */
-public class MainMapFragment extends Fragment implements LocationSource,AMapLocationListener {
+public class MainMapFragment extends BaseFragment implements LocationSource,AMapLocationListener {
 
     private MapView mapView;
     private AMap aMap;

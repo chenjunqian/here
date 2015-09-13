@@ -1,6 +1,5 @@
 package com.eason.here.main_activity;
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
+import com.eason.here.BaseFragment;
 import com.eason.here.R;
 import com.eason.here.login_register.LoginActivity;
 import com.eason.here.model.IntentUtil;
@@ -15,7 +15,7 @@ import com.eason.here.model.IntentUtil;
 /**
  * Created by Eason on 8/22/15.
  */
-public class MenuLeftFragment extends Fragment implements View.OnClickListener {
+public class MenuLeftFragment extends BaseFragment implements View.OnClickListener {
 
     private RelativeLayout mainTagLayout;
     private RelativeLayout userListLayout;
@@ -57,7 +57,7 @@ public class MenuLeftFragment extends Fragment implements View.OnClickListener {
             case R.id.login_item_layout:
                 mainActivity.setFragmentTransaction(IntentUtil.MAIN_TO_LOGIN_PAGE);
                 Intent intent=new Intent(this.getActivity(),LoginActivity.class);
-                getActivity().startActivityForResult(intent,IntentUtil.MAIN_TO_LOGIN_PAGE);
+                getActivity().startActivityForResult(intent, IntentUtil.MAIN_TO_LOGIN_PAGE);
                 break;
         }
     }
