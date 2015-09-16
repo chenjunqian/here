@@ -2,11 +2,101 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/universal_layout_background_color"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/test_text_view"
-        android:text="我是注册用户信息填写页面！！！！！"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/universal_title_height"
+        android:background="@color/universal_title_background_green">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/register_user_info_title"
+            android:textColor="@color/universal_white"
+            android:textSize="@dimen/universal_title_text_size" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/universal_title_height"
+        android:layout_marginTop="25dp"
+        android:background="@color/universal_white"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/register_user_info_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="28dp"
+            android:background="@null"
+            android:hint="@string/register_user_info_edit_text_hint" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/universal_title_height"
+        android:layout_marginTop="25dp"
+        android:background="@color/universal_white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="28dp"
+            android:text="@string/register_user_info_gender_text_view"
+            android:textColor="@color/universal_item_text_color_black"
+            android:textSize="@dimen/universal_title_text_size" />
+
+
+        <RadioGroup
+            android:id="@+id/register_user_info_gender_radio_group"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true">
+
+            <RadioButton
+                android:id="@+id/register_user_info_gender_button_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/register_user_info_gender_text_view_male"
+                android:textColor="@color/universal_item_text_color_black"/>
+
+            <RadioButton
+                android:id="@+id/register_user_info_gender_button_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/register_user_info_gender_text_view_female"
+                android:textColor="@color/universal_item_text_color_black" />
+
+        </RadioGroup>
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/register_user_info_next_button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/universal_title_height"
+            android:layout_centerInParent="true"
+            android:textColor="@color/universal_white"
+            android:background="@drawable/universal_big_round_green_button_shape"
+            android:text="下一步" />
+    </RelativeLayout>
 </LinearLayout>

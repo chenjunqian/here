@@ -16,6 +16,8 @@ public class RegisterActivity extends BaseActivity {
     private RegisterVerifyFragment registerVerifyFragment;
 
     public static String userAccount;
+    public static String nickname;
+    public static String gender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,9 @@ public class RegisterActivity extends BaseActivity {
 
                 fragmentTransaction.hide(registerVerifyFragment);
                 fragmentTransaction.add(R.id.register_page_activity_contain_layout,new RegisterUserInfoFragment());
+                break;
+            case IntentUtil.REGISTER_USER_BIRTHDAY_PAGE:
+
                 break;
         }
 

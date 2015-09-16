@@ -1,7 +1,6 @@
 package com.eason.here.HttpUtil;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -11,6 +10,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.eason.here.model.User;
+import com.eason.here.util.LogUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,21 +30,21 @@ public class HttpRequest {
 
     public static <T> void baseHttpPostRequest(String url, final Map<String, String> map, final HttpResponseHandler httpResponseHandler, final Class<T> tClass) {
         if (queue == null){
-            Log.e(TAG,"The volley queue is null");
+            LogUtil.e(TAG, "The volley queue is null");
             return;
         }
 
         Response.ErrorListener errorListener = new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                Log.e(TAG, "volley http response Error : " + volleyError.getMessage(), volleyError);
+                LogUtil.e(TAG, "volley http response Error : " + volleyError.getMessage()+" "+volleyError);
             }
         };
 
         Response.Listener listener = new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
-                Log.d("MainActivity", "response : " + s);
+                LogUtil.d("MainActivity", "response : " + s);
                 httpResponseHandler.response(s, tClass);
             }
         };

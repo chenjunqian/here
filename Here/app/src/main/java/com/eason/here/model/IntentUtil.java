@@ -37,4 +37,9 @@ public class IntentUtil {
      */
     public static final int REGISTER_USER_INFO_PAGE = 0x6;
 
+    /**
+     * 跳转到注册页面的生日信息填写Fragment
+     */
+    public static final int REGISTER_USER_BIRTHDAY_PAGE = 0x7;
+
 }
