@@ -2,9 +2,12 @@ package com.eason.here.login_register;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.eason.here.BaseActivity;
+import com.eason.here.HttpUtil.HttpResponseHandler;
 import com.eason.here.R;
 import com.eason.here.model.IntentUtil;
 
@@ -14,10 +17,18 @@ import com.eason.here.model.IntentUtil;
 public class RegisterActivity extends BaseActivity {
 
     private RegisterVerifyFragment registerVerifyFragment;
+    private RegisterUserInfoFragment registerUserInfoFragment;
+    private RegisterBirthdayFragment registerBirthdayFragment;
 
+    /**
+     * 这里的静态变量用于在子Fragment中注册时存储的参数，统一在父Activity中定义
+     */
     public static String userAccount;
+    public static String password;
     public static String nickname;
     public static String gender;
+    public static String birthday;
+    public static String userConsellation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +41,8 @@ public class RegisterActivity extends BaseActivity {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         registerVerifyFragment = new RegisterVerifyFragment();
+        registerUserInfoFragment = new RegisterUserInfoFragment();
+        registerBirthdayFragment = new RegisterBirthdayFragment();
         transaction.replace(R.id.register_page_activity_contain_layout, registerVerifyFragment);
         transaction.commit();
     }
@@ -40,16 +53,58 @@ public class RegisterActivity extends BaseActivity {
 
         switch (fragmentType){
             case IntentUtil.REGISTER_USER_INFO_PAGE:
+                if (registerUserInfoFragment==null){
+                    registerUserInfoFragment = new RegisterUserInfoFragment();
+                }
 
-                fragmentTransaction.hide(registerVerifyFragment);
-                fragmentTransaction.add(R.id.register_page_activity_contain_layout,new RegisterUserInfoFragment());
+                fragmentTransaction.add(R.id.register_page_activity_contain_layout,registerUserInfoFragment);
                 break;
             case IntentUtil.REGISTER_USER_BIRTHDAY_PAGE:
+                if (registerBirthdayFragment==null){
+                    registerBirthdayFragment = new RegisterBirthdayFragment();
+                }
 
+                fragmentTransaction.add(R.id.register_page_activity_contain_layout, registerBirthdayFragment);
                 break;
         }
 
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+    }
+
+    /**
+     * 注册用户
+     */
+    public void register(){
+
+        //注册网络回调函数
+        HttpResponseHandler registerHandler = new HttpResponseHandler(){
+            @Override
+            public void getResult() {
+                if (this.resultVO==null){
+                    Toast.makeText(RegisterActivity.this, "网络发生了一些问题", Toast.LENGTH_SHORT).show();
+                    return;
+                }else if (this.resultVO.getStatus()==0){
+                    Toast.makeText(RegisterActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
+                    Intent registerIntentData = new Intent();
+                    registerIntentData.putExtra("username",userAccount);
+                    registerIntentData.putExtra("password",password);
+                    registerIntentData.putExtra("pushKey","");
+                    setResult(RESULT_OK,registerIntentData);
+                    finish();
+                    return;
+                }
+            }
+        };
+
+        Toast.makeText(RegisterActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
+        Intent registerIntentData = new Intent();
+        registerIntentData.putExtra("username",userAccount);
+        registerIntentData.putExtra("password",password);
+        registerIntentData.putExtra("pushKey","");
+        setResult(RESULT_OK,registerIntentData);
+        finish();
+
+//        HttpRequest.register(userAccount, password, "", nickname, User.class, registerHandler);
     }
 }

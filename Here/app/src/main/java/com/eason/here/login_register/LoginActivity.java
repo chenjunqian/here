@@ -17,6 +17,7 @@ import com.eason.here.model.ErroCode;
 import com.eason.here.model.IntentUtil;
 import com.eason.here.model.User;
 import com.eason.here.util.CommonUtil;
+import com.eason.here.util.LogUtil;
 
 /**
  * Created by Eason on 8/21/15.
@@ -87,7 +88,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                 //跳转至注册页面，注册逻辑结束后在 onActivityResult 方法中处理相关逻辑
                 Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
                 startActivityForResult(intent, IntentUtil.LOGIN_TO_REGISTER_REQUEST_CODE);
-
                 break;
         }
     }
@@ -127,7 +127,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
             switch (requestCode){
                 case IntentUtil.LOGIN_TO_REGISTER_REQUEST_CODE://如果是注册逻辑结束的requestCode则在这里处理
-                    setResult(RESULT_OK);
+                    userAccount = data.getStringExtra("username");
+                    userPassword = data.getStringExtra("password");
+                    LogUtil.d("LoginActivity onActivityResult","LoginActivity : "+userAccount+" userPassword : "+userPassword);
+                    login(userAccount,userPassword,"");
                     break;
             }
         }

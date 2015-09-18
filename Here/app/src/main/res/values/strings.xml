@@ -13,10 +13,13 @@
     <string name="register">注册</string>
     <string name="register_user_info_title">填写个人资料</string>
     <string name="register_user_info_edit_text_hint">请填写昵称</string>
+    <string name="register_password_edit_text_hint">请设置密码</string>
     <string name="register_user_info_gender_text_view">选择性别</string>
     <string name="register_user_info_gender_text_view_female">女</string>
     <string name="register_user_info_gender_text_view_male">男</string>
     <string name="email_phone_edit_text_hint">请输入手机号或者邮箱</string>
+    <string name="register_birthday_title">您的生日</string>
+    <string name="register_birthday_text">出生日期</string>
 
 
 </resources>

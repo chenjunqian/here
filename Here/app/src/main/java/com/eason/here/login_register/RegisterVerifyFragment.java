@@ -22,6 +22,7 @@ import com.eason.here.util.CommonUtil;
 public class RegisterVerifyFragment extends BaseFragment {
 
     private EditText emailPhoneEditText;
+    private EditText passwordEditText;
     private Button nextBtn;
 
     @Override
@@ -33,6 +34,7 @@ public class RegisterVerifyFragment extends BaseFragment {
 
     private void initView(View root){
         emailPhoneEditText = (EditText)root.findViewById(R.id.register_page_email_phone_edit_text);
+        passwordEditText = (EditText)root.findViewById(R.id.register_page_password_edit_text);
         nextBtn = (Button)root.findViewById(R.id.register_page_email_phone_next_button);
 
         //检测用户名是否存在的回调函数
@@ -56,12 +58,18 @@ public class RegisterVerifyFragment extends BaseFragment {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 RegisterActivity.userAccount = emailPhoneEditText.getText().toString();
+                RegisterActivity.password = passwordEditText.getText().toString();
 
                 //检测用户输入格式是否正确
                 if (!CommonUtil.isEmail(RegisterActivity.userAccount)&&!CommonUtil.isMobileNO(RegisterActivity.userAccount)){
                     Toast.makeText(getActivity(),
                             "请输入正确格式的手机号或者邮箱",Toast.LENGTH_SHORT).show();
+                    return;
+                }else if (CommonUtil.isEmptyString(RegisterActivity.password)){
+                    Toast.makeText(getActivity(),
+                            "请输入密码",Toast.LENGTH_SHORT).show();
                     return;
                 }
 
