@@ -50,7 +50,6 @@ def register(request):
 		password = request.POST.get('password')
 		gender = request.POST.get('gender')
 		pushKey = request.POST.get('pushKey')
-		avatar = request.POST.get('avatar')
 		birthday = request.POST.get('birthday')
 		nickname = request.POST.get('nickname')
 		if username and password :
@@ -68,14 +67,13 @@ def register(request):
 				resultData['username'] = username
 				resultData['password'] = password
 				resultData['pushKey'] = pushKey
-				resultData['avatar'] = avatar
 				resultData['gender'] = gender
 				resultData['birthday'] = birthday
 				resultData['nickname'] = nickname
 
 				cursor = connection.cursor()
-				query = "insert into here_user(username,password,gender,pushkey,birthday) values(%s,%s,%s,%s,%s)"
-				cursor.execute(query,[username,password,pushKey,gender,birthday])
+				query = "insert into here_user(username,password,gender,pushkey,birthday,nickname) values(%s,%s,%s,%s,%s,%s)"
+				cursor.execute(query,[username,password,pushKey,gender,birthday,nickname])
 				dict['resultData'] = resultData
 		else:
 			dict['errorMessage'] = "username_or_password_invalid"

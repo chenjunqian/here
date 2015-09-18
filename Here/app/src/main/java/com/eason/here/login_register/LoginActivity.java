@@ -17,7 +17,6 @@ import com.eason.here.model.ErroCode;
 import com.eason.here.model.IntentUtil;
 import com.eason.here.model.User;
 import com.eason.here.util.CommonUtil;
-import com.eason.here.util.LogUtil;
 
 /**
  * Created by Eason on 8/21/15.
@@ -129,7 +128,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                 case IntentUtil.LOGIN_TO_REGISTER_REQUEST_CODE://如果是注册逻辑结束的requestCode则在这里处理
                     userAccount = data.getStringExtra("username");
                     userPassword = data.getStringExtra("password");
-                    LogUtil.d("LoginActivity onActivityResult","LoginActivity : "+userAccount+" userPassword : "+userPassword);
                     login(userAccount,userPassword,"");
                     break;
             }

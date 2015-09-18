@@ -174,7 +174,7 @@ public class MainActivity extends BaseActivity{
 
             case IntentUtil.MAIN_TO_LOGIN_PAGE:
                 /**
-                 * 在这里什么都不需要做，因为只需要关闭Drawerlayout
+                 * 在这里什么都不需要做，因为只需要关闭Drawerlayout,具体的跳转操作在MainLeftFragment中
                  */
                 break;
         }

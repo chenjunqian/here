@@ -7,9 +7,12 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.eason.here.BaseActivity;
+import com.eason.here.HttpUtil.HttpRequest;
 import com.eason.here.HttpUtil.HttpResponseHandler;
 import com.eason.here.R;
 import com.eason.here.model.IntentUtil;
+import com.eason.here.model.User;
+import com.eason.here.util.LogUtil;
 
 /**
  * Created by Eason on 8/28/15.
@@ -89,22 +92,15 @@ public class RegisterActivity extends BaseActivity {
                     Intent registerIntentData = new Intent();
                     registerIntentData.putExtra("username",userAccount);
                     registerIntentData.putExtra("password",password);
-                    registerIntentData.putExtra("pushKey","");
-                    setResult(RESULT_OK,registerIntentData);
-                    finish();
+                    registerIntentData.putExtra("pushKey", "");
+//                    setResult(RESULT_OK,registerIntentData);
+//                    finish();
                     return;
                 }
             }
         };
 
-        Toast.makeText(RegisterActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
-        Intent registerIntentData = new Intent();
-        registerIntentData.putExtra("username",userAccount);
-        registerIntentData.putExtra("password",password);
-        registerIntentData.putExtra("pushKey","");
-        setResult(RESULT_OK,registerIntentData);
-        finish();
-
-//        HttpRequest.register(userAccount, password, "", nickname, User.class, registerHandler);
+        LogUtil.d("RegisterActivity","userAccount : "+userAccount+" password : "+password+" nickname : "+nickname+" birthday : "+birthday+" gender : "+gender);
+        HttpRequest.register(userAccount, password, "empty", nickname,birthday,gender, User.class, registerHandler);
     }
 }

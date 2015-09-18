@@ -62,7 +62,7 @@ public class RegisterBirthdayFragment extends BaseFragment {
                 int age = currentYear - year;
                 int validMonth = monthOfYear+1;
                 ageTextView.setText(age+" 岁");
-                RegisterActivity.birthday = String.valueOf(age);
+                RegisterActivity.birthday = String.valueOf(year+"-"+validMonth+"-"+dayOfMonth);
                 constellationTextView.setText(Constellation.getConstellation(validMonth,dayOfMonth));
                 RegisterActivity.userConsellation = Constellation.getConstellation(validMonth,dayOfMonth);
 

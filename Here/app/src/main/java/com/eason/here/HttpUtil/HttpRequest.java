@@ -89,7 +89,7 @@ public class HttpRequest {
      * @param httpResponseHandler
      * @param <T>
      */
-    public static <T> void register(String username, String password, String pushKey, String nickname,
+    public static <T> void register(String username, String password, String pushKey, String nickname,String birthday,String gender,
                                     Class<T> tClass, HttpResponseHandler httpResponseHandler) {
 
         Map<String,String> map = new HashMap<String,String>();
@@ -97,8 +97,10 @@ public class HttpRequest {
         map.put("password", password);
         map.put("pushKey", pushKey);
         map.put("nickname",nickname);
+        map.put("gender",gender);
+        map.put("birthday",birthday);
 
-        baseHttpPostRequest(HttpConfig.String_Url_Register,map,httpResponseHandler, User.class);
+        baseHttpPostRequest(HttpConfig.String_Url_Register, map, httpResponseHandler, User.class);
     }
 
     public static <T> void checkUserIsExist(String username ,Class<T> tClass,
