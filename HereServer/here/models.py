@@ -8,7 +8,7 @@ class User(models.Model):
 	nickname = models.CharField(max_length=30,blank=True)
 	gender = models.CharField(max_length=30)
 	pushKey = models.CharField(max_length=30)
-	avatar = models.FileField(upload_to='./avatar/',blank=True)
+	avatar = models.ImageField(upload_to='./avatar/',blank=True)
 	birthday = models.CharField(max_length=30)
 	
 class Location(models.Model):

@@ -4,6 +4,7 @@ import MySQLdb
 from django.shortcuts import render
 from django.http import HttpResponse
 from models import User,Location
+from form import UserForm
 from django.db import connection
 
 # 登录
@@ -11,6 +12,7 @@ def login(request):
 	dict = {}
 	resultData = {}
 	if request.method == 'POST':
+
 		username = request.POST.get('username')
 		password = request.POST.get('password')
 		gender = request.POST.get('gender')
@@ -29,6 +31,7 @@ def login(request):
 			resultData['nickname'] = user[0][3]
 			resultData['gender'] = user[0][4]
 			resultData['pushKey'] = user[0][5]
+			resultDatap['avatar'] = user[0][6]
 			resultData['birthday'] = user[0][7]
 			dict['resultData'] = resultData
 		else:
@@ -53,7 +56,6 @@ def register(request):
 		birthday = request.POST.get('birthday')
 		nickname = request.POST.get('nickname')
 		if username and password :
-			
 			cur = connection.cursor()
 			query = 'select * from here_user where username = %s'
 			cur.execute(query,[username])
@@ -64,16 +66,17 @@ def register(request):
 			else:
 				dict['errorMessage'] = "register_success"
 				dict['status'] = "0"
+				# 将用户数据存入数据库
+				cursor = connection.cursor()
+				query = "insert into here_user(username,password,gender,pushkey,birthday,nickname) values(%s,%s,%s,%s,%s,%s)"
+				cursor.execute(query,[username,password,pushKey,gender,birthday,nickname])
+				# 返回客户端用户数据
 				resultData['username'] = username
 				resultData['password'] = password
 				resultData['pushKey'] = pushKey
 				resultData['gender'] = gender
 				resultData['birthday'] = birthday
 				resultData['nickname'] = nickname
-
-				cursor = connection.cursor()
-				query = "insert into here_user(username,password,gender,pushkey,birthday,nickname) values(%s,%s,%s,%s,%s,%s)"
-				cursor.execute(query,[username,password,pushKey,gender,birthday,nickname])
 				dict['resultData'] = resultData
 		else:
 			dict['errorMessage'] = "username_or_password_invalid"
@@ -117,6 +120,33 @@ def checkUserIsExist(request):
 	else:
 		dict['errorMessage'] = "POST_FAILED"
 		dict['status'] = 8001
+		json  = simplejson.dumps(dict)
+		return HttpResponse("POST failed")
+
+# 上传用户的头像
+def uploadAvatar(request):	
+	dict = {}
+	resultData = {}
+	if request.method == 'POST':
+		unsername  = request.POST.get('username')
+		userForm = UserForm(request.POST,request.FILES)
+		if userForm.is_valid():
+			avatar = request.FILES('avatar')
+			cursor = connection.cursor()
+			query = "update here_user set avatar = %s where username = %s"
+			cursor.execute(query,[avatar,username])
+			dict['errorMessage'] = "UPDATE_AVATAR_SUCCESS"
+			dict['status'] = "0"
+			json  = simplejson.dumps(dict)
+			return HttpResponse("AVATAR_FORM_INVALID")
+		else:
+			dict['errorMessage'] = "AVATAR_FORM_INVALID"
+			dict['status'] = "8004"
+			json  = simplejson.dumps(dict)
+			return HttpResponse("AVATAR_FORM_INVALID")
+	else:
+		dict['errorMessage'] = "POST_FAILED"
+		dict['status'] = "8001"
 		json  = simplejson.dumps(dict)
 		return HttpResponse("POST failed")
 

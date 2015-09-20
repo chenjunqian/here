@@ -21,7 +21,7 @@ import com.eason.here.util.CommonUtil;
 /**
  * Created by Eason on 8/21/15.
  */
-public class LoginActivity extends BaseActivity implements View.OnClickListener{
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
     private Button loginBtn;
     private Button registeBtn;
@@ -31,15 +31,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     private String userAccount;//用户登录账号
     private String userPassword;//用户登录密码
 
-    private Handler handler = new Handler(){
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            switch (msg.what){
+            switch (msg.what) {
                 case ErroCode.ERROR_CODE_CLIENT_DATA_ERROR:
-                    Toast.makeText(LoginActivity.this,"网络状态出了点问题",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "网络状态出了点问题", Toast.LENGTH_SHORT).show();
                     break;
                 case ErroCode.ERROR_CODE_USER_OR_PASSWORD_INVALID:
-                    Toast.makeText(LoginActivity.this,"账户名或者密码错误",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "账户名或者密码错误", Toast.LENGTH_SHORT).show();
                     break;
             }
         }
@@ -53,39 +53,39 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         initView();
     }
 
-    private void initView(){
-        userAccountEditText = (EditText)findViewById(R.id.login_username_input_edit_text);
-        passwordEditText = (EditText)findViewById(R.id.login_password_input_edit_text);
-        loginBtn = (Button)findViewById(R.id.login_page_login_btn);
+    private void initView() {
+        userAccountEditText = (EditText) findViewById(R.id.login_username_input_edit_text);
+        passwordEditText = (EditText) findViewById(R.id.login_password_input_edit_text);
+        loginBtn = (Button) findViewById(R.id.login_page_login_btn);
         loginBtn.setOnClickListener(this);
-        registeBtn = (Button)findViewById(R.id.login_page_register_btn);
+        registeBtn = (Button) findViewById(R.id.login_page_register_btn);
         registeBtn.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.login_page_login_btn:
 
                 userAccount = userAccountEditText.getText().toString();
                 userPassword = passwordEditText.getText().toString();
 
-                if (CommonUtil.isEmptyString(userAccount)){
-                    Toast.makeText(LoginActivity.this,"请输入账号",Toast.LENGTH_SHORT).show();
+                if (CommonUtil.isEmptyString(userAccount)) {
+                    Toast.makeText(LoginActivity.this, "请输入账号", Toast.LENGTH_SHORT).show();
                     return;
-                }else if (CommonUtil.isEmptyString(userPassword)){
-                    Toast.makeText(LoginActivity.this,"请输入密码",Toast.LENGTH_SHORT).show();
+                } else if (CommonUtil.isEmptyString(userPassword)) {
+                    Toast.makeText(LoginActivity.this, "请输入密码", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 //登录逻辑
-                login(userAccount,userPassword,"");
+                login(userAccount, userPassword, "");
 
                 break;
             case R.id.login_page_register_btn:
 
                 //跳转至注册页面，注册逻辑结束后在 onActivityResult 方法中处理相关逻辑
-                Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivityForResult(intent, IntentUtil.LOGIN_TO_REGISTER_REQUEST_CODE);
                 break;
         }
@@ -93,42 +93,43 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
     /**
      * 登录请求
+     *
      * @param userAccount
      * @param userPassword
      * @param pushKey
      */
-    private void login(String userAccount,String userPassword,String pushKey){
+    private void login(String userAccount, String userPassword, String pushKey) {
 
-        LoginHandler loginHandler = new LoginHandler(){
+        LoginHandler loginHandler = new LoginHandler() {
             @Override
             public void getResult() {
-                if (this.resultVO==null){
+                if (this.resultVO == null) {
                     handler.sendEmptyMessage(new Message().what = ErroCode.ERROR_CODE_CLIENT_DATA_ERROR);
                     return;
-                }else if (this.resultVO.getStatus()== ErroCode.ERROR_CODE_USER_OR_PASSWORD_INVALID){
-                    handler.sendEmptyMessage(new Message().what=ErroCode.ERROR_CODE_USER_OR_PASSWORD_INVALID);
+                } else if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_USER_OR_PASSWORD_INVALID) {
+                    handler.sendEmptyMessage(new Message().what = ErroCode.ERROR_CODE_USER_OR_PASSWORD_INVALID);
                     return;
-                }else if (this.resultVO.getStatus()== ErroCode.ERROR_CODE_CORRECT){
+                } else if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT) {
                     setResult(RESULT_OK);
                     finish();
                 }
             }
         };
 
-        HttpRequest.login(userAccount,userPassword,pushKey,User.class,loginHandler);
+        HttpRequest.login(userAccount, userPassword, pushKey, User.class, loginHandler);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode==RESULT_OK){
+        if (resultCode == RESULT_OK) {
 
-            switch (requestCode){
+            switch (requestCode) {
                 case IntentUtil.LOGIN_TO_REGISTER_REQUEST_CODE://如果是注册逻辑结束的requestCode则在这里处理
                     userAccount = data.getStringExtra("username");
                     userPassword = data.getStringExtra("password");
-                    login(userAccount,userPassword,"");
+                    login(userAccount, userPassword, "");
                     break;
             }
         }

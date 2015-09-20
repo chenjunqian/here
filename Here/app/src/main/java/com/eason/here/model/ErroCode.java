@@ -9,5 +9,6 @@ public class ErroCode {
     public final static int ERROR_CODE_CLIENT_DATA_ERROR = 8001;
     public static final int ERROR_CODE_USER_NOT_FOUND = 8002;
     public static final int ERROR_CODE_USER_OR_PASSWORD_INVALID = 8003;
+    public static final int ERROR_CODE_REQUEST_FORM_INVALID = 8004;
 
 }

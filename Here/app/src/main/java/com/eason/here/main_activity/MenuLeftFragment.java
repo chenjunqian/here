@@ -17,9 +17,9 @@ import com.eason.here.model.IntentUtil;
  */
 public class MenuLeftFragment extends BaseFragment implements View.OnClickListener {
 
+    private RelativeLayout userProfileLayout;
     private RelativeLayout mainTagLayout;
     private RelativeLayout userListLayout;
-    private RelativeLayout settingLayout;
     private RelativeLayout loginLayout;
 
     @Override
@@ -28,13 +28,13 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
 
         mainTagLayout = (RelativeLayout) root.findViewById(R.id.main_page_tag_layout);
         userListLayout = (RelativeLayout) root.findViewById(R.id.user_list_item_layout);
-        settingLayout = (RelativeLayout) root.findViewById(R.id.setting_item_layout);
         loginLayout = (RelativeLayout) root.findViewById(R.id.login_item_layout);
+        userProfileLayout = (RelativeLayout)root.findViewById(R.id.left_menu_profile_layout);
 
         mainTagLayout.setOnClickListener(this);
         userListLayout.setOnClickListener(this);
-        settingLayout.setOnClickListener(this);
         loginLayout.setOnClickListener(this);
+        userProfileLayout.setOnClickListener(this);
 
         return root;
     }
@@ -51,13 +51,13 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
             case R.id.user_list_item_layout:
 
                 break;
-            case R.id.setting_item_layout:
-                mainActivity.setFragmentTransaction(IntentUtil.SETTING_FRAGMENT);
-                break;
             case R.id.login_item_layout:
                 mainActivity.setFragmentTransaction(IntentUtil.MAIN_TO_LOGIN_PAGE);
                 Intent intent=new Intent(this.getActivity(),LoginActivity.class);
                 getActivity().startActivityForResult(intent, IntentUtil.MAIN_TO_LOGIN_PAGE);
+                break;
+            case R.id.left_menu_profile_layout:
+                mainActivity.setFragmentTransaction(IntentUtil.PROFLIE_FRAGMENT);
                 break;
         }
     }

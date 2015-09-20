@@ -15,7 +15,7 @@ public class IntentUtil {
     /**
      * 设置页的fragment
      */
-    public static final int SETTING_FRAGMENT = 0X2;
+    public static final int PROFLIE_FRAGMENT = 0X2;
 
     /**
      * 主页地图fragment

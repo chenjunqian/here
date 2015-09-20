@@ -8,41 +8,45 @@
     <RelativeLayout
         android:id="@+id/left_menu_profile_layout"
         android:layout_width="match_parent"
+        android:background="@drawable/bg_drawer_layout_info"
         android:layout_height="150dp">
 
-        <ImageView
+        <com.eason.here.util.WidgetUtil.CircleImageView
             android:id="@+id/left_menu_avatar_image_view"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
-            android:background="#123456" />
+            android:scaleType="fitXY"
+            android:src="@drawable/default_avatar" />
 
     </RelativeLayout>
+
 
     <RelativeLayout
         android:id="@+id/main_page_tag_layout"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:background="@drawable/layout_background_selector"
         android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/main_page_tag_image_view"
             android:layout_width="35dp"
             android:layout_height="20dp"
+            android:src="@drawable/ic_home"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp" />
+            android:layout_marginLeft="10dp" />
 
         <TextView
             android:id="@+id/main_page_tag_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/main_page_tag_image_view"
-            android:textColor="@color/universal_item_text_color_black"
             android:text="首页"
+            android:textColor="@color/universal_item_text_color_black"
             android:textSize="15sp" />
     </RelativeLayout>
 
@@ -50,6 +54,7 @@
         android:id="@+id/user_list_item_layout"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:background="@drawable/layout_background_selector"
         android:orientation="horizontal">
 
         <ImageView
@@ -57,44 +62,18 @@
             android:layout_width="35dp"
             android:layout_height="20dp"
             android:layout_alignParentLeft="true"
+            android:src="@drawable/ic_view_list"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp" />
+            android:layout_marginLeft="10dp" />
 
         <TextView
             android:id="@+id/user_list_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/user_list_image_view"
-            android:textColor="@color/universal_item_text_color_black"
             android:text="列表"
-            android:textSize="15sp" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/setting_item_layout"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/setting_image_view"
-            android:layout_width="35dp"
-            android:layout_height="20dp"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp" />
-
-        <TextView
-            android:id="@+id/setting_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/setting_image_view"
             android:textColor="@color/universal_item_text_color_black"
-            android:text="设置"
             android:textSize="15sp" />
     </RelativeLayout>
 
@@ -102,25 +81,26 @@
         android:id="@+id/login_item_layout"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:background="@drawable/layout_background_selector"
         android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/login_image_view"
             android:layout_width="35dp"
             android:layout_height="20dp"
+            android:src="@drawable/ic_lock_36pt_2x"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp" />
+            android:layout_marginLeft="10dp" />
 
         <TextView
             android:id="@+id/login_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
             android:layout_toRightOf="@+id/login_image_view"
-            android:textColor="@color/universal_item_text_color_black"
             android:text="登录"
+            android:textColor="@color/universal_item_text_color_black"
             android:textSize="15sp" />
     </RelativeLayout>
 </LinearLayout>

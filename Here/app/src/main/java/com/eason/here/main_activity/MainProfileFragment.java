@@ -12,11 +12,11 @@ import com.eason.here.R;
 /**
  * Created by Eason on 9/6/15.
  */
-public class MainSettingFragment extends BaseFragment {
+public class MainProfileFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_main_setting_layout,container,false);
+        View root = inflater.inflate(R.layout.fragment_main_profile__layout, container, false);
 
         return root;
     }

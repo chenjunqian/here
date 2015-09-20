@@ -28,7 +28,7 @@ public class MainActivity extends BaseActivity{
     private android.support.v7.widget.Toolbar toolbar;
 
     private MainMapFragment mainMapFragment;
-    private MainSettingFragment settingFragment;
+    private MainProfileFragment settingFragment;
     private NearUserListFragment nearUserListFragment;
 
     private final int CHANGE_TOOL_BAR_TITLE_MAIN= 0x1;
@@ -46,7 +46,7 @@ public class MainActivity extends BaseActivity{
                     break;
                 case CHANGE_TOOL_BAR_TITLE_SETTING:
                     //跳转时改变Toobar相应的标题
-                    toolbar.setTitle("设置");
+                    toolbar.setTitle("个人资料");
                     break;
             }
         }
@@ -105,7 +105,7 @@ public class MainActivity extends BaseActivity{
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         mainMapFragment = new MainMapFragment();
-        settingFragment = new MainSettingFragment();
+        settingFragment = new MainProfileFragment();
         nearUserListFragment = new NearUserListFragment();
         transaction.replace(R.id.main_fragment_frame_layout,mainMapFragment);
         transaction.commit();
@@ -153,10 +153,10 @@ public class MainActivity extends BaseActivity{
                 break;
 
             //切换到设置页面
-            case IntentUtil.SETTING_FRAGMENT:
+            case IntentUtil.PROFLIE_FRAGMENT:
 
                 if (settingFragment==null){
-                    settingFragment = new MainSettingFragment();
+                    settingFragment = new MainProfileFragment();
                 }
                 transaction.replace(R.id.main_fragment_frame_layout, settingFragment);
                 msg.what = CHANGE_TOOL_BAR_TITLE_SETTING;
