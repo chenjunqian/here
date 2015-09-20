@@ -26,7 +26,7 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
     private TextView nicknameTextView;
     private TextView genderTextView;
     private TextView birthdayTextView;
-    private TextView accountTexTview;
+    private TextView accountTextView;
 
     @Nullable
     @Override
@@ -44,7 +44,7 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
         nicknameTextView = (TextView) rootView.findViewById(R.id.profile_nickname_text_view);
         genderTextView = (TextView) rootView.findViewById(R.id.profile_gender_text_view);
         birthdayTextView = (TextView) rootView.findViewById(R.id.profile_birthday_text_view);
-        accountTexTview = (TextView) rootView.findViewById(R.id.profile_username_text_view);
+        accountTextView = (TextView) rootView.findViewById(R.id.profile_username_text_view);
         return rootView;
     }
 
@@ -69,7 +69,7 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
         }
 
         birthdayTextView.setText(user.getBirthday());
-        accountTexTview.setText(user.getUsername());
+        accountTextView.setText(user.getUsername());
     }
 
     @Override
@@ -88,5 +88,11 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
 
                 break;
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initData();
     }
 }

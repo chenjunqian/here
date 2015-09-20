@@ -1,6 +1,6 @@
 package com.eason.here.main_activity;
 
-import android.app.Fragment;
+import android.content.Intent;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationListener;
@@ -23,6 +24,7 @@ import com.amap.api.maps2d.model.MarkerOptions;
 import com.amap.api.maps2d.model.MyLocationStyle;
 import com.eason.here.BaseFragment;
 import com.eason.here.R;
+import com.eason.here.publish_location_activity.PublishActivity;
 
 /**
  * Created by Eason on 9/6/15.
@@ -39,6 +41,8 @@ public class MainMapFragment extends BaseFragment implements LocationSource,AMap
     private Double geoLat;
     private Double geoLon;
 
+    private ImageButton publishButton;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -47,10 +51,17 @@ public class MainMapFragment extends BaseFragment implements LocationSource,AMap
         //显示地图
         mapView = (MapView)rootView.findViewById(R.id.map);
         mapView.onCreate(savedInstanceState);
-//        if (aMap == null) {
-            aMap = mapView.getMap();
-            setUpMap();
-//        }
+        aMap = mapView.getMap();
+        setUpMap();
+
+        //跳转至发帖页
+        publishButton = (ImageButton) rootView.findViewById(R.id.main_map_publish_button);
+        publishButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().startActivity(new Intent(getActivity(), PublishActivity.class));
+            }
+        });
 
         return rootView;
     }
@@ -125,8 +136,7 @@ public class MainMapFragment extends BaseFragment implements LocationSource,AMap
     public void onProviderEnabled(String provider) {}
 
     @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-    }
+    public void onStatusChanged(String provider, int status, Bundle extras) {}
 
     @Override
     public void onLocationChanged(AMapLocation aLocation) {
@@ -181,5 +191,4 @@ public class MainMapFragment extends BaseFragment implements LocationSource,AMap
         }
         mAMapLocationManager = null;
     }
-
 }
