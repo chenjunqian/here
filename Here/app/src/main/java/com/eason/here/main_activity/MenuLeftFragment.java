@@ -6,11 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.eason.here.BaseFragment;
 import com.eason.here.R;
 import com.eason.here.login_register.LoginActivity;
 import com.eason.here.model.IntentUtil;
+import com.eason.here.model.LoginStatus;
 
 /**
  * Created by Eason on 8/22/15.
@@ -57,6 +59,12 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
                 getActivity().startActivityForResult(intent, IntentUtil.MAIN_TO_LOGIN_PAGE);
                 break;
             case R.id.left_menu_profile_layout:
+
+                if (!LoginStatus.getIsUserMode()){
+                    Toast.makeText(getActivity(),"请先登录",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 mainActivity.setFragmentTransaction(IntentUtil.PROFLIE_FRAGMENT);
                 break;
         }

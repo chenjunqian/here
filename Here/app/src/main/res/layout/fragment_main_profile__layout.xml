@@ -51,12 +51,13 @@
             android:textColor="@color/universal_item_text_color_black" />
 
         <TextView
+            android:id="@+id/profile_nickname_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
-            android:text="这里是用户昵称"
+            android:text="王尼玛"
             android:textColor="@color/universal_item_text_color_sub_black" />
     </RelativeLayout>
 
@@ -79,17 +80,18 @@
             android:textColor="@color/universal_item_text_color_black" />
 
         <TextView
+            android:id="@+id/profile_gender_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
-            android:text="男或女"
+            android:text="男"
             android:textColor="@color/universal_item_text_color_sub_black" />
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/profile_username_layout"
+        android:id="@+id/profile_birthday_layout"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="1dp"
@@ -103,10 +105,40 @@
             android:layout_centerInParent="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
+            android:text="生日"
+            android:textColor="@color/universal_item_text_color_black" />
+
+        <TextView
+            android:id="@+id/profile_birthday_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:text="1995-6-15"
+            android:textColor="@color/universal_item_text_color_sub_black" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/profile_username_layout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/layout_background_selector"
+        android:clickable="false">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
             android:text="账号"
             android:textColor="@color/universal_item_text_color_black" />
 
         <TextView
+            android:id="@+id/profile_username_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
