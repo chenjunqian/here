@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eason.here.BaseFragment;
@@ -24,6 +25,8 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
     private RelativeLayout userListLayout;
     private RelativeLayout loginLayout;
 
+    private TextView loginTextView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main_left_menu_layout, container, false);
@@ -33,12 +36,25 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
         loginLayout = (RelativeLayout) root.findViewById(R.id.login_item_layout);
         userProfileLayout = (RelativeLayout)root.findViewById(R.id.left_menu_profile_layout);
 
+        loginTextView = (TextView) root.findViewById(R.id.login_text_view);
+
         mainTagLayout.setOnClickListener(this);
         userListLayout.setOnClickListener(this);
         loginLayout.setOnClickListener(this);
         userProfileLayout.setOnClickListener(this);
 
         return root;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        if (LoginStatus.getIsUserMode()){
+            loginTextView.setText("注销");
+        }else if (!LoginStatus.getIsUserMode()){
+            loginTextView.setText("登录");
+        }
     }
 
     @Override
@@ -70,4 +86,14 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (LoginStatus.getIsUserMode()){
+            loginTextView.setText("注销");
+        }else if (!LoginStatus.getIsUserMode()){
+            loginTextView.setText("登录");
+        }
+    }
 }

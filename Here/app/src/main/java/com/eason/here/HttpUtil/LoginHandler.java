@@ -19,7 +19,7 @@ public class LoginHandler extends HttpResponseHandler {
             User user = (User)this.resultVO.getResultData();
             LoginStatus.setUser(user);
         }else{
-            LoginStatus.setUser(new User());
+            LoginStatus.setUser(null);
         }
     }
 }

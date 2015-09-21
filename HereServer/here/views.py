@@ -12,12 +12,10 @@ def login(request):
 	dict = {}
 	resultData = {}
 	if request.method == 'POST':
-
 		username = request.POST.get('username')
 		password = request.POST.get('password')
 		gender = request.POST.get('gender')
 		pushKey = request.POST.get('pushKey')
-		
 		cur = connection.cursor()
 		query = 'select * from here_user where username = %s and password = %s'
 		value = [username,password]
@@ -28,11 +26,14 @@ def login(request):
 			dict['status'] = "0"
 			resultData['username'] = user[0][1]
 			resultData['password'] = user[0][2]
-			resultData['nickname'] = user[0][3]
-			resultData['gender'] = user[0][4]
-			resultData['pushKey'] = user[0][5]
-			resultDatap['avatar'] = user[0][6]
-			resultData['birthday'] = user[0][7]
+			resultData['gender'] = user[0][3]
+			resultData['pushKey'] = user[0][4]
+			resultData['birthday'] = user[0][5]
+			if user[0][6]:
+				resultData['avatar'] = user[0][6]
+			else:
+				resultData['avatar'] = 'null'
+			resultData['nickname'] = user[0][7]
 			dict['resultData'] = resultData
 		else:
 			dict['errorMessage'] = "no_such_user_or_password_is_invalid"
@@ -69,7 +70,7 @@ def register(request):
 				# 将用户数据存入数据库
 				cursor = connection.cursor()
 				query = "insert into here_user(username,password,gender,pushkey,birthday,nickname) values(%s,%s,%s,%s,%s,%s)"
-				cursor.execute(query,[username,password,pushKey,gender,birthday,nickname])
+				cursor.execute(query,[username,password,gender,pushKey,birthday,nickname])
 				# 返回客户端用户数据
 				resultData['username'] = username
 				resultData['password'] = password
