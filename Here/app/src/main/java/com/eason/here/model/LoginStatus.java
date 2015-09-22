@@ -51,4 +51,5 @@ public class LoginStatus {
             return false;
         }
     }
+
 }

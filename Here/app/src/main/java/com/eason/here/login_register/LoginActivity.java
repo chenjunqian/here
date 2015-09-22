@@ -17,6 +17,7 @@ import com.eason.here.model.ErroCode;
 import com.eason.here.model.IntentUtil;
 import com.eason.here.model.User;
 import com.eason.here.util.CommonUtil;
+import com.eason.here.util.SharePreferencesUtil;
 
 /**
  * Created by Eason on 8/21/15.
@@ -98,7 +99,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
      * @param userPassword
      * @param pushKey
      */
-    private void login(String userAccount, String userPassword, String pushKey) {
+    private void login(final String userAccount, final String userPassword, String pushKey) {
 
         LoginHandler loginHandler = new LoginHandler() {
             @Override
@@ -110,6 +111,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     handler.sendEmptyMessage(new Message().what = ErroCode.ERROR_CODE_USER_OR_PASSWORD_INVALID);
                     return;
                 } else if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT) {
+                    SharePreferencesUtil.saveUserLoginInfo(userAccount,userPassword);
                     setResult(RESULT_OK);
                     finish();
                 }

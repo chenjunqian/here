@@ -56,12 +56,16 @@ public class MainActivity extends BaseActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        inittAppUtil(MainActivity.this);
+        initAppUtil(MainActivity.this);
         initView(savedInstanceState);
         initParam();
     }
 
-    private void inittAppUtil(Context context){
+    /**
+     * 初始化工具类
+     * @param context
+     */
+    private void initAppUtil(Context context){
         SharePreferencesUtil.init(context);
         LoginStatus.init(context);
         HttpRequest.initRequestQueue(context);

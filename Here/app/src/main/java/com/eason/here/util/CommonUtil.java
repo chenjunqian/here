@@ -5,6 +5,12 @@ import android.graphics.Canvas;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
 
+import com.eason.here.HttpUtil.HttpRequest;
+import com.eason.here.HttpUtil.LoginHandler;
+import com.eason.here.model.ErroCode;
+import com.eason.here.model.User;
+import com.eason.here.util.WidgetUtil.OnLoginListener;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -62,5 +68,31 @@ public class CommonUtil {
         drawable.draw(canvas);
         return bitmap;
 
+    }
+
+    /**
+     * 登录请求
+     *
+     * @param userAccount
+     * @param userPassword
+     * @param pushKey
+     */
+    public static void login(final String userAccount, final String userPassword, String pushKey, final OnLoginListener loginListener) {
+
+        LoginHandler loginHandler = new LoginHandler() {
+            @Override
+            public void getResult() {
+                if (this.resultVO == null) {
+                    return;
+                } else if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_USER_OR_PASSWORD_INVALID) {
+                    return;
+                } else if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT) {
+                    SharePreferencesUtil.saveUserLoginInfo(userAccount, userPassword);
+                    loginListener.loginListener();
+                }
+            }
+        };
+
+        HttpRequest.login(userAccount, userPassword, pushKey, User.class, loginHandler);
     }
 }
