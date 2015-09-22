@@ -24,5 +24,6 @@ urlpatterns = patterns('',
     url(r'^register/',views.register,name='register'),
     url(r'^update_user_location/',views.updateUserLocation,name='updateUserLocation'),
     url(r'^check_user_is_exist/',views.checkUserIsExist,name='checkUserIsExist'),
+    url(r'^upload_avatar/',views.uploadAvatar,name='uploadAvatar'),
     url(r'^admin/', include(admin.site.urls)),
 )

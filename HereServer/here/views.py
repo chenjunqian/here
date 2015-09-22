@@ -138,13 +138,61 @@ def uploadAvatar(request):
 			cursor.execute(query,[avatar,username])
 			dict['errorMessage'] = "UPDATE_AVATAR_SUCCESS"
 			dict['status'] = "0"
-			json  = simplejson.dumps(dict)
-			return HttpResponse("AVATAR_FORM_INVALID")
 		else:
 			dict['errorMessage'] = "AVATAR_FORM_INVALID"
 			dict['status'] = "8004"
-			json  = simplejson.dumps(dict)
-			return HttpResponse("AVATAR_FORM_INVALID")
+
+		json  = simplejson.dumps(dict)
+		return HttpResponse(json)
+	else:
+		dict['errorMessage'] = "POST_FAILED"
+		dict['status'] = "8001"
+		return HttpResponse("POST failed")
+
+# 修改用户信息
+def modifyUserInfo(request):
+	dict = {}
+	resultData = {}
+	if request.method == 'POST':
+		username = request.POST.get('username')
+		password = request.POST.get('password')
+		gender = request.POST.get('gender')
+		birthday = request.POST.get('birthday')
+		nickname = request.POST.get('nickname')
+		userid = request.POST.get('userid')
+		if password and gender and birthday and nickname:
+			cursor = connection.cursor()
+			query = "update here_user set password = %s,gender = %s,birthday = %s,nickname = %s where id = %s"
+			value = [password,gender,birthday,nickname,userid]
+			cursor.execute(query,value)
+			# 返回用户信息
+			query = 'select * from here_user where id = %s'
+			value = [userid]
+			cursor.execute(query,value)
+			user = cursor.fetchall()
+			if user:
+				dict['errorMessage'] = "modify_user_info_success"
+				dict['status'] = "0"
+				resultData['username'] = user[0][1]
+				resultData['password'] = user[0][2]
+				resultData['gender'] = user[0][3]
+				resultData['pushKey'] = user[0][4]
+				resultData['birthday'] = user[0][5]
+				if user[0][6]:
+					resultData['avatar'] = user[0][6]
+				else:
+					resultData['avatar'] = 'null'
+				resultData['nickname'] = user[0][7]
+				dict['resultData'] = resultData
+			else:
+				dict['errorMessage'] = "data_base_error"
+				dict['status'] = "8005"
+		else:
+			dict['errorMessage'] = "no_such_user_or_password_is_invalid"
+			dict['status'] = "8003"
+			
+		json = simplejson.dumps(dict)
+		return HttpResponse(json)
 	else:
 		dict['errorMessage'] = "POST_FAILED"
 		dict['status'] = "8001"

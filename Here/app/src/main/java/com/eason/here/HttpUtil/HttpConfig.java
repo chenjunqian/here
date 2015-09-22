@@ -18,4 +18,7 @@ public class HttpConfig {
 
     //判断用户是否存在
     public static final String String_Url_Check_User_Is_Exist = Url_Domain + "check_user_is_exist/";
+
+    //上传头像
+    public static final String String_Url_Upload_Avatar = Url_Domain + "upload_avatar/";
 }

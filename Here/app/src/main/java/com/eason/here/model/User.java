@@ -11,6 +11,15 @@ public class User {
     private String avatar;
     private String birthday;
     private String nickname;
+    private int userid;
+
+    public int getUserId() {
+        return userid;
+    }
+
+    public void setUserId(int userid) {
+        this.userid = userid;
+    }
 
     public String getNickname() {
         return nickname;

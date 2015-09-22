@@ -28,8 +28,17 @@ public class HttpRequest {
         queue = Volley.newRequestQueue(context);
     }
 
-    public static <T> void baseHttpPostRequest(String url, final Map<String, String> map, final HttpResponseHandler httpResponseHandler, final Class<T> tClass) {
-        if (queue == null){
+    /**
+     * Volley框架的网络请求
+     * @param url
+     * @param map
+     * @param httpResponseHandler
+     * @param tClass
+     * @param <T>
+     */
+    public static <T> void baseHttpPostRequest(String url, final Map<String, String> map,
+                                               final HttpResponseHandler httpResponseHandler, final Class<T> tClass) {
+        if (queue == null) {
             LogUtil.e(TAG, "The volley queue is null");
             return;
         }
@@ -37,7 +46,7 @@ public class HttpRequest {
         Response.ErrorListener errorListener = new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                LogUtil.e(TAG, "volley http response Error : " + volleyError.getMessage()+" "+volleyError);
+                LogUtil.e(TAG, "volley http response Error : " + volleyError.getMessage() + " " + volleyError);
             }
         };
 
@@ -60,7 +69,22 @@ public class HttpRequest {
     }
 
     /**
+     * 上传文件到服务器
+     * @param url
+     * @param map
+     * @param filePath
+     * @param httpResponseHandler
+     * @param tClass
+     * @param <T>
+     */
+    public static <T> void uploadFileRequest(String url, final Map<String, String> map, String filePath,
+                                             final HttpResponseHandler httpResponseHandler, final Class<T> tClass) {
+        ThreadPoolUtils.execute(new UpLoadFileRunable<T>(url, map, filePath, httpResponseHandler, tClass));
+    }
+
+    /**
      * 登录
+     *
      * @param username
      * @param password
      * @param pushKey
@@ -81,6 +105,7 @@ public class HttpRequest {
 
     /**
      * 注册
+     *
      * @param username
      * @param password
      * @param pushKey
@@ -89,27 +114,27 @@ public class HttpRequest {
      * @param httpResponseHandler
      * @param <T>
      */
-    public static <T> void register(String username, String password, String pushKey, String nickname,String birthday,String gender,
+    public static <T> void register(String username, String password, String pushKey, String nickname, String birthday, String gender,
                                     Class<T> tClass, HttpResponseHandler httpResponseHandler) {
 
-        Map<String,String> map = new HashMap<String,String>();
+        Map<String, String> map = new HashMap<String, String>();
         map.put("username", username);
         map.put("password", password);
         map.put("pushKey", pushKey);
-        map.put("nickname",nickname);
-        map.put("gender",gender);
-        map.put("birthday",birthday);
+        map.put("nickname", nickname);
+        map.put("gender", gender);
+        map.put("birthday", birthday);
 
         baseHttpPostRequest(HttpConfig.String_Url_Register, map, httpResponseHandler, User.class);
     }
 
-    public static <T> void checkUserIsExist(String username ,Class<T> tClass,
-                                            HttpResponseHandler httpResponseHandler){
+    public static <T> void checkUserIsExist(String username, Class<T> tClass,
+                                            HttpResponseHandler httpResponseHandler) {
 
-        Map<String,String> map = new HashMap<String,String>();
-        map.put("username",username);
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("username", username);
 
-        baseHttpPostRequest(HttpConfig.String_Url_Check_User_Is_Exist,map,httpResponseHandler,tClass);
+        baseHttpPostRequest(HttpConfig.String_Url_Check_User_Is_Exist, map, httpResponseHandler, tClass);
     }
 
 }

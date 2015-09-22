@@ -42,4 +42,8 @@ public class IntentUtil {
      */
     public static final int REGISTER_USER_BIRTHDAY_PAGE = 0x7;
 
+    /**
+     * 跳转到系统相册
+     */
+    public static final int SYSTEM_ABLUM_REQUEST_CODE = 0x8;
 }

@@ -195,6 +195,8 @@ public class MainActivity extends BaseActivity{
             case IntentUtil.MAIN_TO_LOGIN_PAGE:
 
                 break;
+
         }
+
     }
 }

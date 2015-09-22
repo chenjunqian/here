@@ -88,7 +88,7 @@ public class MainMapFragment extends BaseFragment implements LocationSource,AMap
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mapView.onDestroy();
+//        mapView.onDestroy();
     }
 
     @Override
