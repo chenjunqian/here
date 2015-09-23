@@ -18,6 +18,7 @@ import com.eason.here.model.IntentUtil;
 import com.eason.here.model.User;
 import com.eason.here.util.CommonUtil;
 import com.eason.here.util.SharePreferencesUtil;
+import com.eason.here.util.WidgetUtil.ProgressDialog;
 
 /**
  * Created by Eason on 8/21/15.
@@ -28,6 +29,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private Button registeBtn;
     private EditText userAccountEditText;
     private EditText passwordEditText;
+    private ProgressDialog progressDialog;
 
     private String userAccount;//用户登录账号
     private String userPassword;//用户登录密码
@@ -61,6 +63,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         loginBtn.setOnClickListener(this);
         registeBtn = (Button) findViewById(R.id.login_page_register_btn);
         registeBtn.setOnClickListener(this);
+
+        progressDialog = new ProgressDialog(LoginActivity.this);
     }
 
     @Override
@@ -79,6 +83,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     return;
                 }
 
+                progressDialog.show();
                 //登录逻辑
                 login(userAccount, userPassword, "");
 
@@ -106,15 +111,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             public void getResult() {
                 if (this.resultVO == null) {
                     handler.sendEmptyMessage(new Message().what = ErroCode.ERROR_CODE_CLIENT_DATA_ERROR);
-                    return;
                 } else if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_USER_OR_PASSWORD_INVALID) {
                     handler.sendEmptyMessage(new Message().what = ErroCode.ERROR_CODE_USER_OR_PASSWORD_INVALID);
-                    return;
                 } else if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT) {
                     SharePreferencesUtil.saveUserLoginInfo(userAccount,userPassword);
                     setResult(RESULT_OK);
                     finish();
                 }
+
+                progressDialog.dismiss();
             }
         };
 

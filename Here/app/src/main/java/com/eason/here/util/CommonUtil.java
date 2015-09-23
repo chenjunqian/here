@@ -9,7 +9,6 @@ import com.eason.here.HttpUtil.HttpRequest;
 import com.eason.here.HttpUtil.LoginHandler;
 import com.eason.here.model.ErroCode;
 import com.eason.here.model.User;
-import com.eason.here.util.WidgetUtil.OnLoginListener;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -10,9 +10,9 @@ import com.eason.here.R;
  * 全局的通用ProgressBar
  * Created by Eason on 9/18/15.
  */
-public class UniversalProgressDialog extends Dialog {
+public class ProgressDialog extends Dialog {
 
-    public UniversalProgressDialog(Context context) {
+    public ProgressDialog(Context context) {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
     }
 

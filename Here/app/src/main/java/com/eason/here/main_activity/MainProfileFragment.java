@@ -20,6 +20,8 @@ import com.eason.here.model.IntentUtil;
 import com.eason.here.model.LoginStatus;
 import com.eason.here.model.User;
 import com.eason.here.util.LogUtil;
+import com.eason.here.util.WidgetUtil.EditTextDialog;
+import com.eason.here.util.WidgetUtil.OnFinishInputListener;
 
 /**
  * Created by Eason on 9/6/15.
@@ -35,6 +37,8 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
     private TextView genderTextView;
     private TextView birthdayTextView;
     private TextView accountTextView;
+
+    private EditTextDialog editTextDialog;
 
     @Nullable
     @Override
@@ -91,6 +95,15 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
 
                 break;
             case R.id.profile_nickname_layout:
+
+                editTextDialog = new EditTextDialog(getActivity(),"修改昵称", nicknameTextView.getText().toString(), new OnFinishInputListener() {
+                    @Override
+                    public void onFinish(String s) {
+                        editTextDialog.dismiss();
+                    }
+                });
+
+                editTextDialog.show();
 
                 break;
             case R.id.profile_gender_layout:

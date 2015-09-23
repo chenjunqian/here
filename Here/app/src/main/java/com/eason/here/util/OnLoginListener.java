@@ -1,4 +1,4 @@
-package com.eason.here.util.WidgetUtil;
+package com.eason.here.util;
 
 /**
  * Created by Eason on 9/22/15.

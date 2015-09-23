@@ -93,8 +93,8 @@ public class RegisterActivity extends BaseActivity {
                     registerIntentData.putExtra("username",userAccount);
                     registerIntentData.putExtra("password",password);
                     registerIntentData.putExtra("pushKey", "");
-//                    setResult(RESULT_OK,registerIntentData);
-//                    finish();
+                    setResult(RESULT_OK,registerIntentData);
+                    finish();
                     return;
                 }
             }

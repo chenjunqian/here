@@ -70,35 +70,33 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_centerInParent="true"
-            android:background="@drawable/universal_big_round_green_button_shape"
+            android:background="@drawable/green_button_selector"
             android:text="登录"
             android:textColor="@color/universal_white" />
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/login_page_login_btn_layout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="28dp"
-        android:layout_marginRight="28dp"
-        android:layout_marginTop="260dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
         android:orientation="vertical">
 
         <Button
             android:id="@+id/login_page_register_btn"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_centerInParent="true"
-            android:background="@drawable/universal_big_round_green_button_shape"
-            android:text="注册"
-            android:textColor="@color/universal_white" />
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginRight="20dp"
+            android:background="@null"
+            android:text="马上注册"/>
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentLeft="true"
         android:orientation="vertical">
 
         <Button

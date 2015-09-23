@@ -6,7 +6,7 @@ import android.os.Bundle;
 import com.eason.here.main_activity.MainActivity;
 import com.eason.here.util.CommonUtil;
 import com.eason.here.util.SharePreferencesUtil;
-import com.eason.here.util.WidgetUtil.OnLoginListener;
+import com.eason.here.util.OnLoginListener;
 
 import java.util.Timer;
 import java.util.TimerTask;

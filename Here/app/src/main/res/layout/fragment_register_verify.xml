@@ -70,7 +70,7 @@
             android:layout_height="@dimen/universal_title_height"
             android:layout_centerInParent="true"
             android:textColor="@color/universal_white"
-            android:background="@drawable/universal_big_round_green_button_shape"
+            android:background="@drawable/green_button_selector"
             android:text="下一步" />
     </RelativeLayout>
 </LinearLayout>
