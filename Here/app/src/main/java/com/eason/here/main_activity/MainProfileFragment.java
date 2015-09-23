@@ -19,6 +19,7 @@ import com.eason.here.R;
 import com.eason.here.model.IntentUtil;
 import com.eason.here.model.LoginStatus;
 import com.eason.here.model.User;
+import com.eason.here.util.CommonUtil;
 import com.eason.here.util.LogUtil;
 import com.eason.here.util.WidgetUtil.EditTextDialog;
 import com.eason.here.util.WidgetUtil.OnFinishInputListener;
@@ -95,6 +96,9 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
 
                 break;
             case R.id.profile_nickname_layout:
+
+                //如果用户快速点击则返回
+                if (CommonUtil.isFastDoubleClick())return;
 
                 editTextDialog = new EditTextDialog(getActivity(),"修改昵称", nicknameTextView.getText().toString(), new OnFinishInputListener() {
                     @Override

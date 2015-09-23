@@ -60,6 +60,10 @@ public class RegisterUserInfoFragment extends BaseFragment {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //如果用户快速点击则返回
+                if (CommonUtil.isFastDoubleClick())return;
+
                 RegisterActivity.nickname = nicknameEditText.getText().toString();
 
                 if (CommonUtil.isEmptyString(RegisterActivity.gender)){

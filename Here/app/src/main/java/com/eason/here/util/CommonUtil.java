@@ -69,6 +69,24 @@ public class CommonUtil {
 
     }
 
+    private static long mLastClickTime = 0;
+
+    /**
+     * 防止视图重复点击
+     * @return boolean
+     */
+    public static boolean isFastDoubleClick() {
+        long time = System.currentTimeMillis();
+        long timeD = time - mLastClickTime;
+        if ( 0 < timeD && timeD < 500) {
+            return true;
+        }
+
+        mLastClickTime = time;
+
+        return false;
+    }
+
     /**
      * 登录请求
      *

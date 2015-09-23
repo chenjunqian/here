@@ -59,6 +59,9 @@ public class RegisterVerifyFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
 
+                //如果用户快速点击则返回
+                if (CommonUtil.isFastDoubleClick())return;
+
                 RegisterActivity.userAccount = emailPhoneEditText.getText().toString();
                 RegisterActivity.password = passwordEditText.getText().toString();
 

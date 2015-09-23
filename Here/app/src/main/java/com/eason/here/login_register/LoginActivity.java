@@ -72,6 +72,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         switch (v.getId()) {
             case R.id.login_page_login_btn:
 
+                //如果用户快速点击则返回
+                if (CommonUtil.isFastDoubleClick())return;
+
                 userAccount = userAccountEditText.getText().toString();
                 userPassword = passwordEditText.getText().toString();
 

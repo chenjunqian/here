@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.eason.here.BaseFragment;
 import com.eason.here.R;
 import com.eason.here.model.Constellation;
+import com.eason.here.util.CommonUtil;
 import com.eason.here.util.LogUtil;
 
 import java.util.Calendar;
@@ -73,6 +74,10 @@ public class RegisterBirthdayFragment extends BaseFragment {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //如果用户快速点击则返回
+                if (CommonUtil.isFastDoubleClick())return;
+
                 //注册
                 registerActivity.register();
             }
