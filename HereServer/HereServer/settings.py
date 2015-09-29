@@ -80,8 +80,8 @@ DATABASES = {
         'NAME': 'heredb',
         'USER':'root',
         'PASSWORD':'root',
-        'HOST':'/tmp/mysql.sock',
-        'PORT':'3307'
+        'HOST':'',
+        'PORT':''
     }
 }
 
