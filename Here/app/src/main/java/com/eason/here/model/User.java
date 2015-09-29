@@ -11,13 +11,13 @@ public class User {
     private String avatar;
     private String birthday;
     private String nickname;
-    private int userid;
+    private String userid;
 
-    public int getUserId() {
+    public String getUserId() {
         return userid;
     }
 
-    public void setUserId(int userid) {
+    public void setUserId(String userid) {
         this.userid = userid;
     }
 

@@ -8,7 +8,6 @@ import android.graphics.drawable.Drawable;
 import com.eason.here.HttpUtil.HttpRequest;
 import com.eason.here.HttpUtil.LoginHandler;
 import com.eason.here.model.ErroCode;
-import com.eason.here.model.User;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -110,6 +109,7 @@ public class CommonUtil {
             }
         };
 
-        HttpRequest.login(userAccount, userPassword, pushKey, User.class, loginHandler);
+        HttpRequest.login(userAccount, userPassword, pushKey, loginHandler);
     }
+
 }

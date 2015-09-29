@@ -11,7 +11,6 @@ import com.eason.here.HttpUtil.HttpRequest;
 import com.eason.here.HttpUtil.HttpResponseHandler;
 import com.eason.here.R;
 import com.eason.here.model.IntentUtil;
-import com.eason.here.model.User;
 import com.eason.here.util.LogUtil;
 
 /**
@@ -101,6 +100,6 @@ public class RegisterActivity extends BaseActivity {
         };
 
         LogUtil.d("RegisterActivity","userAccount : "+userAccount+" password : "+password+" nickname : "+nickname+" birthday : "+birthday+" gender : "+gender);
-        HttpRequest.register(userAccount, password, "empty", nickname,birthday,gender, User.class, registerHandler);
+        HttpRequest.register(userAccount, password, "empty", nickname,birthday,gender, registerHandler);
     }
 }

@@ -5,9 +5,55 @@
     android:background="@color/universal_layout_background_color"
     android:orientation="vertical">
 
-    <TextView
-        android:text="我是发帖页"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/universal_title_height"
+        android:background="@color/universal_title_background_green">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/publish_page_title"
+            android:textColor="@color/universal_white"
+            android:textSize="@dimen/universal_title_text_size" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/universal_title_height">
+
+        <TextView
+            android:layout_centerInParent="true"
+            android:textColor="@color/universal_item_text_color_sub_black"
+            android:text="@string/publish_page_reminder_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <EditText
         android:textColor="@color/universal_item_text_color_black"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:id="@+id/publish_page_share_content_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="160dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/publish_page_public_button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/universal_title_height"
+            android:layout_centerInParent="true"
+            android:background="@drawable/green_button_selector"
+            android:text="@string/publish_page_public_button_text"
+            android:textColor="@color/universal_white" />
+    </RelativeLayout>
+
 </LinearLayout>

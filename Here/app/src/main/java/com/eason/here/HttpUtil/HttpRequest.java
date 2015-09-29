@@ -9,6 +9,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.eason.here.model.Post;
 import com.eason.here.model.User;
 import com.eason.here.util.LogUtil;
 
@@ -53,7 +54,7 @@ public class HttpRequest {
         Response.Listener listener = new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
-                LogUtil.d("MainActivity", "response : " + s);
+                LogUtil.d("HttpRequest", "response : " + s);
                 httpResponseHandler.response(s, tClass);
             }
         };
@@ -88,18 +89,16 @@ public class HttpRequest {
      * @param username
      * @param password
      * @param pushKey
-     * @param tClass
      * @param httpResponseHandler
      * @param <T>
      */
-    public static <T> void login(String username, String password, String pushKey,
-                                 Class<T> tClass, HttpResponseHandler httpResponseHandler) {
+    public static <T> void login(String username, String password, String pushKey, HttpResponseHandler httpResponseHandler) {
         Map<String, String> map = new HashMap<String, String>();
         map.put("username", username);
         map.put("password", password);
         map.put("pushKey", pushKey);
 
-        baseHttpPostRequest(HttpConfig.String_Url_Login, map, httpResponseHandler, tClass);
+        baseHttpPostRequest(HttpConfig.String_Url_Login, map, httpResponseHandler, User.class);
 
     }
 
@@ -110,12 +109,11 @@ public class HttpRequest {
      * @param password
      * @param pushKey
      * @param nickname
-     * @param tClass
      * @param httpResponseHandler
      * @param <T>
      */
     public static <T> void register(String username, String password, String pushKey, String nickname, String birthday, String gender,
-                                    Class<T> tClass, HttpResponseHandler httpResponseHandler) {
+                                     HttpResponseHandler httpResponseHandler) {
 
         Map<String, String> map = new HashMap<String, String>();
         map.put("username", username);
@@ -128,6 +126,13 @@ public class HttpRequest {
         baseHttpPostRequest(HttpConfig.String_Url_Register, map, httpResponseHandler, User.class);
     }
 
+    /**
+     * 判断用户是否存在
+     * @param username
+     * @param tClass
+     * @param httpResponseHandler
+     * @param <T>
+     */
     public static <T> void checkUserIsExist(String username, Class<T> tClass,
                                             HttpResponseHandler httpResponseHandler) {
 
@@ -137,4 +142,24 @@ public class HttpRequest {
         baseHttpPostRequest(HttpConfig.String_Url_Check_User_Is_Exist, map, httpResponseHandler, tClass);
     }
 
+    /**
+     * 发帖
+     * @param longitude
+     * @param latitude
+     * @param city
+     * @param userid
+     * @param shareContent
+     * @param <T>
+     */
+    public static <T> void uploadPost(String longitude,String latitude,String city,int userid,String shareContent,
+                                      HttpResponseHandler httpResponseHandler){
+        Map<String,String> map = new HashMap<String,String>();
+        map.put("longitude",longitude);
+        map.put("latitude",latitude);
+        map.put("city",city);
+        map.put("userid", String.valueOf(userid));
+        map.put("shareContent",shareContent);
+
+        baseHttpPostRequest(HttpConfig.String_Url_Update_Location, map, httpResponseHandler, Post.class);
+    }
 }

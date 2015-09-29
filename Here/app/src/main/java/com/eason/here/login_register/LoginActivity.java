@@ -15,7 +15,6 @@ import com.eason.here.HttpUtil.LoginHandler;
 import com.eason.here.R;
 import com.eason.here.model.ErroCode;
 import com.eason.here.model.IntentUtil;
-import com.eason.here.model.User;
 import com.eason.here.util.CommonUtil;
 import com.eason.here.util.SharePreferencesUtil;
 import com.eason.here.util.WidgetUtil.ProgressDialog;
@@ -126,7 +125,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             }
         };
 
-        HttpRequest.login(userAccount, userPassword, pushKey, User.class, loginHandler);
+        HttpRequest.login(userAccount, userPassword, pushKey, loginHandler);
     }
 
     @Override
