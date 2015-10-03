@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationListener;
@@ -24,6 +25,7 @@ import com.amap.api.maps2d.model.MarkerOptions;
 import com.amap.api.maps2d.model.MyLocationStyle;
 import com.eason.here.BaseFragment;
 import com.eason.here.R;
+import com.eason.here.model.LoginStatus;
 import com.eason.here.publish_location_activity.PublishActivity;
 
 /**
@@ -59,6 +61,10 @@ public class MainMapFragment extends BaseFragment implements LocationSource,AMap
         publishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!LoginStatus.getIsUserMode()){
+                    Toast.makeText(getActivity(),"请先登录",Toast.LENGTH_LONG).show();
+                    return ;
+                }
                 getActivity().startActivity(new Intent(getActivity(), PublishActivity.class));
             }
         });

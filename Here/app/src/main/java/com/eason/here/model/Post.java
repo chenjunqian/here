@@ -11,6 +11,7 @@ public class Post {
     public String userid;
     public int like;
     public String shareContent;
+    public String image;
 
     public String getCity() {
         return city;
@@ -58,5 +59,13 @@ public class Post {
 
     public void setUserid(String userid) {
         this.userid = userid;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

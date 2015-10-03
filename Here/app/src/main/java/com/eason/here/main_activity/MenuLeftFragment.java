@@ -70,6 +70,11 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
 
                 break;
             case R.id.login_item_layout:
+                if (LoginStatus.getIsUserMode()){
+                    LoginStatus.setUser(null);
+                    loginTextView.setText("登录");
+                    return;
+                }
                 mainActivity.setFragmentTransaction(IntentUtil.MAIN_TO_LOGIN_PAGE);
                 Intent intent=new Intent(this.getActivity(),LoginActivity.class);
                 getActivity().startActivityForResult(intent, IntentUtil.MAIN_TO_LOGIN_PAGE);
