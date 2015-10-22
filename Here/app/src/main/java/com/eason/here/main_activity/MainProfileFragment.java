@@ -1,26 +1,31 @@
 package com.eason.here.main_activity;
 
-import android.content.ContentResolver;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.eason.here.BaseFragment;
+import com.eason.here.HttpUtil.HttpRequest;
+import com.eason.here.HttpUtil.HttpResponseHandler;
 import com.eason.here.R;
+import com.eason.here.model.ErroCode;
 import com.eason.here.model.IntentUtil;
 import com.eason.here.model.LoginStatus;
 import com.eason.here.model.User;
 import com.eason.here.util.CommonUtil;
+import com.eason.here.util.ImageProcessParams;
+import com.eason.here.util.ImageScan.ImageScanMainActivity;
 import com.eason.here.util.LogUtil;
+import com.eason.here.util.WidgetUtil.CircleImageView;
 import com.eason.here.util.WidgetUtil.EditTextDialog;
 import com.eason.here.util.WidgetUtil.OnFinishInputListener;
 
@@ -29,17 +34,45 @@ import com.eason.here.util.WidgetUtil.OnFinishInputListener;
  */
 public class MainProfileFragment extends BaseFragment implements View.OnClickListener {
 
+    private static final String TAG = "MainProfileFragment";
+
     private RelativeLayout avatarLayout;
     private RelativeLayout nicknameLayout;
     private RelativeLayout genderLayout;
     private RelativeLayout birthdayLayout;
-
     private TextView nicknameTextView;
     private TextView genderTextView;
     private TextView birthdayTextView;
     private TextView accountTextView;
-
     private EditTextDialog editTextDialog;
+    private CircleImageView avatarImageView;
+
+    private Bitmap avatarBitmap;
+
+
+    private static final int UPDATE_AVATAR_SUCCESS = 0x2;
+    private static final int UPDATE_AVATAR_FAIL = 0x3;
+    private static final int UPDATE_GENDER_SUCCESS = 0x4;
+
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            switch(msg.what){
+                case UPDATE_AVATAR_SUCCESS:
+                    avatarImageView.setImageBitmap(avatarBitmap);
+                    break;
+
+                case UPDATE_AVATAR_FAIL:
+
+                    Toast.makeText(getActivity(),"上传头像失败",Toast.LENGTH_SHORT).show();
+
+                    break;
+                case ErroCode.ERROR_CODE_CLIENT_DATA_ERROR:
+
+                    break;
+            }
+        }
+    };
 
     @Nullable
     @Override
@@ -58,6 +91,7 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
         genderTextView = (TextView) rootView.findViewById(R.id.profile_gender_text_view);
         birthdayTextView = (TextView) rootView.findViewById(R.id.profile_birthday_text_view);
         accountTextView = (TextView) rootView.findViewById(R.id.profile_username_text_view);
+        avatarImageView = (CircleImageView) rootView.findViewById(R.id.profile_avatar_image_view);
         return rootView;
     }
 
@@ -90,9 +124,11 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
         switch (v.getId()) {
             case R.id.profile_avatar_layout:
 
-                Intent albumIntent = new Intent(Intent.ACTION_GET_CONTENT);
-                albumIntent.setType("image/*");
-                getActivity().startActivityForResult(albumIntent, IntentUtil.SYSTEM_ABLUM_REQUEST_CODE);
+                /**
+                 * 打开手机系统相册
+                 */
+                Intent albumIntent = new Intent(getActivity(), ImageScanMainActivity.class);
+                startActivityForResult(albumIntent, IntentUtil.SYSTEM_ABLUM_REQUEST_CODE);
 
                 break;
             case R.id.profile_nickname_layout:
@@ -129,29 +165,41 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode!=getActivity().RESULT_OK)return;
+        if (resultCode!=getActivity().RESULT_OK){
+            LogUtil.e(TAG,"resultCode : "+requestCode);
+            return;
+        }
 
         /**
          * 获取相册返回的相片信息
          */
         if (requestCode==IntentUtil.SYSTEM_ABLUM_REQUEST_CODE){
 
-            try{
-                ContentResolver resolver = getActivity().getContentResolver();
-                Uri originalUri = data.getData();
-                Bitmap bm = MediaStore.Images.Media.getBitmap(resolver, originalUri);
-                String[] proj = {MediaStore.Images.Media.DATA};
+            String imagePath = data
+                    .getStringExtra(ImageProcessParams.IMAGE_PATH_EXTRA_NAME);
+            LogUtil.d(TAG, "imagePath : " + imagePath);
 
-                Cursor cursor = getActivity().managedQuery(originalUri, proj, null, null, null);
-                int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-                cursor.moveToFirst();
-                String path = cursor.getString(column_index);
+            avatarBitmap = CommonUtil.loadBitmap(imagePath);
 
-                LogUtil.d("MainProfileFragment", "path : " + path + " bm : " + bm);
-            }catch (Exception e){
-                e.printStackTrace();
-            }
+            if (avatarBitmap==null)return;
 
+            HttpResponseHandler avatarHandler = new HttpResponseHandler(){
+                @Override
+                public void getResult() {
+                    super.getResult();
+                    if (this.resultVO == null) {
+                        handler.sendEmptyMessage(new Message().what = ErroCode.ERROR_CODE_CLIENT_DATA_ERROR);
+                    } else if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT) {
+                        handler.sendEmptyMessage(new Message().what=UPDATE_AVATAR_SUCCESS);
+                    }else{
+                        handler.sendEmptyMessage(new Message().what=UPDATE_AVATAR_FAIL);
+                    }
+
+                    LogUtil.d(TAG,"resultVO.getStatus() : "+resultVO.getStatus());
+                }
+            };
+
+            HttpRequest.uploadAvatar(LoginStatus.getUser().getUsername(),CommonUtil.getFileNameFromFilePath(imagePath),imagePath,avatarHandler);
         }
     }
 }

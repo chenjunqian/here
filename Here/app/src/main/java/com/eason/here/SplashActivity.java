@@ -1,9 +1,12 @@
 package com.eason.here;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.eason.here.HttpUtil.HttpRequest;
 import com.eason.here.main_activity.MainActivity;
+import com.eason.here.model.LoginStatus;
 import com.eason.here.util.CommonUtil;
 import com.eason.here.util.SharePreferencesUtil;
 import com.eason.here.util.OnLoginListener;
@@ -19,7 +22,18 @@ public class SplashActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_layout);
+        initAppUtil(SplashActivity.this);
         autoLogin();
+    }
+
+    /**
+     * 初始化工具类
+     * @param context
+     */
+    private void initAppUtil(Context context){
+        SharePreferencesUtil.init(context);
+        LoginStatus.init(context);
+        HttpRequest.initRequestQueue(context);
     }
 
     /**

@@ -2,7 +2,6 @@ package com.eason.here.main_activity;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -14,11 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.eason.here.BaseActivity;
-import com.eason.here.HttpUtil.HttpRequest;
 import com.eason.here.R;
 import com.eason.here.model.IntentUtil;
-import com.eason.here.model.LoginStatus;
-import com.eason.here.util.SharePreferencesUtil;
 
 
 public class MainActivity extends BaseActivity{
@@ -56,19 +52,8 @@ public class MainActivity extends BaseActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initAppUtil(MainActivity.this);
         initView(savedInstanceState);
         initParam();
-    }
-
-    /**
-     * 初始化工具类
-     * @param context
-     */
-    private void initAppUtil(Context context){
-        SharePreferencesUtil.init(context);
-        LoginStatus.init(context);
-        HttpRequest.initRequestQueue(context);
     }
 
     /*

@@ -26,4 +26,8 @@
     <string name="publish_page_title">我在这儿</string>
     <string name="publish_page_reminder_text">分享一下都在这儿干嘛呢</string>
     <string name="publish_page_public_button_text">标记一下</string>
+
+    <!--本地相册 -->
+    <string name="album_group">相册</string>
+    <string name="album_child">本地相片</string>
 </resources>

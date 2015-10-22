@@ -1,14 +1,19 @@
 package com.eason.here.util;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
+import android.media.ExifInterface;
+import android.util.Log;
 
 import com.eason.here.HttpUtil.HttpRequest;
 import com.eason.here.HttpUtil.LoginHandler;
 import com.eason.here.model.ErroCode;
 
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -112,4 +117,96 @@ public class CommonUtil {
         HttpRequest.login(userAccount, userPassword, pushKey, loginHandler);
     }
 
+    /**
+     * 从给定的路径加载图片，并指定是否自动旋转方向
+     *
+     * @param imgPath 图片路径
+     * @param adjustOritation 是否自动旋转
+     * @return Bitmap 图片bm
+     */
+    public static Bitmap loadBitmap(String imgPath, boolean adjustOritation) {
+        if (!adjustOritation) {
+            return loadBitmap(imgPath);
+        } else {
+            Bitmap bm = loadBitmap(imgPath);
+            int degrees = getImgRotateDegree(imgPath);
+            return rotateImg(bm, degrees);
+        }
+    }
+
+    /** 从给定路径加载图片*/
+    public static Bitmap loadBitmap(String imgPath) {
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inPurgeable = true;
+        options.inInputShareable = true;
+        options.inJustDecodeBounds = false;
+        Bitmap bitmap = BitmapFactory.decodeFile(imgPath, options);
+        return bitmap;
+    }
+
+    /**
+     * 从给定的路径加载图片，并指定是否自动旋转方向
+     *
+     * @param imgBm 图片
+     * @return Bitmap 图片bm
+     */
+    public static Bitmap rotateImg(Bitmap imgBm, int degrees) {
+        if (degrees != 0) {
+            // 旋转图片
+            Matrix m = new Matrix();
+            m.postRotate(degrees);
+            imgBm = Bitmap.createBitmap(imgBm, 0, 0, imgBm.getWidth(),
+                    imgBm.getHeight(), m, true);
+        }
+        return imgBm;
+    }
+
+    public static int getImgRotateDegree(String imgPath) {
+        int degree = 0;
+        ExifInterface exif = null;
+        try {
+            exif = new ExifInterface(imgPath);
+        } catch (IOException e) {
+            Log.e("CommonUtil", "图片信息获取失败", e);
+            exif = null;
+        }
+        if (exif != null) {
+            // 读取图片中相机方向信息
+            int ori = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,
+                    ExifInterface.ORIENTATION_UNDEFINED);
+            // 计算旋转角度
+            switch (ori) {
+                case ExifInterface.ORIENTATION_ROTATE_90:
+                    degree = 90;
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_180:
+                    degree = 180;
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_270:
+                    degree = 270;
+                    break;
+                default:
+                    degree = 0;
+                    break;
+            }
+        }
+        return degree;
+    }
+
+    /**
+     * 从路径获取文件名称
+     * @Title: getFileNameFromFilePath
+     * @param @param filePath
+     * @param @return
+     * @return String    返回类型
+     */
+    public static String getFileNameFromFilePath(String filePath){
+        String result = filePath;
+        if(filePath.indexOf("/")>0){
+            String[] fileArr = filePath.split("/");
+            result = fileArr[fileArr.length-1];
+        }
+
+        return result;
+    }
 }

@@ -90,9 +90,8 @@ public class HttpRequest {
      * @param password
      * @param pushKey
      * @param httpResponseHandler
-     * @param <T>
      */
-    public static <T> void login(String username, String password, String pushKey, HttpResponseHandler httpResponseHandler) {
+    public static void login(String username, String password, String pushKey, HttpResponseHandler httpResponseHandler) {
         Map<String, String> map = new HashMap<String, String>();
         map.put("username", username);
         map.put("password", password);
@@ -110,9 +109,8 @@ public class HttpRequest {
      * @param pushKey
      * @param nickname
      * @param httpResponseHandler
-     * @param <T>
      */
-    public static <T> void register(String username, String password, String pushKey, String nickname, String birthday, String gender,
+    public static  void register(String username, String password, String pushKey, String nickname, String birthday, String gender,
                                      HttpResponseHandler httpResponseHandler) {
 
         Map<String, String> map = new HashMap<String, String>();
@@ -149,9 +147,8 @@ public class HttpRequest {
      * @param city
      * @param userid
      * @param shareContent
-     * @param <T>
      */
-    public static <T> void uploadPost(String longitude,String latitude,String city,int userid,String shareContent,
+    public static void uploadPost(String longitude,String latitude,String city,int userid,String shareContent,
                                       HttpResponseHandler httpResponseHandler){
         Map<String,String> map = new HashMap<String,String>();
         map.put("longitude",longitude);
@@ -161,5 +158,20 @@ public class HttpRequest {
         map.put("shareContent",shareContent);
 
         baseHttpPostRequest(HttpConfig.String_Url_Update_Location, map, httpResponseHandler, Post.class);
+    }
+
+    /**
+     * 上传头像
+     * @param username
+     * @param imageName
+     * @param path
+     * @param httpResponseHandler
+     */
+    public static void uploadAvatar(String username,String imageName,String path,final HttpResponseHandler httpResponseHandler){
+        Map<String,String> map = new HashMap<String,String>();
+        map.put("username",username);
+        map.put("avatar",imageName);
+
+        uploadFileRequest(HttpConfig.String_Url_Upload_Avatar,map,path,httpResponseHandler,Object.class);
     }
 }

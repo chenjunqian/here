@@ -62,6 +62,20 @@
             android:theme="@android:style/Theme.NoTitleBar">
 
         </activity>
+
+        <activity
+            android:name=".util.ImageScan.ImageScanMainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar">
+
+        </activity>
+
+        <activity
+            android:name=".util.ImageScan.ShowImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar">
+
+        </activity>
     </application>
 
 </manifest>

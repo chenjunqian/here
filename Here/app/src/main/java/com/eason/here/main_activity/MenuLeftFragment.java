@@ -14,12 +14,15 @@ import com.eason.here.R;
 import com.eason.here.login_register.LoginActivity;
 import com.eason.here.model.IntentUtil;
 import com.eason.here.model.LoginStatus;
+import com.eason.here.util.LogUtil;
+import com.eason.here.util.SharePreferencesUtil;
 
 /**
  * Created by Eason on 8/22/15.
  */
 public class MenuLeftFragment extends BaseFragment implements View.OnClickListener {
 
+    private static final String TAG = "MenuLeftFragment";
     private RelativeLayout userProfileLayout;
     private RelativeLayout mainTagLayout;
     private RelativeLayout userListLayout;
@@ -67,7 +70,9 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
                 mainActivity.setFragmentTransaction(IntentUtil.MAIN_MAP_FRAGMENT);
                 break;
             case R.id.user_list_item_layout:
-
+                String username = SharePreferencesUtil.getUserLoginUsername();
+                String password = SharePreferencesUtil.getUserLoginPassword();
+                LogUtil.d(TAG,"username : "+username+"  password : "+password);
                 break;
             case R.id.login_item_layout:
                 if (LoginStatus.getIsUserMode()){

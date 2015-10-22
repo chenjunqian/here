@@ -114,6 +114,8 @@ public class UpLoadFileRunable<T> implements Runnable {
                 outputStream.flush();
                 outputStream.close();
 
+                int status = conn.getResponseCode();
+                LogUtil.d("UpLoadFileRunable","ResponseCod : "+status);
                 /**
                  * 接收服务器的响应
                  */
@@ -128,7 +130,7 @@ public class UpLoadFileRunable<T> implements Runnable {
                 httpResponseHandler.response(response,tClass);
 
             } catch (Exception e) {
-                LogUtil.e("UpLoadFileRunable","Upload file exception");
+                LogUtil.e("UpLoadFileRunable","Upload file exception "+e);
                 e.printStackTrace();
             }
 
