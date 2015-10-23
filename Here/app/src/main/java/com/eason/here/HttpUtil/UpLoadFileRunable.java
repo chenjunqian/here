@@ -2,14 +2,12 @@ package com.eason.here.HttpUtil;
 
 import com.eason.here.util.LogUtil;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -18,104 +16,79 @@ import java.util.Map;
  */
 public class UpLoadFileRunable<T> implements Runnable {
 
+    private final String TAG = "UpLoadFileRunable";
+    private final String url;
+    private String filePath;
+    private String fileType;
+    private Map<String, String> map;
+    private HttpResponseHandler httpResponseHandler;
+    private Class<T> tClass;
 
-        private final String url;
-        private String filePath;
-        private Map<String, String> map;
-        private HttpResponseHandler httpResponseHandler;
-        private Class<T> tClass;
+    public UpLoadFileRunable(String url, final Map<String, String> map, String filePath, String fileType, final HttpResponseHandler httpResponseHandler, final Class<T> tClass) {
+        this.url = url;
+        this.map = map;
+        this.filePath = filePath;
+        this.fileType = fileType;
+        this.httpResponseHandler = httpResponseHandler;
+        this.tClass = tClass;
+    }
 
-        public UpLoadFileRunable(String url, final Map<String, String> map, String filePath, final HttpResponseHandler httpResponseHandler, final Class<T> tClass) {
-            this.url = url;
-            this.map = map;
-            this.filePath = filePath;
-            this.httpResponseHandler = httpResponseHandler;
-            this.tClass = tClass;
-        }
+    @Override
+    public void run() {
+        try {
 
-        @Override
-        public void run() {
-            try {
-                final String newLine = "\r\n";
-                final String boundaryPrefix = "--";
+            String BOUNDARY = "----WebKitFormBoundaryT1HoybnYeFOGFlBR";
 
-                /**
-                 * 定义数据分隔线
-                 */
-                String BOUNDARY = "========7d4a6d158c9";
+            StringBuilder sb = new StringBuilder();
+            for (String key : map.keySet()) {
+                sb.append("--" + BOUNDARY + "\r\n");
+                sb.append("Content-Disposition: form-data; name=\"" + key + "\""
+                        + "\r\n");
+                sb.append("\r\n");
+                sb.append(map.get(key) + "\r\n");
+            }
 
-                /**
-                 * url post参数
-                 */
-                String params = "";
+            File file = new File(filePath);
+            String newFileName = file.getName();
 
-                // 服务器的域名
-                URL realUrl = new URL(url);
-                HttpURLConnection conn = (HttpURLConnection) realUrl.openConnection();
-                // 设置为POST情
-                conn.setRequestMethod("POST");
-                // 发送POST请求必须设置如下两行
-                conn.setDoOutput(true);
-                conn.setDoInput(true);
-                conn.setUseCaches(false);
-                // 设置请求头参数
-                conn.setRequestProperty("connection", "Keep-Alive");
-                conn.setRequestProperty("Charsert", "UTF-8");
-                conn.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + BOUNDARY);
+            /**
+             * 上传文件的头
+             */
+            sb.append("--" + BOUNDARY + "\r\n");
+            sb.append("Content-Disposition: form-data; name=\"" + fileType
+                    + "\"; filename=\"" + newFileName + "\"" + "\r\n");
+            sb.append("Content-Type: image/jpeg" + "\r\n");
+            sb.append("\r\n");
 
-                /**
-                 * 向HttpUrlConnection 中添加参数
-                 */
-                Iterator<String> iter = map.keySet().iterator();
-                while (iter.hasNext()) {
-                    String key = iter.next();
-                    String value = map.get(key);
-                    conn.addRequestProperty(key,value);
-                }
+            byte[] headerInfo = sb.toString().getBytes("UTF-8");
+            byte[] endInfo = ("\r\n--" + BOUNDARY + "--\r\n").getBytes("UTF-8");
+            LogUtil.d(TAG, sb.toString());
 
-                /**
-                 * 数据输出流
-                 */
-                DataOutputStream outputStream = new DataOutputStream(conn.getOutputStream());
-                File file = new File(filePath);
-                StringBuffer sb = new StringBuffer();
-                sb.append(boundaryPrefix);
-                sb.append(BOUNDARY);
-                sb.append(newLine);
-                sb.append("Content-Disposition: form-data;name=\"file\";filename=\"" + filePath
-                        + "\"" + newLine);
-                sb.append("Content-Type:application/octet-stream");
-                // 参数头设置完以后需要两个换行，然后才是参数内容
-                sb.append(newLine);
-                sb.append(newLine);
-                // 将参数头的数据写入到输出流中
-                outputStream.write(sb.toString().getBytes());
+            URL realUrl = new URL(url);
+            HttpURLConnection conn = (HttpURLConnection) realUrl.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type",
+                    "multipart/form-data; boundary=" + BOUNDARY);
+            conn.setRequestProperty("Content-Length", String
+                    .valueOf(headerInfo.length + file.length()
+                            + endInfo.length));
 
-                /**
-                 * 数据输入流,用于读取文件数据
-                 */
-                DataInputStream in = new DataInputStream(new FileInputStream(
-                        file));
-                byte[] bufferOut = new byte[1024];
-                int bytes = 0;
-                // 每次读1KB数据,并且将文件数据写入到输出流中
-                while ((bytes = in.read(bufferOut)) != -1) {
-                    outputStream.write(bufferOut, 0, bytes);
-                }
-                // 最后添加换行
-                outputStream.write(newLine.getBytes());
-                in.close();
+            conn.setDoOutput(true);
 
-                // 定义最后数据分隔线，即--加上BOUNDARY再加上--。
-                byte[] end_data = (newLine + boundaryPrefix + BOUNDARY + boundaryPrefix + newLine)
-                        .getBytes();
-                // 写上结尾标识
-                outputStream.write(end_data);
-                outputStream.flush();
-                outputStream.close();
+            OutputStream out = conn.getOutputStream();
+            InputStream in = new FileInputStream(file);
+            out.write(headerInfo);
 
-                int status = conn.getResponseCode();
-                LogUtil.d("UpLoadFileRunable","ResponseCod : "+status);
+            byte[] buf = new byte[1024];
+            int len;
+            while ((len = in.read(buf)) != -1)
+                out.write(buf, 0, len);
+
+            out.write(endInfo);
+            in.close();
+            out.close();
+
+            if (conn.getResponseCode() == 200) {
                 /**
                  * 接收服务器的响应
                  */
@@ -129,11 +102,14 @@ public class UpLoadFileRunable<T> implements Runnable {
                 String response = new String(b.toString().getBytes(),"UTF-8");
                 httpResponseHandler.response(response,tClass);
 
-            } catch (Exception e) {
-                LogUtil.e("UpLoadFileRunable","Upload file exception "+e);
-                e.printStackTrace();
+            } else {
+                LogUtil.e(TAG, "Response Code : " + conn.getResponseCode());
             }
-
+        } catch (Exception e) {
+            LogUtil.e("UpLoadFileRunable","Upload file exception "+e);
+            e.printStackTrace();
         }
+
+    }
 
 }
