@@ -3,9 +3,10 @@ import json as simplejson
 import MySQLdb
 from django.shortcuts import render
 from django.http import HttpResponse
-from models import User,Location
-from form import UserForm
+from form import UserForm,PostImageForm
+from models import User
 from django.db import connection
+import logging
 
 def index(request):
 	return HttpResponse(u"This is here")
@@ -27,6 +28,7 @@ def login(request):
 		if user:
 			dict['errorMessage'] = "login_success"
 			dict['status'] = "0"
+			resultData['userid'] = user[0][0]
 			resultData['username'] = user[0][1]
 			resultData['password'] = user[0][2]
 			resultData['gender'] = user[0][3]
@@ -35,7 +37,7 @@ def login(request):
 			if user[0][6]:
 				resultData['avatar'] = user[0][6]
 			else:
-				resultData['avatar'] = 'null'
+				resultData['avatar'] = ''
 			resultData['nickname'] = user[0][7]
 			dict['resultData'] = resultData
 		else:
@@ -132,18 +134,25 @@ def uploadAvatar(request):
 	dict = {}
 	resultData = {}
 	if request.method == 'POST':
-		unsername  = request.POST.get('username')
-		userForm = UserForm(request.POST,request.FILES)
-		if userForm.is_valid():
-			avatar = request.FILES('avatar')
-			cursor = connection.cursor()
-			query = "update here_user set avatar = %s where username = %s"
-			cursor.execute(query,[avatar,username])
-			dict['errorMessage'] = "UPDATE_AVATAR_SUCCESS"
-			dict['status'] = "0"
+		username  = request.POST.get('username')
+		avatar = request.FILES.get('file')
+		# userForm = UserForm(request.POST, request.FILES)
+		# avatar = userForm.cleaned_data['file']
+		# usersname = userForm.cleaned_data['username']
+		logging.debug('----avatar-----'+avatar)
+		if username:
+			user = User.objects.get(username = username)
+			if avatar:
+				# user.avatar = avatar
+				user.save()
+				dict['errorMessage'] = "UPDATE_AVATAR_SUCCESS"+"  "+user.nickname
+				dict['status'] = "0"
+			else:
+				dict['errorMessage'] = "AVATAR_IS_INVALID"
+				dict['status'] = "8004"
 		else:
-			dict['errorMessage'] = "AVATAR_FORM_INVALID"
-			dict['status'] = "8004"
+			dict['errorMessage'] = "USERNAME_IS_INVALID"
+			dict['status'] = "8005"
 
 		json  = simplejson.dumps(dict)
 		return HttpResponse(json)
@@ -203,16 +212,35 @@ def modifyUserInfo(request):
 		return HttpResponse("POST failed")
 
 # 用户发帖上传位置信息以及内容
-def updateUserLocation(request):
+def updateUserPostLocation(request):
 	dict = {}
 	resultData = {}
 	if request.method == 'POST':
+		
 		longitude = request.POST.get('longitude')
 		latitude = request.POST.get('latitude')
 		shareContent = request.POST.get('shareContent')
-		user = request.POST.get('user')
+		userid = request.POST.get('userid')
 		city = request.POST.get('city')
+		postImageForm = PostImageForm(request.POST,request.FILES)
+		if postImageForm.is_valid():
+			image_one = request.FILES('image_one')
+			if image_one == None:
+				image_one = ''
+			image_two = request.FILES('image_two')
+			if image_two == None:
+				image_two = ''
+			image_three = request.FILES('image_three')
+			if image_three == None:
+				image_three = ''
+			image_four = request.POST.FILES('image_four')
+			if image_four == None:
+				image_four = ''
 		if longitude and latitude and user and city:
+			cursor = connection.cursor()
+			query = "insert into here_location(longitude,latitude,city,shareContent,userid,image_one,image_two,image_three,image_four) values(%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+			value = [longitude,latitude,city,shareContent,userid,image_one,image_two,image_three,image_four]
+			cursor.execute(query,value)
 			dict['errorMessage'] = "update_user_location_success"
 			dict['status'] = "0"
 			resultData['user'] = user
@@ -220,7 +248,11 @@ def updateUserLocation(request):
 			resultData['latitude'] = latitude
 			resultData['city'] = city
 			resultData['shareContent'] = shareContent
-
+			resultData['image_one'] = image_one
+			resultData['image_two'] = image_two
+			resultData['image_three'] = image_three
+			resultData['image_four'] = image_four
+			resultData['like'] = 0
 			dict['resultData'] = resultData
 		else:
 			dict['errorMessage'] = "username_or_password_invalid"
