@@ -43,26 +43,25 @@ public class SplashActivity extends BaseActivity {
 
         String username = SharePreferencesUtil.getUserLoginUsername();
         String password = SharePreferencesUtil.getUserLoginPassword();
+
+        final TimerTask task = new TimerTask() {
+
+            @Override
+            public void run() {
+                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                finish();
+            }
+        };
+
         if (!CommonUtil.isEmptyString(username)&&!CommonUtil.isEmptyString(password)){
             CommonUtil.login(username, password, "", new OnLoginListener() {
 
                 @Override
                 public void loginListener() {
-                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                    finish();
+                    new Timer().schedule(task,2000);
                 }
             });
         }else{
-
-            TimerTask task = new TimerTask() {
-
-                @Override
-                public void run() {
-                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                    finish();
-                }
-            };
-
             new Timer().schedule(task,2000);
         }
 
