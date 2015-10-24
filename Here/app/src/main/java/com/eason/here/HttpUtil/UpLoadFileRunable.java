@@ -24,6 +24,16 @@ public class UpLoadFileRunable<T> implements Runnable {
     private HttpResponseHandler httpResponseHandler;
     private Class<T> tClass;
 
+    /**
+     * 上传文件到服务器
+     *
+     * @param url
+     * @param map 传的参数
+     * @param filePath 文件路径
+     * @param fileType 上传文件类型
+     * @param httpResponseHandler
+     * @param tClass
+     */
     public UpLoadFileRunable(String url, final Map<String, String> map, String filePath, String fileType, final HttpResponseHandler httpResponseHandler, final Class<T> tClass) {
         this.url = url;
         this.map = map;
@@ -57,7 +67,7 @@ public class UpLoadFileRunable<T> implements Runnable {
             sb.append("--" + BOUNDARY + "\r\n");
             sb.append("Content-Disposition: form-data; name=\"" + fileType
                     + "\"; filename=\"" + newFileName + "\"" + "\r\n");
-            sb.append("Content-Type: image/jpeg" + "\r\n");
+//            sb.append("Content-Type: image/jpeg" + "\r\n");
             sb.append("\r\n");
 
             byte[] headerInfo = sb.toString().getBytes("UTF-8");

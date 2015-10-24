@@ -80,7 +80,7 @@ public class HttpRequest {
      */
     public static <T> void uploadFileRequest(String url, final Map<String, String> map, String filePath,
                                              final HttpResponseHandler httpResponseHandler, final Class<T> tClass) {
-        ThreadPoolUtils.execute(new UpLoadFileRunable<T>(url, map, filePath, httpResponseHandler, tClass));
+        ThreadPoolUtils.execute(new UpLoadFileRunable<T>(url, map, filePath,"file", httpResponseHandler, tClass));
     }
 
     /**

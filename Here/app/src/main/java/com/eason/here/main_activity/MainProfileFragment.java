@@ -27,7 +27,9 @@ import com.eason.here.util.ImageScan.ImageScanMainActivity;
 import com.eason.here.util.LogUtil;
 import com.eason.here.util.WidgetUtil.CircleImageView;
 import com.eason.here.util.WidgetUtil.EditTextDialog;
+import com.eason.here.util.WidgetUtil.GreenToast;
 import com.eason.here.util.WidgetUtil.OnFinishInputListener;
+import com.eason.here.util.WidgetUtil.ProgressDialog;
 
 /**
  * Created by Eason on 9/6/15.
@@ -148,6 +150,8 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
                 break;
             case R.id.profile_gender_layout:
 
+                GreenToast.makeText(getActivity(),"我是自定义的Toast，我应该是绿色的！！！",Toast.LENGTH_SHORT).show();
+
                 break;
             case R.id.profile_birthday_layout:
 
@@ -183,10 +187,14 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
 
             if (avatarBitmap==null)return;
 
+            final ProgressDialog progress = new ProgressDialog(getActivity());
+            progress.show();
+
             HttpResponseHandler avatarHandler = new HttpResponseHandler(){
                 @Override
                 public void getResult() {
                     super.getResult();
+                    progress.dismiss();
                     if (this.resultVO == null) {
                         handler.sendEmptyMessage(new Message().what = ErroCode.ERROR_CODE_CLIENT_DATA_ERROR);
                     } else if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT) {
@@ -195,7 +203,7 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
                         handler.sendEmptyMessage(new Message().what=UPDATE_AVATAR_FAIL);
                     }
 
-                    LogUtil.d(TAG,"resultVO.getStatus() : "+resultVO.getStatus());
+                    LogUtil.d(TAG,"resultVO.getStatus() : "+resultVO.getStatus()+" error message "+resultVO.getErrorMessage() );
                 }
             };
 
