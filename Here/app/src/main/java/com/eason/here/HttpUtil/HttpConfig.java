@@ -5,8 +5,8 @@ package com.eason.here.HttpUtil;
  */
 public class HttpConfig {
     //本地测试环境，且是启动虚拟机的情况下
-//    public static final String Url_Domain = "http://42.96.208.219/";
-    public static final String Url_Domain = "http://127.0.0.1:8080/";
+    public static final String Url_Domain = "http://42.96.208.219/";
+//    public static final String Url_Domain = "http://10.0.2.2:8080/";
 
     //登录
     public static final String String_Url_Login = Url_Domain + "login/";

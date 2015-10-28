@@ -6,7 +6,6 @@ from django.http import HttpResponse
 from form import UserForm,PostImageForm
 from models import User
 from django.db import connection
-import logging
 
 def index(request):
 	return HttpResponse(u"This is here")
@@ -136,16 +135,13 @@ def uploadAvatar(request):
 	if request.method == 'POST':
 		username  = request.POST.get('username')
 		avatar = request.FILES.get('file')
-		# userForm = UserForm(request.POST, request.FILES)
-		# avatar = userForm.cleaned_data['file']
-		# usersname = userForm.cleaned_data['username']
-		logging.debug('----avatar-----'+avatar)
+		print avatar
 		if username:
 			user = User.objects.get(username = username)
 			if avatar:
-				# user.avatar = avatar
+				user.avatar = avatar
 				user.save()
-				dict['errorMessage'] = "UPDATE_AVATAR_SUCCESS"+"  "+user.nickname
+				dict['errorMessage'] = "UPDATE_AVATAR_SUCCESS"
 				dict['status'] = "0"
 			else:
 				dict['errorMessage'] = "AVATAR_IS_INVALID"

@@ -60,32 +60,36 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginLeft="20dp"
-                android:visibility="gone"
-                android:src="@color/universal_title_background_green" />
+                android:scaleType="fitXY"
+                android:src="@color/universal_title_background_green"
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/post_image_view_two"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginLeft="20dp"
-                android:visibility="gone"
-                android:src="@color/universal_title_background_green" />
+                android:scaleType="fitXY"
+                android:src="@color/universal_title_background_green"
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/post_image_view_three"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginLeft="20dp"
-                android:visibility="gone"
-                android:src="@color/universal_title_background_green" />
+                android:scaleType="fitXY"
+                android:src="@color/universal_title_background_green"
+                android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/post_image_view_four"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginLeft="20dp"
-                android:visibility="gone"
-                android:src="@color/universal_title_background_green" />
+                android:scaleType="fitXY"
+                android:src="@color/universal_title_background_green"
+                android:visibility="gone" />
 
         </LinearLayout>
 

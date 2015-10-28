@@ -67,7 +67,7 @@ public class UpLoadFileRunable<T> implements Runnable {
             sb.append("--" + BOUNDARY + "\r\n");
             sb.append("Content-Disposition: form-data; name=\"" + fileType
                     + "\"; filename=\"" + newFileName + "\"" + "\r\n");
-//            sb.append("Content-Type: image/jpeg" + "\r\n");
+            sb.append("Content-Type: image/jpeg" + "\r\n");
             sb.append("\r\n");
 
             byte[] headerInfo = sb.toString().getBytes("UTF-8");

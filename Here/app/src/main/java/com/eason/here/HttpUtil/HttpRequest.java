@@ -145,16 +145,18 @@ public class HttpRequest {
      * @param longitude
      * @param latitude
      * @param city
-     * @param userid
+     * @param username
      * @param shareContent
      */
-    public static void uploadPost(String longitude,String latitude,String city,int userid,String shareContent,
+    public static void uploadPostWithoutImage(String longitude,String latitude,String city,String cityCode,String address,String username,String shareContent,
                                       HttpResponseHandler httpResponseHandler){
         Map<String,String> map = new HashMap<String,String>();
         map.put("longitude",longitude);
         map.put("latitude",latitude);
         map.put("city",city);
-        map.put("userid", String.valueOf(userid));
+        map.put("cityCode",cityCode);
+        map.put("address",address);
+        map.put("username",username);
         map.put("shareContent",shareContent);
 
         baseHttpPostRequest(HttpConfig.String_Url_Update_Location, map, httpResponseHandler, Post.class);

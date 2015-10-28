@@ -25,6 +25,7 @@ import com.amap.api.maps2d.model.MarkerOptions;
 import com.amap.api.maps2d.model.MyLocationStyle;
 import com.eason.here.BaseFragment;
 import com.eason.here.R;
+import com.eason.here.model.LocationInfo;
 import com.eason.here.model.LoginStatus;
 import com.eason.here.publish_location_activity.PublishActivity;
 
@@ -82,13 +83,13 @@ public class MainMapFragment extends BaseFragment implements LocationSource,AMap
     public void onResume() {
         super.onResume();
         mapView.onResume();
-//        deactivate();
     }
 
     @Override
     public void onPause() {
         super.onPause();
         mapView.onPause();
+        deactivate();
     }
 
     @Override
@@ -113,7 +114,7 @@ public class MainMapFragment extends BaseFragment implements LocationSource,AMap
 			 * ，第一个参数是定位provider，第二个参数时间最短是2000毫秒，第三个参数距离间隔单位是米，第四个参数是定位监听者
 			 */
         mAMapLocationManager.requestLocationData(
-                LocationProviderProxy.AMapNetwork, 2000, 10, this);
+                LocationProviderProxy.AMapNetwork, 20000, 10, this);
 
         // 自定义系统定位小蓝点
         MyLocationStyle myLocationStyle = new MyLocationStyle();
@@ -152,7 +153,13 @@ public class MainMapFragment extends BaseFragment implements LocationSource,AMap
             //获取位置信息
             geoLat = aLocation.getLatitude();
             geoLon = aLocation.getLongitude();
-            Log.d("MainActivity", "geoLat : " + geoLat + " geoLon : " + geoLon);
+            LocationInfo.setLat(geoLat);
+            LocationInfo.setLon(geoLon);
+            LocationInfo.setCityName(aLocation.getCity());
+            LocationInfo.setCityCode(aLocation.getCityCode());
+            LocationInfo.setAddress(aLocation.getAddress());
+            Log.d("MainActivity", "geoLat : " + geoLat + " geoLon : " + geoLon+
+                    " City Name : "+aLocation.getCity()+"  City Code : "+aLocation.getCityCode()+"  Address : "+aLocation.getAddress());
 
             if (geoLon==null||geoLat==null)return;
             //添加用户覆盖物

@@ -8,10 +8,11 @@ public class Post {
     public String longitude;
     public String latitude;
     public String city;
-    public String userid;
+    public String cityCode;
+    public String address;
+    public String username;
     public int like;
     public String shareContent;
-    public String image;
 
     public String getCity() {
         return city;
@@ -53,19 +54,27 @@ public class Post {
         this.shareContent = shareContent;
     }
 
-    public String getUserid() {
-        return userid;
+    public String getCityCode() {
+        return cityCode;
     }
 
-    public void setUserid(String userid) {
-        this.userid = userid;
+    public void setCityCode(String cityCode) {
+        this.cityCode = cityCode;
     }
 
-    public String getImage() {
-        return image;
+    public String getAddress() {
+        return address;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
