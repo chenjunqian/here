@@ -14,7 +14,6 @@
 
     <ImageButton
         android:id="@+id/main_map_publish_button"
-        android:src="@drawable/publish_icon"
         android:scaleType="fitXY"
         android:layout_width="65dp"
         android:layout_height="65dp"

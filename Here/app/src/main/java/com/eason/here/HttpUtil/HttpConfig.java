@@ -25,4 +25,7 @@ public class HttpConfig {
 
     //获取发帖标签
     public static final String String_Url_Get_Post_Tag = Url_Domain + "get_post_tag/";
+
+    //获取当前位置的帖子
+    public static final String String_Url_Get_Post = Url_Domain + "";
 }

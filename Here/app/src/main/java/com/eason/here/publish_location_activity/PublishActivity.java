@@ -38,6 +38,7 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
 
     private static String TAG = "PublishActivity";
     private EditText addTagText;
+    private EditText addAddressText;
     private Button publishButton;
     private GridView gridView;
     private List<String> tagList;
@@ -82,7 +83,10 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
         addTagText = (EditText) findViewById(R.id.publish_page_share_content_edit_text);
         publishButton = (Button) findViewById(R.id.publish_page_public_button);
         gridView = (GridView) findViewById(R.id.tag_grid_view);
+        addAddressText = (EditText) findViewById(R.id.publish_page_share_address_edit_text);
         publishButton.setOnClickListener(this);
+
+        addAddressText.setText(LocationInfo.getAddress());
 
         HttpResponseHandler getPostHandler = new HttpResponseHandler() {
             @Override
@@ -120,7 +124,13 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
         String latitude = String.valueOf(LocationInfo.getLat());
         String city = LocationInfo.getCityName();
         String cityCode = LocationInfo.getCityCode();
-        String address = LocationInfo.getAddress();
+        String address;
+        if (CommonUtil.isEmptyString(addAddressText.getText().toString())){
+            address = LocationInfo.getAddress();
+        }else{
+            address = addAddressText.getText().toString();
+        }
+
         String username = LoginStatus.getUser().getUsername();
         LogUtil.d("PublishActivity", "longitude : " + longitude + " latitude : " + latitude + " city : " + city + " username : " + username);
 

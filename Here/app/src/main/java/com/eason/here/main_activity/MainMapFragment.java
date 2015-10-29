@@ -28,6 +28,8 @@ import com.eason.here.R;
 import com.eason.here.model.LocationInfo;
 import com.eason.here.model.LoginStatus;
 import com.eason.here.publish_location_activity.PublishActivity;
+import com.eason.here.util.CommonUtil;
+import com.eason.here.util.WidgetUtil.GreenToast;
 
 /**
  * Created by Eason on 9/6/15.
@@ -63,8 +65,13 @@ public class MainMapFragment extends BaseFragment implements LocationSource,AMap
             @Override
             public void onClick(View v) {
                 if (!LoginStatus.getIsUserMode()){
-                    Toast.makeText(getActivity(),"请先登录",Toast.LENGTH_LONG).show();
+                    GreenToast.makeText(getActivity(), "请先登录", Toast.LENGTH_LONG).show();
                     return ;
+                }else if (CommonUtil.isEmptyString(LocationInfo.getAddress())||
+                        CommonUtil.isEmptyString(LocationInfo.getCityName())||
+                        CommonUtil.isEmptyString(String.valueOf(LocationInfo.getLat()))){
+
+                    GreenToast.makeText(getActivity(), "没有获取到您的位置信息", Toast.LENGTH_LONG).show();
                 }
                 getActivity().startActivity(new Intent(getActivity(), PublishActivity.class));
             }
