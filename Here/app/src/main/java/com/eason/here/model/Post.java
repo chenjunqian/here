@@ -12,7 +12,7 @@ public class Post {
     public String address;
     public String username;
     public int like;
-    public String shareContent;
+    public String tag;
 
     public String getCity() {
         return city;
@@ -46,12 +46,12 @@ public class Post {
         this.longitude = longitude;
     }
 
-    public String getShareContent() {
-        return shareContent;
+    public String getTag() {
+        return tag;
     }
 
-    public void setShareContent(String shareContent) {
-        this.shareContent = shareContent;
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 
     public String getCityCode() {

@@ -22,4 +22,7 @@ public class HttpConfig {
 
     //上传头像
     public static final String String_Url_Upload_Avatar = Url_Domain + "upload_avatar/";
+
+    //获取发帖标签
+    public static final String String_Url_Get_Post_Tag = Url_Domain + "get_post_tag/";
 }

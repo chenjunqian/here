@@ -15,14 +15,15 @@ class Post(models.Model):
 	longitude = models.CharField(max_length=30)
 	latitude = models.CharField(max_length=30)
 	city = models.CharField(max_length=30)
-	userid = models.CharField(max_length=30,blank=True,default="null")
+	cityCode = models.CharField(max_length=30,blank=True,default="null")
+	address = models.CharField(max_length=30,blank=True,default="null")
+	username = models.CharField(max_length=30,blank=True,default="null")
 	like = models.IntegerField()
-	shareContent = models.CharField(max_length=200,blank=True)
-	image_one = models.ImageField(upload_to='./post-image/',blank=True,default="null")
-	image_two = models.ImageField(upload_to='./post-image/',blank=True,default="null")
-	image_three = models.ImageField(upload_to='./post-image/',blank=True,default="null")
-	image_four = models.ImageField(upload_to='./post-image/',blank=True,default="null")
+	tag = models.CharField(max_length=200,blank=True)
 	
+class PostTag(models.Model):
+	tag = models.CharField(max_length=100)
+
 class TestModel(models.Model):
 	girl = models.CharField(max_length=30)
 	boy = models.CharField(max_length=30)

@@ -32,78 +32,24 @@
 
     </RelativeLayout>
 
+    <GridView
+        android:id="@+id/tag_grid_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnWidth="90dp"
+        android:horizontalSpacing="10dp"
+        android:numColumns="4"
+        android:verticalSpacing="10dp">
+
+    </GridView>
 
     <EditText
         android:id="@+id/publish_page_share_content_edit_text"
         android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_height="60dp"
         android:gravity="left|top"
         android:inputType="textMultiLine"
         android:textColor="@color/universal_item_text_color_black" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/universal_white"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:id="@+id/post_image_view_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/post_image_view_one"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="20dp"
-                android:scaleType="fitXY"
-                android:src="@color/universal_title_background_green"
-                android:visibility="gone" />
-
-            <ImageView
-                android:id="@+id/post_image_view_two"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="20dp"
-                android:scaleType="fitXY"
-                android:src="@color/universal_title_background_green"
-                android:visibility="gone" />
-
-            <ImageView
-                android:id="@+id/post_image_view_three"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="20dp"
-                android:scaleType="fitXY"
-                android:src="@color/universal_title_background_green"
-                android:visibility="gone" />
-
-            <ImageView
-                android:id="@+id/post_image_view_four"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="20dp"
-                android:scaleType="fitXY"
-                android:src="@color/universal_title_background_green"
-                android:visibility="gone" />
-
-        </LinearLayout>
-
-        <ImageButton
-            android:id="@+id/add_post_image_button"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@+id/post_image_view_layout"
-            android:src="@drawable/ic_add_post_image_18pt" />
-
-
-    </RelativeLayout>
 
 
     <RelativeLayout

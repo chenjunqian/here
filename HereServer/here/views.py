@@ -1,11 +1,16 @@
-# coding:utf-8
+#coding=utf-8
 import json as simplejson
 import MySQLdb
 from django.shortcuts import render
 from django.http import HttpResponse
-from form import UserForm,PostImageForm
 from models import User
 from django.db import connection
+from django import forms
+from django.shortcuts import render,render_to_response
+
+import sys,os
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 def index(request):
 	return HttpResponse(u"This is here")
@@ -128,34 +133,53 @@ def checkUserIsExist(request):
 		json  = simplejson.dumps(dict)
 		return HttpResponse("POST failed")
 
+class TestForm(forms.Form):
+    username = forms.CharField()
+    headImg = forms.FileField()
+
 # 上传用户的头像
 def uploadAvatar(request):	
 	dict = {}
 	resultData = {}
 	if request.method == 'POST':
+		# username  = request.POST.get('username')
+		# avatar = request.FILES.get('file')
 		username  = request.POST.get('username')
-		avatar = request.FILES.get('file')
-		print avatar
-		if username:
+		headImg = request.FILES.get('headImg')
+		tf = TestForm(request.POST,request.FILES)
+		if tf.is_valid:
 			user = User.objects.get(username = username)
-			if avatar:
-				user.avatar = avatar
-				user.save()
-				dict['errorMessage'] = "UPDATE_AVATAR_SUCCESS"
-				dict['status'] = "0"
+			user.avatar = headImg
+			user.save()
+			if headImg:
+				return HttpResponse(u"upload avatar success ")
 			else:
-				dict['errorMessage'] = "AVATAR_IS_INVALID"
-				dict['status'] = "8004"
-		else:
-			dict['errorMessage'] = "USERNAME_IS_INVALID"
-			dict['status'] = "8005"
-
-		json  = simplejson.dumps(dict)
-		return HttpResponse(json)
+				return HttpResponse(u"upload avatar failed ")
+			
 	else:
-		dict['errorMessage'] = "POST_FAILED"
-		dict['status'] = "8001"
-		return HttpResponse("POST failed")
+		tf = TestForm()
+	return render_to_response('test_upload_avatar.html',{'uf':tf})
+
+		# if username:
+		# 	user = User.objects.get(username = username)
+		# 	if avatar:
+		# 		user.avatar = avatar
+		# 		user.save()
+		# 		dict['errorMessage'] = "UPDATE_AVATAR_SUCCESS"
+		# 		dict['status'] = "0"
+		# 	else:
+		# 		dict['errorMessage'] = "AVATAR_IS_INVALID"
+		# 		dict['status'] = "8004"
+		# else:
+		# 	dict['errorMessage'] = "USERNAME_IS_INVALID"
+		# 	dict['status'] = "8005"
+
+		# json  = simplejson.dumps(dict)
+		# return HttpResponse(json)
+	# else:
+	# 	dict['errorMessage'] = "POST_FAILED"
+	# 	dict['status'] = "8001"
+	# 	return HttpResponse("POST failed")
 
 # 修改用户信息
 def modifyUserInfo(request):
@@ -212,42 +236,27 @@ def updateUserPostLocation(request):
 	dict = {}
 	resultData = {}
 	if request.method == 'POST':
-		
 		longitude = request.POST.get('longitude')
 		latitude = request.POST.get('latitude')
-		shareContent = request.POST.get('shareContent')
-		userid = request.POST.get('userid')
+		tag = request.POST.get('tag')
+		username = request.POST.get('username')
 		city = request.POST.get('city')
-		postImageForm = PostImageForm(request.POST,request.FILES)
-		if postImageForm.is_valid():
-			image_one = request.FILES('image_one')
-			if image_one == None:
-				image_one = ''
-			image_two = request.FILES('image_two')
-			if image_two == None:
-				image_two = ''
-			image_three = request.FILES('image_three')
-			if image_three == None:
-				image_three = ''
-			image_four = request.POST.FILES('image_four')
-			if image_four == None:
-				image_four = ''
-		if longitude and latitude and user and city:
+		cityCode = request.POST.get('cityCode')
+		address = request.POST.get('address')
+		if longitude and latitude and username and city:
 			cursor = connection.cursor()
-			query = "insert into here_location(longitude,latitude,city,shareContent,userid,image_one,image_two,image_three,image_four) values(%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-			value = [longitude,latitude,city,shareContent,userid,image_one,image_two,image_three,image_four]
+			query = "insert into here_post(longitude,latitude,city,cityCode,address,tag,username) values(%s,%s,%s,%s,%s,%s,%s)"
+			value = [longitude,latitude,city,cityCode,address,tag,username]
 			cursor.execute(query,value)
 			dict['errorMessage'] = "update_user_location_success"
 			dict['status'] = "0"
-			resultData['user'] = user
+			resultData['username'] = username
 			resultData['longitude'] = longitude
 			resultData['latitude'] = latitude
 			resultData['city'] = city
-			resultData['shareContent'] = shareContent
-			resultData['image_one'] = image_one
-			resultData['image_two'] = image_two
-			resultData['image_three'] = image_three
-			resultData['image_four'] = image_four
+			resultData['cityCode'] = cityCode
+			resultData['address'] = address
+			resultData['tag'] = tag
 			resultData['like'] = 0
 			dict['resultData'] = resultData
 		else:
@@ -260,7 +269,34 @@ def updateUserPostLocation(request):
 		dict['status'] = "8001"
 		json  = simplejson.dumps(dict)
 		return HttpResponse("POST failed")
-		
+
+# 获取发帖的标签
+def getPostTag(request):
+	dict = {}
+	resultData = []
+	if request.method == 'POST':
+		cursor = connection.cursor()
+		query = "select * from here_tag"
+		cursor.execute(query)
+		result = cursor.fetchall()
+		if result:
+			resultData['tag'] = result
+			dict['resultData'] = resultData
+			dict['errorMessage'] = "update_user_location_success"
+			dict['status'] = "0"
+		else:
+			dict['errorMessage'] = "tag_not_found"
+			dict['status'] = "8003"
+
+		json = simplejson.dumps(dict)
+		return HttpResponse(json)
+	else:
+		dict['errorMessage'] = "POST_FAILED"
+		dict['status'] = "8001"
+		json  = simplejson.dumps(dict)
+		return HttpResponse("POST failed")
+			
+
 # 根据用户的地理经纬度，来获取他周围的定位信息
 def getLocationByLocation(request):
 	dict = {}

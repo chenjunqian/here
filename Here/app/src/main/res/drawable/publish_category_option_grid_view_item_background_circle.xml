@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+        <solid android:color="#f4f4f4"/>
+	    <corners android:topLeftRadius="@dimen/publish_category_grid_view_round_corner"
+             android:topRightRadius="@dimen/publish_category_grid_view_round_corner"    
+             android:bottomRightRadius="@dimen/publish_category_grid_view_round_corner"   
+             android:bottomLeftRadius="@dimen/publish_category_grid_view_round_corner"/>
+  	    <stroke android:width="0.5dip" android:color="#B0B0B0"/>  
+</shape>

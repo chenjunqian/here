@@ -95,6 +95,10 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
+FILE_CHARSET = 'utf-8'
+
+DEFAULT_CHARSET = 'utf-8'
+
 TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
@@ -110,3 +114,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 MEDIA_URL = '/upload/'
+
+MEDIA_ROOT = '/media/'

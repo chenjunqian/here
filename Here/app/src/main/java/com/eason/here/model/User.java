@@ -12,14 +12,7 @@ public class User {
     private String birthday;
     private String nickname;
     private String userid;
-
-    public String getUserId() {
-        return userid;
-    }
-
-    public void setUserId(String userid) {
-        this.userid = userid;
-    }
+    private String pushKey;
 
     public String getNickname() {
         return nickname;
@@ -67,5 +60,21 @@ public class User {
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
+    }
+
+    public String getPushKey() {
+        return pushKey;
+    }
+
+    public void setPushKey(String pushKey) {
+        this.pushKey = pushKey;
+    }
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 }
