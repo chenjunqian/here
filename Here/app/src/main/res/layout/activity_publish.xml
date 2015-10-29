@@ -33,6 +33,7 @@
     </RelativeLayout>
 
     <GridView
+        android:layout_marginTop="20dp"
         android:id="@+id/tag_grid_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,14 +44,25 @@
 
     </GridView>
 
-    <EditText
-        android:id="@+id/publish_page_share_content_edit_text"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:gravity="left|top"
-        android:inputType="textMultiLine"
-        android:textColor="@color/universal_item_text_color_black" />
+        android:layout_marginTop="20dp"
+        android:background="@color/universal_white">
 
+        <EditText
+            android:id="@+id/publish_page_share_content_edit_text"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:hint="添加标签"
+            android:maxLength="4"
+            android:background="@color/universal_layout_background_color"
+            android:textColor="@color/universal_item_text_color_black"
+            android:textSize="13sp" />
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"

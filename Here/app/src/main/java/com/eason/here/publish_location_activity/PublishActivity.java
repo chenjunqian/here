@@ -1,7 +1,6 @@
 package com.eason.here.publish_location_activity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -38,7 +37,7 @@ import java.util.List;
 public class PublishActivity extends BaseActivity implements View.OnClickListener {
 
     private static String TAG = "PublishActivity";
-    private EditText inputEditText;
+    private EditText addTagText;
     private Button publishButton;
     private GridView gridView;
     private List<String> tagList;
@@ -55,13 +54,14 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
                     GreenToast.makeText(PublishActivity.this, "发帖失败咯，我也不知道为什么，想想可能发生些什么吧", Toast.LENGTH_SHORT).show();
                     break;
                 case POST_SUCCESS:
-                    GreenToast.makeText(PublishActivity.this, "发帖成功", Toast.LENGTH_SHORT).show();
+                    GreenToast.makeText(PublishActivity.this, "标记成功", Toast.LENGTH_SHORT).show();
+                    PublishActivity.this.finish();
                     break;
                 case POST_FAIL:
                     GreenToast.makeText(PublishActivity.this, "发帖失败，可能是服务器的问题啦", Toast.LENGTH_SHORT).show();
                     break;
                 case GET_TAG_FAIL:
-                    GreenToast.makeText(PublishActivity.this,"网络似乎出了点问题，重新试试",Toast.LENGTH_SHORT).show();
+                    GreenToast.makeText(PublishActivity.this, "网络似乎出了点问题，重新试试", Toast.LENGTH_SHORT).show();
                     PublishActivity.this.finish();
                     break;
             }
@@ -79,12 +79,12 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
      * 初始化控件
      */
     private void initView() {
-        inputEditText = (EditText) findViewById(R.id.publish_page_share_content_edit_text);
+        addTagText = (EditText) findViewById(R.id.publish_page_share_content_edit_text);
         publishButton = (Button) findViewById(R.id.publish_page_public_button);
         gridView = (GridView) findViewById(R.id.tag_grid_view);
         publishButton.setOnClickListener(this);
 
-        HttpResponseHandler getPostHandler = new HttpResponseHandler(){
+        HttpResponseHandler getPostHandler = new HttpResponseHandler() {
             @Override
             public void getResult() {
                 super.getResult();
@@ -94,11 +94,11 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
                     PostTag tag = (PostTag) this.result;
                     String[] tagString = tag.getTag().split("@@");
                     tagList = new ArrayList<String>();
-                    for (int i = 0 ; i <tagString.length ; i++ ) {
+                    for (int i = 0; i < tagString.length; i++) {
                         tagList.add(tagString[i]);
                     }
 
-                    gridView.setAdapter(new GridViewAdapter(PublishActivity.this,tagList));
+                    gridView.setAdapter(new GridViewAdapter(PublishActivity.this, tagList));
 
                 } else {
                     handler.sendEmptyMessage(new Message().what = GET_TAG_FAIL);
@@ -143,16 +143,16 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
                         } else if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT) {
                             handler.sendEmptyMessage(new Message().what = POST_SUCCESS);
                             Post post = (Post) this.result;
-                            LogUtil.d(TAG,"tag :  "+post.getTag());
+                            LogUtil.d(TAG, "tag :  " + post.getTag());
                         } else {
                             handler.sendEmptyMessage(new Message().what = POST_FAIL);
                         }
                     }
                 };
 
-                String shareContent = inputEditText.getText().toString();
+                String shareContent = addTagText.getText().toString();
                 if (CommonUtil.isEmptyString(shareContent)) {
-                    GreenToast.makeText(PublishActivity.this, "请输入要分享的内容", Toast.LENGTH_SHORT).show();
+                    GreenToast.makeText(PublishActivity.this, "请选择或者添加分享标签", Toast.LENGTH_SHORT).show();
                 } else {
                     publish(shareContent, postHandler);
                 }
@@ -164,22 +164,6 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode != RESULT_OK) return;
-
-//        if (requestCode== IntentUtil.SYSTEM_ABLUM_REQUEST_CODE){
-//            String imagePath = data
-//                    .getStringExtra(ImageProcessParams.IMAGE_PATH_EXTRA_NAME);
-//            LogUtil.d(TAG, "imagePath : " + imagePath);
-//
-//            Bitmap avatarBitmap = CommonUtil.loadBitmap(imagePath);
-//
-//        }
-
-    }
-
 
     private class GridViewAdapter extends BaseAdapter {
 
@@ -187,19 +171,19 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
         private Context context;
         private TextView textView;
 
-        public GridViewAdapter(Context context,List<String> tagList){
+        public GridViewAdapter(Context context, List<String> tagList) {
             this.context = context;
             this.tagList = tagList;
         }
 
         @Override
         public int getCount() {
-            return tagList==null?0:tagList.size();
+            return tagList == null ? 0 : tagList.size();
         }
 
         @Override
         public Object getItem(int position) {
-            return tagList==null?0:tagList.get(position);
+            return tagList == null ? 0 : tagList.get(position);
         }
 
         @Override
@@ -210,15 +194,15 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
-            String tag = tagList.get(position);
+            final String tag = tagList.get(position);
 
-            if (convertView==null){
-                convertView = LayoutInflater.from(context).inflate(R.layout.post_tag_grid_view_layout,null);
+            if (convertView == null) {
+                convertView = LayoutInflater.from(context).inflate(R.layout.post_tag_grid_view_layout, null);
 
                 textView = (TextView) convertView.findViewById(R.id.post_tag_grid_view_text_view);
 
                 convertView.setTag(textView);
-            }else{
+            } else {
                 textView = (TextView) convertView.getTag();
             }
 
@@ -227,7 +211,8 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    addTagText.setText(tag);
+                    addTagText.setSelection(tag.length());
                 }
             });
 
