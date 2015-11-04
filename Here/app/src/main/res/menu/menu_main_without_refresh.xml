@@ -4,13 +4,6 @@
     tools:context=".MainActivity">
 
     <item
-        android:id="@+id/action_refresh"
-        android:icon="@drawable/ic_refresh_white_36pt"
-        android:orderInCategory="80"
-        android:title="@string/app_name"
-        app:showAsAction="always" />
-
-    <item
         android:id="@+id/action_settings"
         android:icon="@drawable/ic_more_vert_white_24dp"
         android:orderInCategory="100"

@@ -5,13 +5,14 @@ package com.eason.here.model;
  */
 public class Post {
 
-    public String longitude;
-    public String latitude;
+    public double longitude;
+    public double latitude;
     public String city;
     public String cityCode;
     public String address;
     public String username;
     public int like;
+    public String id;
     public String tag;
 
     public String getCity() {
@@ -22,11 +23,11 @@ public class Post {
         this.city = city;
     }
 
-    public String getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(String latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
@@ -38,11 +39,11 @@ public class Post {
         this.like = like;
     }
 
-    public String getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(String longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 

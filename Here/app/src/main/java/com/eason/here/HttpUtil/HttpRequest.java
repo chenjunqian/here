@@ -10,6 +10,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.eason.here.model.Post;
+import com.eason.here.model.PostList;
 import com.eason.here.model.PostTag;
 import com.eason.here.model.User;
 import com.eason.here.util.LogUtil;
@@ -192,5 +193,13 @@ public class HttpRequest {
         Map<String, String> map = new HashMap<String, String>();
         map.put("tag", "tag");
         baseHttpPostRequest(HttpConfig.String_Url_Get_Post_Tag, map, httpResponseHandler, PostTag.class);
+    }
+
+    public static void getPost(double lon ,double lat ,String city ,HttpResponseHandler httpResponseHandler){
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("longitude", String.valueOf(lon));
+        map.put("latitude", String.valueOf(lat));
+        map.put("city", city);
+        baseHttpPostRequest(HttpConfig.String_Url_Get_Post, map, httpResponseHandler, PostList.class);
     }
 }

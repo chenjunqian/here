@@ -8,16 +8,20 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
-import com.eason.here.BaseActivity;
 import com.eason.here.R;
+import com.eason.here.model.ErroCode;
 import com.eason.here.model.IntentUtil;
+import com.eason.here.util.WidgetUtil.GreenToast;
 
 
-public class MainActivity extends BaseActivity{
+public class MainActivity extends ActionBarActivity{
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
@@ -30,6 +34,12 @@ public class MainActivity extends BaseActivity{
     private final int CHANGE_TOOL_BAR_TITLE_MAIN= 0x1;
     private final int CHANGE_TOOL_BAR_TITLE_SETTING = 0X2;
 
+    private boolean isShowRefreshView = true;
+
+    /**
+     * MainMapFragment 获取帖子为空
+     */
+    public static final int NONE_VALID_POST = 0x3;
 
     private  Handler handler = new Handler(){
         @Override
@@ -43,6 +53,12 @@ public class MainActivity extends BaseActivity{
                 case CHANGE_TOOL_BAR_TITLE_SETTING:
                     //跳转时改变Toobar相应的标题
                     toolbar.setTitle("个人资料");
+                    break;
+                case NONE_VALID_POST:
+                    GreenToast.makeText(MainActivity.this,"附近还没人标记过哦，还不先码一个", Toast.LENGTH_LONG).show();
+                    break;
+                case ErroCode.ERROR_CODE_REQUEST_FORM_INVALID:
+                    GreenToast.makeText(MainActivity.this,"获取附近的标记似乎除了点问题，但是又不知道是为什么。。。", Toast.LENGTH_LONG).show();
                     break;
             }
         }
@@ -61,9 +77,24 @@ public class MainActivity extends BaseActivity{
      */
     private void initView(Bundle savedInstanceState) {
         toolbar = (android.support.v7.widget.Toolbar)findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
         toolbar.setTitle(R.string.app_name);
         toolbar.setTitleTextColor(getResources().getColor(R.color.universal_white));
         drawerLayout = (DrawerLayout) findViewById(R.id.main_drawer_layout);
+
+        toolbar.setOnMenuItemClickListener(new android.support.v7.widget.Toolbar.OnMenuItemClickListener() {
+
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.action_refresh:
+
+                        break;
+                }
+
+                return true;
+            }
+        });
 
         //将toolbar与Drawerlayout绑定起来
         actionBarDrawerToggle = new ActionBarDrawerToggle(
@@ -87,17 +118,11 @@ public class MainActivity extends BaseActivity{
         drawerLayout.setDrawerListener(actionBarDrawerToggle);
     }
 
-    /**
-     * 初始化参数，及相应的布局设置
-     */
-    private void initParam(){
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        mainMapFragment = new MainMapFragment();
-        settingFragment = new MainProfileFragment();
-        nearUserListFragment = new NearUserListFragment();
-        transaction.replace(R.id.main_fragment_frame_layout,mainMapFragment);
-        transaction.commit();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 
     @Override
@@ -115,10 +140,51 @@ public class MainActivity extends BaseActivity{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+        switch (item.getItemId()){
+            case R.id.action_settings:
+                break;
+            case R.id.action_refresh:
+                mainMapFragment.getPost();
+                break;
+
+        }
+
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
+
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+        if (isShowRefreshView){
+            menu.clear();
+            getMenuInflater().inflate(R.menu.menu_main, menu);
+        }else{
+            menu.clear();
+            getMenuInflater().inflate(R.menu.menu_main_without_refresh, menu);
+        }
+
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    /**
+     * 初始化参数，及相应的布局设置
+     */
+    private void initParam(){
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        mainMapFragment = new MainMapFragment();
+        settingFragment = new MainProfileFragment();
+        nearUserListFragment = new NearUserListFragment();
+        transaction.replace(R.id.main_fragment_frame_layout, mainMapFragment);
+        transaction.commit();
+    }
+
+    public Handler getHandler(){
+        return handler;
     }
 
     /**
@@ -138,6 +204,7 @@ public class MainActivity extends BaseActivity{
                 }
                 transaction.replace(R.id.main_fragment_frame_layout, mainMapFragment);
                 msg.what = CHANGE_TOOL_BAR_TITLE_MAIN;
+                isShowRefreshView = true;
                 handler.sendEmptyMessage(msg.what);
                 break;
 
@@ -149,6 +216,7 @@ public class MainActivity extends BaseActivity{
                 }
                 transaction.replace(R.id.main_fragment_frame_layout, settingFragment);
                 msg.what = CHANGE_TOOL_BAR_TITLE_SETTING;
+                isShowRefreshView = false;
                 handler.sendEmptyMessage(msg.what);
                 break;
 
@@ -157,8 +225,9 @@ public class MainActivity extends BaseActivity{
                 if (nearUserListFragment==null){
                     nearUserListFragment = new NearUserListFragment();
                 }
-                transaction.replace(R.id.main_fragment_frame_layout,nearUserListFragment);
+                transaction.replace(R.id.main_fragment_frame_layout, nearUserListFragment);
 
+                isShowRefreshView = false;
                 break;
 
             case IntentUtil.MAIN_TO_LOGIN_PAGE:

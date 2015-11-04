@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,17 +25,24 @@ import com.amap.api.maps2d.model.Marker;
 import com.amap.api.maps2d.model.MarkerOptions;
 import com.amap.api.maps2d.model.MyLocationStyle;
 import com.eason.here.BaseFragment;
+import com.eason.here.HttpUtil.HttpRequest;
+import com.eason.here.HttpUtil.HttpResponseHandler;
 import com.eason.here.R;
+import com.eason.here.model.ErroCode;
 import com.eason.here.model.LocationInfo;
 import com.eason.here.model.LoginStatus;
+import com.eason.here.model.Post;
+import com.eason.here.model.PostList;
 import com.eason.here.publish_location_activity.PublishActivity;
 import com.eason.here.util.CommonUtil;
 import com.eason.here.util.WidgetUtil.GreenToast;
 
+import java.util.List;
+
 /**
  * Created by Eason on 9/6/15.
  */
-public class MainMapFragment extends BaseFragment implements LocationSource,AMapLocationListener {
+public class MainMapFragment extends BaseFragment implements LocationSource, AMapLocationListener {
 
     private MapView mapView;
     private AMap aMap;
@@ -48,13 +56,19 @@ public class MainMapFragment extends BaseFragment implements LocationSource,AMap
 
     private ImageButton publishButton;
 
+    /**
+     * 标记的样式
+     */
+    private static final int MYSELF_MARK = 0X1;
+    private static final int OTHER_MARK = 0X2;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_main_map_layout,container,false);
+        View rootView = inflater.inflate(R.layout.fragment_main_map_layout, container, false);
 
         //显示地图
-        mapView = (MapView)rootView.findViewById(R.id.map);
+        mapView = (MapView) rootView.findViewById(R.id.map);
         mapView.onCreate(savedInstanceState);
         aMap = mapView.getMap();
         setUpMap();
@@ -64,14 +78,15 @@ public class MainMapFragment extends BaseFragment implements LocationSource,AMap
         publishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!LoginStatus.getIsUserMode()){
+                if (!LoginStatus.getIsUserMode()) {
                     GreenToast.makeText(getActivity(), "请先登录", Toast.LENGTH_LONG).show();
-                    return ;
-                }else if (CommonUtil.isEmptyString(LocationInfo.getAddress())||
-                        CommonUtil.isEmptyString(LocationInfo.getCityName())||
-                        CommonUtil.isEmptyString(String.valueOf(LocationInfo.getLat()))){
+                    return;
+                } else if (CommonUtil.isEmptyString(LocationInfo.getAddress()) ||
+                        CommonUtil.isEmptyString(LocationInfo.getCityName()) ||
+                        CommonUtil.isEmptyString(String.valueOf(LocationInfo.getLat()))) {
 
                     GreenToast.makeText(getActivity(), "没有获取到您的位置信息", Toast.LENGTH_LONG).show();
+                    return;
                 }
                 getActivity().startActivity(new Intent(getActivity(), PublishActivity.class));
             }
@@ -111,10 +126,38 @@ public class MainMapFragment extends BaseFragment implements LocationSource,AMap
         mapView.onSaveInstanceState(outState);
     }
 
-    private void setUpMap() {
+    /**
+     * 获取附近的标签
+     */
+    public void getPost() {
+        HttpResponseHandler getPostHandler = new HttpResponseHandler() {
+            @Override
+            public void getResult() {
+                super.getResult();
+                MainActivity mainActivity = (MainActivity) getActivity();
+                if (this.resultVO == null) {
+                    mainActivity.getHandler().sendEmptyMessage(new Message().what=ErroCode.ERROR_CODE_REQUEST_FORM_INVALID);
+                }else if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CLIENT_DATA_ERROR){
+                    mainActivity.getHandler().sendEmptyMessage(new Message().what=MainActivity.NONE_VALID_POST);
+                }else if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT) {
+                    PostList postList = (PostList) this.result;
+                    if (postList==null)return;
+                    List<Post> postListItem = postList.getPostList();
+                    for (int i = 0; i<postListItem.size();i++){
+                        Post post = postListItem.get(i);
+                        setMark(OTHER_MARK,post);
+                    }
+                }
+            }
+        };
+
+        HttpRequest.getPost(LocationInfo.getLon(), LocationInfo.getLat(), LocationInfo.getCityName(), getPostHandler);
+    }
+
+    public void setUpMap() {
         mAMapLocationManager = LocationManagerProxy.getInstance(getActivity());
         //mAMapLocationManager.setGpsEnable(false);
-			/*
+            /*
 			 * mAMapLocManager.setGpsEnable(false);
 			 * 1.0.2版本新增方法，设置true表示混合定位中包含gps定位，false表示纯网络定位，默认是true Location
 			 * API定位采用GPS和网络混合定位方式
@@ -123,6 +166,14 @@ public class MainMapFragment extends BaseFragment implements LocationSource,AMap
         mAMapLocationManager.requestLocationData(
                 LocationProviderProxy.AMapNetwork, 20000, 10, this);
 
+        setMark(MYSELF_MARK,null);
+    }
+
+    /**
+     * 在地图上设置标记图标
+     * @param type 图标的样式
+     */
+    private void setMark(int type,Post post){
         // 自定义系统定位小蓝点
         MyLocationStyle myLocationStyle = new MyLocationStyle();
         myLocationStyle.myLocationIcon(BitmapDescriptorFactory
@@ -137,20 +188,35 @@ public class MainMapFragment extends BaseFragment implements LocationSource,AMap
         aMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
         //aMap.setMyLocationType()
         myMarkOption = new MarkerOptions();
+
+        if (type==OTHER_MARK){
+            //添加用户覆盖物
+            LatLng userCurrentLatLng = new LatLng(post.getLatitude(), post.getLongitude());
+            if (myMark != null) {
+                myMark.destroy();
+            }
+            myMarkOption.anchor(0.5f, 0.5f).
+                    position(userCurrentLatLng).title(post.getTag()).draggable(false);
+            myMark = aMap.addMarker(myMarkOption);
+        }
     }
 
 
     @Override
-    public void onLocationChanged(Location location) {}
+    public void onLocationChanged(Location location) {
+    }
 
     @Override
-    public void onProviderDisabled(String provider) {}
+    public void onProviderDisabled(String provider) {
+    }
 
     @Override
-    public void onProviderEnabled(String provider) {}
+    public void onProviderEnabled(String provider) {
+    }
 
     @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {}
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+    }
 
     @Override
     public void onLocationChanged(AMapLocation aLocation) {
@@ -165,16 +231,16 @@ public class MainMapFragment extends BaseFragment implements LocationSource,AMap
             LocationInfo.setCityName(aLocation.getCity());
             LocationInfo.setCityCode(aLocation.getCityCode());
             LocationInfo.setAddress(aLocation.getAddress());
-            Log.d("MainActivity", "geoLat : " + geoLat + " geoLon : " + geoLon+
-                    " City Name : "+aLocation.getCity()+"  City Code : "+aLocation.getCityCode()+"  Address : "+aLocation.getAddress());
+            Log.d("MainActivity", "geoLat : " + geoLat + " geoLon : " + geoLon +
+                    " City Name : " + aLocation.getCity() + "  City Code : " + aLocation.getCityCode() + "  Address : " + aLocation.getAddress());
 
-            if (geoLon==null||geoLat==null)return;
+            if (geoLon == null || geoLat == null) return;
             //添加用户覆盖物
-            LatLng userCurrentLatLng = new LatLng(geoLat,geoLon);
-            if (myMark!=null){
+            LatLng userCurrentLatLng = new LatLng(geoLat, geoLon);
+            if (myMark != null) {
                 myMark.destroy();
             }
-            myMarkOption.anchor(0.5f,0.5f).
+            myMarkOption.anchor(0.5f, 0.5f).
                     position(userCurrentLatLng).title("您").draggable(false);
             myMark = aMap.addMarker(myMarkOption);
         }
