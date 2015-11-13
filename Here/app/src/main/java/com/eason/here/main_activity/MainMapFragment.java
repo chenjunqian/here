@@ -1,6 +1,5 @@
 package com.eason.here.main_activity;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
@@ -33,7 +32,6 @@ import com.eason.here.model.LocationInfo;
 import com.eason.here.model.LoginStatus;
 import com.eason.here.model.Post;
 import com.eason.here.model.PostList;
-import com.eason.here.publish_location_activity.PublishActivity;
 import com.eason.here.util.CommonUtil;
 import com.eason.here.util.WidgetUtil.GreenToast;
 
@@ -44,6 +42,7 @@ import java.util.List;
  */
 public class MainMapFragment extends BaseFragment implements LocationSource, AMapLocationListener {
 
+    private final String TAG = "MainMapFragment";
     private MapView mapView;
     private AMap aMap;
     private LocationSource.OnLocationChangedListener mListener;
@@ -55,6 +54,8 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
     private Double geoLon;
 
     private ImageButton publishButton;
+
+    private boolean isFirstGetPost = true;
 
     /**
      * 标记的样式
@@ -72,7 +73,6 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
         mapView.onCreate(savedInstanceState);
         aMap = mapView.getMap();
         setUpMap();
-
         //跳转至发帖页
         publishButton = (ImageButton) rootView.findViewById(R.id.main_map_publish_button);
         publishButton.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +88,8 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
                     GreenToast.makeText(getActivity(), "没有获取到您的位置信息", Toast.LENGTH_LONG).show();
                     return;
                 }
-                getActivity().startActivity(new Intent(getActivity(), PublishActivity.class));
+//                getActivity().startActivity(new Intent(getActivity(), PublishActivity.class));
+                getPost();
             }
         });
 
@@ -127,7 +128,7 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
     }
 
     /**
-     * 获取附近的标签
+     * 获取附近的标签，在MainActivity中刷新调用
      */
     public void getPost() {
         HttpResponseHandler getPostHandler = new HttpResponseHandler() {
@@ -136,16 +137,17 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
                 super.getResult();
                 MainActivity mainActivity = (MainActivity) getActivity();
                 if (this.resultVO == null) {
-                    mainActivity.getHandler().sendEmptyMessage(new Message().what=ErroCode.ERROR_CODE_REQUEST_FORM_INVALID);
-                }else if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CLIENT_DATA_ERROR){
-                    mainActivity.getHandler().sendEmptyMessage(new Message().what=MainActivity.NONE_VALID_POST);
-                }else if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT) {
+                    mainActivity.getHandler().sendEmptyMessage(new Message().what = ErroCode.ERROR_CODE_REQUEST_FORM_INVALID);
+                } else if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CLIENT_DATA_ERROR) {
+                    mainActivity.getHandler().sendEmptyMessage(new Message().what = MainActivity.NONE_VALID_POST);
+                } else if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT) {
                     PostList postList = (PostList) this.result;
-                    if (postList==null)return;
+                    if (postList == null) return;
                     List<Post> postListItem = postList.getPostList();
-                    for (int i = 0; i<postListItem.size();i++){
+                    for (int i = 0; i < postListItem.size(); i++) {
                         Post post = postListItem.get(i);
-                        setMark(OTHER_MARK,post);
+                        setMark(OTHER_MARK, post);
+//                        LogUtil.d(TAG,post.getTag());
                     }
                 }
             }
@@ -158,7 +160,7 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
         mAMapLocationManager = LocationManagerProxy.getInstance(getActivity());
         //mAMapLocationManager.setGpsEnable(false);
             /*
-			 * mAMapLocManager.setGpsEnable(false);
+             * mAMapLocManager.setGpsEnable(false);
 			 * 1.0.2版本新增方法，设置true表示混合定位中包含gps定位，false表示纯网络定位，默认是true Location
 			 * API定位采用GPS和网络混合定位方式
 			 * ，第一个参数是定位provider，第二个参数时间最短是2000毫秒，第三个参数距离间隔单位是米，第四个参数是定位监听者
@@ -166,14 +168,15 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
         mAMapLocationManager.requestLocationData(
                 LocationProviderProxy.AMapNetwork, 20000, 10, this);
 
-        setMark(MYSELF_MARK,null);
+        setMark(MYSELF_MARK, null);
     }
 
     /**
      * 在地图上设置标记图标
+     *
      * @param type 图标的样式
      */
-    private void setMark(int type,Post post){
+    private void setMark(int type, Post post) {
         // 自定义系统定位小蓝点
         MyLocationStyle myLocationStyle = new MyLocationStyle();
         myLocationStyle.myLocationIcon(BitmapDescriptorFactory
@@ -189,10 +192,10 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
         //aMap.setMyLocationType()
         myMarkOption = new MarkerOptions();
 
-        if (type==OTHER_MARK){
+        if (type == OTHER_MARK) {
             //添加用户覆盖物
             LatLng userCurrentLatLng = new LatLng(post.getLatitude(), post.getLongitude());
-            if (myMark != null) {
+            if (myMark != null&&type==MYSELF_MARK) {
                 myMark.destroy();
             }
             myMarkOption.anchor(0.5f, 0.5f).
@@ -243,6 +246,11 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
             myMarkOption.anchor(0.5f, 0.5f).
                     position(userCurrentLatLng).title("您").draggable(false);
             myMark = aMap.addMarker(myMarkOption);
+
+            if (isFirstGetPost) {
+                getPost();
+                isFirstGetPost = false;
+            }
         }
     }
 

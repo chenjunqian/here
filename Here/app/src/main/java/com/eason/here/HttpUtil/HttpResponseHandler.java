@@ -1,5 +1,6 @@
 package com.eason.here.HttpUtil;
 
+import com.eason.here.util.LogUtil;
 import com.google.gson.Gson;
 
 import org.json.JSONObject;
@@ -11,6 +12,7 @@ import org.json.JSONObject;
  */
 public class HttpResponseHandler implements IObserverHandler {
 
+    private static final String TAG = "HttpResponseHandler";
     private Gson gson;
     public Object result;
     public ResultVO resultVO;
@@ -33,7 +35,7 @@ public class HttpResponseHandler implements IObserverHandler {
                 }
             }
         }catch (Exception e){
-
+            LogUtil.e(TAG," HttpResponseHandler error : "+e);
         }
 
         getResult();

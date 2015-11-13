@@ -12,7 +12,7 @@ public class Post {
     public String address;
     public String username;
     public int like;
-    public String id;
+    public String postId;
     public String tag;
 
     public String getCity() {
@@ -49,6 +49,14 @@ public class Post {
 
     public String getTag() {
         return tag;
+    }
+
+    public String getPostId() {
+        return postId;
+    }
+
+    public void setPostId(String postId) {
+        this.postId = postId;
     }
 
     public void setTag(String tag) {
