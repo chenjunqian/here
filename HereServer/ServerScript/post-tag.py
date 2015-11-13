@@ -6,11 +6,10 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 
 try:
-	conn = MySQLdb.connect(host='localhost',user='root',passwd='root',db='heredb')
+	conn = MySQLdb.connect(host='localhost',user='root',passwd='root',db='heredb',charset='utf8')
 	cur = conn.cursor()
-	query = "insert into here_tag(tag) value %s"
-	value = "嘿咻@@飞叶子@@喝酒@@干架"
-	cur.execute()
+	query = "update here_posttag set tag = %s"
+	cur.execute(query,["嘿咻@@飞叶子@@喝酒@@干架@@打球@@烧烤@@大保健@@撸啊撸@@打飞机@@约了一发"])
 	conn.commit()
 	cur.close()
 	conn.close()

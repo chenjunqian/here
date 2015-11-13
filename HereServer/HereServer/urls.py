@@ -27,5 +27,7 @@ urlpatterns = patterns('',
     url(r'^check_user_is_exist/',views.checkUserIsExist,name='checkUserIsExist'),
     url(r'^upload_avatar/',views.uploadAvatar,name='uploadAvatar'),
     url(r'^get_post_tag/',views.getPostTag,name='getPostTag'),
+    url(r'^get_post_by_location/',views.getLocationByLocation,name='getLocationByLocation'),
+    url(r'^get_user_post/',views.getUserPost,name='getUserPost'),
     url(r'^admin/', include(admin.site.urls)),
 )

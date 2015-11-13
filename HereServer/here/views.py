@@ -273,16 +273,16 @@ def updateUserPostLocation(request):
 # 获取发帖的标签
 def getPostTag(request):
 	dict = {}
-	resultData = []
+	resultData = {}
 	if request.method == 'POST':
 		cursor = connection.cursor()
-		query = "select * from here_tag"
+		query = "select * from here_posttag"
 		cursor.execute(query)
-		result = cursor.fetchall()
-		if result:
-			resultData['tag'] = result
+		tag = cursor.fetchall()
+		if tag:
+			resultData['tag'] = tag[0][1]
 			dict['resultData'] = resultData
-			dict['errorMessage'] = "update_user_location_success"
+			dict['errorMessage'] = "get_tag_success"
 			dict['status'] = "0"
 		else:
 			dict['errorMessage'] = "tag_not_found"
@@ -291,22 +291,78 @@ def getPostTag(request):
 		json = simplejson.dumps(dict)
 		return HttpResponse(json)
 	else:
-		dict['errorMessage'] = "POST_FAILED"
-		dict['status'] = "8001"
 		json  = simplejson.dumps(dict)
 		return HttpResponse("POST failed")
-			
+
+# 获取用户的帖子
+def getUserPost(request):
+	dict = {}
+	resultData = {}
+	if request.method == 'POST':
+		username = request.POST.get('username')
+		cursor = connection.cursor()
+		query = "select * from here_post where username = %s"
+		cursor.execute(query,[username])
+		res = cur.fetchall()
+		if res:
+			resultData['PostList'] = res
+			dict['resultData'] = resultData
+			dict['errorMessage'] = "get_post_success"
+			dict['status'] = "0"
+		else:
+			dict['errorMessage'] = "post_not_found"
+			dict['status'] = "8003"
+		json = simplejson.dumps(dict)
+		return HttpResponse(json)
+	else:
+		json  = simplejson.dumps(dict)
+		return HttpResponse("POST failed")
+
+# 测试使用
+class GetLocation(forms.Form):
+    longitude = forms.CharField()
+    latitude = forms.CharField()
+    city = forms.CharField()
 
 # 根据用户的地理经纬度，来获取他周围的定位信息
 def getLocationByLocation(request):
 	dict = {}
-	resultData = []
+	resultData = {}
 	if request.method == 'POST':
 		longitude = request.POST.get('longitude')
 		latitude = request.POST.get('latitude')
 		city = request.POST.get('city')
 		cur = connection.cursor()
-		query = "select * from Location where city=%s"
-		cur.execute(query,[city])
-		loc = cur.fetchall()
+		query = "select * from here_post where city like %s and longitude > %s and longitude < %s and latitude > %s and latitude < %s"
+		cur.execute(query,[city,float(longitude)-0.05,float(longitude)+0.05,float(latitude)-0.5,float(latitude)+0.5])
+		res = cur.fetchall()
+		if res:
+			resultData['postList'] = []
+			for json_result in res:
+				jsonMetaResultData = {}
+				jsonMetaResultData['postId'] = json_result[0]
+				jsonMetaResultData['longitude'] = json_result[1]
+				jsonMetaResultData['latitude'] = json_result[2]
+				jsonMetaResultData['city'] = json_result[3]
+				jsonMetaResultData['address']  = json_result[4]
+				jsonMetaResultData['like'] = json_result[5]
+				jsonMetaResultData['tag'] = json_result[6]
+				jsonMetaResultData['cityCode'] = json_result[7]
+				jsonMetaResultData['username'] = json_result[8]
+				resultData['postList'].append(jsonMetaResultData)
 			
+			dict['resultData'] = resultData
+			dict['errorMessage'] = "get_post_success"
+			dict['status'] = "0"
+		else:
+			dict['errorMessage'] = "none_post"
+			dict['status'] = "8001"
+		json = simplejson.dumps(dict)
+		return HttpResponse(json)
+	else:
+		# json  = simplejson.dumps(dict)
+		# return HttpResponse("POST failed")
+		tf = GetLocation()
+		return render_to_response('test-get-post-by-location.html',{'uf':tf})
+
+
