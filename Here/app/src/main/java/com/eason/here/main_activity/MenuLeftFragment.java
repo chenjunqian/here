@@ -27,6 +27,7 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
     private RelativeLayout mainTagLayout;
     private RelativeLayout userListLayout;
     private RelativeLayout loginLayout;
+    private RelativeLayout myHereLayout;
 
     private TextView loginTextView;
 
@@ -38,6 +39,7 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
         userListLayout = (RelativeLayout) root.findViewById(R.id.user_list_item_layout);
         loginLayout = (RelativeLayout) root.findViewById(R.id.login_item_layout);
         userProfileLayout = (RelativeLayout)root.findViewById(R.id.left_menu_profile_layout);
+        myHereLayout = (RelativeLayout)root.findViewById(R.id.my_post_list_item_layout);
 
         loginTextView = (TextView) root.findViewById(R.id.login_text_view);
 
@@ -45,7 +47,7 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
         userListLayout.setOnClickListener(this);
         loginLayout.setOnClickListener(this);
         userProfileLayout.setOnClickListener(this);
-
+        myHereLayout.setOnClickListener(this);
         return root;
     }
 

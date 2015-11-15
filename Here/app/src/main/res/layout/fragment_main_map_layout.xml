@@ -17,7 +17,7 @@
         android:scaleType="fitXY"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        android:background="@drawable/publish_button_selector"
+        android:background="@drawable/publish_icon"
         android:layout_marginBottom="20dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
