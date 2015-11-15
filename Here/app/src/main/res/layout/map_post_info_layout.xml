@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/universal_layout_background_color"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/universal_white">
+
+        <com.eason.here.util.WidgetUtil.CircleImageView
+            android:id="@+id/info_window_avatar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="3dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/default_avatar" />
+
+
+        <TextView
+            android:id="@+id/info_window_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/info_window_avatar"
+            android:text="user-nickname"
+            android:layout_marginRight="3dp"
+            android:textColor="@color/universal_item_text_color_black" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@color/universal_white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/info_window_post_tag_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginLeft="33dp"
+            android:gravity="center_vertical"
+            android:text="post-tag"
+            android:textColor="@color/universal_item_text_color_black" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@color/universal_white"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="3dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_location_on_18pt" />
+
+        <TextView
+            android:id="@+id/info_window_post_location_address"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginLeft="33dp"
+            android:inputType="textMultiLine"
+            android:text="post-info_window_post_location_address_text_view"
+            android:layout_marginRight="3dp"
+            android:layout_centerVertical="true"
+            android:textColor="@color/universal_item_text_color_black" />
+    </RelativeLayout>
+</LinearLayout>

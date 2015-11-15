@@ -195,11 +195,29 @@ public class HttpRequest {
         baseHttpPostRequest(HttpConfig.String_Url_Get_Post_Tag, map, httpResponseHandler, PostTag.class);
     }
 
+    /**
+     * 获取帖子列表
+     * @param lon
+     * @param lat
+     * @param city
+     * @param httpResponseHandler
+     */
     public static void getPost(double lon ,double lat ,String city ,HttpResponseHandler httpResponseHandler){
         Map<String, String> map = new HashMap<String, String>();
         map.put("longitude", String.valueOf(lon));
         map.put("latitude", String.valueOf(lat));
         map.put("city", city);
         baseHttpPostRequest(HttpConfig.String_Url_Get_Post, map, httpResponseHandler, PostList.class);
+    }
+
+    /**
+     * 获取用户信息
+     * @param username
+     * @param httpResponseHandler
+     */
+    public static void getUserByUsername(String username,HttpResponseHandler httpResponseHandler){
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("username",username);
+        baseHttpPostRequest(HttpConfig.String_Url_Get_User_Info_By_Username, map, httpResponseHandler, User.class);
     }
 }

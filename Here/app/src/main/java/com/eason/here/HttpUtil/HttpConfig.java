@@ -28,4 +28,7 @@ public class HttpConfig {
 
     //获取当前位置的帖子
     public static final String String_Url_Get_Post = Url_Domain + "get_post_by_location/";
+
+    //由username获取用户信息
+    public static final String String_Url_Get_User_Info_By_Username = Url_Domain + "get_user_info_by_username/";
 }

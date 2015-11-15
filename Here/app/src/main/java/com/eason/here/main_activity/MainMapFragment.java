@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
@@ -36,16 +37,19 @@ import com.eason.here.model.LocationInfo;
 import com.eason.here.model.LoginStatus;
 import com.eason.here.model.Post;
 import com.eason.here.model.PostList;
+import com.eason.here.model.User;
 import com.eason.here.publish_location_activity.PublishActivity;
 import com.eason.here.util.CommonUtil;
+import com.eason.here.util.WidgetUtil.CircleImageView;
 import com.eason.here.util.WidgetUtil.GreenToast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Eason on 9/6/15.
  */
-public class MainMapFragment extends BaseFragment implements LocationSource, AMapLocationListener {
+public class MainMapFragment extends BaseFragment implements LocationSource, AMapLocationListener, AMap.InfoWindowAdapter {
 
     private final String TAG = "MainMapFragment";
     private MapView mapView;
@@ -193,6 +197,9 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
             }
         });
 
+        //自定义点击显示的窗口信息
+        aMap.setInfoWindowAdapter(this);
+
         setMark(MYSELF_MARK, null);
     }
 
@@ -208,10 +215,10 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
             //添加用户覆盖物
             LatLng postCurrentLatLng = new LatLng(post.getLatitude(), post.getLongitude());
             myMarkOption.anchor(0.5f, 0.5f).
-                    position(postCurrentLatLng).title(post.getTag()).snippet(post.address).draggable(false);
+                    position(postCurrentLatLng).title(post.getUsername()).snippet(post.getTag()+"@@"+post.address).draggable(false);
             myMark = aMap.addMarker(myMarkOption);
 
-        }else{
+        } else {
             //暂时还没有设计用户定位图标
         }
     }
@@ -279,8 +286,8 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
         if (mAMapLocationManager == null) {
             mAMapLocationManager = LocationManagerProxy.getInstance(getActivity());
             //mAMapLocationManager.setGpsEnable(false);
-			/*
-			 * mAMapLocManager.setGpsEnable(false);
+            /*
+             * mAMapLocManager.setGpsEnable(false);
 			 * 1.0.2版本新增方法，设置true表示混合定位中包含gps定位，false表示纯网络定位，默认是true Location
 			 * API定位采用GPS和网络混合定位方式
 			 * ，第一个参数是定位provider，第二个参数时间最短是2000毫秒，第三个参数距离间隔单位是米，第四个参数是定位监听者
@@ -298,5 +305,61 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
             mAMapLocationManager.destroy();
         }
         mAMapLocationManager = null;
+    }
+
+    //自定义显示窗口
+    @Override
+    public View getInfoWindow(Marker marker) {
+
+        View infoWindow = LayoutInflater.from(getActivity()).inflate(R.layout.map_post_info_layout, null);
+        renderInfoWindow(marker, infoWindow);
+        return infoWindow;
+    }
+
+    @Override
+    public View getInfoContents(Marker marker) {
+        return null;
+    }
+
+    /**
+     * 自定义infowinfow窗口
+     * @param marker
+     * @param view
+     */
+    private void renderInfoWindow(Marker marker, View view) {
+        CircleImageView avater = (CircleImageView) view.findViewById(R.id.info_window_avatar);
+        final TextView nickname = (TextView) view.findViewById(R.id.info_window_nickname);
+        TextView tagView = (TextView) view.findViewById(R.id.info_window_post_tag_text_view);
+        TextView addressView = (TextView) view.findViewById(R.id.info_window_post_location_address);
+
+        String title = marker.getTitle();
+        String sniper = marker.getSnippet();
+        String avatarUrl;
+
+        HttpResponseHandler getUserInfoHandler = new HttpResponseHandler(){
+            @Override
+            public void getResult() {
+                super.getResult();
+                if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT) {
+                    User user = (User) this.result;
+                    //设置昵称内容
+                    nickname.setText(user.getNickname());
+                }
+            }
+        };
+
+        HttpRequest.getUserByUsername(title,getUserInfoHandler);
+
+        /**
+         * 拆分由放在Marker内的信息，分别是post的tag内容和地址
+         */
+        String[] urlAndTag = sniper.split("@@");
+        List<String> urlAndTagList = new ArrayList<String>();
+        for (int i = 0; i < urlAndTag.length; i++){
+            urlAndTagList.add(urlAndTag[i]);
+        }
+
+        tagView.setText(urlAndTagList.get(0));
+        addressView.setText(urlAndTagList.get(1));
     }
 }
