@@ -42,6 +42,7 @@ import com.eason.here.publish_location_activity.PublishActivity;
 import com.eason.here.util.CommonUtil;
 import com.eason.here.util.WidgetUtil.CircleImageView;
 import com.eason.here.util.WidgetUtil.GreenToast;
+import com.eason.here.util.WidgetUtil.ProgressDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -140,10 +141,16 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
      * 获取附近的标签，在MainActivity中刷新调用
      */
     public void getPost() {
+
+
+        final ProgressDialog progressDialog = new ProgressDialog(getActivity());
+        progressDialog.show();
+
         HttpResponseHandler getPostHandler = new HttpResponseHandler() {
             @Override
             public void getResult() {
                 super.getResult();
+                progressDialog.dismiss();
                 MainActivity mainActivity = (MainActivity) getActivity();
                 if (this.resultVO == null) {
                     mainActivity.getHandler().sendEmptyMessage(new Message().what = ErroCode.ERROR_CODE_REQUEST_FORM_INVALID);

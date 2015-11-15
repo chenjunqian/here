@@ -28,9 +28,9 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
+            android:layout_marginRight="3dp"
             android:layout_toRightOf="@+id/info_window_avatar"
             android:text="user-nickname"
-            android:layout_marginRight="3dp"
             android:textColor="@color/universal_item_text_color_black" />
     </RelativeLayout>
 
@@ -45,8 +45,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="3dp"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="3dp"
             android:scaleType="fitXY"
             android:src="@drawable/ic_textsms_18pt" />
 
@@ -55,6 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginLeft="33dp"
+            android:layout_marginRight="3dp"
             android:gravity="center_vertical"
             android:text="post-tag"
             android:textColor="@color/universal_item_text_color_black" />
@@ -80,11 +81,11 @@
             android:id="@+id/info_window_post_location_address"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="33dp"
+            android:layout_marginRight="3dp"
             android:inputType="textMultiLine"
             android:text="post-info_window_post_location_address_text_view"
-            android:layout_marginRight="3dp"
-            android:layout_centerVertical="true"
             android:textColor="@color/universal_item_text_color_black" />
     </RelativeLayout>
 </LinearLayout>

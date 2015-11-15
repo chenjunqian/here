@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/main_page_tag_image_view"
-            android:text="首页"
+            android:text="首页地图"
             android:textColor="@color/universal_item_text_color_black"
             android:textSize="15sp" />
     </RelativeLayout>
@@ -72,7 +72,34 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/user_list_image_view"
-            android:text="列表"
+            android:text="列表显示"
+            android:textColor="@color/universal_item_text_color_black"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/my_post_list_item_layout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/layout_background_selector"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/my_post_list_image_view"
+            android:layout_width="35dp"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/ic_view_list"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:id="@+id/my_post_list_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/my_post_list_image_view"
+            android:text="我的Here"
             android:textColor="@color/universal_item_text_color_black"
             android:textSize="15sp" />
     </RelativeLayout>

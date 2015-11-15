@@ -84,6 +84,10 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
                 Intent intent=new Intent(this.getActivity(),LoginActivity.class);
                 getActivity().startActivityForResult(intent, IntentUtil.MAIN_TO_LOGIN_PAGE);
                 break;
+            case R.id.my_post_list_item_layout:
+
+                break;
+
             case R.id.left_menu_profile_layout:
 
                 if (!LoginStatus.getIsUserMode()){

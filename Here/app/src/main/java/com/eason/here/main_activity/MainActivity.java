@@ -89,6 +89,10 @@ public class MainActivity extends ActionBarActivity{
                 switch (menuItem.getItemId()) {
                     case R.id.action_refresh:
 
+                        mainMapFragment.getPost();
+                        break;
+
+                    case R.id.action_settings:
                         break;
                 }
 
@@ -139,18 +143,6 @@ public class MainActivity extends ActionBarActivity{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()){
-            case R.id.action_settings:
-
-                break;
-            case R.id.action_refresh:
-
-                mainMapFragment.getPost();
-
-                break;
-
-        }
 
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
             return true;
