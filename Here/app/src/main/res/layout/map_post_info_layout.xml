@@ -34,12 +34,21 @@
             android:textColor="@color/universal_item_text_color_black" />
     </RelativeLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
         android:background="@color/universal_white"
         android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="3dp"
+            android:layout_centerVertical="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_textsms_18pt" />
 
         <TextView
             android:id="@+id/info_window_post_tag_text_view"
@@ -49,7 +58,7 @@
             android:gravity="center_vertical"
             android:text="post-tag"
             android:textColor="@color/universal_item_text_color_black" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
