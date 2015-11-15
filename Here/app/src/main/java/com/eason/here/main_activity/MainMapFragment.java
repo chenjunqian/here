@@ -1,5 +1,6 @@
 package com.eason.here.main_activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
@@ -16,9 +17,12 @@ import com.amap.api.location.AMapLocationListener;
 import com.amap.api.location.LocationManagerProxy;
 import com.amap.api.location.LocationProviderProxy;
 import com.amap.api.maps2d.AMap;
+import com.amap.api.maps2d.CameraUpdateFactory;
 import com.amap.api.maps2d.LocationSource;
 import com.amap.api.maps2d.MapView;
 import com.amap.api.maps2d.model.BitmapDescriptorFactory;
+import com.amap.api.maps2d.model.CameraPosition;
+import com.amap.api.maps2d.model.CircleOptions;
 import com.amap.api.maps2d.model.LatLng;
 import com.amap.api.maps2d.model.Marker;
 import com.amap.api.maps2d.model.MarkerOptions;
@@ -32,6 +36,7 @@ import com.eason.here.model.LocationInfo;
 import com.eason.here.model.LoginStatus;
 import com.eason.here.model.Post;
 import com.eason.here.model.PostList;
+import com.eason.here.publish_location_activity.PublishActivity;
 import com.eason.here.util.CommonUtil;
 import com.eason.here.util.WidgetUtil.GreenToast;
 
@@ -49,6 +54,7 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
     private LocationManagerProxy mAMapLocationManager;
     private MarkerOptions myMarkOption;
     private Marker myMark;
+    private LatLng userCurrentLatLng;
 
     private Double geoLat;
     private Double geoLon;
@@ -88,8 +94,7 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
                     GreenToast.makeText(getActivity(), "没有获取到您的位置信息", Toast.LENGTH_LONG).show();
                     return;
                 }
-//                getActivity().startActivity(new Intent(getActivity(), PublishActivity.class));
-                getPost();
+                getActivity().startActivity(new Intent(getActivity(), PublishActivity.class));
             }
         });
 
@@ -166,7 +171,27 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
 			 * ，第一个参数是定位provider，第二个参数时间最短是2000毫秒，第三个参数距离间隔单位是米，第四个参数是定位监听者
 			 */
         mAMapLocationManager.requestLocationData(
-                LocationProviderProxy.AMapNetwork, 20000, 10, this);
+                LocationProviderProxy.AMapNetwork, 60000, 1, this);
+
+        // 自定义系统定位小蓝点
+        MyLocationStyle myLocationStyle = new MyLocationStyle();
+        myLocationStyle.myLocationIcon(BitmapDescriptorFactory
+                .fromResource(R.drawable.location_marker));// 设置小蓝点的图标
+        myLocationStyle.strokeColor(Color.TRANSPARENT);// 设置圆形的边框颜色
+        myLocationStyle.radiusFillColor(Color.argb(0, 0, 0, 0));// 设置圆形的填充颜色
+//        myLocationStyle.anchor(int,int)//设置小蓝点的锚点
+        myLocationStyle.strokeWidth(0.0f);// 设置圆形的边框粗细
+        aMap.setMyLocationStyle(myLocationStyle);
+        aMap.setLocationSource(this);// 设置定位监听
+        aMap.getUiSettings().setMyLocationButtonEnabled(true);// 设置默认定位按钮是否显示
+        aMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
+        //标记信息窗口点击事件
+        aMap.setOnInfoWindowClickListener(new AMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                marker.hideInfoWindow();
+            }
+        });
 
         setMark(MYSELF_MARK, null);
     }
@@ -177,30 +202,17 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
      * @param type 图标的样式
      */
     private void setMark(int type, Post post) {
-        // 自定义系统定位小蓝点
-        MyLocationStyle myLocationStyle = new MyLocationStyle();
-        myLocationStyle.myLocationIcon(BitmapDescriptorFactory
-                .fromResource(R.drawable.location_marker));// 设置小蓝点的图标
-        myLocationStyle.strokeColor(Color.BLACK);// 设置圆形的边框颜色
-        myLocationStyle.radiusFillColor(Color.argb(100, 0, 0, 180));// 设置圆形的填充颜色
-        //myLocationStyle.anchor(int,int)//设置小蓝点的锚点
-        myLocationStyle.strokeWidth(1.0f);// 设置圆形的边框粗细
-        aMap.setMyLocationStyle(myLocationStyle);
-        aMap.setLocationSource(this);// 设置定位监听
-        aMap.getUiSettings().setMyLocationButtonEnabled(true);// 设置默认定位按钮是否显示
-        aMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
-        //aMap.setMyLocationType()
-        myMarkOption = new MarkerOptions();
 
         if (type == OTHER_MARK) {
+            myMarkOption = new MarkerOptions();
             //添加用户覆盖物
-            LatLng userCurrentLatLng = new LatLng(post.getLatitude(), post.getLongitude());
-            if (myMark != null&&type==MYSELF_MARK) {
-                myMark.destroy();
-            }
+            LatLng postCurrentLatLng = new LatLng(post.getLatitude(), post.getLongitude());
             myMarkOption.anchor(0.5f, 0.5f).
-                    position(userCurrentLatLng).title(post.getTag()).draggable(false);
+                    position(postCurrentLatLng).title(post.getTag()).snippet(post.address).draggable(false);
             myMark = aMap.addMarker(myMarkOption);
+
+        }else{
+            //暂时还没有设计用户定位图标
         }
     }
 
@@ -239,13 +251,16 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
 
             if (geoLon == null || geoLat == null) return;
             //添加用户覆盖物
-            LatLng userCurrentLatLng = new LatLng(geoLat, geoLon);
+            userCurrentLatLng = new LatLng(geoLat, geoLon);
             if (myMark != null) {
                 myMark.destroy();
             }
-            myMarkOption.anchor(0.5f, 0.5f).
-                    position(userCurrentLatLng).title("您").draggable(false);
-            myMark = aMap.addMarker(myMarkOption);
+
+            //设置圆形范围，颜色等参数
+            aMap.addCircle(new CircleOptions().center(userCurrentLatLng).radius(1000).strokeColor(Color.argb(100, 0, 180, 0)).
+                    fillColor(Color.argb(100, 0, 80, 0)).strokeWidth(1.0f));
+            //设置缩放级别
+            aMap.moveCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition(userCurrentLatLng, 18, 0, 30)));
 
             if (isFirstGetPost) {
                 getPost();
