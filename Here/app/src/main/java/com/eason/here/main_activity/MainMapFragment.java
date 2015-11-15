@@ -257,8 +257,7 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
             }
 
             //设置圆形范围，颜色等参数
-            aMap.addCircle(new CircleOptions().center(userCurrentLatLng).radius(1000).strokeColor(Color.argb(100, 0, 180, 0)).
-                    fillColor(Color.argb(100, 0, 80, 0)).strokeWidth(1.0f));
+            aMap.addCircle(new CircleOptions().center(userCurrentLatLng).radius(1000).strokeColor(Color.GREEN).strokeWidth(1.0f));
             //设置缩放级别
             aMap.moveCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition(userCurrentLatLng, 18, 0, 30)));
 
