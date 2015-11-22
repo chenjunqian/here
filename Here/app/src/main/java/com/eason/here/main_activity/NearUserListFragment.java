@@ -19,6 +19,8 @@ import com.eason.here.model.User;
 import com.eason.here.util.CommonUtil;
 import com.eason.here.util.WidgetUtil.CircleImageView;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -38,6 +40,19 @@ public class NearUserListFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        Collections.sort(MainActivity.postListItem, new Comparator<Post>() {
+            @Override
+            public int compare(Post lhs, Post rhs) {
+                return rhs.getTime().compareTo(lhs.getTime());
+            }
+
+            @Override
+            public boolean equals(Object object) {
+                return false;
+            }
+        });
+
         listView.setAdapter(new PostListViewAdapter(getActivity(),MainActivity.postListItem));
     }
 

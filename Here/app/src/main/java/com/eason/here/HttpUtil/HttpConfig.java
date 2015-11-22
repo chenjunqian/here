@@ -31,4 +31,7 @@ public class HttpConfig {
 
     //由username获取用户信息
     public static final String String_Url_Get_User_Info_By_Username = Url_Domain + "get_user_info_by_username/";
+
+    //修改用户信息
+    public static final String String_Url_Change_User_Info = Url_Domain + "modify_user_info/";
 }

@@ -233,9 +233,11 @@ public class CommonUtil {
         String otherYearSDF = "yyyy-MM-dd";
         SimpleDateFormat sfd ;
         String time ;
+
         Calendar dateCalendar = Calendar.getInstance();
         Date date = new Date(Long.valueOf(currentTimeMillis));
         dateCalendar.setTime(date);
+
         Date now = new Date();
         Calendar todayCalendar = Calendar.getInstance();
         todayCalendar.setTime(now);
@@ -255,12 +257,12 @@ public class CommonUtil {
         } else {
             todayCalendar.add(Calendar.DATE, -1);
             if (dateCalendar.after(todayCalendar)) {// 判断是不是昨天
-                time = yesterdaySDF+" "+sfd.format(date);
+                time = yesterdaySDF+" "+sfd.format(date);//格式为 昨天 HH:mm
                 return time;
             }
             todayCalendar.add(Calendar.DATE, -2);
             if (dateCalendar.after(todayCalendar)) {// 判断是不是前天
-                time = beforeYesterdaySDF+" "+sfd.format(date);
+                time = beforeYesterdaySDF+" "+sfd.format(date);//格式为 前天 HH:mm
                 return time;
             }
         }

@@ -55,41 +55,5 @@ public class ModelDialog extends Dialog {
 		params.gravity = Gravity.BOTTOM;
 		window.setAttributes(params);
 	}
-	
-	/**
-	 * 广告对话框
-	 * @param context
-	 * @param layout
-	 * @param isBanner
-	 * @param style
-	 */
-	public ModelDialog(Context context, int layout,Boolean isBanner,int style) {
-		super(context, style);
-		int default_width =  ((Activity)context).getWindowManager()
-				.getDefaultDisplay().getWidth();
-		int default_height =  ((Activity)context).getWindowManager()
-				.getDefaultDisplay().getHeight();
-		if (!isBanner) {
-			default_width = default_width * 9 / 10;
-		}
-		else
-		{
-			default_width = default_width * 9 / 10;
-			default_height = default_height / 2;
-		}
-		setContentView(layout);
-		Window window = getWindow();
-		WindowManager.LayoutParams params = window.getAttributes();
-		params.width = default_width;
-		if(isBanner)
-		{
-		   params.height = default_height;
-		   params.gravity = Gravity.CENTER;
-		}else
-		{
-		   params.gravity = Gravity.BOTTOM;
-		}
-		window.setAttributes(params);
-	}
 
 }

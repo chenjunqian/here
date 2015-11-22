@@ -164,7 +164,7 @@ public class HttpRequest {
         map.put("cityCode", cityCode);
         map.put("address", address);
         map.put("username", username);
-        map.put("time",String.valueOf(System.currentTimeMillis()));
+        map.put("time", String.valueOf(System.currentTimeMillis()));
         map.put("tag", tag);
 
         baseHttpPostRequest(HttpConfig.String_Url_Update_Location, map, httpResponseHandler, Post.class);
@@ -188,9 +188,10 @@ public class HttpRequest {
 
     /**
      * 获取发帖标签
+     *
      * @param httpResponseHandler
      */
-    public static void getPostTag(final HttpResponseHandler httpResponseHandler){
+    public static void getPostTag(final HttpResponseHandler httpResponseHandler) {
         Map<String, String> map = new HashMap<String, String>();
         map.put("tag", "tag");
         baseHttpPostRequest(HttpConfig.String_Url_Get_Post_Tag, map, httpResponseHandler, PostTag.class);
@@ -198,12 +199,13 @@ public class HttpRequest {
 
     /**
      * 获取帖子列表
+     *
      * @param lon
      * @param lat
      * @param city
      * @param httpResponseHandler
      */
-    public static void getPost(double lon ,double lat ,String city ,HttpResponseHandler httpResponseHandler){
+    public static void getPost(double lon, double lat, String city, HttpResponseHandler httpResponseHandler) {
         Map<String, String> map = new HashMap<String, String>();
         map.put("longitude", String.valueOf(lon));
         map.put("latitude", String.valueOf(lat));
@@ -213,12 +215,38 @@ public class HttpRequest {
 
     /**
      * 获取用户信息
+     *
      * @param username
      * @param httpResponseHandler
      */
-    public static void getUserByUsername(String username,HttpResponseHandler httpResponseHandler){
+    public static void getUserByUsername(String username, HttpResponseHandler httpResponseHandler) {
         Map<String, String> map = new HashMap<String, String>();
-        map.put("username",username);
+        map.put("username", username);
         baseHttpPostRequest(HttpConfig.String_Url_Get_User_Info_By_Username, map, httpResponseHandler, User.class);
+    }
+
+    /**
+     * 修改用户信息
+     *
+     * @param username
+     * @param password
+     * @param gender
+     * @param birthday
+     * @param nickname
+     * @param userid
+     * @param httpResponseHandler
+     */
+    public static void modifyUserInfo(String username, String password, String gender,
+                                      String birthday, String nickname, String userid,
+                                      HttpResponseHandler httpResponseHandler) {
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("username", username);
+        map.put("password", password);
+        map.put("gender", gender);
+        map.put("birthday", birthday);
+        map.put("nickname", nickname);
+        map.put("userid", userid);
+        baseHttpPostRequest(HttpConfig.String_Url_Change_User_Info, map, httpResponseHandler, User.class);
+
     }
 }
