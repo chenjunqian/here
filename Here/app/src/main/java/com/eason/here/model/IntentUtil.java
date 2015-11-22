@@ -46,4 +46,9 @@ public class IntentUtil {
      * 跳转到系统相册
      */
     public static final int SYSTEM_ABLUM_REQUEST_CODE = 0x8;
+
+    /**
+     * 跳转到我的帖子的列表
+     */
+    public static final int MY_POST_FRAGMENT = 0x9;
 }

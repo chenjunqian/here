@@ -14,6 +14,15 @@ public class Post {
     public int like;
     public String postId;
     public String tag;
+    public String time;
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     public String getCity() {
         return city;

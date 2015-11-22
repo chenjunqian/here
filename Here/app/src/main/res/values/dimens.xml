@@ -8,5 +8,9 @@
     <dimen name="universal_title_text_size">17sp</dimen>
     <dimen name="corner_radius">20dp</dimen>
     <dimen name="publish_category_grid_view_round_corner">15dp</dimen>
+    <dimen name="universal_20dp">20dp</dimen>
+    <dimen name="universal_180dp">180dp</dimen>
+    <dimen name="universal_80dp">80dp</dimen>
+    <dimen name="universal_40dp">40dp</dimen>
 
 </resources>

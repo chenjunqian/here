@@ -164,6 +164,7 @@ public class HttpRequest {
         map.put("cityCode", cityCode);
         map.put("address", address);
         map.put("username", username);
+        map.put("time",String.valueOf(System.currentTimeMillis()));
         map.put("tag", tag);
 
         baseHttpPostRequest(HttpConfig.String_Url_Update_Location, map, httpResponseHandler, Post.class);

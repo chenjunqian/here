@@ -18,10 +18,13 @@ import android.widget.Toast;
 import com.eason.here.R;
 import com.eason.here.model.ErroCode;
 import com.eason.here.model.IntentUtil;
+import com.eason.here.model.Post;
 import com.eason.here.util.WidgetUtil.GreenToast;
 
+import java.util.List;
 
-public class MainActivity extends ActionBarActivity{
+
+public class MainActivity extends ActionBarActivity {
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
@@ -30,21 +33,24 @@ public class MainActivity extends ActionBarActivity{
     private MainMapFragment mainMapFragment;
     private MainProfileFragment settingFragment;
     private NearUserListFragment nearUserListFragment;
+    private MyPostFragment myPostFragment;
 
-    private final int CHANGE_TOOL_BAR_TITLE_MAIN= 0x1;
+    private final int CHANGE_TOOL_BAR_TITLE_MAIN = 0x1;
     private final int CHANGE_TOOL_BAR_TITLE_SETTING = 0X2;
 
     private boolean isShowRefreshView = true;
+
+    public static List<Post> postListItem;
 
     /**
      * MainMapFragment 获取帖子为空
      */
     public static final int NONE_VALID_POST = 0x3;
 
-    private  Handler handler = new Handler(){
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            switch (msg.what){
+            switch (msg.what) {
                 case CHANGE_TOOL_BAR_TITLE_MAIN:
                     //跳转时改变Toobar相应的标题
                     toolbar.setTitle("Here");
@@ -55,10 +61,10 @@ public class MainActivity extends ActionBarActivity{
                     toolbar.setTitle("个人资料");
                     break;
                 case NONE_VALID_POST:
-                    GreenToast.makeText(MainActivity.this,"附近还没人标记过哦，还不先码一个", Toast.LENGTH_LONG).show();
+                    GreenToast.makeText(MainActivity.this, "附近还没人标记过哦，还不先码一个", Toast.LENGTH_LONG).show();
                     break;
                 case ErroCode.ERROR_CODE_REQUEST_FORM_INVALID:
-                    GreenToast.makeText(MainActivity.this,"获取附近的标记似乎除了点问题，但是又不知道是为什么。。。", Toast.LENGTH_LONG).show();
+                    GreenToast.makeText(MainActivity.this, "获取附近的标记似乎除了点问题，但是又不知道是为什么。。。", Toast.LENGTH_LONG).show();
                     break;
             }
         }
@@ -76,7 +82,7 @@ public class MainActivity extends ActionBarActivity{
         初始化控件
      */
     private void initView(Bundle savedInstanceState) {
-        toolbar = (android.support.v7.widget.Toolbar)findViewById(R.id.tool_bar);
+        toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(R.string.app_name);
         toolbar.setTitleTextColor(getResources().getColor(R.color.universal_white));
@@ -106,7 +112,7 @@ public class MainActivity extends ActionBarActivity{
                 drawerLayout,
                 toolbar,
                 R.string.app_name,
-                R.string.action_settings){
+                R.string.action_settings) {
 
             @Override
             public void onDrawerOpened(View drawerView) {
@@ -154,10 +160,10 @@ public class MainActivity extends ActionBarActivity{
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
 
-        if (isShowRefreshView){
+        if (isShowRefreshView) {
             menu.clear();
             getMenuInflater().inflate(R.menu.menu_main, menu);
-        }else{
+        } else {
             menu.clear();
             getMenuInflater().inflate(R.menu.menu_main_without_refresh, menu);
         }
@@ -168,33 +174,35 @@ public class MainActivity extends ActionBarActivity{
     /**
      * 初始化参数，及相应的布局设置
      */
-    private void initParam(){
+    private void initParam() {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         mainMapFragment = new MainMapFragment();
         settingFragment = new MainProfileFragment();
         nearUserListFragment = new NearUserListFragment();
+        myPostFragment = new MyPostFragment();
         transaction.replace(R.id.main_fragment_frame_layout, mainMapFragment);
         transaction.commit();
     }
 
-    public Handler getHandler(){
+    public Handler getHandler() {
         return handler;
     }
 
     /**
      * 切换fragment,切换到fragmentIndex相应的fragment
+     *
      * @param fragmentIndex
      */
-    public void setFragmentTransaction(int fragmentIndex){
+    public void setFragmentTransaction(int fragmentIndex) {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         Message msg = new Message();
 
-        switch (fragmentIndex){
+        switch (fragmentIndex) {
 
             //切换到主页
             case IntentUtil.MAIN_MAP_FRAGMENT:
-                if (mainMapFragment==null){
+                if (mainMapFragment == null) {
                     mainMapFragment = new MainMapFragment();
                 }
                 transaction.replace(R.id.main_fragment_frame_layout, mainMapFragment);
@@ -206,7 +214,7 @@ public class MainActivity extends ActionBarActivity{
             //切换到设置页面
             case IntentUtil.PROFLIE_FRAGMENT:
 
-                if (settingFragment==null){
+                if (settingFragment == null) {
                     settingFragment = new MainProfileFragment();
                 }
                 transaction.replace(R.id.main_fragment_frame_layout, settingFragment);
@@ -217,7 +225,7 @@ public class MainActivity extends ActionBarActivity{
 
             //切换到附近事件列表显示页面
             case IntentUtil.NEAR_USER_FRAGMENT:
-                if (nearUserListFragment==null){
+                if (nearUserListFragment == null) {
                     nearUserListFragment = new NearUserListFragment();
                 }
                 transaction.replace(R.id.main_fragment_frame_layout, nearUserListFragment);
@@ -230,6 +238,13 @@ public class MainActivity extends ActionBarActivity{
                  * 在这里什么都不需要做，因为只需要关闭Drawerlayout,具体的跳转操作在MainLeftFragment中
                  */
                 break;
+
+            case IntentUtil.MY_POST_FRAGMENT:
+                if (myPostFragment == null) {
+                    myPostFragment = new MyPostFragment();
+                }
+                transaction.replace(R.id.main_fragment_frame_layout, myPostFragment);
+                break;
         }
 
         drawerLayout.closeDrawers();//点击Item后关闭Drawerlayout
@@ -240,15 +255,30 @@ public class MainActivity extends ActionBarActivity{
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode!=RESULT_OK){
+        if (resultCode != RESULT_OK) {
             return;
         }
 
-        switch (requestCode){
+        switch (requestCode) {
             case IntentUtil.MAIN_TO_LOGIN_PAGE:
 
                 break;
 
+        }
+
+    }
+
+    private static long touchTime = 0;
+
+    @Override
+    public void onBackPressed() {
+        long currentTime = System.currentTimeMillis();
+        if (currentTime - touchTime > 2000) {
+            GreenToast.makeText(MainActivity.this, "再按一次返回键退出", Toast.LENGTH_SHORT).show();
+            touchTime = System.currentTimeMillis();
+            return;
+        } else {
+            System.exit(0);
         }
 
     }

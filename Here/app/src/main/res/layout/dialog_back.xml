@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/universal_alert_dialog_shape"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/alert_dialog_note_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/universal_20dp"
+        android:text="isCloseApp"
+        android:textColor="@color/universal_grey_twelve"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:id="@+id/add_post_alert_dialog_operation_layout"
+        android:layout_width="@dimen/universal_180dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/ok_button"
+            android:layout_width="@dimen/universal_80dp"
+            android:layout_height="@dimen/universal_40dp"
+            android:background="@null"
+            android:text="ok"
+            android:textColor="@color/universal_grey_six" />
+
+        <TextView
+            android:id="@+id/middle_text_view"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0" />
+
+        <Button
+            android:id="@+id/cancel_button"
+            android:layout_width="@dimen/universal_80dp"
+            android:layout_height="@dimen/universal_40dp"
+            android:background="@drawable/universal_round_green_button_shape_40dp"
+            android:text="cancel"
+            android:textColor="@color/universal_white" />
+    </LinearLayout>
+
+</LinearLayout>

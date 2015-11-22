@@ -14,6 +14,9 @@ import com.eason.here.HttpUtil.LoginHandler;
 import com.eason.here.model.ErroCode;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,13 +27,14 @@ public class CommonUtil {
 
     /**
      * 判断字符串是否是空，若为空则返回true
+     *
      * @param str
      * @return
      */
-    public static boolean isEmptyString(String str){
-        if (str==null||str.length()==0){
+    public static boolean isEmptyString(String str) {
+        if (str == null || str.length() == 0) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -77,12 +81,13 @@ public class CommonUtil {
 
     /**
      * 防止视图重复点击
+     *
      * @return boolean
      */
     public static boolean isFastDoubleClick() {
         long time = System.currentTimeMillis();
         long timeD = time - mLastClickTime;
-        if ( 0 < timeD && timeD < 500) {
+        if (0 < timeD && timeD < 500) {
             return true;
         }
 
@@ -120,7 +125,7 @@ public class CommonUtil {
     /**
      * 从给定的路径加载图片，并指定是否自动旋转方向
      *
-     * @param imgPath 图片路径
+     * @param imgPath         图片路径
      * @param adjustOritation 是否自动旋转
      * @return Bitmap 图片bm
      */
@@ -134,7 +139,9 @@ public class CommonUtil {
         }
     }
 
-    /** 从给定路径加载图片*/
+    /**
+     * 从给定路径加载图片
+     */
     public static Bitmap loadBitmap(String imgPath) {
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inPurgeable = true;
@@ -195,18 +202,78 @@ public class CommonUtil {
 
     /**
      * 从路径获取文件名称
-     * @Title: getFileNameFromFilePath
-     * @param @param filePath
+     *
+     * @param @param  filePath
      * @param @return
      * @return String    返回类型
+     * @Title: getFileNameFromFilePath
      */
-    public static String getFileNameFromFilePath(String filePath){
+    public static String getFileNameFromFilePath(String filePath) {
         String result = filePath;
-        if(filePath.indexOf("/")>0){
+        if (filePath.indexOf("/") > 0) {
             String[] fileArr = filePath.split("/");
-            result = fileArr[fileArr.length-1];
+            result = fileArr[fileArr.length - 1];
         }
 
         return result;
     }
+
+    /**
+     * 由时间戳获取年月日,如果时间是今天，则转换为 HH:mm
+     *
+     * @param currentTimeMillis
+     * @return
+     */
+    public static String formatTimeMillis(long currentTimeMillis) {
+        boolean sameYear ;
+        String todaySDF = "HH:mm";
+        String yesterdaySDF = "昨天";
+        String beforeYesterdaySDF = "前天";
+        String otherSDF = "MM-dd";
+        String otherYearSDF = "yyyy-MM-dd";
+        SimpleDateFormat sfd ;
+        String time ;
+        Calendar dateCalendar = Calendar.getInstance();
+        Date date = new Date(Long.valueOf(currentTimeMillis));
+        dateCalendar.setTime(date);
+        Date now = new Date();
+        Calendar todayCalendar = Calendar.getInstance();
+        todayCalendar.setTime(now);
+        todayCalendar.set(Calendar.HOUR_OF_DAY, 0);
+        todayCalendar.set(Calendar.MINUTE, 0);
+
+        if (dateCalendar.get(Calendar.YEAR) == todayCalendar.get(Calendar.YEAR)) {
+            sameYear = true;
+        } else {
+            sameYear = false;
+        }
+
+        sfd = new SimpleDateFormat(todaySDF);
+        if (dateCalendar.after(todayCalendar)) {// 判断是不是今天
+            time = sfd.format(date);
+            return time;
+        } else {
+            todayCalendar.add(Calendar.DATE, -1);
+            if (dateCalendar.after(todayCalendar)) {// 判断是不是昨天
+                time = yesterdaySDF+" "+sfd.format(date);
+                return time;
+            }
+            todayCalendar.add(Calendar.DATE, -2);
+            if (dateCalendar.after(todayCalendar)) {// 判断是不是前天
+                time = beforeYesterdaySDF+" "+sfd.format(date);
+                return time;
+            }
+        }
+
+        if (sameYear) {
+            sfd = new SimpleDateFormat(otherSDF);
+            time = sfd.format(date);
+        } else {
+            sfd = new SimpleDateFormat(otherYearSDF);
+            time = sfd.format(date);
+        }
+
+        return time;
+    }
+
 }

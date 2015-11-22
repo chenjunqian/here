@@ -116,6 +116,9 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
     public void onResume() {
         super.onResume();
         mapView.onResume();
+        if (LocationInfo.getLat()!=null||LocationInfo.getLon()!=null){
+            getPost();
+        }
     }
 
     @Override
@@ -159,9 +162,9 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
                 } else if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT) {
                     PostList postList = (PostList) this.result;
                     if (postList == null) return;
-                    List<Post> postListItem = postList.getPostList();
-                    for (int i = 0; i < postListItem.size(); i++) {
-                        Post post = postListItem.get(i);
+                    MainActivity.postListItem = postList.getPostList();
+                    for (int i = 0; i < MainActivity.postListItem.size(); i++) {
+                        Post post = MainActivity.postListItem.get(i);
                         setMark(OTHER_MARK, post);
 //                        LogUtil.d(TAG,post.getTag());
                     }
@@ -222,7 +225,7 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
             //添加用户覆盖物
             LatLng postCurrentLatLng = new LatLng(post.getLatitude(), post.getLongitude());
             myMarkOption.anchor(0.5f, 0.5f).
-                    position(postCurrentLatLng).title(post.getUsername()).snippet(post.getTag()+"@@"+post.address).draggable(false);
+                    position(postCurrentLatLng).title(post.getUsername()).snippet(post.getTag()+"@@"+post.address+"@@"+post.getTime()).draggable(false);
             myMark = aMap.addMarker(myMarkOption);
 
         } else {
@@ -336,11 +339,12 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
     private void renderInfoWindow(Marker marker, View view) {
         CircleImageView avater = (CircleImageView) view.findViewById(R.id.info_window_avatar);
         final TextView nickname = (TextView) view.findViewById(R.id.info_window_nickname);
-        TextView tagView = (TextView) view.findViewById(R.id.info_window_post_tag_text_view);
-        TextView addressView = (TextView) view.findViewById(R.id.info_window_post_location_address);
+        final TextView tagView = (TextView) view.findViewById(R.id.info_window_post_tag_text_view);
+        final TextView addressView = (TextView) view.findViewById(R.id.info_window_post_location_address);
+        final TextView time = (TextView) view.findViewById(R.id.info_window_post_time);
 
         String title = marker.getTitle();
-        String sniper = marker.getSnippet();
+        final String sniper = marker.getSnippet();
         String avatarUrl;
 
         HttpResponseHandler getUserInfoHandler = new HttpResponseHandler(){
@@ -351,22 +355,28 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
                     User user = (User) this.result;
                     //设置昵称内容
                     nickname.setText(user.getNickname());
+
+                    /**
+                     * 拆分由放在Marker内的信息，分别是post的tag内容和地址
+                     */
+                    String[] urlAndTag = sniper.split("@@");
+                    List<String> urlAndTagList = new ArrayList<String>();
+                    for (int i = 0; i < urlAndTag.length; i++){
+                        urlAndTagList.add(urlAndTag[i]);
+                    }
+
+                    tagView.setText(urlAndTagList.get(0));
+                    addressView.setText(urlAndTagList.get(1));
+                    if (CommonUtil.isEmptyString(urlAndTagList.get(2))||urlAndTagList.get(2).equals("null")){
+                        time.setText(CommonUtil.formatTimeMillis(System.currentTimeMillis()));
+                    }else{
+                        time.setText(CommonUtil.formatTimeMillis(Long.valueOf(urlAndTagList.get(2))));
+                    }
                 }
             }
         };
 
-        HttpRequest.getUserByUsername(title,getUserInfoHandler);
+        HttpRequest.getUserByUsername(title, getUserInfoHandler);
 
-        /**
-         * 拆分由放在Marker内的信息，分别是post的tag内容和地址
-         */
-        String[] urlAndTag = sniper.split("@@");
-        List<String> urlAndTagList = new ArrayList<String>();
-        for (int i = 0; i < urlAndTag.length; i++){
-            urlAndTagList.add(urlAndTag[i]);
-        }
-
-        tagView.setText(urlAndTagList.get(0));
-        addressView.setText(urlAndTagList.get(1));
     }
 }

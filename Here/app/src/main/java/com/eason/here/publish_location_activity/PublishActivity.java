@@ -26,6 +26,7 @@ import com.eason.here.model.PostTag;
 import com.eason.here.util.CommonUtil;
 import com.eason.here.util.LogUtil;
 import com.eason.here.util.WidgetUtil.GreenToast;
+import com.eason.here.util.WidgetUtil.ModelDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -228,5 +229,33 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
 
             return convertView;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        final ModelDialog mDialog = new ModelDialog(PublishActivity.this,R.layout.dialog_back,R.style.Theme_dialog);
+        final Button btnOK, btnCancel;
+        final TextView title;
+        btnOK = (Button) mDialog.findViewById(R.id.ok_button);
+        btnCancel = (Button) mDialog.findViewById(R.id.cancel_button);
+        title = (TextView) mDialog.findViewById(R.id.alert_dialog_note_text);
+        title.setText("确定不要分享了嘛");
+        btnOK.setText("是的");
+        btnCancel.setText("手滑了");
+
+        btnOK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                PublishActivity.this.finish();
+                mDialog.dismiss();
+            }
+        });
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                mDialog.dismiss();
+            }
+        });
+        mDialog.show();
     }
 }

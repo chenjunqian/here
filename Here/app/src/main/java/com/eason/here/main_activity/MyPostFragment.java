@@ -10,21 +10,17 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.eason.here.BaseFragment;
-import com.eason.here.HttpUtil.HttpRequest;
-import com.eason.here.HttpUtil.HttpResponseHandler;
 import com.eason.here.R;
-import com.eason.here.model.ErroCode;
+import com.eason.here.model.LoginStatus;
 import com.eason.here.model.Post;
-import com.eason.here.model.User;
-import com.eason.here.util.CommonUtil;
 import com.eason.here.util.WidgetUtil.CircleImageView;
 
 import java.util.List;
 
 /**
- * Created by Eason on 9/6/15.
+ * Created by Eason on 11/19/15.
  */
-public class NearUserListFragment extends BaseFragment {
+public class MyPostFragment extends BaseFragment {
 
     private ListView listView;
 
@@ -41,7 +37,7 @@ public class NearUserListFragment extends BaseFragment {
         listView.setAdapter(new PostListViewAdapter(getActivity(),MainActivity.postListItem));
     }
 
-    private class PostListViewAdapter extends BaseAdapter{
+    private class PostListViewAdapter extends BaseAdapter {
 
         private List<Post> postList;
         private Context context;
@@ -69,7 +65,7 @@ public class NearUserListFragment extends BaseFragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             final ViewsHolder viewsHolder;
-            final Post post = postList.get(position);
+            Post post = postList.get(position);
             if (post==null)return null;
 
             if (convertView==null){
@@ -79,34 +75,14 @@ public class NearUserListFragment extends BaseFragment {
                 viewsHolder.avatarView = (CircleImageView) convertView.findViewById(R.id.near_item_avatar);
                 viewsHolder.nicknameTextView = (TextView) convertView.findViewById(R.id.near_item_nickname);
                 viewsHolder.postTagTextView = (TextView) convertView.findViewById(R.id.near_item_post_tag_text_view);
-                viewsHolder.postTimeTextView = (TextView) convertView.findViewById(R.id.near_post_item_post_time_text_view);
                 convertView.setTag(viewsHolder);
             }else{
                 viewsHolder = (ViewsHolder) convertView.getTag();
             }
 
-
-            HttpResponseHandler getUserInfoHandler = new HttpResponseHandler(){
-                @Override
-                public void getResult() {
-                    super.getResult();
-                    if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT) {
-                        User user = (User) this.result;
-                        //设置内容
-                        viewsHolder.nicknameTextView.setText(user.getNickname());
-                        viewsHolder.addressTextView.setText(post.getAddress());
-                        viewsHolder.postTagTextView.setText(post.getTag());
-                        if (CommonUtil.isEmptyString(post.getTime())||post.getTime().equals("null")){
-                            viewsHolder.postTimeTextView.setText(CommonUtil.formatTimeMillis(System.currentTimeMillis()));
-                        }else{
-                            viewsHolder.postTimeTextView.setText(CommonUtil.formatTimeMillis(Long.valueOf(post.getTime())));
-                        }
-                    }
-                }
-            };
-
-            //由username获取用户信息
-            HttpRequest.getUserByUsername(post.getUsername(), getUserInfoHandler);
+            viewsHolder.addressTextView.setText(post.getAddress());
+            viewsHolder.postTagTextView.setText(post.getTag());
+            viewsHolder.nicknameTextView.setText(LoginStatus.getUser().getNickname());
 
             return convertView;
         }
@@ -117,6 +93,5 @@ public class NearUserListFragment extends BaseFragment {
         public CircleImageView avatarView;
         public TextView postTagTextView;
         public TextView addressTextView;
-        public TextView postTimeTextView;
     }
 }
