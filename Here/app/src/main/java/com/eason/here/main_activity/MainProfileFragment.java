@@ -72,7 +72,7 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
 
                 case UPDATE_AVATAR_FAIL:
 
-                    Toast.makeText(getActivity(), "上传头像失败", Toast.LENGTH_SHORT).show();
+                    GreenToast.makeText(getActivity(), "上传头像失败", Toast.LENGTH_SHORT).show();
 
                     break;
                 case ErroCode.ERROR_CODE_CLIENT_DATA_ERROR:
@@ -306,6 +306,18 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
             final ProgressDialog progress = new ProgressDialog(getActivity());
             progress.show();
 
+            final HttpResponseHandler getUserInfoHandler = new HttpResponseHandler(){
+                @Override
+                public void getResult() {
+                    super.getResult();
+                    if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT) {
+                        User user = (User) this.result;
+                        LoginStatus.setUser(user);
+                        initData();
+                    }
+                }
+            };
+
             HttpResponseHandler avatarHandler = new HttpResponseHandler() {
                 @Override
                 public void getResult() {
@@ -314,7 +326,8 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
                     if (this.resultVO == null) {
                         handler.sendEmptyMessage(new Message().what = ErroCode.ERROR_CODE_CLIENT_DATA_ERROR);
                     } else if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT) {
-                        handler.sendEmptyMessage(new Message().what = UPDATE_AVATAR_SUCCESS);
+//                        handler.sendEmptyMessage(new Message().what = UPDATE_AVATAR_SUCCESS);
+                        HttpRequest.getUserByUsername(LoginStatus.getUser().getUsername(), getUserInfoHandler);
                     } else {
                         handler.sendEmptyMessage(new Message().what = UPDATE_AVATAR_FAIL);
                     }
@@ -324,6 +337,7 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
             };
 
             HttpRequest.uploadAvatar(LoginStatus.getUser().getUsername(), CommonUtil.getFileNameFromFilePath(imagePath), imagePath, avatarHandler);
+
         }
     }
 }
