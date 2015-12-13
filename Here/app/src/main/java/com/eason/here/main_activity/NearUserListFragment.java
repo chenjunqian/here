@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.eason.here.BaseFragment;
+import com.eason.here.HttpUtil.HttpConfig;
 import com.eason.here.HttpUtil.HttpRequest;
 import com.eason.here.HttpUtil.HttpResponseHandler;
 import com.eason.here.R;
@@ -111,6 +112,7 @@ public class NearUserListFragment extends BaseFragment {
                         viewsHolder.nicknameTextView.setText(user.getNickname());
                         viewsHolder.addressTextView.setText(post.getAddress());
                         viewsHolder.postTagTextView.setText(post.getTag());
+                        HttpRequest.loadImage(viewsHolder.avatarView, HttpConfig.String_Url_Media+user.getAvatar());
                         if (CommonUtil.isEmptyString(post.getTime())||post.getTime().equals("null")){
                             viewsHolder.postTimeTextView.setText(CommonUtil.formatTimeMillis(System.currentTimeMillis()));
                         }else{

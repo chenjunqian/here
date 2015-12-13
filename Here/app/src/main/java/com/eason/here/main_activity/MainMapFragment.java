@@ -29,6 +29,7 @@ import com.amap.api.maps2d.model.Marker;
 import com.amap.api.maps2d.model.MarkerOptions;
 import com.amap.api.maps2d.model.MyLocationStyle;
 import com.eason.here.BaseFragment;
+import com.eason.here.HttpUtil.HttpConfig;
 import com.eason.here.HttpUtil.HttpRequest;
 import com.eason.here.HttpUtil.HttpResponseHandler;
 import com.eason.here.R;
@@ -337,7 +338,7 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
      * @param view
      */
     private void renderInfoWindow(Marker marker, View view) {
-        CircleImageView avater = (CircleImageView) view.findViewById(R.id.info_window_avatar);
+        final CircleImageView avater = (CircleImageView) view.findViewById(R.id.info_window_avatar);
         final TextView nickname = (TextView) view.findViewById(R.id.info_window_nickname);
         final TextView tagView = (TextView) view.findViewById(R.id.info_window_post_tag_text_view);
         final TextView addressView = (TextView) view.findViewById(R.id.info_window_post_location_address);
@@ -345,7 +346,6 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
 
         String title = marker.getTitle();
         final String sniper = marker.getSnippet();
-        String avatarUrl;
 
         HttpResponseHandler getUserInfoHandler = new HttpResponseHandler(){
             @Override
@@ -364,6 +364,8 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
                     for (int i = 0; i < urlAndTag.length; i++){
                         urlAndTagList.add(urlAndTag[i]);
                     }
+
+                    HttpRequest.loadImage(avater, HttpConfig.String_Url_Media+user.getAvatar());
 
                     tagView.setText(urlAndTagList.get(0));
                     addressView.setText(urlAndTagList.get(1));

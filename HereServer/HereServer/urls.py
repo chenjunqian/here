@@ -29,5 +29,7 @@ urlpatterns = patterns('',
     url(r'^get_post_tag/',views.getPostTag,name='getPostTag'),
     url(r'^get_post_by_location/',views.getLocationByLocation,name='getLocationByLocation'),
     url(r'^get_user_post/',views.getUserPost,name='getUserPost'),
+    url(r'^get_user_info_by_username/',views.getUserInfoByUsername,name='getUserInfoByUsername'),
+    url(r'^modify_user_info/',views.modifyUserInfo,name='modifyUserInfo'),
     url(r'^admin/', include(admin.site.urls)),
 )

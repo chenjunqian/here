@@ -115,4 +115,4 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/upload/'
 
-MEDIA_ROOT = '/media/'
+MEDIA_ROOT = '/home/projects/HereServer/media/'

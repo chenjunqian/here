@@ -1,14 +1,19 @@
 package com.eason.here.HttpUtil;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.util.LruCache;
+import android.widget.ImageView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.eason.here.R;
 import com.eason.here.model.Post;
 import com.eason.here.model.PostList;
 import com.eason.here.model.PostTag;
@@ -30,6 +35,7 @@ public class HttpRequest {
     public static void initRequestQueue(Context context) {
         queue = Volley.newRequestQueue(context);
     }
+
 
     /**
      * Volley框架的网络请求
@@ -247,6 +253,49 @@ public class HttpRequest {
         map.put("nickname", nickname);
         map.put("userid", userid);
         baseHttpPostRequest(HttpConfig.String_Url_Change_User_Info, map, httpResponseHandler, User.class);
+
+    }
+
+    /**
+     * 下载图片
+     * @param imageView
+     * @param url
+     */
+    public static void loadImage(ImageView imageView, String url) {
+
+        ImageLoader.ImageListener listener = ImageLoader.getImageListener(imageView,
+                R.drawable.default_avatar, R.drawable.default_avatar);
+        ImageLoader imageLoader = new ImageLoader(queue, new BitmapCache());
+
+        imageLoader.get(url, listener);
+    }
+
+    /**
+     * 缓存下载图片
+     */
+    private static class BitmapCache implements ImageLoader.ImageCache {
+
+        private LruCache<String, Bitmap> mCache;
+
+        public BitmapCache() {
+            int maxSize = 10 * 1024 * 1024;
+            mCache = new LruCache<String, Bitmap>(maxSize) {
+                @Override
+                protected int sizeOf(String key, Bitmap bitmap) {
+                    return bitmap.getRowBytes() * bitmap.getHeight();
+                }
+            };
+        }
+
+        @Override
+        public Bitmap getBitmap(String url) {
+            return mCache.get(url);
+        }
+
+        @Override
+        public void putBitmap(String url, Bitmap bitmap) {
+            mCache.put(url, bitmap);
+        }
 
     }
 }

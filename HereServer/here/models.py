@@ -18,6 +18,7 @@ class Post(models.Model):
 	cityCode = models.CharField(max_length=30,blank=True,default="null")
 	address = models.CharField(max_length=30,blank=True,default="null")
 	username = models.CharField(max_length=30,blank=True,default="null")
+	time = models.CharField(max_length=30,blank=True,default="null")
 	like = models.IntegerField()
 	tag = models.CharField(max_length=200,blank=True)
 	

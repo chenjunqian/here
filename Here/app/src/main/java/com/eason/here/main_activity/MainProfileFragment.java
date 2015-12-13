@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eason.here.BaseFragment;
+import com.eason.here.HttpUtil.HttpConfig;
 import com.eason.here.HttpUtil.HttpRequest;
 import com.eason.here.HttpUtil.HttpResponseHandler;
 import com.eason.here.R;
@@ -124,6 +125,7 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
 
         birthdayTextView.setText(user.getBirthday());
         accountTextView.setText(user.getUsername());
+        HttpRequest.loadImage(avatarImageView, HttpConfig.String_Url_Media+user.getAvatar());
     }
 
     @Override

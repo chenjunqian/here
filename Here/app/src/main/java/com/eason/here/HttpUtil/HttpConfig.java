@@ -34,4 +34,7 @@ public class HttpConfig {
 
     //修改用户信息
     public static final String String_Url_Change_User_Info = Url_Domain + "modify_user_info/";
+
+    //下载图片前缀
+    public static final String String_Url_Media = Url_Domain + "media/";
 }
