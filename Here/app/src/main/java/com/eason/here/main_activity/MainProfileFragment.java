@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -125,12 +126,18 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
 
         birthdayTextView.setText(user.getBirthday());
         accountTextView.setText(user.getUsername());
-        HttpRequest.loadImage(avatarImageView, HttpConfig.String_Url_Media+user.getAvatar());
+        HttpRequest.loadImage(avatarImageView, HttpConfig.String_Url_Media + user.getAvatar());
     }
 
-    @Override
-    public void onClick(View v) {
-
+    /**
+     *
+     * @param password
+     * @param gender
+     * @param birthday
+     * @param nickname
+     * @param userId
+     */
+    private void modifyProfile(String password,String gender,String birthday,String nickname,String userId){
         final HttpResponseHandler modifyUserInfoHandler = new HttpResponseHandler() {
             @Override
             public void getResult() {
@@ -145,6 +152,14 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
                 }
             }
         };
+
+        //提交给服务器
+        HttpRequest.modifyUserInfo(LoginStatus.getUser().getUsername(), password,
+                gender, birthday,nickname,userId, modifyUserInfoHandler);
+    }
+
+    @Override
+    public void onClick(View v) {
 
         switch (v.getId()) {
             case R.id.profile_avatar_layout:
@@ -178,10 +193,8 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
                         if (CommonUtil.isFastDoubleClick()) return;
                         String nickname = nicknameEditTextView.getText().toString();
                         if (!CommonUtil.isEmptyString(nickname) || !nickname.equals(LoginStatus.getUser().getNickname())) {
-                            //提交给服务器
-                            HttpRequest.modifyUserInfo(LoginStatus.getUser().getUsername(), LoginStatus.getUser().getPassword(),
-                                    LoginStatus.getUser().getGender(), LoginStatus.getUser().getBirthday(),nickname,
-                                    LoginStatus.getUser().getUserid(), modifyUserInfoHandler);
+                            modifyProfile(LoginStatus.getUser().getPassword(),LoginStatus.getUser().getGender(),
+                                    LoginStatus.getUser().getBirthday(),nickname,LoginStatus.getUser().getUserid());
                         }
                         nicknameDialog.dismiss();
                     }
@@ -211,11 +224,43 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
                 //如果用户快速点击则返回
                 if (CommonUtil.isFastDoubleClick()) return;
 
-                final ModelDialog genderDialog = new ModelDialog(getActivity(), R.layout.date_picker_dialog_layout, R.style.Theme_dialog);
-                LinearLayout genderParentLayout = (LinearLayout) genderDialog.findViewById(R.id.date_picker_modify_parent_layout);
-                Button genderOkBtn, genderCancelBtn;
-                genderOkBtn = (Button) genderDialog.findViewById(R.id.date_picker_modify_ok_button);
-                genderCancelBtn = (Button) genderDialog.findViewById(R.id.date_picker_modify_cancel_button);
+                final ModelDialog genderDialog = new ModelDialog(getActivity(), R.layout.fragment_profile_gender_dialog_layout, R.style.Theme_dialog);
+                RadioButton maleBtn, femaleBtn;
+                maleBtn = (RadioButton) genderDialog.findViewById(R.id.profile_dialog_gender_male_button);
+                femaleBtn = (RadioButton) genderDialog.findViewById(R.id.profile_dialog_gender_female_button);
+                RelativeLayout maleLayout,femalLayout;
+                maleLayout = (RelativeLayout) genderDialog.findViewById(R.id.profile_dialog_gender_male_layout);
+                femalLayout = (RelativeLayout) genderDialog.findViewById(R.id.profile_dialog_gender_female_layout);
+
+                if (LoginStatus.getUser().getGender().equals("male")) {
+                    maleBtn.setChecked(true);
+                } else {
+                    femaleBtn.setChecked(true);
+                }
+
+                maleLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //提交给服务器
+                        modifyProfile(LoginStatus.getUser().getPassword(), "male",
+                                LoginStatus.getUser().getBirthday(), LoginStatus.getUser().getNickname(), LoginStatus.getUser().getUserid());
+                        genderDialog.dismiss();
+                    }
+                });
+
+                femalLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //提交给服务器
+                        modifyProfile(LoginStatus.getUser().getPassword(), "female",
+                                LoginStatus.getUser().getBirthday(), LoginStatus.getUser().getNickname(), LoginStatus.getUser().getUserid());
+                        genderDialog.dismiss();
+
+                    }
+                });
+
+                genderDialog.show();
+
                 break;
             case R.id.profile_birthday_layout:
                 /**
@@ -248,9 +293,8 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
                         String birthday = resultYear + "-" + validMonth + "-" + resultDayOfMonth;
                         if (!birthday.equals("0-0-0") || !birthday.equals(LoginStatus.getUser().getBirthday())) {
                             //提交给服务器
-                            HttpRequest.modifyUserInfo(LoginStatus.getUser().getUsername(), LoginStatus.getUser().getPassword(),
-                                    LoginStatus.getUser().getGender(), birthday, LoginStatus.getUser().getNickname(),
-                                    LoginStatus.getUser().getUserid(), modifyUserInfoHandler);
+                            modifyProfile(LoginStatus.getUser().getPassword(), LoginStatus.getUser().getGender(),
+                                    birthday, LoginStatus.getUser().getNickname(), LoginStatus.getUser().getUserid());
                         }
                         birthdayDialog.dismiss();
                     }

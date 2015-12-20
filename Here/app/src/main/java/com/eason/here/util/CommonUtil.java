@@ -109,12 +109,16 @@ public class CommonUtil {
             @Override
             public void getResult() {
                 if (this.resultVO == null) {
+                    loginListener.loginFailedListener(ErroCode.ERROR_CODE_RESPONSE_NULL);
                     return;
                 } else if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_USER_OR_PASSWORD_INVALID) {
+                    loginListener.loginFailedListener(ErroCode.ERROR_CODE_USER_OR_PASSWORD_INVALID);
                     return;
                 } else if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT) {
                     SharePreferencesUtil.saveUserLoginInfo(userAccount, userPassword);
                     loginListener.loginListener();
+                }else{
+                    loginListener.loginFailedListener(ErroCode.ERROR_CODE_CLIENT_DATA_ERROR);
                 }
             }
         };

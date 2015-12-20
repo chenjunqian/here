@@ -10,10 +10,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eason.here.BaseFragment;
+import com.eason.here.HttpUtil.HttpConfig;
+import com.eason.here.HttpUtil.HttpRequest;
 import com.eason.here.R;
 import com.eason.here.login_register.LoginActivity;
 import com.eason.here.model.IntentUtil;
 import com.eason.here.model.LoginStatus;
+import com.eason.here.util.WidgetUtil.CircleImageView;
 
 /**
  * Created by Eason on 8/22/15.
@@ -26,6 +29,7 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
     private RelativeLayout userListLayout;
     private RelativeLayout loginLayout;
     private RelativeLayout myHereLayout;
+    private CircleImageView circleImageView;
 
     private TextView loginTextView;
 
@@ -40,6 +44,7 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
         myHereLayout = (RelativeLayout)root.findViewById(R.id.my_post_list_item_layout);
 
         loginTextView = (TextView) root.findViewById(R.id.login_text_view);
+        circleImageView = (CircleImageView) userProfileLayout.findViewById(R.id.left_menu_avatar_image_view);
 
         mainTagLayout.setOnClickListener(this);
         userListLayout.setOnClickListener(this);
@@ -52,12 +57,18 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initData();
+    }
 
+    private void initData(){
         if (LoginStatus.getIsUserMode()){
             loginTextView.setText("注销");
         }else if (!LoginStatus.getIsUserMode()){
             loginTextView.setText("登录");
         }
+
+        if (LoginStatus.getUser()==null)return;
+        HttpRequest.loadImage(circleImageView, HttpConfig.String_Url_Media+LoginStatus.getUser().getAvatar());
     }
 
     @Override
@@ -75,7 +86,7 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
             case R.id.login_item_layout:
                 if (LoginStatus.getIsUserMode()){
                     LoginStatus.setUser(null);
-                    loginTextView.setText("登录");
+                    initData();
                     return;
                 }
                 mainActivity.setFragmentTransaction(IntentUtil.MAIN_TO_LOGIN_PAGE);
@@ -101,11 +112,6 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
     @Override
     public void onResume() {
         super.onResume();
-
-        if (LoginStatus.getIsUserMode()){
-            loginTextView.setText("注销");
-        }else if (!LoginStatus.getIsUserMode()){
-            loginTextView.setText("登录");
-        }
+        initData();
     }
 }

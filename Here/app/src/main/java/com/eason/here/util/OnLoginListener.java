@@ -5,4 +5,5 @@ package com.eason.here.util;
  */
 public interface OnLoginListener {
     public void  loginListener();
+    public void  loginFailedListener(int info);
 }

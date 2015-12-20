@@ -3,6 +3,7 @@ package com.eason.here;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.eason.here.HttpUtil.HttpRequest;
 import com.eason.here.main_activity.MainActivity;
@@ -10,6 +11,7 @@ import com.eason.here.model.LoginStatus;
 import com.eason.here.util.CommonUtil;
 import com.eason.here.util.SharePreferencesUtil;
 import com.eason.here.util.OnLoginListener;
+import com.eason.here.util.WidgetUtil.GreenToast;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -58,6 +60,12 @@ public class SplashActivity extends BaseActivity {
 
                 @Override
                 public void loginListener() {
+                    new Timer().schedule(task,2000);
+                }
+
+                @Override
+                public void loginFailedListener(int info) {
+                    GreenToast.makeText(SplashActivity.this,"登录失败", Toast.LENGTH_SHORT).show();
                     new Timer().schedule(task,2000);
                 }
             });
