@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.eason.here.BaseFragment;
@@ -19,6 +20,8 @@ import com.eason.here.model.Post;
 import com.eason.here.model.User;
 import com.eason.here.util.CommonUtil;
 import com.eason.here.util.WidgetUtil.CircleImageView;
+import com.eason.here.util.WidgetUtil.ImageViewDialog;
+import com.eason.here.util.WidgetUtil.ListItemDialog;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -61,6 +64,7 @@ public class NearUserListFragment extends BaseFragment {
 
         private List<Post> postList;
         private Context context;
+        private User user;
 
         public PostListViewAdapter(Context context,List<Post> postList){
             this.postList = postList;
@@ -91,6 +95,7 @@ public class NearUserListFragment extends BaseFragment {
             if (convertView==null){
                 viewsHolder = new ViewsHolder();
                 convertView = LayoutInflater.from(context).inflate(R.layout.near_post_item_layout,null);
+                viewsHolder.backgroundLayout = (RelativeLayout) convertView.findViewById(R.id.near_item_background_layout);
                 viewsHolder.addressTextView = (TextView) convertView.findViewById(R.id.near_item_address_text_view);
                 viewsHolder.avatarView = (CircleImageView) convertView.findViewById(R.id.near_item_avatar);
                 viewsHolder.nicknameTextView = (TextView) convertView.findViewById(R.id.near_item_nickname);
@@ -107,7 +112,7 @@ public class NearUserListFragment extends BaseFragment {
                 public void getResult() {
                     super.getResult();
                     if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT) {
-                        User user = (User) this.result;
+                        user = (User) this.result;
                         //设置内容
                         viewsHolder.nicknameTextView.setText(user.getNickname());
                         viewsHolder.addressTextView.setText(post.getAddress());
@@ -125,6 +130,24 @@ public class NearUserListFragment extends BaseFragment {
             //由username获取用户信息
             HttpRequest.getUserByUsername(post.getUsername(), getUserInfoHandler);
 
+            viewsHolder.avatarView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (user == null) return;
+                    ImageViewDialog imageViewDialog = new ImageViewDialog(getActivity(), user.getAvatar());
+                    imageViewDialog.show();
+                }
+            });
+
+            viewsHolder.backgroundLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (post==null||user==null)return;
+                    ListItemDialog listItemDialog = new ListItemDialog(getActivity(),post,user);
+                    listItemDialog.show();
+                }
+            });
+
             return convertView;
         }
     }
@@ -135,5 +158,6 @@ public class NearUserListFragment extends BaseFragment {
         public TextView postTagTextView;
         public TextView addressTextView;
         public TextView postTimeTextView;
+        public RelativeLayout backgroundLayout;
     }
 }

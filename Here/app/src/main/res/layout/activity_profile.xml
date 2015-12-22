@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/universal_layout_background_color"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/universal_title_height"
+        android:background="@color/universal_title_background_green">
+
+        <TextView
+            android:id="@+id/profile_activity_title_nickname_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/universal_white"
+            android:textSize="@dimen/universal_title_text_size" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/universal_white">
+
+        <com.eason.here.util.WidgetUtil.CircleImageView
+            android:id="@+id/profile_activity_avatar_circle_view"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="@dimen/universal_20dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/default_avatar" />
+
+        <TextView
+            android:id="@+id/simple_profile_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/universal_20dp"
+            android:layout_marginTop="@dimen/universal_20dp"
+            android:layout_toRightOf="@+id/profile_activity_avatar_circle_view"
+            android:text="还没写简介呢"
+            android:textColor="@color/universal_item_text_color_sub_black" />
+
+        <LinearLayout
+            android:id="@+id/profile_info_title_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/simple_profile_text_view"
+            android:layout_toRightOf="@+id/profile_activity_avatar_circle_view"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/universal_20dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:text="性别"
+                android:textColor="@color/universal_grey_twelve" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:text="年龄"
+                android:textColor="@color/universal_grey_twelve" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:text="星座"
+                android:textColor="@color/universal_grey_twelve" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/profile_info_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_info_title_layout"
+            android:layout_toRightOf="@+id/profile_activity_avatar_circle_view"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/profile_activity_gender_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/universal_20dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:text="男"
+                android:textColor="@color/universal_grey_six" />
+
+            <TextView
+                android:id="@+id/profile_activity_age_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:text="20"
+                android:textColor="@color/universal_grey_six" />
+
+            <TextView
+                android:id="@+id/profile_activity_constellation_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:text="狮子座"
+                android:textColor="@color/universal_grey_six" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/profile_activity_profile_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profile_info_layout"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/universal_white"
+            android:text="Ta太懒了，什么都没写" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profile_info_layout"
+        android:layout_marginTop="10dp"
+        android:background="@color/universal_white"
+        android:text="标记历史" />
+
+    <ListView
+        android:id="@+id/profile_activity_list_view"
+        android:layout_width="match_parent"
+        android:dividerHeight="4dp"
+        android:layout_height="match_parent">
+
+    </ListView>
+</LinearLayout>

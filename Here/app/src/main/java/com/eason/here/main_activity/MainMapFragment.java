@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +40,7 @@ import com.eason.here.model.LoginStatus;
 import com.eason.here.model.Post;
 import com.eason.here.model.PostList;
 import com.eason.here.model.User;
+import com.eason.here.profile_activity.ProfileActivity;
 import com.eason.here.publish_location_activity.PublishActivity;
 import com.eason.here.util.CommonUtil;
 import com.eason.here.util.WidgetUtil.CircleImageView;
@@ -338,13 +340,14 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
      * @param view
      */
     private void renderInfoWindow(Marker marker, View view) {
+        RelativeLayout infoWindowLayout = (RelativeLayout) view.findViewById(R.id.info_window_avatar_layout);
         final CircleImageView avater = (CircleImageView) view.findViewById(R.id.info_window_avatar);
         final TextView nickname = (TextView) view.findViewById(R.id.info_window_nickname);
         final TextView tagView = (TextView) view.findViewById(R.id.info_window_post_tag_text_view);
         final TextView addressView = (TextView) view.findViewById(R.id.info_window_post_location_address);
         final TextView time = (TextView) view.findViewById(R.id.info_window_post_time);
 
-        String title = marker.getTitle();
+        final String title = marker.getTitle();
         final String sniper = marker.getSnippet();
 
         HttpResponseHandler getUserInfoHandler = new HttpResponseHandler(){
@@ -380,5 +383,13 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
 
         HttpRequest.getUserByUsername(title, getUserInfoHandler);
 
+        infoWindowLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ProfileActivity.class);
+                intent.putExtra("username",title);
+                getActivity().startActivity(intent);
+            }
+        });
     }
 }

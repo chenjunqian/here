@@ -298,4 +298,15 @@ public class HttpRequest {
         }
 
     }
+
+    /**
+     * 根据用户名获取用户帖子
+     * @param username
+     * @param httpResponseHandler
+     */
+    public static void getPosyByUsername(String username,HttpResponseHandler httpResponseHandler){
+        Map<String,String> map = new HashMap<String,String>();
+        map.put("username",username);
+        baseHttpPostRequest(HttpConfig.String_Url_Get_Post_By_Username, map, httpResponseHandler, PostList.class);
+    }
 }

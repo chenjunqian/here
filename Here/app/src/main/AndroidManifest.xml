@@ -77,6 +77,13 @@
             android:theme="@style/AppTheme">>
 
         </activity>
+
+        <activity
+            android:name=".profile_activity.ProfileActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">>
+
+        </activity>
     </application>
 
 </manifest>

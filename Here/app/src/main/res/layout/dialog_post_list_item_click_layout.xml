@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog_post_list_item_background_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/universal_half_transparent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:background="@color/universal_layout_background_color">
+
+        <RelativeLayout
+            android:id="@+id/like_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/universal_40dp"
+            android:background="@drawable/layout_background_selector">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="赞"
+                android:textColor="@color/universal_text_color_grad" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="1dp"
+            android:id="@+id/enter_profile_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/universal_40dp"
+            android:background="@drawable/layout_background_selector">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="进入主页"
+                android:textColor="@color/universal_text_color_grad" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="1dp"
+            android:id="@+id/report_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/universal_40dp"
+            android:background="@drawable/layout_background_selector">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="举报"
+                android:textColor="@color/universal_text_color_grad" />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

@@ -13,6 +13,24 @@ public class User {
     private String nickname;
     private String userid;
     private String pushKey;
+    private String simpleProfile;
+    private String longProfile;
+
+    public String getLongProfile() {
+        return longProfile;
+    }
+
+    public void setLongProfile(String longProfile) {
+        this.longProfile = longProfile;
+    }
+
+    public String getSimpleProfile() {
+        return simpleProfile;
+    }
+
+    public void setSimpleProfile(String simpleProfile) {
+        this.simpleProfile = simpleProfile;
+    }
 
     public String getNickname() {
         return nickname;
