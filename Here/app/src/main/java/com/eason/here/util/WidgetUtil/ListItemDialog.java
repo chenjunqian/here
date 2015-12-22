@@ -38,7 +38,7 @@ public class ListItemDialog extends Dialog {
         setContentView(R.layout.dialog_post_list_item_click_layout);
         likeLayout = (RelativeLayout) findViewById(R.id.like_layout);
         enterProfileLayout = (RelativeLayout) findViewById(R.id.enter_profile_layout);
-        reportLayout = (RelativeLayout) findViewById(R.id.enter_profile_layout);
+        reportLayout = (RelativeLayout) findViewById(R.id.report_layout);
         backgroundLayout = (RelativeLayout) findViewById(R.id.dialog_post_list_item_background_layout);
 
         backgroundLayout.setOnClickListener(new View.OnClickListener() {
