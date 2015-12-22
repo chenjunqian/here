@@ -145,41 +145,30 @@ def uploadAvatar(request):
 		# username  = request.POST.get('username')
 		# avatar = request.FILES.get('file')
 		username  = request.POST.get('username')
-		headImg = request.FILES.get('headImg')
+		headImg = request.FILES.get('file')
 		tf = TestForm(request.POST,request.FILES)
 		user = User.objects.get(username = username)
 		if tf.is_valid:
-			if user.avatar and headImg:
-				path_file = '/home/projects/HereServer/media/'+user.avatar.filename
-				os.remove(path_file)
-			user.avatar = headImg
-			user.save()
 			if headImg:
-				return HttpResponse("upload avatar success")
+				user.avatar = headImg
+				user.save()
+				dict['errorMessage'] = "UPDATE_AVATAR_SUCCESS"
+				dict['status'] = 0
 			else:
-				return HttpResponse("upload avatar failed")
-		# if username:
-		# 	user = User.objects.get(username = username)
-		# 	if avatar:
-		# 		user.avatar = avatar
-		# 		user.save()
-		# 		dict['errorMessage'] = "UPDATE_AVATAR_SUCCESS"
-		# 		dict['status'] = "0"
-		# 	else:
-		# 		dict['errorMessage'] = "AVATAR_IS_INVALID"
-		# 		dict['status'] = "8004"
-		# else:
-		# 	dict['errorMessage'] = "USERNAME_IS_INVALID"
-		# 	dict['status'] = "8005"
+				dict['errorMessage'] = "AVATAR_IS_INVALID"
+				dict['status'] = 8004
+		else:
+			dict['errorMessage'] = "USERNAME_IS_INVALID"
+			dict['status'] = 8005
 
-		# json  = simplejson.dumps(dict)
-		# return HttpResponse(json)
+		json  = simplejson.dumps(dict)
+		return HttpResponse(json)
 	else:
-		# dict['errorMessage'] = "POST_FAILED"
-		# dict['status'] = "8001"
-		# return HttpResponse("POST failed")
-		tf = TestForm()
-		return render_to_response('test_upload_avatar.html',{'uf':tf})
+		dict['errorMessage'] = "POST_FAILED"
+		dict['status'] = 8001
+		return HttpResponse("POST failed")
+		# tf = TestForm()
+		# return render_to_response('test_upload_avatar.html',{'uf':tf})
 
 # 修改用户信息
 def modifyUserInfo(request):
@@ -192,10 +181,12 @@ def modifyUserInfo(request):
 		birthday = request.POST.get('birthday')
 		nickname = request.POST.get('nickname')
 		userid = request.POST.get('userid')
+		longProfile = request.POST.get('longProfile')
+		simpleProfile = request.POST.get('simpleProfile')
 		if password and gender and birthday and nickname:
 			cursor = connection.cursor()
-			query = "update here_user set password = %s,gender = %s,birthday = %s,nickname = %s where id = %s"
-			value = [password,gender,birthday,nickname,userid]
+			query = "update here_user set password = %s,gender = %s,birthday = %s,nickname = %s,longProfile= %s,simpleProfile = %s where id = %s"
+			value = [password,gender,birthday,nickname,userid,longProfile,simpleProfile]
 			cursor.execute(query,value)
 			# 返回用户信息
 			query = 'select * from here_user where id = %s'
@@ -215,6 +206,8 @@ def modifyUserInfo(request):
 				else:
 					resultData['avatar'] = 'null'
 				resultData['nickname'] = user[0][7]
+				resultData['longProfile'] = user[0][8]
+				resultData['simpleProfile'] = user[0][9]
 				dict['resultData'] = resultData
 			else:
 				dict['errorMessage'] = "data_base_error"
@@ -399,6 +392,8 @@ def getUserInfoByUsername(request):
 			else:
 				resultData['avatar'] = ''
 			resultData['nickname'] = user[0][7]
+			resultData['longProfile'] = user[0][8]
+			resultData['simpleProfile'] = user[0][9]
 			dict['resultData'] = resultData
 		else:
 			dict['errorMessage'] = "no_such_user_username_is_invalid"
@@ -409,4 +404,70 @@ def getUserInfoByUsername(request):
 		# json  = simplejson.dumps(dict)
 		# return HttpResponse("POST failed")
 		tf = GetUserInfo()
+		return render_to_response('test-get-post-by-location.html',{'uf':tf})
+
+# 测试使用
+class GetPostByUsername(forms.Form):
+    username = forms.CharField()
+
+def getPostByUsername(request):
+	dict = {}
+	resultData = {}
+	if request.method == 'POST':
+		username = request.POST.get('username')
+		cur = connection.cursor()
+		query = "select * from here_post where username = %s"
+		cur.execute(query,[username])
+		res = cur.fetchall()
+		if res:
+			resultData['postList'] = []
+			for json_result in res:
+				jsonMetaResultData = {}
+				jsonMetaResultData['postId'] = json_result[0]
+				jsonMetaResultData['longitude'] = json_result[1]
+				jsonMetaResultData['latitude'] = json_result[2]
+				jsonMetaResultData['city'] = json_result[3]
+				jsonMetaResultData['address']  = json_result[4]
+				jsonMetaResultData['like'] = json_result[5]
+				jsonMetaResultData['tag'] = json_result[6]
+				jsonMetaResultData['cityCode'] = json_result[7]
+				jsonMetaResultData['username'] = json_result[8]
+				jsonMetaResultData['time'] = json_result[9]
+				resultData['postList'].append(jsonMetaResultData)
+			
+			dict['resultData'] = resultData
+			dict['errorMessage'] = "get_post_success"
+			dict['status'] = "0"
+		else:
+			dict['errorMessage'] = "none_post"
+			dict['status'] = "8001"
+		json = simplejson.dumps(dict)
+		return HttpResponse(json)
+	else:
+		# json  = simplejson.dumps(dict)
+		# return HttpResponse("POST failed")
+		tf = GetPostByUsername()
+		return render_to_response('test-get-post-by-location.html',{'uf':tf})
+
+def plusPostLike(request):
+	dict = {}
+	resultData = {}
+	if request.method == 'POST':
+		postId = request.POST.get('postId')
+		cur = connection.cursor()
+		query = "update here_post set like = %s where id = %s"
+		cur.execute(query,[1,postId])
+		res = cur.fetchall()
+		if res:
+			dict['errorMessage'] = "get_post_success"
+			dict['status'] = "0"
+		else:
+			dict['errorMessage'] = "none_post"
+			dict['status'] = "8001"
+		json = simplejson.dumps(dict)
+		return HttpResponse(json)
+	else:
+		# json  = simplejson.dumps(dict)
+		# return HttpResponse("POST failed")
+		tf = GetPostByUsername()
 		return render_to_response('test-get-post-by-location.html',{'uf':tf})

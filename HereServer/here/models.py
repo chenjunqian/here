@@ -9,6 +9,8 @@ class User(models.Model):
 	pushKey = models.CharField(max_length=30)
 	avatar = models.FileField(upload_to='./avatar/',blank=True,default="null")
 	birthday = models.CharField(max_length=30)
+	simpleProfile = models.CharField(max_length=30,blank=True)
+	longProfile = models.CharField(max_length=300,blank=True)
 
 	
 class Post(models.Model):
@@ -19,7 +21,7 @@ class Post(models.Model):
 	address = models.CharField(max_length=30,blank=True,default="null")
 	username = models.CharField(max_length=30,blank=True,default="null")
 	time = models.CharField(max_length=30,blank=True,default="null")
-	like = models.IntegerField()
+	like = models.IntegerField(default=0)
 	tag = models.CharField(max_length=200,blank=True)
 	
 class PostTag(models.Model):

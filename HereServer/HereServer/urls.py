@@ -31,5 +31,6 @@ urlpatterns = patterns('',
     url(r'^get_user_post/',views.getUserPost,name='getUserPost'),
     url(r'^get_user_info_by_username/',views.getUserInfoByUsername,name='getUserInfoByUsername'),
     url(r'^modify_user_info/',views.modifyUserInfo,name='modifyUserInfo'),
+    url(r'^get_post_by_username/',views.getPostByUsername,name='getPostByUsername'),
     url(r'^admin/', include(admin.site.urls)),
 )
