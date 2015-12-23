@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +48,7 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
     private RelativeLayout nicknameLayout;
     private RelativeLayout genderLayout;
     private RelativeLayout birthdayLayout;
+    private RelativeLayout passwordLayout;
     private TextView nicknameTextView;
     private TextView genderTextView;
     private TextView birthdayTextView;
@@ -58,6 +60,8 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
     private int resultYear = 0;
     private int validMonth = 0;
     private int resultDayOfMonth = 0;
+
+    private boolean isPasswordCheck = false;
 
     private static final int UPDATE_AVATAR_SUCCESS = 0x2;
     private static final int UPDATE_AVATAR_FAIL = 0x3;
@@ -95,6 +99,8 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
         genderLayout.setOnClickListener(this);
         birthdayLayout = (RelativeLayout) rootView.findViewById(R.id.profile_birthday_layout);
         birthdayLayout.setOnClickListener(this);
+        passwordLayout = (RelativeLayout) rootView.findViewById(R.id.profile_password_layout);
+        passwordLayout.setOnClickListener(this);
 
         nicknameTextView = (TextView) rootView.findViewById(R.id.profile_nickname_text_view);
         genderTextView = (TextView) rootView.findViewById(R.id.profile_gender_text_view);
@@ -130,14 +136,13 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
     }
 
     /**
-     *
      * @param password
      * @param gender
      * @param birthday
      * @param nickname
      * @param userId
      */
-    private void modifyProfile(String password,String gender,String birthday,String nickname,String userId){
+    private void modifyProfile(String password, String gender, String birthday, String nickname, String userId) {
         final HttpResponseHandler modifyUserInfoHandler = new HttpResponseHandler() {
             @Override
             public void getResult() {
@@ -155,7 +160,7 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
 
         //提交给服务器
         HttpRequest.modifyUserInfo(LoginStatus.getUser().getUsername(), password,
-                gender, birthday,nickname,userId, modifyUserInfoHandler);
+                gender, birthday, nickname, userId, modifyUserInfoHandler);
     }
 
     @Override
@@ -193,8 +198,8 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
                         if (CommonUtil.isFastDoubleClick()) return;
                         String nickname = nicknameEditTextView.getText().toString();
                         if (!CommonUtil.isEmptyString(nickname) || !nickname.equals(LoginStatus.getUser().getNickname())) {
-                            modifyProfile(LoginStatus.getUser().getPassword(),LoginStatus.getUser().getGender(),
-                                    LoginStatus.getUser().getBirthday(),nickname,LoginStatus.getUser().getUserid());
+                            modifyProfile(LoginStatus.getUser().getPassword(), LoginStatus.getUser().getGender(),
+                                    LoginStatus.getUser().getBirthday(), nickname, LoginStatus.getUser().getUserid());
                         }
                         nicknameDialog.dismiss();
                     }
@@ -228,7 +233,7 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
                 RadioButton maleBtn, femaleBtn;
                 maleBtn = (RadioButton) genderDialog.findViewById(R.id.profile_dialog_gender_male_button);
                 femaleBtn = (RadioButton) genderDialog.findViewById(R.id.profile_dialog_gender_female_button);
-                RelativeLayout maleLayout,femalLayout;
+                RelativeLayout maleLayout, femalLayout;
                 maleLayout = (RelativeLayout) genderDialog.findViewById(R.id.profile_dialog_gender_male_layout);
                 femalLayout = (RelativeLayout) genderDialog.findViewById(R.id.profile_dialog_gender_female_layout);
 
@@ -316,6 +321,65 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
 
                 birthdayDialog.show();
                 break;
+            case R.id.profile_password_layout:
+                //如果用户快速点击则返回
+                if (CommonUtil.isFastDoubleClick()) return;
+                final ModelDialog changePasswordDialog = new ModelDialog(getActivity(), R.layout.modify_username_dialog_layout, R.style.Theme_dialog);
+                LinearLayout passwordParentLayout = (LinearLayout) changePasswordDialog.findViewById(R.id.modify_username_dialog_parent_layout);
+                Button passwordOkBtn, passwordCancelBtn;
+                final EditText passwordEditTextView = (EditText) changePasswordDialog.findViewById(R.id.modify_nickname_dialog_edit_text);
+                final EditText passwordConfirmTextView = (EditText) changePasswordDialog.findViewById(R.id.modify_password_confirm_dialog_edit_text);
+                passwordEditTextView.setHint("请输入原来的密码");
+                passwordEditTextView.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                passwordOkBtn = (Button) changePasswordDialog.findViewById(R.id.modify_username_ok_button);
+                passwordCancelBtn = (Button) changePasswordDialog.findViewById(R.id.modify_username_cancel_button);
+
+                isPasswordCheck = false;
+
+                passwordOkBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (CommonUtil.isFastDoubleClick()) return;
+                        String enterPassword = passwordEditTextView.getText().toString();
+                        if (!CommonUtil.isEmptyString(enterPassword) && enterPassword.equals(LoginStatus.getUser().getPassword()) && !isPasswordCheck) {
+                            passwordEditTextView.setText("");
+                            passwordEditTextView.setHint("请输入新的密码");
+                            passwordConfirmTextView.setVisibility(View.VISIBLE);
+                            isPasswordCheck = true;
+                            return;
+                        } else if (isPasswordCheck) {
+                            if (!CommonUtil.isEmptyString(passwordEditTextView.getText().toString())
+                                    && !CommonUtil.isEmptyString(passwordConfirmTextView.getText().toString())
+                                    && passwordEditTextView.getText().toString().equals(passwordConfirmTextView.getText().toString())
+                                    &&passwordConfirmTextView.getText().toString().length()>=6) {
+                                modifyProfile(passwordConfirmTextView.getText().toString(),LoginStatus.getUser().getGender(),
+                                        LoginStatus.getUser().getBirthday(),LoginStatus.getUser().getNickname(),LoginStatus.getUser().getUserid());
+                            }
+                        } else {
+                            GreenToast.makeText(getActivity(), "请输入正确的密码", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
+                        changePasswordDialog.dismiss();
+                    }
+                });
+
+                passwordCancelBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        changePasswordDialog.dismiss();
+                    }
+                });
+
+                passwordParentLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        changePasswordDialog.dismiss();
+                    }
+                });
+
+                changePasswordDialog.show();
+                break;
         }
     }
 
@@ -350,7 +414,7 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
             final ProgressDialog progress = new ProgressDialog(getActivity());
             progress.show();
 
-            final HttpResponseHandler getUserInfoHandler = new HttpResponseHandler(){
+            final HttpResponseHandler getUserInfoHandler = new HttpResponseHandler() {
                 @Override
                 public void getResult() {
                     super.getResult();

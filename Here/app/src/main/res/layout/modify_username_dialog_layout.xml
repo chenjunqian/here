@@ -17,6 +17,19 @@
         android:background="@null"
         android:textSize="16sp" />
 
+    <EditText
+        android:id="@+id/modify_password_confirm_dialog_edit_text"
+        android:layout_width="@dimen/universal_180dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/universal_20dp"
+        android:visibility="gone"
+        android:inputType="textPassword"
+        android:hint="输入再次输入密码"
+        android:textColor="@color/universal_grey_twelve"
+        android:background="@null"
+        android:textSize="16sp" />
+
     <LinearLayout
         android:id="@+id/modify_username_dialog_operation_layout"
         android:layout_width="@dimen/universal_180dp"

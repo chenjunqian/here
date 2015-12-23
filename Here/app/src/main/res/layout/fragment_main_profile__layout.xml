@@ -147,4 +147,25 @@
             android:text="这里是账号"
             android:textColor="@color/universal_item_text_color_sub_black" />
     </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/profile_password_layout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/layout_background_selector"
+        android:clickable="false">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="修改密码"
+            android:textColor="@color/universal_item_text_color_black" />
+
+
+    </RelativeLayout>
 </LinearLayout>
