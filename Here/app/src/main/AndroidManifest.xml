@@ -84,6 +84,13 @@
             android:theme="@style/AppTheme">>
 
         </activity>
+
+        <activity
+            android:name=".about_us_activity.AboutUsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">>
+
+        </activity>
     </application>
 
 </manifest>

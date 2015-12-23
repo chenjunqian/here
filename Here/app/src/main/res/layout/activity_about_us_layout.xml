@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/universal_layout_background_color"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/universal_title_height"
+        android:background="@color/universal_title_background_green">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="关于Here"
+            android:textColor="@color/universal_white"
+            android:textSize="@dimen/universal_title_text_size" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:background="@color/universal_white">
+
+        <ImageView
+            android:id="@+id/about_us_icon_logo_here_image_view"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/universal_20dp"
+            android:layout_marginTop="@dimen/universal_20dp"
+            android:src="@drawable/ic_logo_here" />
+
+        <TextView
+            android:id="@+id/about_us_name_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/about_us_icon_logo_here_image_view"
+            android:layout_marginLeft="@dimen/universal_20dp"
+            android:layout_toEndOf="@+id/about_us_icon_logo_here_image_view"
+            android:text="ImHere"
+            android:textColor="@color/universal_item_text_color_black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/about_us_version_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/about_us_name_text_view"
+            android:layout_below="@+id/about_us_name_text_view"
+            android:layout_marginTop="10dp"
+            android:text="1.0.0" />
+
+        <TextView
+            android:id="@+id/about_us_app_purpose_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/about_us_version_text_view"
+            android:layout_below="@+id/about_us_version_text_view"
+            android:layout_marginTop="10dp"
+            android:text="分享你所做的所有事，让附近的人可以知道这里会经常发生哪些事，同时也可以了解这个地区的一些性质" />
+    </RelativeLayout>
+</LinearLayout>
