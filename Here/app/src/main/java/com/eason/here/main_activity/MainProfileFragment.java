@@ -142,7 +142,8 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
      * @param nickname
      * @param userId
      */
-    private void modifyProfile(String password, String gender, String birthday, String nickname, String userId) {
+    private void modifyProfile(String password, String gender, String birthday, String nickname, String userId
+                                ,String simpleProfile,String longProfile) {
         final HttpResponseHandler modifyUserInfoHandler = new HttpResponseHandler() {
             @Override
             public void getResult() {
@@ -160,7 +161,7 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
 
         //提交给服务器
         HttpRequest.modifyUserInfo(LoginStatus.getUser().getUsername(), password,
-                gender, birthday, nickname, userId, modifyUserInfoHandler);
+                gender, birthday, nickname, userId,simpleProfile,longProfile, modifyUserInfoHandler);
     }
 
     @Override
@@ -199,7 +200,8 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
                         String nickname = nicknameEditTextView.getText().toString();
                         if (!CommonUtil.isEmptyString(nickname) || !nickname.equals(LoginStatus.getUser().getNickname())) {
                             modifyProfile(LoginStatus.getUser().getPassword(), LoginStatus.getUser().getGender(),
-                                    LoginStatus.getUser().getBirthday(), nickname, LoginStatus.getUser().getUserid());
+                                    LoginStatus.getUser().getBirthday(), nickname, LoginStatus.getUser().getUserid(),
+                                        LoginStatus.getUser().getSimpleProfile(),LoginStatus.getUser().getLongProfile());
                         }
                         nicknameDialog.dismiss();
                     }
@@ -248,7 +250,8 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
                     public void onClick(View v) {
                         //提交给服务器
                         modifyProfile(LoginStatus.getUser().getPassword(), "male",
-                                LoginStatus.getUser().getBirthday(), LoginStatus.getUser().getNickname(), LoginStatus.getUser().getUserid());
+                                LoginStatus.getUser().getBirthday(), LoginStatus.getUser().getNickname(), LoginStatus.getUser().getUserid(),
+                                LoginStatus.getUser().getSimpleProfile(),LoginStatus.getUser().getLongProfile());
                         genderDialog.dismiss();
                     }
                 });
@@ -258,7 +261,8 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
                     public void onClick(View v) {
                         //提交给服务器
                         modifyProfile(LoginStatus.getUser().getPassword(), "female",
-                                LoginStatus.getUser().getBirthday(), LoginStatus.getUser().getNickname(), LoginStatus.getUser().getUserid());
+                                LoginStatus.getUser().getBirthday(), LoginStatus.getUser().getNickname(), LoginStatus.getUser().getUserid(),
+                                LoginStatus.getUser().getSimpleProfile(),LoginStatus.getUser().getLongProfile());
                         genderDialog.dismiss();
 
                     }
@@ -299,7 +303,8 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
                         if (!birthday.equals("0-0-0") || !birthday.equals(LoginStatus.getUser().getBirthday())) {
                             //提交给服务器
                             modifyProfile(LoginStatus.getUser().getPassword(), LoginStatus.getUser().getGender(),
-                                    birthday, LoginStatus.getUser().getNickname(), LoginStatus.getUser().getUserid());
+                                    birthday, LoginStatus.getUser().getNickname(), LoginStatus.getUser().getUserid(),
+                                    LoginStatus.getUser().getSimpleProfile(),LoginStatus.getUser().getLongProfile());
                         }
                         birthdayDialog.dismiss();
                     }
@@ -327,10 +332,13 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
                 final ModelDialog changePasswordDialog = new ModelDialog(getActivity(), R.layout.modify_username_dialog_layout, R.style.Theme_dialog);
                 LinearLayout passwordParentLayout = (LinearLayout) changePasswordDialog.findViewById(R.id.modify_username_dialog_parent_layout);
                 Button passwordOkBtn, passwordCancelBtn;
-                final EditText passwordEditTextView = (EditText) changePasswordDialog.findViewById(R.id.modify_nickname_dialog_edit_text);
+                EditText nicknameEdittextview = (EditText) changePasswordDialog.findViewById(R.id.modify_nickname_dialog_edit_text);
+                nicknameEdittextview.setVisibility(View.GONE);
+                final EditText passwordEditTextView = (EditText) changePasswordDialog.findViewById(R.id.modify_password_dialog_edit_text);
                 final EditText passwordConfirmTextView = (EditText) changePasswordDialog.findViewById(R.id.modify_password_confirm_dialog_edit_text);
                 passwordEditTextView.setHint("请输入原来的密码");
-                passwordEditTextView.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                passwordEditTextView.setVisibility(View.VISIBLE);
+                passwordEditTextView.setInputType(InputType.TYPE_TEXT_VARIATION_WEB_PASSWORD);
                 passwordOkBtn = (Button) changePasswordDialog.findViewById(R.id.modify_username_ok_button);
                 passwordCancelBtn = (Button) changePasswordDialog.findViewById(R.id.modify_username_cancel_button);
 
@@ -353,7 +361,8 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
                                     && passwordEditTextView.getText().toString().equals(passwordConfirmTextView.getText().toString())
                                     &&passwordConfirmTextView.getText().toString().length()>=6) {
                                 modifyProfile(passwordConfirmTextView.getText().toString(),LoginStatus.getUser().getGender(),
-                                        LoginStatus.getUser().getBirthday(),LoginStatus.getUser().getNickname(),LoginStatus.getUser().getUserid());
+                                        LoginStatus.getUser().getBirthday(),LoginStatus.getUser().getNickname(),LoginStatus.getUser().getUserid(),
+                                        LoginStatus.getUser().getSimpleProfile(),LoginStatus.getUser().getLongProfile());
                             }
                         } else {
                             GreenToast.makeText(getActivity(), "请输入正确的密码", Toast.LENGTH_LONG).show();

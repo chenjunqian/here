@@ -244,6 +244,7 @@ public class HttpRequest {
      */
     public static void modifyUserInfo(String username, String password, String gender,
                                       String birthday, String nickname, String userid,
+                                      String simpleProfile,String longProfile,
                                       HttpResponseHandler httpResponseHandler) {
         Map<String, String> map = new HashMap<String, String>();
         map.put("username", username);
@@ -252,6 +253,8 @@ public class HttpRequest {
         map.put("birthday", birthday);
         map.put("nickname", nickname);
         map.put("userid", userid);
+        map.put("simpleProfile",simpleProfile);
+        map.put("longProfile",longProfile);
         baseHttpPostRequest(HttpConfig.String_Url_Change_User_Info, map, httpResponseHandler, User.class);
 
     }
