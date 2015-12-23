@@ -63,6 +63,27 @@
             android:layout_alignStart="@+id/about_us_version_text_view"
             android:layout_below="@+id/about_us_version_text_view"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="@dimen/universal_20dp"
             android:text="分享你所做的所有事，让附近的人可以知道这里会经常发生哪些事，同时也可以了解这个地区的一些性质" />
     </RelativeLayout>
+
+    <Button
+        android:text="分享App"
+        android:id="@+id/about_us_share_app_btn"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/layout_background_selector"/>
+
+    <Button
+        android:text="意见反馈"
+        android:id="@+id/about_us_report_us_btn"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/layout_background_selector"/>
 </LinearLayout>

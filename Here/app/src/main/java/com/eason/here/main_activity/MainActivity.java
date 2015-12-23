@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.eason.here.R;
+import com.eason.here.about_us_activity.AboutUsActivity;
 import com.eason.here.model.ErroCode;
 import com.eason.here.model.IntentUtil;
 import com.eason.here.model.Post;
@@ -98,7 +99,9 @@ public class MainActivity extends ActionBarActivity {
                         mainMapFragment.getPost();
                         break;
 
-                    case R.id.action_settings:
+                    case R.id.action_about_us:
+                        Intent intent = new Intent(MainActivity.this, AboutUsActivity.class);
+                        startActivity(intent);
                         break;
                 }
 
