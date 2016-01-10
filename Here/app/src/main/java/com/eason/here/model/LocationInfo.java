@@ -8,8 +8,8 @@ public class LocationInfo {
     private static String cityName = "";
     private static String cityCode = "";
     private static String address = "";
-    private static Double lat ;
-    private static Double lon ;
+    private static Double lat = 0.0;
+    private static Double lon =0.0;
 
     public static String getAddress() {
         return address;

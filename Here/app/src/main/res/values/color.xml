@@ -3,10 +3,10 @@
 
     <!-- 全局通用颜色-->
     <!--<color name="universal_title_background_green">#86C21F</color>-->
-    <color name="universal_title_background_green">#008B00</color>
+    <color name="universal_title_background_red">#CD0000</color>
     <color name="universal_white">#FFFFFF</color>
     <color name="universal_transparent">#00000000</color>
-    <color name="ColorPrimary">#FF47884A</color>
+    <color name="ColorPrimary">#B22222</color>
     <color name="universal_item_text_color_black">#ff404040</color>
     <color name="universal_item_text_color_sub_black">#CCCCCC</color>
     <color name="universal_under_line_color_black">#ff505050</color>

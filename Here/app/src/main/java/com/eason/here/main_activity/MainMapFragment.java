@@ -119,7 +119,7 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
     public void onResume() {
         super.onResume();
         mapView.onResume();
-        if (LocationInfo.getLat()!=null||LocationInfo.getLon()!=null){
+        if (LocationInfo.getLat()!=null||LocationInfo.getLon()!=null||MainActivity.isNeedRefreshPost()){
             getPost();
         }
     }
@@ -193,7 +193,7 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
         // 自定义系统定位小蓝点
         MyLocationStyle myLocationStyle = new MyLocationStyle();
         myLocationStyle.myLocationIcon(BitmapDescriptorFactory
-                .fromResource(R.drawable.location_marker));// 设置小蓝点的图标
+                .fromResource(R.drawable.ic_location_on_18pt)).anchor(0.5f, 0.5f);// 设置小蓝点的图标
         myLocationStyle.strokeColor(Color.TRANSPARENT);// 设置圆形的边框颜色
         myLocationStyle.radiusFillColor(Color.argb(0, 0, 0, 0));// 设置圆形的填充颜色
 //        myLocationStyle.anchor(int,int)//设置小蓝点的锚点
@@ -228,7 +228,8 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
             //添加用户覆盖物
             LatLng postCurrentLatLng = new LatLng(post.getLatitude(), post.getLongitude());
             myMarkOption.anchor(0.5f, 0.5f).
-                    position(postCurrentLatLng).title(post.getUsername()).snippet(post.getTag()+"@@"+post.address+"@@"+post.getTime()).draggable(false);
+                    position(postCurrentLatLng).title(post.getUsername()).snippet(post.getTag()+"@@"+post.address+"@@"+post.getTime()).
+                    draggable(false).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_ic));
             myMark = aMap.addMarker(myMarkOption);
 
         } else {
@@ -283,6 +284,7 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
 
             if (isFirstGetPost) {
                 getPost();
+                MainActivity.isNeedRefreshPost();
                 isFirstGetPost = false;
             }
         }

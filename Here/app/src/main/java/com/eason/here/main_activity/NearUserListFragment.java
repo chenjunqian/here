@@ -60,6 +60,7 @@ public class NearUserListFragment extends BaseFragment {
         listView.setAdapter(new PostListViewAdapter(getActivity(),MainActivity.postListItem));
     }
 
+
     private class PostListViewAdapter extends BaseAdapter{
 
         private List<Post> postList;

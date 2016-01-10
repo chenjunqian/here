@@ -14,7 +14,7 @@
         android:layout_centerInParent="true"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:background="@color/universal_title_background_green"
+        android:background="@color/universal_title_background_red"
         android:orientation="vertical">
 
         <TextView

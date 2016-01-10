@@ -26,7 +26,7 @@
         android:layout_marginTop="5dp"
         android:layout_toRightOf="@+id/near_item_avatar"
         android:text="nickname"
-        android:textColor="@color/universal_title_background_green" />
+        android:textColor="@color/universal_title_background_red" />
 
     <TextView
         android:id="@+id/near_item_post_tag_text_view"
@@ -64,8 +64,8 @@
 
         <ImageView
             android:id="@+id/near_item_position_image_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="3dp"

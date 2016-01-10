@@ -39,7 +39,17 @@ public class MainActivity extends ActionBarActivity {
     private final int CHANGE_TOOL_BAR_TITLE_MAIN = 0x1;
     private final int CHANGE_TOOL_BAR_TITLE_SETTING = 0X2;
 
+    private static long REFRESH_POST_DATA_TIME = 0;
+
+    /**
+     * 判断toolbar是否要显示刷新按键
+     */
     private boolean isShowRefreshView = true;
+
+    /**
+     * 标记当前显示的是哪个fragment
+     */
+    public static int FRAGMENT_TAG = 0;
 
     public static List<Post> postListItem;
 
@@ -211,6 +221,8 @@ public class MainActivity extends ActionBarActivity {
                 transaction.replace(R.id.main_fragment_frame_layout, mainMapFragment);
                 msg.what = CHANGE_TOOL_BAR_TITLE_MAIN;
                 isShowRefreshView = true;
+                FRAGMENT_TAG = IntentUtil.MAIN_MAP_FRAGMENT;
+                isNeedRefreshPost();
                 handler.sendEmptyMessage(msg.what);
                 break;
 
@@ -223,6 +235,7 @@ public class MainActivity extends ActionBarActivity {
                 transaction.replace(R.id.main_fragment_frame_layout, settingFragment);
                 msg.what = CHANGE_TOOL_BAR_TITLE_SETTING;
                 isShowRefreshView = false;
+                FRAGMENT_TAG = IntentUtil.PROFLIE_FRAGMENT;
                 handler.sendEmptyMessage(msg.what);
                 break;
 
@@ -232,7 +245,7 @@ public class MainActivity extends ActionBarActivity {
                     nearUserListFragment = new NearUserListFragment();
                 }
                 transaction.replace(R.id.main_fragment_frame_layout, nearUserListFragment);
-
+                FRAGMENT_TAG = IntentUtil.NEAR_USER_FRAGMENT;
                 isShowRefreshView = false;
                 break;
 
@@ -247,11 +260,26 @@ public class MainActivity extends ActionBarActivity {
                     myPostFragment = new MyPostFragment();
                 }
                 transaction.replace(R.id.main_fragment_frame_layout, myPostFragment);
+                FRAGMENT_TAG = IntentUtil.MY_POST_FRAGMENT;
                 break;
         }
 
         drawerLayout.closeDrawers();//点击Item后关闭Drawerlayout
         transaction.commit();
+    }
+
+    /**
+     * 判断是否需要刷新数据，如果超过一分钟就刷新数据
+     * @return
+     */
+    public static boolean isNeedRefreshPost(){
+        long currentTime = System.currentTimeMillis();
+        if (currentTime-REFRESH_POST_DATA_TIME>=60000){
+            REFRESH_POST_DATA_TIME = currentTime;
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
@@ -276,7 +304,11 @@ public class MainActivity extends ActionBarActivity {
     @Override
     public void onBackPressed() {
         long currentTime = System.currentTimeMillis();
-        if (currentTime - touchTime > 2000) {
+
+        if (FRAGMENT_TAG != IntentUtil.MAIN_MAP_FRAGMENT) {
+            setFragmentTransaction(IntentUtil.MAIN_MAP_FRAGMENT);
+            return;
+        } else if (currentTime - touchTime > 2000) {
             GreenToast.makeText(MainActivity.this, "再按一次返回键退出", Toast.LENGTH_SHORT).show();
             touchTime = System.currentTimeMillis();
             return;
