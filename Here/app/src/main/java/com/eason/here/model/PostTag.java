@@ -5,7 +5,7 @@ package com.eason.here.model;
  */
 public class PostTag {
 
-    private String tag;
+    private String tag = "";
 
     public String getTag() {
         return tag;

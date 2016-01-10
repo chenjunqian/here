@@ -5,16 +5,16 @@ package com.eason.here.model;
  */
 public class User {
 
-    private String username;
-    private String password;
-    private String gender;
-    private String avatar;
-    private String birthday;
-    private String nickname;
-    private String userid;
-    private String pushKey;
-    private String simpleProfile;
-    private String longProfile;
+    private String username = "";
+    private String password = "";
+    private String gender = "";
+    private String avatar = "";
+    private String birthday = "";
+    private String nickname = "";
+    private String userid = "";
+    private String pushKey = "";
+    private String simpleProfile = "";
+    private String longProfile = "";
 
     public String getLongProfile() {
         return longProfile;

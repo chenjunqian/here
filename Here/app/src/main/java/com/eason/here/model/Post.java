@@ -5,16 +5,16 @@ package com.eason.here.model;
  */
 public class Post {
 
-    public double longitude;
-    public double latitude;
-    public String city;
-    public String cityCode;
-    public String address;
-    public String username;
+    public double longitude = 0.0;
+    public double latitude = 0.0;
+    public String city= "";
+    public String cityCode= "";
+    public String address= "";
+    public String username= "";
     public int like;
-    public String postId;
-    public String tag;
-    public String time;
+    public String postId= "";
+    public String tag= "";
+    public String time= "";
 
     public String getTime() {
         return time;

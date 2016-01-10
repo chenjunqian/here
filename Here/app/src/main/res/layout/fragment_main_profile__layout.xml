@@ -126,6 +126,7 @@
         </RelativeLayout>
 
         <LinearLayout
+            android:id="@+id/profile_simple_profile_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
@@ -158,6 +159,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/profile_long_profile_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"

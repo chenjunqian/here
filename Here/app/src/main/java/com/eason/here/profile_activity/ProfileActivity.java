@@ -57,7 +57,7 @@ public class ProfileActivity extends BaseActivity {
         ageTextView = (TextView) findViewById(R.id.profile_activity_age_text_view);
         constellationTextView = (TextView) findViewById(R.id.profile_activity_constellation_text_view);
         simpleProfileTextView = (TextView) findViewById(R.id.simple_profile_text_view);
-        longProfileTextView = (TextView) findViewById(R.id.profile_activity_profile_text_view);
+        longProfileTextView = (TextView) findViewById(R.id.profile_activity_long_profile_text_view);
         historyPostListView = (ListView) findViewById(R.id.profile_activity_list_view);
         avatar = (CircleImageView) findViewById(R.id.profile_activity_avatar_circle_view);
 
@@ -91,7 +91,9 @@ public class ProfileActivity extends BaseActivity {
 
                     if (!CommonUtil.isEmptyString(user.getSimpleProfile())){
                         simpleProfileTextView.setText(user.getSimpleProfile());
-                    }else if (!CommonUtil.isEmptyString(user.getLongProfile())){
+                    }
+
+                    if (!CommonUtil.isEmptyString(user.getLongProfile())){
                         longProfileTextView.setText(user.getLongProfile());
                     }
 

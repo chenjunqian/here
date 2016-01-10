@@ -49,10 +49,14 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
     private RelativeLayout genderLayout;
     private RelativeLayout birthdayLayout;
     private RelativeLayout passwordLayout;
+    private LinearLayout simpleProfileLayout;
+    private LinearLayout longProfileLayout;
     private TextView nicknameTextView;
     private TextView genderTextView;
     private TextView birthdayTextView;
     private TextView accountTextView;
+    private TextView simpleProfileTextView;
+    private TextView longProfileTextView;
     private CircleImageView avatarImageView;
 
     private Bitmap avatarBitmap;
@@ -101,12 +105,18 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
         birthdayLayout.setOnClickListener(this);
         passwordLayout = (RelativeLayout) rootView.findViewById(R.id.profile_password_layout);
         passwordLayout.setOnClickListener(this);
+        simpleProfileLayout = (LinearLayout) rootView.findViewById(R.id.profile_simple_profile_layout);
+        simpleProfileLayout.setOnClickListener(this);
+        longProfileLayout = (LinearLayout) rootView.findViewById(R.id.profile_long_profile_layout);
+        longProfileLayout.setOnClickListener(this);
 
         nicknameTextView = (TextView) rootView.findViewById(R.id.profile_nickname_text_view);
         genderTextView = (TextView) rootView.findViewById(R.id.profile_gender_text_view);
         birthdayTextView = (TextView) rootView.findViewById(R.id.profile_birthday_text_view);
         accountTextView = (TextView) rootView.findViewById(R.id.profile_username_text_view);
         avatarImageView = (CircleImageView) rootView.findViewById(R.id.profile_avatar_image_view);
+        simpleProfileTextView = (TextView) rootView.findViewById(R.id.profile_simple_profile_text_view);
+        longProfileTextView = (TextView) rootView.findViewById(R.id.profile_long_profile_text_view);
         return rootView;
     }
 
@@ -132,6 +142,8 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
 
         birthdayTextView.setText(user.getBirthday());
         accountTextView.setText(user.getUsername());
+        simpleProfileTextView.setText(user.getSimpleProfile());
+        longProfileTextView.setText(user.getLongProfile());
         HttpRequest.loadImage(avatarImageView, HttpConfig.String_Url_Media + user.getAvatar());
     }
 
@@ -388,6 +400,95 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
                 });
 
                 changePasswordDialog.show();
+                break;
+
+            case R.id.profile_simple_profile_layout:
+
+                if (CommonUtil.isFastDoubleClick()) return;
+                final ModelDialog simpleProfileDialog = new ModelDialog(getActivity(), R.layout.modify_username_dialog_layout, R.style.Theme_dialog);
+                LinearLayout simpleProfileParentLayout = (LinearLayout) simpleProfileDialog.findViewById(R.id.modify_username_dialog_parent_layout);
+                Button simpleProfileOkBtn, simpleProfileCancelBtn;
+                final EditText simpleProfileEditTextView = (EditText) simpleProfileDialog.findViewById(R.id.modify_nickname_dialog_edit_text);
+                simpleProfileEditTextView.setHint("修改简介");
+                simpleProfileEditTextView.setText(LoginStatus.getUser().getSimpleProfile());
+                simpleProfileEditTextView.setSelection(LoginStatus.getUser().getSimpleProfile().length());//将光标设置在最后
+                simpleProfileOkBtn = (Button) simpleProfileDialog.findViewById(R.id.modify_username_ok_button);
+                simpleProfileCancelBtn = (Button) simpleProfileDialog.findViewById(R.id.modify_username_cancel_button);
+
+                simpleProfileOkBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (CommonUtil.isFastDoubleClick()) return;
+                        String simpleProfile = simpleProfileEditTextView.getText().toString();
+                        if (!CommonUtil.isEmptyString(simpleProfile) || !simpleProfile.equals(LoginStatus.getUser().getSimpleProfile())) {
+                            modifyProfile(LoginStatus.getUser().getPassword(), LoginStatus.getUser().getGender(),
+                                    LoginStatus.getUser().getBirthday(), LoginStatus.getUser().getNickname(), LoginStatus.getUser().getUserid(),
+                                    simpleProfile,LoginStatus.getUser().getLongProfile());
+                        }
+                        simpleProfileDialog.dismiss();
+                    }
+                });
+
+                simpleProfileCancelBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        simpleProfileDialog.dismiss();
+                    }
+                });
+
+                simpleProfileParentLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        simpleProfileDialog.dismiss();
+                    }
+                });
+
+                simpleProfileDialog.show();
+
+                break;
+
+            case R.id.profile_long_profile_layout:
+
+                if (CommonUtil.isFastDoubleClick()) return;
+                final ModelDialog longProfileDialog = new ModelDialog(getActivity(), R.layout.modify_username_dialog_layout, R.style.Theme_dialog);
+                LinearLayout longProfileParentLayout = (LinearLayout) longProfileDialog.findViewById(R.id.modify_username_dialog_parent_layout);
+                Button longProfileOkBtn, longProfileCancelBtn;
+                final EditText longProfileEditTextView = (EditText) longProfileDialog.findViewById(R.id.modify_nickname_dialog_edit_text);
+                longProfileEditTextView.setHint("修改简介");
+                longProfileEditTextView.setText(LoginStatus.getUser().getLongProfile());
+                longProfileEditTextView.setSelection(LoginStatus.getUser().getLongProfile().length());//将光标设置在最后
+                longProfileOkBtn = (Button) longProfileDialog.findViewById(R.id.modify_username_ok_button);
+                longProfileCancelBtn = (Button) longProfileDialog.findViewById(R.id.modify_username_cancel_button);
+
+                longProfileOkBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (CommonUtil.isFastDoubleClick()) return;
+                        String longProfile = longProfileEditTextView.getText().toString();
+                        if (!CommonUtil.isEmptyString(longProfile) || !longProfile.equals(LoginStatus.getUser().getLongProfile())) {
+                            modifyProfile(LoginStatus.getUser().getPassword(), LoginStatus.getUser().getGender(),
+                                    LoginStatus.getUser().getBirthday(), LoginStatus.getUser().getNickname(), LoginStatus.getUser().getUserid(),
+                                    LoginStatus.getUser().getSimpleProfile(), longProfile);
+                        }
+                        longProfileDialog.dismiss();
+                    }
+                });
+
+                longProfileCancelBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        longProfileDialog.dismiss();
+                    }
+                });
+
+                longProfileParentLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        longProfileDialog.dismiss();
+                    }
+                });
+
+                longProfileDialog.show();
                 break;
         }
     }

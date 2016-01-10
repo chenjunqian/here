@@ -125,31 +125,41 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/profile_activity_profile_text_view"
+            android:id="@+id/profile_activity_long_profile_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/profile_info_layout"
+            android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
             android:background="@color/universal_white"
             android:text="Ta太懒了，什么都没写" />
 
     </RelativeLayout>
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/profile_info_layout"
         android:layout_marginTop="10dp"
         android:background="@color/universal_white"
-        android:text="标记历史" />
+        android:layout_below="@+id/profile_info_layout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/universal_white"
+            android:text="爱爱历史记录" />
+
+    </RelativeLayout>
 
     <ListView
         android:id="@+id/profile_activity_list_view"
         android:layout_width="match_parent"
-        android:dividerHeight="4dp"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:dividerHeight="4dp">
 
     </ListView>
 </LinearLayout>
