@@ -25,8 +25,8 @@
 
     <!-- 发帖页面 -->
     <string name="publish_page_title">我在这儿</string>
-    <string name="publish_page_reminder_text">标记一下都在这儿干嘛呢</string>
-    <string name="publish_page_public_button_text">标记一下</string>
+    <string name="publish_page_reminder_text">稍微具体的描述一下</string>
+    <string name="publish_page_public_button_text">标记一发</string>
 
     <!--本地相册 -->
     <string name="album_group">相册</string>

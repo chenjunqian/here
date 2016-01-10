@@ -31,7 +31,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="3dp"
             android:layout_toRightOf="@+id/info_window_avatar"
-            android:textColor="@color/universal_title_background_red" />
+            android:textColor="@color/universal_item_text_color_black" />
     </RelativeLayout>
 
     <View
@@ -86,11 +86,11 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_location_on_18pt"
+            android:src="@drawable/ic_location_on_black_18dp"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true" />
 

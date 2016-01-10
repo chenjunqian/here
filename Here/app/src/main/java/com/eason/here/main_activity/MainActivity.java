@@ -305,7 +305,7 @@ public class MainActivity extends ActionBarActivity {
     public void onBackPressed() {
         long currentTime = System.currentTimeMillis();
 
-        if (FRAGMENT_TAG != IntentUtil.MAIN_MAP_FRAGMENT) {
+        if (FRAGMENT_TAG != IntentUtil.MAIN_MAP_FRAGMENT) {//在不是地图fragment的时候按返回键回到地图fragment
             setFragmentTransaction(IntentUtil.MAIN_MAP_FRAGMENT);
             return;
         } else if (currentTime - touchTime > 2000) {
