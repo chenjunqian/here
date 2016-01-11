@@ -18,7 +18,7 @@
             android:background="@drawable/layout_background_selector"
             android:clickable="true">
 
-            <com.eason.here.util.WidgetUtil.CircleImageView
+            <com.eason.marker.util.WidgetUtil.CircleImageView
                 android:id="@+id/profile_avatar_image_view"
                 android:layout_width="70dp"
                 android:layout_height="70dp"

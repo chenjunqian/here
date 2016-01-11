@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.eason.here">
+    package="com.eason.marker">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -25,7 +25,7 @@
             android:value="bc23383ffa4aebee0e8a6f03c3eb123c" />
 
         <activity
-            android:name=".SplashActivity"
+            android:name="com.eason.marker.SplashActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
@@ -37,27 +37,27 @@
         </activity>
 
         <activity
-            android:name=".main_activity.MainActivity"
+            android:name="com.eason.marker.main_activity.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
         </activity>
 
         <activity
-            android:name=".login_register.LoginActivity"
+            android:name="com.eason.marker.login_register.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">>
 
         </activity>
         <activity
-            android:name=".login_register.RegisterActivity"
+            android:name="com.eason.marker.login_register.RegisterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">>
 
         </activity>
 
         <activity
-            android:name=".publish_location_activity.PublishActivity"
+            android:name="com.eason.marker.publish_location_activity.PublishActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|stateVisible|adjustPan"
             android:theme="@style/AppTheme">>
@@ -65,28 +65,28 @@
         </activity>
 
         <activity
-            android:name=".util.ImageScan.ImageScanMainActivity"
+            android:name="com.eason.marker.util.ImageScan.ImageScanMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">>
 
         </activity>
 
         <activity
-            android:name=".util.ImageScan.ShowImageActivity"
+            android:name="com.eason.marker.util.ImageScan.ShowImageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">>
 
         </activity>
 
         <activity
-            android:name=".profile_activity.ProfileActivity"
+            android:name="com.eason.marker.profile_activity.ProfileActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">>
 
         </activity>
 
         <activity
-            android:name=".about_us_activity.AboutUsActivity"
+            android:name="com.eason.marker.about_us_activity.AboutUsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">>
 

@@ -11,7 +11,7 @@
         android:background="@drawable/bg_drawer_layout_info"
         android:layout_height="150dp">
 
-        <com.eason.here.util.WidgetUtil.CircleImageView
+        <com.eason.marker.util.WidgetUtil.CircleImageView
             android:id="@+id/left_menu_avatar_image_view"
             android:layout_width="70dp"
             android:layout_height="70dp"
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/main_page_tag_image_view"
-            android:text="首页地图"
+            android:text="@string/main_map_page"
             android:textColor="@color/universal_item_text_color_black"
             android:textSize="15sp" />
     </RelativeLayout>
@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/user_list_image_view"
-            android:text="列表显示"
+            android:text="@string/near_list_page_title"
             android:textColor="@color/universal_item_text_color_black"
             android:textSize="15sp" />
     </RelativeLayout>
@@ -89,7 +89,7 @@
             android:layout_width="35dp"
             android:layout_height="20dp"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/ic_view_list"
+            android:src="@drawable/ic_history_black_18dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp" />
 
@@ -99,7 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/my_post_list_image_view"
-            android:text="我的Here"
+            android:text="@string/my_history_page_title"
             android:textColor="@color/universal_item_text_color_black"
             android:textSize="15sp" />
     </RelativeLayout>

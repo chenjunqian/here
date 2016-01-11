@@ -1,8 +1,12 @@
 <resources>
-    <string name="app_name">ImHere</string>
+    <string name="app_name">Love Marker</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">setting</string>
     <string name="action_about">关于</string>
+    <string name="main_map_page">首页</string>
+    <string name="my_profile_page_title">我的资料</string>
+    <string name="my_history_page_title">个人</string>
+    <string name="near_list_page_title">周边</string>
 
     <!-- 注册页面-->
     <string name="username">用户名</string>

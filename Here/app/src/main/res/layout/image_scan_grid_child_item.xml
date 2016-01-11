@@ -5,7 +5,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content" >
 
-    <com.eason.here.util.ImageScan.MyImageView
+    <com.eason.marker.util.ImageScan.MyImageView
         android:id="@+id/child_image"
         android:layout_width="fill_parent"
         android:layout_height="100dip"

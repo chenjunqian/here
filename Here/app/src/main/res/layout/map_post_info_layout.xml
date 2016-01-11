@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@color/universal_white">
 
-        <com.eason.here.util.WidgetUtil.CircleImageView
+        <com.eason.marker.util.WidgetUtil.CircleImageView
             android:id="@+id/info_window_avatar"
             android:layout_width="30dp"
             android:layout_height="30dp"
