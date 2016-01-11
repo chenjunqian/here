@@ -10,5 +10,7 @@ There are some screenshot here,and now there is only Chinese version.
 
 ![image](https://github.com/chenjunqian/here/blob/master/readme-image/Screenshot_2016-01-11-23-03-16.png)
 
+![image](https://github.com/chenjunqian/here/blob/master/readme-image/Screenshot_2016-01-11-23-20-04.png)
+
 ![image](https://github.com/chenjunqian/here/blob/master/readme-image/Screenshot_2016-01-11-23-02-45.png)
 
