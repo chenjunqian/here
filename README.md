@@ -1,2 +1,5 @@
-# here
-Here is an app that user share what they did at somewhere
+# LoveMarker
+
+LoveMarker is an app that user share where they have sex at somewhere and satisfy the voyeurism.
+
+
