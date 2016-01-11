@@ -222,7 +222,6 @@ public class MainActivity extends ActionBarActivity {
                 msg.what = CHANGE_TOOL_BAR_TITLE_MAIN;
                 isShowRefreshView = true;
                 FRAGMENT_TAG = IntentUtil.MAIN_MAP_FRAGMENT;
-                isNeedRefreshPost();
                 handler.sendEmptyMessage(msg.what);
                 break;
 
@@ -268,20 +267,6 @@ public class MainActivity extends ActionBarActivity {
         transaction.commit();
     }
 
-    /**
-     * 判断是否需要刷新数据，如果超过一分钟就刷新数据
-     * @return
-     */
-    public static boolean isNeedRefreshPost(){
-        long currentTime = System.currentTimeMillis();
-        if (currentTime-REFRESH_POST_DATA_TIME>=60000){
-            REFRESH_POST_DATA_TIME = currentTime;
-            return true;
-        }else{
-            return false;
-        }
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -290,11 +275,12 @@ public class MainActivity extends ActionBarActivity {
             return;
         }
 
+
         switch (requestCode) {
-            case IntentUtil.MAIN_TO_LOGIN_PAGE:
 
+            case IntentUtil.TO_PUBLISH_PAGE:
+                mainMapFragment.getPost();
                 break;
-
         }
 
     }

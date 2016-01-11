@@ -35,6 +35,7 @@ import com.eason.here.HttpUtil.HttpRequest;
 import com.eason.here.HttpUtil.HttpResponseHandler;
 import com.eason.here.R;
 import com.eason.here.model.ErroCode;
+import com.eason.here.model.IntentUtil;
 import com.eason.here.model.LocationInfo;
 import com.eason.here.model.LoginStatus;
 import com.eason.here.model.Post;
@@ -102,7 +103,7 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
                     GreenToast.makeText(getActivity(), "没有获取到您的位置信息", Toast.LENGTH_LONG).show();
                     return;
                 }
-                getActivity().startActivity(new Intent(getActivity(), PublishActivity.class));
+                getActivity().startActivityForResult(new Intent(getActivity(), PublishActivity.class), IntentUtil.TO_PUBLISH_PAGE);
             }
         });
 
@@ -119,9 +120,7 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
     public void onResume() {
         super.onResume();
         mapView.onResume();
-        if (LocationInfo.getLat()!=null||LocationInfo.getLon()!=null||MainActivity.isNeedRefreshPost()){
-            getPost();
-        }
+        setMarker();
     }
 
     @Override
@@ -166,16 +165,23 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
                     PostList postList = (PostList) this.result;
                     if (postList == null) return;
                     MainActivity.postListItem = postList.getPostList();
-                    for (int i = 0; i < MainActivity.postListItem.size(); i++) {
-                        Post post = MainActivity.postListItem.get(i);
-                        setMark(OTHER_MARK, post);
-//                        LogUtil.d(TAG,post.getTag());
-                    }
+                    setMarker();
                 }
             }
         };
 
         HttpRequest.getPost(LocationInfo.getLon(), LocationInfo.getLat(), LocationInfo.getCityName(), getPostHandler);
+    }
+
+    /**
+     * 在地图上添加标记
+     */
+    private void setMarker(){
+        if (MainActivity.postListItem==null)return;
+        for (int i = 0; i < MainActivity.postListItem.size(); i++) {
+            Post post = MainActivity.postListItem.get(i);
+            setMark(OTHER_MARK, post);
+        }
     }
 
     public void setUpMap() {
@@ -282,9 +288,8 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
             //设置缩放级别
             aMap.moveCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition(userCurrentLatLng, 18, 0, 30)));
 
-            if (isFirstGetPost) {
+            if (isFirstGetPost&&(LocationInfo.getLat() !=0.0||LocationInfo.getLon()!=0.0)) {
                 getPost();
-                MainActivity.isNeedRefreshPost();
                 isFirstGetPost = false;
             }
         }

@@ -52,4 +52,9 @@ public class IntentUtil {
      */
     public static final int MY_POST_FRAGMENT = 0x9;
 
+    /**
+     * 跳转到发帖也
+     */
+    public static final int TO_PUBLISH_PAGE = 0x12;
+
 }

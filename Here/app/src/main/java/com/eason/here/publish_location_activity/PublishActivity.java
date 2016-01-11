@@ -57,6 +57,7 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
                     break;
                 case POST_SUCCESS:
                     GreenToast.makeText(PublishActivity.this, "标记成功", Toast.LENGTH_SHORT).show();
+                    PublishActivity.this.setResult(RESULT_OK);
                     PublishActivity.this.finish();
                     break;
                 case POST_FAIL:
@@ -169,7 +170,6 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
                 }
 
                 break;
-
 
         }
 
