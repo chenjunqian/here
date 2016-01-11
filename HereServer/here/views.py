@@ -38,11 +38,14 @@ def login(request):
 			resultData['gender'] = user[0][3]
 			resultData['pushKey'] = user[0][4]
 			resultData['birthday'] = user[0][5]
+
 			if user[0][6]:
 				resultData['avatar'] = user[0][6]
 			else:
 				resultData['avatar'] = ''
 			resultData['nickname'] = user[0][7]
+			resultData['longProfile'] = user[0][8]
+			resultData['simpleProfile'] = user[0][9]
 			dict['resultData'] = resultData
 		else:
 			dict['errorMessage'] = "no_such_user_or_password_is_invalid"
@@ -186,16 +189,18 @@ def modifyUserInfo(request):
 		if password and gender and birthday and nickname:
 			cursor = connection.cursor()
 			query = "update here_user set password = %s,gender = %s,birthday = %s,nickname = %s,longProfile= %s,simpleProfile = %s where id = %s"
-			value = [password,gender,birthday,nickname,userid,longProfile,simpleProfile]
+			value = [password,gender,birthday,nickname,longProfile,simpleProfile,userid]
 			cursor.execute(query,value)
 			# 返回用户信息
-			query = 'select * from here_user where id = %s'
-			value = [userid]
-			cursor.execute(query,value)
-			user = cursor.fetchall()
+			queryRes = 'select * from here_user where id = %s'
+			valueRes = [userid]
+			ursorRes = connection.cursor()
+			ursorRes.execute(queryRes,valueRes)
+			user = ursorRes.fetchall()
 			if user:
 				dict['errorMessage'] = "modify_user_info_success"
 				dict['status'] = "0"
+				resultData['userid'] = userid
 				resultData['username'] = user[0][1]
 				resultData['password'] = user[0][2]
 				resultData['gender'] = user[0][3]
