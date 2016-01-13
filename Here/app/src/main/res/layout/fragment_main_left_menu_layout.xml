@@ -78,7 +78,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/my_post_list_item_layout"
+        android:id="@+id/current_post_list_item_layout"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@drawable/layout_background_selector"
@@ -99,7 +99,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/my_post_list_image_view"
-            android:text="@string/my_history_page_title"
+            android:text="@string/current_list_page_title"
             android:textColor="@color/universal_item_text_color_black"
             android:textSize="15sp" />
     </RelativeLayout>

@@ -34,7 +34,7 @@ public class MainActivity extends ActionBarActivity {
     private MainMapFragment mainMapFragment;
     private MainProfileFragment settingFragment;
     private NearUserListFragment nearUserListFragment;
-    private MyPostFragment myPostFragment;
+    private CurrentMarkerListFragment currentPostFragment;
 
     private static final int CHANGE_TOOL_BAR_TITLE_MAIN = 0x1;
     private static final int CHANGE_TOOL_BAR_TITLE_SETTING = 0X2;
@@ -78,7 +78,7 @@ public class MainActivity extends ActionBarActivity {
                     break;
                 case CHANGE_TOOL_BAR_TITLE_MINE:
                     //跳转时改变Toobar相应的标题
-                    toolbar.setTitle(R.string.my_history_page_title);
+                    toolbar.setTitle(R.string.current_list_page_title);
                     break;
                 case NONE_VALID_POST:
                     GreenToast.makeText(MainActivity.this, "附近还没人标记过哦，还不先码一个", Toast.LENGTH_LONG).show();
@@ -202,7 +202,7 @@ public class MainActivity extends ActionBarActivity {
         mainMapFragment = new MainMapFragment();
         settingFragment = new MainProfileFragment();
         nearUserListFragment = new NearUserListFragment();
-        myPostFragment = new MyPostFragment();
+        currentPostFragment = new CurrentMarkerListFragment();
         transaction.replace(R.id.main_fragment_frame_layout, mainMapFragment);
         transaction.commit();
     }
@@ -265,14 +265,15 @@ public class MainActivity extends ActionBarActivity {
                  */
                 break;
 
-            case IntentUtil.MY_POST_FRAGMENT:
-                if (myPostFragment == null) {
-                    myPostFragment = new MyPostFragment();
+            case IntentUtil.CURRENT_POST_FRAGMENT:
+                if (currentPostFragment == null) {
+                    currentPostFragment = new CurrentMarkerListFragment();
                 }
-                transaction.replace(R.id.main_fragment_frame_layout, myPostFragment);
-                FRAGMENT_TAG = IntentUtil.MY_POST_FRAGMENT;
+                transaction.replace(R.id.main_fragment_frame_layout, currentPostFragment);
+                FRAGMENT_TAG = IntentUtil.CURRENT_POST_FRAGMENT;
                 handler.sendEmptyMessage(msg.what);
                 msg.what = CHANGE_TOOL_BAR_TITLE_MINE;
+                handler.sendEmptyMessage(msg.what);
                 break;
         }
 

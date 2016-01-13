@@ -40,4 +40,7 @@ public class HttpConfig {
 
     //根据用户名获取用户帖子
     public static final String String_Url_Get_Post_By_Username = Url_Domain + "get_post_by_username/";
+
+    //根据时间获取用户帖子
+    public static final String String_Url_Get_Post_By_Time = Url_Domain + "get_current_post/";
 }

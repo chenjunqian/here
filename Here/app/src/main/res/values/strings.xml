@@ -5,7 +5,7 @@
     <string name="action_about">关于</string>
     <string name="main_map_page">首页</string>
     <string name="my_profile_page_title">我的资料</string>
-    <string name="my_history_page_title">个人</string>
+    <string name="current_list_page_title">此刻</string>
     <string name="near_list_page_title">周边</string>
 
     <!-- 注册页面-->
@@ -27,10 +27,21 @@
     <string name="register_birthday_title">您的生日</string>
     <string name="register_birthday_text">出生日期</string>
 
+    <!-- 获取最近帖子页面-->
+    <string name="current_list_page_time_status_title">最近一小时爱的标记</string>
+    <string name="current_list_page_number_status_title">最近一小时还没爱的标记，看看最近的标记吧</string>
+
     <!-- 发帖页面 -->
     <string name="publish_page_title">我在这儿</string>
     <string name="publish_page_reminder_text">稍微具体的描述一下</string>
     <string name="publish_page_public_button_text">标记一发</string>
+
+    <!-- 他人资料页面-->
+    <string name="profile_activity_header_title">爱爱标记</string>
+    <string name="profile_activity_simple_profile">还没写简介呢</string>
+    <string name="profile_activity_gender">性别</string>
+    <string name="profile_activity_age">年龄</string>
+    <string name="profile_activity_long_profile">Ta太懒了，什么都没写</string>
 
     <!--本地相册 -->
     <string name="album_group">相册</string>

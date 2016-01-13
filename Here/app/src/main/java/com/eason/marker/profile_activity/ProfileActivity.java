@@ -12,10 +12,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eason.marker.BaseActivity;
+import com.eason.marker.R;
 import com.eason.marker.http_util.HttpConfig;
 import com.eason.marker.http_util.HttpRequest;
 import com.eason.marker.http_util.HttpResponseHandler;
-import com.eason.marker.R;
 import com.eason.marker.model.Constellation;
 import com.eason.marker.model.ErroCode;
 import com.eason.marker.model.Post;
@@ -26,6 +26,8 @@ import com.eason.marker.util.WidgetUtil.CircleImageView;
 import com.eason.marker.util.WidgetUtil.GreenToast;
 import com.eason.marker.util.WidgetUtil.ImageViewDialog;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -116,10 +118,23 @@ public class ProfileActivity extends BaseActivity {
             public void getResult() {
                 if (resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT && resultVO.getResultData() != null) {
                     PostList postList = (PostList) this.result;
-                    historyPostListView.setAdapter(new ListViewAdapter(ProfileActivity.this, postList.getPostList()));
+                    List<Post> postListItem = postList.getPostList();
+                    Collections.sort(postListItem, new Comparator<Post>() {
+                        @Override
+                        public int compare(Post lhs, Post rhs) {
+                            return rhs.getTime().compareTo(lhs.getTime());
+                        }
+
+                        @Override
+                        public boolean equals(Object object) {
+                            return false;
+                        }
+                    });
+
+                    historyPostListView.setAdapter(new ListViewAdapter(ProfileActivity.this, postListItem));
                 } else {
                     GreenToast.makeText(ProfileActivity.this, "获取用户信息失败啦", Toast.LENGTH_SHORT).show();
-                    ProfileActivity.this.fileList();
+                    ProfileActivity.this.finish();
                 }
             }
         });

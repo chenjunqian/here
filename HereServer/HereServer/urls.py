@@ -32,5 +32,6 @@ urlpatterns = patterns('',
     url(r'^get_user_info_by_username/',views.getUserInfoByUsername,name='getUserInfoByUsername'),
     url(r'^modify_user_info/',views.modifyUserInfo,name='modifyUserInfo'),
     url(r'^get_post_by_username/',views.getPostByUsername,name='getPostByUsername'),
+    url(r'^get_current_post/',views.getCurrentPost,name='getCurrentPost'),
     url(r'^admin/', include(admin.site.urls)),
 )

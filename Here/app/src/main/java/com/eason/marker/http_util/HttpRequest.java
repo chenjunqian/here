@@ -309,7 +309,18 @@ public class HttpRequest {
      */
     public static void getPosyByUsername(String username,HttpResponseHandler httpResponseHandler){
         Map<String,String> map = new HashMap<String,String>();
-        map.put("username",username);
+        map.put("username", username);
         baseHttpPostRequest(HttpConfig.String_Url_Get_Post_By_Username, map, httpResponseHandler, PostList.class);
+    }
+
+    /**
+     * 根据时间获取帖子
+     * @param time
+     * @param httpResponseHandler
+     */
+    public static void getpostByTime(String time,HttpResponseHandler httpResponseHandler){
+        Map<String,String> map = new HashMap<String,String>();
+        map.put("time",time);
+        baseHttpPostRequest(HttpConfig.String_Url_Get_Post_By_Time, map, httpResponseHandler, PostList.class);
     }
 }

@@ -41,7 +41,7 @@
             android:layout_marginLeft="@dimen/universal_20dp"
             android:layout_marginTop="@dimen/universal_20dp"
             android:layout_toRightOf="@+id/profile_activity_avatar_circle_view"
-            android:text="还没写简介呢"
+            android:text="@string/profile_activity_simple_profile"
             android:textColor="@color/universal_item_text_color_sub_black" />
 
         <LinearLayout
@@ -59,7 +59,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:gravity="left"
-                android:text="性别"
+                android:text="@string/profile_activity_gender"
                 android:textColor="@color/universal_grey_twelve" />
 
             <TextView
@@ -78,7 +78,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:text="星座"
+                android:text="@string/profile_activity_age"
                 android:textColor="@color/universal_grey_twelve" />
 
         </LinearLayout>
@@ -133,29 +133,12 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:background="@color/universal_white"
-            android:text="Ta太懒了，什么都没写" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@color/universal_white"
-        android:layout_below="@+id/profile_info_layout">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/universal_white"
-            android:text="爱爱历史记录" />
+            android:text="@string/profile_activity_long_profile" />
 
     </RelativeLayout>
 
     <ListView
+        android:layout_marginTop="10dp"
         android:id="@+id/profile_activity_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

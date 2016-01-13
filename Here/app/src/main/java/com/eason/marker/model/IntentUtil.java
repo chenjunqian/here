@@ -50,7 +50,7 @@ public class IntentUtil {
     /**
      * 跳转到我的帖子的列表
      */
-    public static final int MY_POST_FRAGMENT = 0x9;
+    public static final int CURRENT_POST_FRAGMENT = 0x9;
 
     /**
      * 跳转到发帖也

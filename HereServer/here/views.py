@@ -406,14 +406,8 @@ def getUserInfoByUsername(request):
 		json = simplejson.dumps(dict)
 		return HttpResponse(json)
 	else:
-		# json  = simplejson.dumps(dict)
-		# return HttpResponse("POST failed")
-		tf = GetUserInfo()
-		return render_to_response('test-get-post-by-location.html',{'uf':tf})
-
-# 测试使用
-class GetPostByUsername(forms.Form):
-    username = forms.CharField()
+		json  = simplejson.dumps(dict)
+		return HttpResponse("POST failed")
 
 def getPostByUsername(request):
 	dict = {}
@@ -449,9 +443,80 @@ def getPostByUsername(request):
 		json = simplejson.dumps(dict)
 		return HttpResponse(json)
 	else:
+		json  = simplejson.dumps(dict)
+		return HttpResponse("POST failed")
+		# tf = GetPostByUsername()
+		# return render_to_response('test-get-post-by-location.html',{'uf':tf})
+
+# 测试使用
+class GetPostTest(forms.Form):
+    time = forms.CharField()
+
+# 根据时间获取前一小时的帖子
+def getCurrentPost(request):
+	dict = {}
+	resultData = {}
+	if request.method == 'POST':
+		time = request.POST.get('time')
+		targetTime = int(time) - 60*60*1000
+		cursor = connection.cursor()
+		query = "select * from here_post where time >= %s limit 0,100"
+		cursor.execute(query,[targetTime])
+		res = cursor.fetchall()
+		if res:
+			resultData['postList'] = []
+			for json_result in res:
+				jsonMetaResultData = {}
+				jsonMetaResultData['postId'] = json_result[0]
+				jsonMetaResultData['longitude'] = json_result[1]
+				jsonMetaResultData['latitude'] = json_result[2]
+				jsonMetaResultData['city'] = json_result[3]
+				jsonMetaResultData['address']  = json_result[4]
+				jsonMetaResultData['like'] = json_result[5]
+				jsonMetaResultData['tag'] = json_result[6]
+				jsonMetaResultData['cityCode'] = json_result[7]
+				jsonMetaResultData['username'] = json_result[8]
+				jsonMetaResultData['time'] = json_result[9]
+				resultData['postList'].append(jsonMetaResultData)
+			
+			dict['resultData'] = resultData
+			dict['errorMessage'] = "get_post_success"
+			dict['status'] = "0"
+	
+		else :
+			# 如果最近一小时没有帖子，则选取最后100条数据
+			otherCursor = connection.cursor()
+			otherQuery = "select * from here_post order by id desc limit 100"
+			otherCursor.execute(otherQuery)
+			otherRes = otherCursor.fetchall()
+			if otherRes:
+				resultData['postList'] = []
+				for json_result in otherRes:
+					jsonMetaResultData = {}
+					jsonMetaResultData['postId'] = json_result[0]
+					jsonMetaResultData['longitude'] = json_result[1]
+					jsonMetaResultData['latitude'] = json_result[2]
+					jsonMetaResultData['city'] = json_result[3]
+					jsonMetaResultData['address']  = json_result[4]
+					jsonMetaResultData['like'] = json_result[5]
+					jsonMetaResultData['tag'] = json_result[6]
+					jsonMetaResultData['cityCode'] = json_result[7]
+					jsonMetaResultData['username'] = json_result[8]
+					jsonMetaResultData['time'] = json_result[9]
+					resultData['postList'].append(jsonMetaResultData)
+				
+				dict['resultData'] = resultData
+				dict['errorMessage'] = "get_last_100_post_success"
+				dict['status'] = "0"
+			else :
+				dict['errorMessage'] = "none_post"
+				dict['status'] = "8001"
+		json = simplejson.dumps(dict)
+		return HttpResponse(json)
+	else:
 		# json  = simplejson.dumps(dict)
 		# return HttpResponse("POST failed")
-		tf = GetPostByUsername()
+		tf = GetPostTest()
 		return render_to_response('test-get-post-by-location.html',{'uf':tf})
 
 def plusPostLike(request):

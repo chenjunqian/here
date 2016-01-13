@@ -28,7 +28,7 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
     private RelativeLayout mainTagLayout;
     private RelativeLayout userListLayout;
     private RelativeLayout loginLayout;
-    private RelativeLayout myHereLayout;
+    private RelativeLayout currentPostLayout;
     private CircleImageView circleImageView;
 
     private TextView loginTextView;
@@ -41,7 +41,7 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
         userListLayout = (RelativeLayout) root.findViewById(R.id.user_list_item_layout);
         loginLayout = (RelativeLayout) root.findViewById(R.id.login_item_layout);
         userProfileLayout = (RelativeLayout)root.findViewById(R.id.left_menu_profile_layout);
-        myHereLayout = (RelativeLayout)root.findViewById(R.id.my_post_list_item_layout);
+        currentPostLayout = (RelativeLayout)root.findViewById(R.id.current_post_list_item_layout);
 
         loginTextView = (TextView) root.findViewById(R.id.login_text_view);
         circleImageView = (CircleImageView) userProfileLayout.findViewById(R.id.left_menu_avatar_image_view);
@@ -50,7 +50,7 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
         userListLayout.setOnClickListener(this);
         loginLayout.setOnClickListener(this);
         userProfileLayout.setOnClickListener(this);
-        myHereLayout.setOnClickListener(this);
+        currentPostLayout.setOnClickListener(this);
         return root;
     }
 
@@ -93,8 +93,8 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
                 Intent intent=new Intent(this.getActivity(),LoginActivity.class);
                 getActivity().startActivityForResult(intent, IntentUtil.MAIN_TO_LOGIN_PAGE);
                 break;
-            case R.id.my_post_list_item_layout:
-
+            case R.id.current_post_list_item_layout:
+                mainActivity.setFragmentTransaction(IntentUtil.CURRENT_POST_FRAGMENT);
                 break;
 
             case R.id.left_menu_profile_layout:
