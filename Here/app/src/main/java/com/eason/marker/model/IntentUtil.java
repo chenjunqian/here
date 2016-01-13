@@ -57,4 +57,14 @@ public class IntentUtil {
      */
     public static final int TO_PUBLISH_PAGE = 0x12;
 
+    /**
+     * 是否显示ProfileActivity的用户信息Layout
+     */
+    public static final String IS_SHOW_USER_INFO_LAYOUT_STRING = "IS_SHOW_USER_INFO_LAYOUT";
+
+    /**
+     * 是否显示ProfileActivity的用户信息Layout
+     */
+    public static final int IS_SHOW_USER_INFO_LAYOUT_INT = 0x13;
+
 }

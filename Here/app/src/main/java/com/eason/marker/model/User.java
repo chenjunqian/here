@@ -15,6 +15,15 @@ public class User {
     private String pushKey = "";
     private String simpleProfile = "";
     private String longProfile = "";
+    private String avatarThumb = "";
+
+    public String getAvatarThumb() {
+        return avatarThumb;
+    }
+
+    public void setAvatarThumb(String avatarThumb) {
+        this.avatarThumb = avatarThumb;
+    }
 
     public String getLongProfile() {
         return longProfile;

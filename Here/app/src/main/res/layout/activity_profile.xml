@@ -20,6 +20,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/profile_activity_user_info_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/universal_white">

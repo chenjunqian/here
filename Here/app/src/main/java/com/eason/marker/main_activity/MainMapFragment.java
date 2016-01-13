@@ -348,7 +348,7 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
      */
     private void renderInfoWindow(Marker marker, View view) {
         RelativeLayout infoWindowLayout = (RelativeLayout) view.findViewById(R.id.info_window_avatar_layout);
-        final CircleImageView avater = (CircleImageView) view.findViewById(R.id.info_window_avatar);
+        final CircleImageView avatar = (CircleImageView) view.findViewById(R.id.info_window_avatar);
         final TextView nickname = (TextView) view.findViewById(R.id.info_window_nickname);
         final TextView tagView = (TextView) view.findViewById(R.id.info_window_post_tag_text_view);
         final TextView addressView = (TextView) view.findViewById(R.id.info_window_post_location_address);
@@ -375,7 +375,7 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
                         urlAndTagList.add(urlAndTag[i]);
                     }
 
-                    HttpRequest.loadImage(avater, HttpConfig.String_Url_Media+user.getAvatar());
+                    HttpRequest.loadImage(avatar, HttpConfig.String_Url_Media+user.getAvatar());
 
                     tagView.setText(urlAndTagList.get(0));
                     addressView.setText(urlAndTagList.get(1));

@@ -43,6 +43,17 @@
     <string name="profile_activity_age">年龄</string>
     <string name="profile_activity_long_profile">Ta太懒了，什么都没写</string>
 
+    <!-- 个人简介页面-->
+    <string name="my_profile_fragment_change_avatar">修改头像</string>
+    <string name="my_profile_fragment_nickname">昵称</string>
+    <string name="my_profile_fragment_gender">性别</string>
+    <string name="my_profile_fragment_birthday">生日</string>
+    <string name="my_profile_fragment_simple_profile">一句话介绍自己</string>
+    <string name="my_profile_fragment_long_profile">具体的关于自己</string>
+    <string name="my_profile_fragment_username">账号</string>
+    <string name="my_profile_fragment_change_password">修改密码</string>
+    <string name="my_profile_fragment_my_post">我的标记</string>
+
     <!--本地相册 -->
     <string name="album_group">相册</string>
     <string name="album_child">本地相片</string>

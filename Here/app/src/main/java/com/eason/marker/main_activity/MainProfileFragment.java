@@ -28,6 +28,7 @@ import com.eason.marker.model.ErroCode;
 import com.eason.marker.model.IntentUtil;
 import com.eason.marker.model.LoginStatus;
 import com.eason.marker.model.User;
+import com.eason.marker.profile_activity.ProfileActivity;
 import com.eason.marker.util.CommonUtil;
 import com.eason.marker.util.ImageProcessParams;
 import com.eason.marker.util.ImageScan.ImageScanMainActivity;
@@ -49,6 +50,7 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
     private RelativeLayout genderLayout;
     private RelativeLayout birthdayLayout;
     private RelativeLayout passwordLayout;
+    private RelativeLayout myPostLayout;
     private LinearLayout simpleProfileLayout;
     private LinearLayout longProfileLayout;
     private TextView nicknameTextView;
@@ -58,6 +60,8 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
     private TextView simpleProfileTextView;
     private TextView longProfileTextView;
     private CircleImageView avatarImageView;
+
+    private User user;
 
     private Bitmap avatarBitmap;
 
@@ -109,6 +113,8 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
         simpleProfileLayout.setOnClickListener(this);
         longProfileLayout = (LinearLayout) rootView.findViewById(R.id.profile_long_profile_layout);
         longProfileLayout.setOnClickListener(this);
+        myPostLayout = (RelativeLayout) rootView.findViewById(R.id.profile_my_post_layout);
+        myPostLayout.setOnClickListener(this);
 
         nicknameTextView = (TextView) rootView.findViewById(R.id.profile_nickname_text_view);
         genderTextView = (TextView) rootView.findViewById(R.id.profile_gender_text_view);
@@ -132,7 +138,7 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
     private void initData() {
         if (!LoginStatus.getIsUserMode() || LoginStatus.getUser() == null) return;
 
-        User user = LoginStatus.getUser();
+        user = LoginStatus.getUser();
         nicknameTextView.setText(user.getNickname());
         if (user.getGender().equals("male")) {
             genderTextView.setText("男");
@@ -489,6 +495,16 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
                 });
 
                 longProfileDialog.show();
+                break;
+
+            case R.id.profile_my_post_layout:
+
+                if (user==null)return;
+                Intent intent = new Intent(getActivity(), ProfileActivity.class);
+                intent.putExtra("username",user.getUsername());
+                intent.putExtra(IntentUtil.IS_SHOW_USER_INFO_LAYOUT_STRING,IntentUtil.IS_SHOW_USER_INFO_LAYOUT_INT);
+                getActivity().startActivity(intent);
+
                 break;
         }
     }

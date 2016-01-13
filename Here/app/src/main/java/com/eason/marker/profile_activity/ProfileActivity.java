@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ import com.eason.marker.http_util.HttpRequest;
 import com.eason.marker.http_util.HttpResponseHandler;
 import com.eason.marker.model.Constellation;
 import com.eason.marker.model.ErroCode;
+import com.eason.marker.model.IntentUtil;
 import com.eason.marker.model.Post;
 import com.eason.marker.model.PostList;
 import com.eason.marker.model.User;
@@ -43,6 +45,7 @@ public class ProfileActivity extends BaseActivity {
     private TextView simpleProfileTextView;
     private TextView longProfileTextView;
     private ListView historyPostListView;
+    private RelativeLayout userInfoLayout;
 
     private User user;
 
@@ -62,6 +65,12 @@ public class ProfileActivity extends BaseActivity {
         longProfileTextView = (TextView) findViewById(R.id.profile_activity_long_profile_text_view);
         historyPostListView = (ListView) findViewById(R.id.profile_activity_list_view);
         avatar = (CircleImageView) findViewById(R.id.profile_activity_avatar_circle_view);
+        userInfoLayout = (RelativeLayout) findViewById(R.id.profile_activity_user_info_layout);
+
+        int status = getIntent().getIntExtra(IntentUtil.IS_SHOW_USER_INFO_LAYOUT_STRING,0);
+        if (status==IntentUtil.IS_SHOW_USER_INFO_LAYOUT_INT){
+            userInfoLayout.setVisibility(View.GONE);
+        }
 
         avatar.setOnClickListener(new View.OnClickListener() {
             @Override

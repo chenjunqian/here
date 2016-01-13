@@ -34,8 +34,28 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="20dp"
-                android:text="修改头像"
+                android:text="@string/my_profile_fragment_change_avatar"
                 android:textColor="@color/universal_item_text_color_sub_black" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/profile_my_post_layout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/layout_background_selector"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:text="@string/my_profile_fragment_my_post"
+                android:textColor="@color/universal_item_text_color_black" />
+
         </RelativeLayout>
 
         <RelativeLayout
@@ -53,7 +73,7 @@
                 android:layout_centerInParent="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
-                android:text="昵称"
+                android:text="@string/my_profile_fragment_nickname"
                 android:textColor="@color/universal_item_text_color_black" />
 
             <TextView
@@ -111,7 +131,7 @@
                 android:layout_centerInParent="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
-                android:text="生日"
+                android:text="@string/my_profile_fragment_birthday"
                 android:textColor="@color/universal_item_text_color_black" />
 
             <TextView
@@ -142,7 +162,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
-                android:text="一句话介绍自己"
+                android:text="@string/my_profile_fragment_simple_profile"
                 android:textColor="@color/universal_item_text_color_black" />
 
             <TextView
@@ -175,7 +195,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
-                android:text="具体的关于自己"
+                android:text="@string/my_profile_fragment_long_profile"
                 android:textColor="@color/universal_item_text_color_black" />
 
             <TextView
@@ -207,7 +227,7 @@
                 android:layout_centerInParent="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
-                android:text="账号"
+                android:text="@string/my_profile_fragment_username"
                 android:textColor="@color/universal_item_text_color_black" />
 
             <TextView
@@ -217,7 +237,6 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="20dp"
-                android:text="这里是账号"
                 android:textColor="@color/universal_item_text_color_sub_black" />
         </RelativeLayout>
 
@@ -236,7 +255,7 @@
                 android:layout_centerInParent="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
-                android:text="修改密码"
+                android:text="@string/my_profile_fragment_change_password"
                 android:textColor="@color/universal_item_text_color_black" />
 
 
