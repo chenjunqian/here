@@ -533,7 +533,7 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
                     .getStringExtra(ImageProcessParams.IMAGE_PATH_EXTRA_NAME);
             LogUtil.d(TAG, "imagePath : " + imagePath);
 
-            avatarBitmap = CommonUtil.loadBitmap(imagePath);
+            avatarBitmap = CommonUtil.loadBitmapAndCompress(imagePath);
 
             if (avatarBitmap == null) return;
 

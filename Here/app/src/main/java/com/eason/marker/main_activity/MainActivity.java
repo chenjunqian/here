@@ -65,7 +65,7 @@ public class MainActivity extends ActionBarActivity {
             switch (msg.what) {
                 case CHANGE_TOOL_BAR_TITLE_MAIN:
                     //跳转时改变Toobar相应的标题
-                    toolbar.setTitle(R.string.app_name);
+                    toolbar.setTitle(R.string.main_map_page);
 
                     break;
                 case CHANGE_TOOL_BAR_TITLE_SETTING:
@@ -104,7 +104,7 @@ public class MainActivity extends ActionBarActivity {
     private void initView(Bundle savedInstanceState) {
         toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
-        toolbar.setTitle(R.string.app_name);
+        toolbar.setTitle(R.string.main_map_page);
         toolbar.setTitleTextColor(getResources().getColor(R.color.universal_white));
         drawerLayout = (DrawerLayout) findViewById(R.id.main_drawer_layout);
 
@@ -133,7 +133,7 @@ public class MainActivity extends ActionBarActivity {
                 this,
                 drawerLayout,
                 toolbar,
-                R.string.app_name,
+                R.string.main_map_page,
                 R.string.action_settings) {
 
             @Override

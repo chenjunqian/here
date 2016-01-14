@@ -51,7 +51,7 @@ public class CircleImageView extends ImageView{
                     R.drawable.default_avatar));
         }
 
-//        Bitmap bitmap = tempBitmap.copy(Bitmap.Config.ARGB_8888, true);
+        Bitmap bitmap = tempBitmap.copy(Bitmap.Config.ARGB_8888, true);
 
         int w = getWidth();
         int h = getHeight();
