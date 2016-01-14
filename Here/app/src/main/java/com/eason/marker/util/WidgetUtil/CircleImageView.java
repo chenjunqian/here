@@ -50,12 +50,13 @@ public class CircleImageView extends ImageView{
             tempBitmap = CommonUtil.drawableToBitmap(getResources().getDrawable(
                     R.drawable.default_avatar));
         }
-        Bitmap bitmap = tempBitmap.copy(Bitmap.Config.ARGB_8888, true);
+
+//        Bitmap bitmap = tempBitmap.copy(Bitmap.Config.ARGB_8888, true);
 
         int w = getWidth();
         int h = getHeight();
 
-        Bitmap roundBitmap = getCroppedBitmap(bitmap, w > h ? h : w);
+        Bitmap roundBitmap = getCroppedBitmap(tempBitmap, w > h ? h : w);
         canvas.drawBitmap(roundBitmap, 0, 0, null);
     }
 
@@ -66,7 +67,7 @@ public class CircleImageView extends ImageView{
      * @param radius
      * @return
      */
-    public static Bitmap getCroppedBitmap(Bitmap bmp, int radius) {
+    private static Bitmap getCroppedBitmap(Bitmap bmp, int radius) {
         Bitmap targetBitmap;
 
         if (bmp.getWidth() != radius || bmp.getHeight() != radius) {

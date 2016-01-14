@@ -32,6 +32,7 @@ public class NearUserListFragment extends BaseFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        if (MainActivity.postListItem == null) return;
         Collections.sort(MainActivity.postListItem, new Comparator<Post>() {
             @Override
             public int compare(Post lhs, Post rhs) {
@@ -44,7 +45,7 @@ public class NearUserListFragment extends BaseFragment {
             }
         });
 
-        listView.setAdapter(new PostListViewAdapter(getActivity(),MainActivity.postListItem));
+        listView.setAdapter(new PostListViewAdapter(getActivity(), MainActivity.postListItem));
     }
 
 }

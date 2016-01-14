@@ -42,12 +42,17 @@ public class RegisterVerifyFragment extends BaseFragment {
             @Override
             public void getResult() {
                 if (this.resultVO==null){
-                    Toast.makeText(getActivity(), "网络发生了一些问题", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.net_work_invalid, Toast.LENGTH_SHORT).show();
                     return;
                 }else if (this.resultVO.getStatus()==0){
-                    Toast.makeText(getActivity(),"该账户已经注册",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),R.string.login_register_username_is_exist,Toast.LENGTH_SHORT).show();
                     return;
                 }else{
+
+                    if (RegisterActivity.password.length()<=6){//密码不得少于六位数
+                        Toast.makeText(getActivity(),R.string.login_register_input_valid_password,Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     RegisterActivity registerActivity = (RegisterActivity)getActivity();
                     registerActivity.setFragmentTransaction(IntentUtil.REGISTER_USER_INFO_PAGE);
                 }
@@ -68,11 +73,11 @@ public class RegisterVerifyFragment extends BaseFragment {
                 //检测用户输入格式是否正确
                 if (!CommonUtil.isEmail(RegisterActivity.userAccount)&&!CommonUtil.isMobileNO(RegisterActivity.userAccount)){
                     Toast.makeText(getActivity(),
-                            "请输入正确格式的手机号或者邮箱",Toast.LENGTH_SHORT).show();
+                            R.string.login_register_input_valid_username,Toast.LENGTH_SHORT).show();
                     return;
                 }else if (CommonUtil.isEmptyString(RegisterActivity.password)){
                     Toast.makeText(getActivity(),
-                            "请输入密码",Toast.LENGTH_SHORT).show();
+                            R.string.login_register_input_password,Toast.LENGTH_SHORT).show();
                     return;
                 }
 

@@ -84,7 +84,7 @@ public class RegisterActivity extends BaseActivity {
             @Override
             public void getResult() {
                 if (this.resultVO==null){
-                    Toast.makeText(RegisterActivity.this, "网络发生了一些问题", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, R.string.net_work_invalid, Toast.LENGTH_SHORT).show();
                     return;
                 }else if (this.resultVO.getStatus()==0){
                     Toast.makeText(RegisterActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
