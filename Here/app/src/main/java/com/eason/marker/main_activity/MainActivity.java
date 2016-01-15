@@ -1,5 +1,6 @@
 package com.eason.marker.main_activity;
 
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
@@ -205,6 +206,21 @@ public class MainActivity extends ActionBarActivity {
         currentPostFragment = new CurrentMarkerListFragment();
         transaction.replace(R.id.main_fragment_frame_layout, mainMapFragment);
         transaction.commit();
+    }
+
+    public Fragment getFragment(int type){
+        switch (type){
+            case IntentUtil.MAIN_MAP_FRAGMENT:
+                return mainMapFragment;
+            case IntentUtil.NEAR_USER_FRAGMENT:
+                return nearUserListFragment;
+            case IntentUtil.CURRENT_POST_FRAGMENT:
+                return currentPostFragment;
+            case IntentUtil.PROFLIE_FRAGMENT:
+                return settingFragment;
+        }
+
+        return null;
     }
 
     public Handler getHandler() {

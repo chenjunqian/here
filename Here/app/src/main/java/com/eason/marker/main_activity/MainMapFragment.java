@@ -176,7 +176,7 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
     /**
      * 在地图上添加标记
      */
-    private void setMarker(){
+    public void setMarker(){
         if (MainActivity.postListItem==null)return;
         for (int i = 0; i < MainActivity.postListItem.size(); i++) {
             Post post = MainActivity.postListItem.get(i);
