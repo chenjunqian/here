@@ -332,6 +332,7 @@ class GetLocation(forms.Form):
     longitude = forms.CharField()
     latitude = forms.CharField()
     city = forms.CharField()
+    index = forms.CharField()
 
 # 根据用户的地理经纬度，来获取他周围的定位信息
 def getLocationByLocation(request):
@@ -341,12 +342,14 @@ def getLocationByLocation(request):
 		longitude = request.POST.get('longitude')
 		latitude = request.POST.get('latitude')
 		city = request.POST.get('city')
+		index = request.POST.get('index')
+		targetIndex = int(index)
 		cur = connection.cursor()
 		# query = "select * from here_post where city like %s and longitude > %s and longitude < %s and latitude > %s and latitude < %s"
 		# cur.execute(query,[city,float(longitude)-0.05,float(longitude)+0.05,float(latitude)-0.5,float(latitude)+0.5])
 		# 暂时根据城市来获取帖子
-		query = "select * from here_post where city like %s"
-		cur.execute(query,[city])
+		query = "select * from here_post where city like %s limit %s,%s"
+		cur.execute(query,[city,targetIndex-20,targetIndex])
 		res = cur.fetchall()
 		if res:
 			resultData['postList'] = []

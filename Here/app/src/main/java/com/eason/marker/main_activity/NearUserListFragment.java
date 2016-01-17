@@ -6,6 +6,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ListView;
 
 import com.eason.marker.BaseFragment;
@@ -29,6 +30,9 @@ public class NearUserListFragment extends BaseFragment implements SwipeRefreshLa
 
     private ListView listView;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private static int LOAD_MORE_NUM = 20;
+    private static boolean IS_LOAD_MORE = false;
+    private MainMapFragment mainMapFragment;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,7 +47,30 @@ public class NearUserListFragment extends BaseFragment implements SwipeRefreshLa
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mainMapFragment = (MainMapFragment) ((MainActivity)getActivity()).getFragment(IntentUtil.MAIN_MAP_FRAGMENT);
+
         initData();
+
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                switch (scrollState) {
+                    case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:
+                        if (listView.getLastVisiblePosition() == (listView.getCount() - 1)) {
+                            LOAD_MORE_NUM = LOAD_MORE_NUM + 20;
+                            IS_LOAD_MORE = true;
+                            getPost(mainMapFragment, LOAD_MORE_NUM);
+                        }
+
+                        break;
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+            }
+        });
     }
 
     private void initData(){
@@ -65,12 +92,13 @@ public class NearUserListFragment extends BaseFragment implements SwipeRefreshLa
 
     @Override
     public void onRefresh() {
-        MainMapFragment mainMapFragment = (MainMapFragment) ((MainActivity)getActivity()).getFragment(IntentUtil.MAIN_MAP_FRAGMENT);
         if (mainMapFragment==null)return;
-        getPost(mainMapFragment);
+        LOAD_MORE_NUM = 20;
+        IS_LOAD_MORE = false;
+        getPost(mainMapFragment,LOAD_MORE_NUM);
     }
 
-    public void getPost(final MainMapFragment mainMapFragment) {
+    public void getPost(final MainMapFragment mainMapFragment,int index) {
 
         HttpResponseHandler getPostHandler = new HttpResponseHandler() {
             @Override
@@ -83,16 +111,22 @@ public class NearUserListFragment extends BaseFragment implements SwipeRefreshLa
                     mainActivity.getHandler().sendEmptyMessage(new Message().what = MainActivity.NONE_VALID_POST);
                 } else if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT) {
                     PostList postList = (PostList) this.result;
-                    if (postList == null) return;
-                    MainActivity.postListItem = postList.getPostList();
+                    if (postList == null) {
+                        return;
+                    }else if (IS_LOAD_MORE){
+                        MainActivity.postListItem.addAll(postList.getPostList());
+                        ((PostListViewAdapter)listView.getAdapter()).notifyDataSetChanged();
+                    }else{
+                        MainActivity.postListItem = postList.getPostList();
+                        initData();
+                    }
                     mainMapFragment.setMarker();
-                    initData();
                 }
 
                 swipeRefreshLayout.setRefreshing(false);
             }
         };
 
-        HttpRequest.getPost(LocationInfo.getLon(), LocationInfo.getLat(), LocationInfo.getCityName(), getPostHandler);
+        HttpRequest.getPost(LocationInfo.getLon(), LocationInfo.getLat(), LocationInfo.getCityName(),index, getPostHandler);
     }
 }

@@ -211,11 +211,12 @@ public class HttpRequest {
      * @param city
      * @param httpResponseHandler
      */
-    public static void getPost(double lon, double lat, String city, HttpResponseHandler httpResponseHandler) {
+    public static void getPost(double lon, double lat, String city,int index, HttpResponseHandler httpResponseHandler) {
         Map<String, String> map = new HashMap<String, String>();
         map.put("longitude", String.valueOf(lon));
         map.put("latitude", String.valueOf(lat));
         map.put("city", city);
+        map.put("index", String.valueOf(index));
         baseHttpPostRequest(HttpConfig.String_Url_Get_Post, map, httpResponseHandler, PostList.class);
     }
 

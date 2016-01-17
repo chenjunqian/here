@@ -170,7 +170,7 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
             }
         };
 
-        HttpRequest.getPost(LocationInfo.getLon(), LocationInfo.getLat(), LocationInfo.getCityName(), getPostHandler);
+        HttpRequest.getPost(LocationInfo.getLon(), LocationInfo.getLat(), LocationInfo.getCityName(),20, getPostHandler);
     }
 
     /**
