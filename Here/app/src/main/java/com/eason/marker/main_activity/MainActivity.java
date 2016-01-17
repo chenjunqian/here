@@ -45,8 +45,7 @@ public class MainActivity extends ActionBarActivity {
     public static final int NONE_VALID_POST = 0x3;
     private static final int CHANGE_TOOL_BAR_TITLE_NEAR = 0X4;
     private static final int CHANGE_TOOL_BAR_TITLE_MINE = 0X5;
-
-    private static long REFRESH_POST_DATA_TIME = 0;
+    public static final int NONE_VALID_MORE_POST = 0x6;
 
     /**
      * 判断toolbar是否要显示刷新按键
@@ -83,6 +82,9 @@ public class MainActivity extends ActionBarActivity {
                     break;
                 case NONE_VALID_POST:
                     GreenToast.makeText(MainActivity.this, "附近还没人标记过哦，还不先码一个", Toast.LENGTH_LONG).show();
+                    break;
+                case NONE_VALID_MORE_POST:
+                    GreenToast.makeText(MainActivity.this, "没有更多的标记啦", Toast.LENGTH_LONG).show();
                     break;
                 case ErroCode.ERROR_CODE_REQUEST_FORM_INVALID:
                     GreenToast.makeText(MainActivity.this, "获取附近的标记似乎除了点问题，但是又不知道是为什么。。。", Toast.LENGTH_LONG).show();

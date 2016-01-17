@@ -98,7 +98,7 @@ public class NearUserListFragment extends BaseFragment implements SwipeRefreshLa
         getPost(mainMapFragment,LOAD_MORE_NUM);
     }
 
-    public void getPost(final MainMapFragment mainMapFragment,int index) {
+    private void getPost(final MainMapFragment mainMapFragment,int index) {
 
         HttpResponseHandler getPostHandler = new HttpResponseHandler() {
             @Override
@@ -108,7 +108,11 @@ public class NearUserListFragment extends BaseFragment implements SwipeRefreshLa
                 if (this.resultVO == null) {
                     mainActivity.getHandler().sendEmptyMessage(new Message().what = ErroCode.ERROR_CODE_REQUEST_FORM_INVALID);
                 } else if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CLIENT_DATA_ERROR) {
-                    mainActivity.getHandler().sendEmptyMessage(new Message().what = MainActivity.NONE_VALID_POST);
+                    if (IS_LOAD_MORE){
+                        mainActivity.getHandler().sendEmptyMessage(new Message().what = MainActivity.NONE_VALID_MORE_POST);
+                    }else{
+                        mainActivity.getHandler().sendEmptyMessage(new Message().what = MainActivity.NONE_VALID_POST);
+                    }
                 } else if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT) {
                     PostList postList = (PostList) this.result;
                     if (postList == null) {
