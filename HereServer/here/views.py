@@ -7,6 +7,7 @@ from models import User
 from django.db import connection
 from django import forms
 from django.shortcuts import render,render_to_response
+import Image
 
 import sys,os
 reload(sys)
@@ -46,6 +47,7 @@ def login(request):
 			resultData['nickname'] = user[0][7]
 			resultData['longProfile'] = user[0][8]
 			resultData['simpleProfile'] = user[0][9]
+			resultData['avatarThumb'] = user[0][10]
 			dict['resultData'] = resultData
 		else:
 			dict['errorMessage'] = "no_such_user_or_password_is_invalid"
@@ -145,15 +147,21 @@ def uploadAvatar(request):
 	dict = {}
 	resultData = {}
 	if request.method == 'POST':
-		# username  = request.POST.get('username')
-		# avatar = request.FILES.get('file')
 		username  = request.POST.get('username')
 		headImg = request.FILES.get('file')
 		tf = TestForm(request.POST,request.FILES)
 		user = User.objects.get(username = username)
 		if tf.is_valid:
 			if headImg:
+				# headImgOrig = Image.open(headImg)
+				# 获得图像尺寸:
+				# origW,OrigH = headImgOrig.size
+				# if origW > 1500 or OrigH >1500 :
+					# headImgOrig.thumbnail((origW//2, OrigH//2))
 				user.avatar = headImg
+				# headImgThumb = headImgOrig
+				# headImgThumb.thumbnail((origW//4, OrigH//4))
+				# user.avatarThumb = headImgThumb
 				user.save()
 				dict['errorMessage'] = "UPDATE_AVATAR_SUCCESS"
 				dict['status'] = 0
@@ -167,11 +175,11 @@ def uploadAvatar(request):
 		json  = simplejson.dumps(dict)
 		return HttpResponse(json)
 	else:
-		dict['errorMessage'] = "POST_FAILED"
-		dict['status'] = 8001
-		return HttpResponse("POST failed")
-		# tf = TestForm()
-		# return render_to_response('test_upload_avatar.html',{'uf':tf})
+		# dict['errorMessage'] = "POST_FAILED"
+		# dict['status'] = 8001
+		# return HttpResponse("POST failed")
+		tf = TestForm()
+		return render_to_response('test_upload_avatar.html',{'uf':tf})
 
 # 修改用户信息
 def modifyUserInfo(request):
@@ -213,6 +221,7 @@ def modifyUserInfo(request):
 				resultData['nickname'] = user[0][7]
 				resultData['longProfile'] = user[0][8]
 				resultData['simpleProfile'] = user[0][9]
+				resultData['avatarThumb'] = user[0][10]
 				dict['resultData'] = resultData
 			else:
 				dict['errorMessage'] = "data_base_error"
@@ -399,6 +408,7 @@ def getUserInfoByUsername(request):
 			resultData['nickname'] = user[0][7]
 			resultData['longProfile'] = user[0][8]
 			resultData['simpleProfile'] = user[0][9]
+			resultData['avatarThumb'] = user[0][10]
 			dict['resultData'] = resultData
 		else:
 			dict['errorMessage'] = "no_such_user_username_is_invalid"
@@ -451,6 +461,7 @@ def getPostByUsername(request):
 # 测试使用
 class GetPostTest(forms.Form):
     time = forms.CharField()
+    index = forms.CharField()
 
 # 根据时间获取前一小时的帖子
 def getCurrentPost(request):
@@ -458,10 +469,12 @@ def getCurrentPost(request):
 	resultData = {}
 	if request.method == 'POST':
 		time = request.POST.get('time')
+		index = request.POST.get('index')
 		targetTime = int(time) - 60*60*1000
+		targetIndex = int(index)
 		cursor = connection.cursor()
-		query = "select * from here_post where time >= %s limit 0,100"
-		cursor.execute(query,[targetTime])
+		query = "select * from here_post where time >= %s limit %s,%s"
+		cursor.execute(query,[targetTime,targetIndex-20,targetIndex])
 		res = cursor.fetchall()
 		if res:
 			resultData['postList'] = []
@@ -486,8 +499,8 @@ def getCurrentPost(request):
 		else :
 			# 如果最近一小时没有帖子，则选取最后100条数据
 			otherCursor = connection.cursor()
-			otherQuery = "select * from here_post order by id desc limit 100"
-			otherCursor.execute(otherQuery)
+			otherQuery = "select * from here_post order by id desc limit %s,%s"
+			otherCursor.execute(otherQuery,[targetIndex-20,targetIndex])
 			otherRes = otherCursor.fetchall()
 			if otherRes:
 				resultData['postList'] = []
@@ -514,10 +527,10 @@ def getCurrentPost(request):
 		json = simplejson.dumps(dict)
 		return HttpResponse(json)
 	else:
-		# json  = simplejson.dumps(dict)
-		# return HttpResponse("POST failed")
-		tf = GetPostTest()
-		return render_to_response('test-get-post-by-location.html',{'uf':tf})
+		json  = simplejson.dumps(dict)
+		return HttpResponse("POST failed")
+		# tf = GetPostTest()
+		# return render_to_response('test-get-post-by-location.html',{'uf':tf})
 
 def plusPostLike(request):
 	dict = {}

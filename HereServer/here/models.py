@@ -11,6 +11,7 @@ class User(models.Model):
 	birthday = models.CharField(max_length=30)
 	simpleProfile = models.CharField(max_length=30,blank=True)
 	longProfile = models.CharField(max_length=300,blank=True)
+	avatarThumb = models.FileField(upload_to='./avatar/thumb',blank=True,default="null")
 
 	
 class Post(models.Model):

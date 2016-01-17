@@ -318,9 +318,10 @@ public class HttpRequest {
      * @param time
      * @param httpResponseHandler
      */
-    public static void getpostByTime(String time,HttpResponseHandler httpResponseHandler){
+    public static void getpostByTime(String time,int index,HttpResponseHandler httpResponseHandler){
         Map<String,String> map = new HashMap<String,String>();
         map.put("time",time);
+        map.put("index",String.valueOf(index));
         baseHttpPostRequest(HttpConfig.String_Url_Get_Post_By_Time, map, httpResponseHandler, PostList.class);
     }
 }

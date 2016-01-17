@@ -6,6 +6,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,8 @@ public class CurrentMarkerListFragment extends BaseFragment implements SwipeRefr
     private ListView listView;
     private View header;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private PostList postListGlobal;
+    private static int LOAD_MORE_NUM = 20;
 
     @Nullable
     @Override
@@ -45,10 +48,30 @@ public class CurrentMarkerListFragment extends BaseFragment implements SwipeRefr
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initData();
+        loadData(LOAD_MORE_NUM);
+
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                switch (scrollState){
+                    case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:
+                    if (listView.getLastVisiblePosition() == (listView.getCount()-1)) {
+                        LOAD_MORE_NUM = LOAD_MORE_NUM + 20;
+                        loadData(LOAD_MORE_NUM);
+                    }
+
+                    break;
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+            }
+        });
     }
 
-    private void initData() {
+    private void loadData(int index) {
 
         HttpResponseHandler getPostByTimeHandle = new HttpResponseHandler() {
             @Override
@@ -59,19 +82,29 @@ public class CurrentMarkerListFragment extends BaseFragment implements SwipeRefr
                         TextView title = (TextView) header.findViewById(R.id.current_post_list_header_tile);
                         title.setText(R.string.current_list_page_number_status_title);
                     }
-                    listView.setAdapter(new PostListViewAdapter(getActivity(), postList.getPostList()));
+
+                    //设置分页效果
+                    if (postListGlobal!=null){
+                        postListGlobal.getPostList().addAll(postList.getPostList());
+                        ((PostListViewAdapter)listView.getAdapter()).notifyDataSetChanged();
+                    }else{
+                        postListGlobal = postList;
+                        listView.setAdapter(new PostListViewAdapter(getActivity(), postListGlobal.getPostList()));
+                    }
+
+
                 } else {
-                    GreenToast.makeText(getActivity(), "获取帖子失败啦", Toast.LENGTH_SHORT).show();
+                    GreenToast.makeText(getActivity(), "没有帖子啦", Toast.LENGTH_SHORT).show();
                 }
             }
         };
 
-        HttpRequest.getpostByTime(String.valueOf(System.currentTimeMillis()), getPostByTimeHandle);
+        HttpRequest.getpostByTime(String.valueOf(System.currentTimeMillis()),index, getPostByTimeHandle);
     }
 
     @Override
     public void onRefresh() {
-        initData();
+        loadData(LOAD_MORE_NUM);
         swipeRefreshLayout.setRefreshing(false);
     }
 }
