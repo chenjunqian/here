@@ -261,17 +261,24 @@ public class HttpRequest {
     }
 
     /**
-     * 下载图片
+     * 限制图片的宽高，如果w，h的参数为0，则不压缩
      * @param imageView
      * @param url
+     * @param w
+     * @param h
      */
-    public static void loadImage(ImageView imageView, String url) {
+    public static void loadImage(ImageView imageView, String url,int w,int h) {
 
         ImageLoader.ImageListener listener = ImageLoader.getImageListener(imageView,
                 R.drawable.default_avatar, R.drawable.default_avatar);
         ImageLoader imageLoader = new ImageLoader(queue, new BitmapCache());
 
-        imageLoader.get(url, listener);
+        if (w<=0||h<=0){
+            imageLoader.get(url, listener);
+        }else{
+            imageLoader.get(url, listener,w,h);
+        }
+
     }
 
     /**

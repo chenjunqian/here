@@ -150,7 +150,7 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
         accountTextView.setText(user.getUsername());
         simpleProfileTextView.setText(user.getSimpleProfile());
         longProfileTextView.setText(user.getLongProfile());
-        HttpRequest.loadImage(avatarImageView, HttpConfig.String_Url_Media + user.getAvatar());
+        HttpRequest.loadImage(avatarImageView, HttpConfig.String_Url_Media + user.getAvatar(),150,150);
     }
 
     /**

@@ -27,6 +27,7 @@ import com.eason.marker.util.WidgetUtil.GreenToast;
 public class CurrentMarkerListFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private ListView listView;
+    private PostListViewAdapter postListViewAdapter;
     private View header;
     private SwipeRefreshLayout swipeRefreshLayout;
     private PostList postListGlobal;
@@ -86,10 +87,11 @@ public class CurrentMarkerListFragment extends BaseFragment implements SwipeRefr
                     //设置分页效果
                     if (postListGlobal!=null){
                         postListGlobal.getPostList().addAll(postList.getPostList());
-                        ((PostListViewAdapter)listView.getAdapter()).notifyDataSetChanged();
+                        postListViewAdapter.notifyDataSetChanged();
                     }else{
                         postListGlobal = postList;
-                        listView.setAdapter(new PostListViewAdapter(getActivity(), postListGlobal.getPostList()));
+                        postListViewAdapter = new PostListViewAdapter(getActivity(), postListGlobal.getPostList());
+                        listView.setAdapter(postListViewAdapter);
                     }
 
 

@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:id="@+id/near_item_background_layout"
     android:background="@color/universal_white"
+
     android:orientation="vertical">
 
 

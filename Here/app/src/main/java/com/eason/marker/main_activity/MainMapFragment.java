@@ -375,7 +375,7 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
                         urlAndTagList.add(urlAndTag[i]);
                     }
 
-                    HttpRequest.loadImage(avatar, HttpConfig.String_Url_Media+user.getAvatar());
+                    HttpRequest.loadImage(avatar, HttpConfig.String_Url_Media+user.getAvatar(),150,150);
 
                     tagView.setText(urlAndTagList.get(0));
                     addressView.setText(urlAndTagList.get(1));

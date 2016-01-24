@@ -30,6 +30,7 @@ public class NearUserListFragment extends BaseFragment implements SwipeRefreshLa
 
     private ListView listView;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private PostListViewAdapter postListViewAdapter;
     private static int LOAD_MORE_NUM = 20;
     private static boolean IS_LOAD_MORE = false;
     private MainMapFragment mainMapFragment;
@@ -87,7 +88,8 @@ public class NearUserListFragment extends BaseFragment implements SwipeRefreshLa
             }
         });
 
-        listView.setAdapter(new PostListViewAdapter(getActivity(), MainActivity.postListItem));
+        postListViewAdapter = new PostListViewAdapter(getActivity(), MainActivity.postListItem);
+        listView.setAdapter(postListViewAdapter);
     }
 
     @Override
@@ -119,7 +121,7 @@ public class NearUserListFragment extends BaseFragment implements SwipeRefreshLa
                         return;
                     }else if (IS_LOAD_MORE){
                         MainActivity.postListItem.addAll(postList.getPostList());
-                        ((PostListViewAdapter)listView.getAdapter()).notifyDataSetChanged();
+                        postListViewAdapter.notifyDataSetChanged();
                     }else{
                         MainActivity.postListItem = postList.getPostList();
                         initData();

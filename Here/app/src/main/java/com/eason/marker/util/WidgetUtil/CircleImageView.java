@@ -21,8 +21,11 @@ import com.eason.marker.util.CommonUtil;
  */
 public class CircleImageView extends ImageView{
 
+    private Context context;
+
     public CircleImageView(Context context){
         super(context);
+        this.context = context;
     }
 
     public CircleImageView(Context context ,AttributeSet attrs){
@@ -45,13 +48,12 @@ public class CircleImageView extends ImageView{
             return;
         }
 
+
         Bitmap tempBitmap = ((BitmapDrawable) drawable).getBitmap();
         if (tempBitmap == null) {
             tempBitmap = CommonUtil.drawableToBitmap(getResources().getDrawable(
                     R.drawable.default_avatar));
         }
-
-        Bitmap bitmap = tempBitmap.copy(Bitmap.Config.ARGB_8888, true);
 
         int w = getWidth();
         int h = getHeight();
@@ -79,7 +81,7 @@ public class CircleImageView extends ImageView{
         }
 
         Bitmap output = Bitmap.createBitmap(targetBitmap.getWidth(),
-                targetBitmap.getHeight(), Bitmap.Config.ARGB_8888);
+                targetBitmap.getHeight(), Bitmap.Config.RGB_565);
         Canvas canvas = new Canvas(output);
 
         final Paint paint = new Paint();

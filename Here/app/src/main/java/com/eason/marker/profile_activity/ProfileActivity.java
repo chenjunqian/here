@@ -109,7 +109,7 @@ public class ProfileActivity extends BaseActivity {
                     }
 
                     if (!CommonUtil.isEmptyString(user.getAvatar())){
-                        HttpRequest.loadImage(avatar, HttpConfig.String_Url_Media + user.getAvatar());
+                        HttpRequest.loadImage(avatar, HttpConfig.String_Url_Media + user.getAvatar(),150,150);
                     }
 
 
@@ -207,7 +207,7 @@ public class ProfileActivity extends BaseActivity {
                         viewsHolder.nicknameTextView.setText(user.getNickname());
                         viewsHolder.addressTextView.setText(post.getAddress());
                         viewsHolder.postTagTextView.setText(post.getTag());
-                        HttpRequest.loadImage(viewsHolder.avatarView, HttpConfig.String_Url_Media + user.getAvatar());
+                        HttpRequest.loadImage(viewsHolder.avatarView, HttpConfig.String_Url_Media + user.getAvatar(),150,150);
                         if (CommonUtil.isEmptyString(post.getTime()) || post.getTime().equals("null")) {
                             viewsHolder.postTimeTextView.setText(CommonUtil.formatTimeMillis(System.currentTimeMillis()));
                         } else {

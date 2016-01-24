@@ -81,7 +81,7 @@ public class PostListViewAdapter extends BaseAdapter {
                     viewsHolder.nicknameTextView.setText(user.getNickname());
                     viewsHolder.addressTextView.setText(post.getAddress());
                     viewsHolder.postTagTextView.setText(post.getTag());
-                    HttpRequest.loadImage(viewsHolder.avatarView, HttpConfig.String_Url_Media + user.getAvatar());
+                    HttpRequest.loadImage(viewsHolder.avatarView, HttpConfig.String_Url_Media + user.getAvatar(),150,150);
                     if (CommonUtil.isEmptyString(post.getTime())||post.getTime().equals("null")){
                         viewsHolder.postTimeTextView.setText(CommonUtil.formatTimeMillis(System.currentTimeMillis()));
                     }else{
