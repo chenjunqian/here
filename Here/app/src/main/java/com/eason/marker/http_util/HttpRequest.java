@@ -278,7 +278,6 @@ public class HttpRequest {
         }else{
             imageLoader.get(url, listener,w,h);
         }
-
     }
 
     /**

@@ -48,7 +48,6 @@ public class CircleImageView extends ImageView{
             return;
         }
 
-
         Bitmap tempBitmap = ((BitmapDrawable) drawable).getBitmap();
         if (tempBitmap == null) {
             tempBitmap = CommonUtil.drawableToBitmap(getResources().getDrawable(
@@ -81,7 +80,7 @@ public class CircleImageView extends ImageView{
         }
 
         Bitmap output = Bitmap.createBitmap(targetBitmap.getWidth(),
-                targetBitmap.getHeight(), Bitmap.Config.RGB_565);
+                targetBitmap.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(output);
 
         final Paint paint = new Paint();
