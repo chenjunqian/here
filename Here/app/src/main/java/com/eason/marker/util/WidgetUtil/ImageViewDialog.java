@@ -33,7 +33,7 @@ public class ImageViewDialog extends Dialog {
         imageView = (ImageView) findViewById(R.id.dialog_image_view);
         backgroundLayout = (RelativeLayout) findViewById(R.id.dialog_image_view_background_layout);
         if (!CommonUtil.isEmptyString(url)){
-            HttpRequest.loadImage(imageView, HttpConfig.String_Url_Media+url,150,150);
+            HttpRequest.loadImage(imageView, HttpConfig.String_Url_Media+url,0,0);
         }
 
         imageView.setOnClickListener(new View.OnClickListener() {
