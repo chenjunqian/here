@@ -72,6 +72,11 @@ public class CurrentMarkerListFragment extends BaseFragment implements SwipeRefr
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
     private void loadData(int index) {
 
         HttpResponseHandler getPostByTimeHandle = new HttpResponseHandler() {

@@ -202,12 +202,7 @@ public class MainActivity extends ActionBarActivity {
     private void initParam() {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        mainMapFragment = new MainMapFragment();
-        settingFragment = new MainProfileFragment();
-        nearUserListFragment = new NearUserListFragment();
-        currentPostFragment = new CurrentMarkerListFragment();
-        transaction.replace(R.id.main_fragment_frame_layout, mainMapFragment);
-        transaction.commit();
+        setFragmentTransaction(IntentUtil.MAIN_MAP_FRAGMENT);
     }
 
     public Fragment getFragment(int type){
@@ -237,15 +232,20 @@ public class MainActivity extends ActionBarActivity {
     public void setFragmentTransaction(int fragmentIndex) {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         Message msg = new Message();
-
+        if (fragmentIndex != IntentUtil.MAIN_TO_LOGIN_PAGE){//跳转到注册登录页面不需要切换fragment
+            hideFragment(transaction);
+        }
         switch (fragmentIndex) {
 
             //切换到主页
             case IntentUtil.MAIN_MAP_FRAGMENT:
                 if (mainMapFragment == null) {
                     mainMapFragment = new MainMapFragment();
+                    transaction.add(R.id.main_fragment_frame_layout, mainMapFragment);
+                }else{
+                    transaction.show(mainMapFragment);
                 }
-                transaction.replace(R.id.main_fragment_frame_layout, mainMapFragment);
+
                 msg.what = CHANGE_TOOL_BAR_TITLE_MAIN;
                 isShowRefreshView = true;
                 FRAGMENT_TAG = IntentUtil.MAIN_MAP_FRAGMENT;
@@ -257,8 +257,11 @@ public class MainActivity extends ActionBarActivity {
 
                 if (settingFragment == null) {
                     settingFragment = new MainProfileFragment();
+                    transaction.add(R.id.main_fragment_frame_layout, settingFragment);
+                }else{
+                    transaction.show(settingFragment);
                 }
-                transaction.replace(R.id.main_fragment_frame_layout, settingFragment);
+
                 msg.what = CHANGE_TOOL_BAR_TITLE_SETTING;
                 isShowRefreshView = false;
                 FRAGMENT_TAG = IntentUtil.PROFLIE_FRAGMENT;
@@ -269,8 +272,11 @@ public class MainActivity extends ActionBarActivity {
             case IntentUtil.NEAR_USER_FRAGMENT:
                 if (nearUserListFragment == null) {
                     nearUserListFragment = new NearUserListFragment();
+                    transaction.add(R.id.main_fragment_frame_layout, nearUserListFragment);
+                }else{
+                    transaction.show(nearUserListFragment);
                 }
-                transaction.replace(R.id.main_fragment_frame_layout, nearUserListFragment);
+
                 FRAGMENT_TAG = IntentUtil.NEAR_USER_FRAGMENT;
                 msg.what = CHANGE_TOOL_BAR_TITLE_NEAR;
                 handler.sendEmptyMessage(msg.what);
@@ -286,8 +292,11 @@ public class MainActivity extends ActionBarActivity {
             case IntentUtil.CURRENT_POST_FRAGMENT:
                 if (currentPostFragment == null) {
                     currentPostFragment = new CurrentMarkerListFragment();
+                    transaction.add(R.id.main_fragment_frame_layout, currentPostFragment);
+                }else{
+                    transaction.show(currentPostFragment);
                 }
-                transaction.replace(R.id.main_fragment_frame_layout, currentPostFragment);
+
                 FRAGMENT_TAG = IntentUtil.CURRENT_POST_FRAGMENT;
                 handler.sendEmptyMessage(msg.what);
                 msg.what = CHANGE_TOOL_BAR_TITLE_MINE;
@@ -297,6 +306,21 @@ public class MainActivity extends ActionBarActivity {
 
         drawerLayout.closeDrawers();//点击Item后关闭Drawerlayout
         transaction.commit();
+    }
+
+    private void hideFragment(FragmentTransaction transaction){
+        if (mainMapFragment!=null){
+            transaction.hide(mainMapFragment);
+        }
+        if (settingFragment!=null){
+            transaction.hide(settingFragment);
+        }
+        if (nearUserListFragment!=null){
+            transaction.hide(nearUserListFragment);
+        }
+        if (currentPostFragment!=null){
+            transaction.hide(currentPostFragment);
+        }
     }
 
     @Override
