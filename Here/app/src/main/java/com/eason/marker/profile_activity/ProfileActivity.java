@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ import com.eason.marker.http_util.HttpResponseHandler;
 import com.eason.marker.model.Constellation;
 import com.eason.marker.model.ErroCode;
 import com.eason.marker.model.IntentUtil;
+import com.eason.marker.model.LoginStatus;
 import com.eason.marker.model.Post;
 import com.eason.marker.model.PostList;
 import com.eason.marker.model.User;
@@ -48,6 +50,10 @@ public class ProfileActivity extends BaseActivity {
     private RelativeLayout userInfoLayout;
 
     private User user;
+    /**
+     * 主要用于判断该页面是显示用户自己的信息，还是显示别人的信息
+     */
+    private int page_status = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +73,8 @@ public class ProfileActivity extends BaseActivity {
         avatar = (CircleImageView) findViewById(R.id.profile_activity_avatar_circle_view);
         userInfoLayout = (RelativeLayout) findViewById(R.id.profile_activity_user_info_layout);
 
-        int status = getIntent().getIntExtra(IntentUtil.IS_SHOW_USER_INFO_LAYOUT_STRING,0);
-        if (status==IntentUtil.IS_SHOW_USER_INFO_LAYOUT_INT){
+        page_status = getIntent().getIntExtra(IntentUtil.IS_SHOW_MY_USER_INFO_LAYOUT_STRING,0);
+        if (page_status==IntentUtil.IS_SHOW_USER_INFO_LAYOUT_INT){
             userInfoLayout.setVisibility(View.GONE);
         }
 
@@ -191,11 +197,32 @@ public class ProfileActivity extends BaseActivity {
                 viewsHolder.nicknameTextView.setVisibility(View.INVISIBLE);
                 viewsHolder.postTagTextView = (TextView) convertView.findViewById(R.id.near_item_post_tag_text_view);
                 viewsHolder.postTimeTextView = (TextView) convertView.findViewById(R.id.near_post_item_post_time_text_view);
+                viewsHolder.deleteBtn = (ImageButton) convertView.findViewById(R.id.post_item_delete_image_button);
+                if (page_status==IntentUtil.IS_SHOW_USER_INFO_LAYOUT_INT){//如果是显示自己的页面，则显示删除键
+                    viewsHolder.deleteBtn.setVisibility(View.VISIBLE);
+                }
                 convertView.setTag(viewsHolder);
             } else {
                 viewsHolder = (ViewsHolder) convertView.getTag();
             }
 
+            viewsHolder.deleteBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    HttpResponseHandler deleteHandler = new HttpResponseHandler(){
+                        @Override
+                        public void getResult() {
+                            if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT) {
+
+                            }else{
+
+                            }
+                        }
+                    };
+
+                    HttpRequest.deletePostById(LoginStatus.getUser().getUsername(),post.getPostId(),deleteHandler);
+                }
+            });
 
             HttpResponseHandler getUserInfoHandler = new HttpResponseHandler() {
                 @Override
@@ -230,5 +257,6 @@ public class ProfileActivity extends BaseActivity {
         public TextView postTagTextView;
         public TextView addressTextView;
         public TextView postTimeTextView;
+        public ImageButton deleteBtn;
     }
 }

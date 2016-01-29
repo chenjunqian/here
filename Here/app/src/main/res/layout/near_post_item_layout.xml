@@ -4,7 +4,6 @@
     android:layout_height="wrap_content"
     android:id="@+id/near_item_background_layout"
     android:background="@color/universal_white"
-
     android:orientation="vertical">
 
 
@@ -28,6 +27,17 @@
         android:layout_toRightOf="@+id/near_item_avatar"
         android:text="nickname"
         android:textColor="@color/universal_title_background_red" />
+
+    <ImageButton
+        android:id="@+id/post_item_delete_image_button"
+        android:background="@drawable/ic_delete_black_18dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="5dp"
+        android:visibility="gone"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:id="@+id/near_item_post_tag_text_view"

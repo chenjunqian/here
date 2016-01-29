@@ -28,7 +28,6 @@ public class PostListViewAdapter extends BaseAdapter {
 
     private List<Post> postList;
     private Context context;
-    private User user;
 
     public PostListViewAdapter(Context context,List<Post> postList){
         this.postList = postList;
@@ -70,47 +69,7 @@ public class PostListViewAdapter extends BaseAdapter {
             viewsHolder = (ViewsHolder) convertView.getTag();
         }
 
-
-        HttpResponseHandler getUserInfoHandler = new HttpResponseHandler(){
-            @Override
-            public void getResult() {
-                super.getResult();
-                if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT) {
-                    user = (User) this.result;
-                    //设置内容
-                    viewsHolder.nicknameTextView.setText(user.getNickname());
-                    viewsHolder.addressTextView.setText(post.getAddress());
-                    viewsHolder.postTagTextView.setText(post.getTag());
-                    HttpRequest.loadImage(viewsHolder.avatarView, HttpConfig.String_Url_Media + user.getAvatar(),150,150);
-                    if (CommonUtil.isEmptyString(post.getTime())||post.getTime().equals("null")){
-                        viewsHolder.postTimeTextView.setText(CommonUtil.formatTimeMillis(System.currentTimeMillis()));
-                    }else{
-                        viewsHolder.postTimeTextView.setText(CommonUtil.formatTimeMillis(Long.valueOf(post.getTime())));
-                    }
-                }
-            }
-        };
-
-        //由username获取用户信息
-        HttpRequest.getUserByUsername(post.getUsername(), getUserInfoHandler);
-
-        viewsHolder.avatarView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (user == null) return;
-                ImageViewDialog imageViewDialog = new ImageViewDialog(context, user.getAvatar());
-                imageViewDialog.show();
-            }
-        });
-
-        viewsHolder.backgroundLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (post==null||user==null)return;
-                ListItemDialog listItemDialog = new ListItemDialog(context,post,user);
-                listItemDialog.show();
-            }
-        });
+        viewsHolder.setData(context,post);
 
         return convertView;
     }
@@ -122,5 +81,51 @@ public class PostListViewAdapter extends BaseAdapter {
         public TextView addressTextView;
         public TextView postTimeTextView;
         public RelativeLayout backgroundLayout;
+
+        private User user;
+
+        public void setData(final Context context,final Post post){
+
+            HttpResponseHandler getUserInfoHandler = new HttpResponseHandler(){
+                @Override
+                public void getResult() {
+                    super.getResult();
+                    if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT) {
+                        user = (User) this.result;
+                        //设置内容
+                        nicknameTextView.setText(user.getNickname());
+                        addressTextView.setText(post.getAddress());
+                        postTagTextView.setText(post.getTag());
+                        HttpRequest.loadImage(avatarView, HttpConfig.String_Url_Media + user.getAvatar(), 150, 150);
+                        if (CommonUtil.isEmptyString(post.getTime())||post.getTime().equals("null")){
+                            postTimeTextView.setText(CommonUtil.formatTimeMillis(System.currentTimeMillis()));
+                        }else{
+                            postTimeTextView.setText(CommonUtil.formatTimeMillis(Long.valueOf(post.getTime())));
+                        }
+                    }
+                }
+            };
+
+            //由username获取用户信息
+            HttpRequest.getUserByUsername(post.getUsername(), getUserInfoHandler);
+
+            avatarView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (user == null) return;
+                    ImageViewDialog imageViewDialog = new ImageViewDialog(context, user.getAvatar());
+                    imageViewDialog.show();
+                }
+            });
+
+            backgroundLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (post==null||user==null)return;
+                    ListItemDialog listItemDialog = new ListItemDialog(context,post,user);
+                    listItemDialog.show();
+                }
+            });
+        }
     }
 }

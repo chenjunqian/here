@@ -60,7 +60,7 @@ public class IntentUtil {
     /**
      * 是否显示ProfileActivity的用户信息Layout
      */
-    public static final String IS_SHOW_USER_INFO_LAYOUT_STRING = "IS_SHOW_USER_INFO_LAYOUT";
+    public static final String IS_SHOW_MY_USER_INFO_LAYOUT_STRING = "IS_SHOW_MY_USER_INFO_LAYOUT";
 
     /**
      * 是否显示ProfileActivity的用户信息Layout

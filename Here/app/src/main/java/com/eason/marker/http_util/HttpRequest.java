@@ -331,4 +331,14 @@ public class HttpRequest {
         map.put("index",String.valueOf(index));
         baseHttpPostRequest(HttpConfig.String_Url_Get_Post_By_Time, map, httpResponseHandler, PostList.class);
     }
+
+    /**
+     * 根据帖子id与用户username来删除帖子
+     */
+    public static void deletePostById(String username,String postid,HttpResponseHandler httpResponseHandler){
+        Map<String,String> map = new HashMap<String,String>();
+        map.put("username",username);
+        map.put("postid",postid);
+        baseHttpPostRequest(HttpConfig.String_Url_Delete_Post_By_Id, map, httpResponseHandler, Object.class);
+    }
 }

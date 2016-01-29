@@ -502,7 +502,7 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
                 if (user==null)return;
                 Intent intent = new Intent(getActivity(), ProfileActivity.class);
                 intent.putExtra("username",user.getUsername());
-                intent.putExtra(IntentUtil.IS_SHOW_USER_INFO_LAYOUT_STRING,IntentUtil.IS_SHOW_USER_INFO_LAYOUT_INT);
+                intent.putExtra(IntentUtil.IS_SHOW_MY_USER_INFO_LAYOUT_STRING,IntentUtil.IS_SHOW_USER_INFO_LAYOUT_INT);
                 getActivity().startActivity(intent);
 
                 break;
