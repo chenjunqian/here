@@ -107,6 +107,7 @@ public class CurrentMarkerListFragment extends BaseFragment implements SwipeRefr
     @Override
     public void onRefresh() {
         LOAD_MORE_NUM = 20;
+        postListGlobal = null;
         loadData(LOAD_MORE_NUM);
         swipeRefreshLayout.setRefreshing(false);
     }
