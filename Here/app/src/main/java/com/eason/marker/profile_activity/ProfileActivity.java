@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -29,6 +30,7 @@ import com.eason.marker.util.CommonUtil;
 import com.eason.marker.util.WidgetUtil.CircleImageView;
 import com.eason.marker.util.WidgetUtil.GreenToast;
 import com.eason.marker.util.WidgetUtil.ImageViewDialog;
+import com.eason.marker.util.WidgetUtil.ModelDialog;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -182,7 +184,7 @@ public class ProfileActivity extends BaseActivity {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View convertView, ViewGroup parent) {
             final ViewsHolder viewsHolder;
             final Post post = postList.get(position);
             if (post == null) return null;
@@ -209,18 +211,46 @@ public class ProfileActivity extends BaseActivity {
             viewsHolder.deleteBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    HttpResponseHandler deleteHandler = new HttpResponseHandler(){
+                    //弹出提示框，询问是否确认删除帖子
+                    final ModelDialog mDialog = new ModelDialog(ProfileActivity.this,R.layout.dialog_back,R.style.Theme_dialog);
+                    final Button btnOK, btnCancel;
+                    final TextView title;
+                    btnOK = (Button) mDialog.findViewById(R.id.ok_button);
+                    btnCancel = (Button) mDialog.findViewById(R.id.cancel_button);
+                    title = (TextView) mDialog.findViewById(R.id.alert_dialog_note_text);
+                    title.setText("确定不要删除嘛");
+                    btnOK.setText("是的");
+                    btnCancel.setText("手滑了");
+
+                    btnOK.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public void getResult() {
-                            if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT) {
+                        public void onClick(View arg0) {
+                            HttpResponseHandler deleteHandler = new HttpResponseHandler(){
+                                @Override
+                                public void getResult() {
+                                    if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT) {
+                                        postList.remove(position);
+                                        ListViewAdapter.this.notifyDataSetChanged();
+                                        GreenToast.makeText(ProfileActivity.this,"删除成功",Toast.LENGTH_SHORT).show();
+                                    }else{
+                                        GreenToast.makeText(ProfileActivity.this,"因为一些原因，删除失败",Toast.LENGTH_SHORT).show();
+                                    }
+                                    mDialog.dismiss();
+                                }
 
-                            }else{
+                            };
 
-                            }
+                            HttpRequest.deletePostById(LoginStatus.getUser().getUsername(), post.getPostId(),deleteHandler);
                         }
-                    };
+                    });
+                    btnCancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View arg0) {
+                            mDialog.dismiss();
+                        }
+                    });
+                    mDialog.show();
 
-                    HttpRequest.deletePostById(LoginStatus.getUser().getUsername(),post.getPostId(),deleteHandler);
                 }
             });
 
