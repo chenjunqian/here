@@ -34,6 +34,12 @@
     <!-- 获取最近帖子页面-->
     <string name="current_list_page_time_status_title">最近一小时爱的标记</string>
     <string name="current_list_page_number_status_title">最近一小时还没爱的标记，看看最近的标记吧</string>
+    <string name="current_list_page_report_rubbish_post">垃圾信息</string>
+    <string name="current_list_page_report_illegal_post">违反法律法规的信息</string>
+    <string name="current_list_page_report_not_for_publication_post">不宜公开的信息</string>
+    <string name="current_list_page_report_other_invalid_post">其他</string>
+    <string name="current_list_page_report_report_success">举报成功</string>
+    <string name="current_list_page_report_report_content_empty">请选择或填写原因</string>
 
     <!-- 发帖页面 -->
     <string name="publish_page_title">我在这儿</string>
