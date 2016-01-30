@@ -33,5 +33,8 @@ urlpatterns = patterns('',
     url(r'^modify_user_info/',views.modifyUserInfo,name='modifyUserInfo'),
     url(r'^get_post_by_username/',views.getPostByUsername,name='getPostByUsername'),
     url(r'^get_current_post/',views.getCurrentPost,name='getCurrentPost'),
+    url(r'^delete_post_by_id/',views.deletePostById,name='deletePostById'),
+    url(r'^report_post/',views.reportPost,name='reportPost'),
+    url(r'^report_issue/',views.reportIssue,name='reportIssue'),
     url(r'^admin/', include(admin.site.urls)),
 )

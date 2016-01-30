@@ -535,6 +535,69 @@ def getCurrentPost(request):
 		# tf = GetPostTest()
 		# return render_to_response('test-get-post-by-location.html',{'uf':tf})
 
+def deletePostById(request):
+	dict = {}
+	resultData = {}
+	if request.method == 'POST':
+		postId = request.POST.get('postid')
+		username = request.POST.get('username')
+		cur = connection.cursor()
+		query = "delete from here_post where id = %s and username = %s"
+		cur.execute(query,[postId,username])
+		res = cur.fetchall()
+		dict['errorMessage'] = "delete_post_success"
+		dict['status'] = "0"
+		json = simplejson.dumps(dict)
+		return HttpResponse(json)
+	else:
+		json  = simplejson.dumps(dict)
+		return HttpResponse("POST failed")
+
+def reportPost(request):
+	dict = {}
+	resultData = {}
+	if request.method == 'POST':
+		content = request.POST.get('content')
+		time = request.POST.get('time')
+		postid = request.POST.get('postid')
+		reporter = request.POST.get('reporter')
+		cur = connection.cursor()
+		query = "insert into here_report(content,postid,reporter,time) values(%s,%s,%s,%s)"
+		cur.execute(query,[content,postid,reporter,time])
+		dict['errorMessage'] = "report_post_success"
+		dict['status'] = "0"
+		json = simplejson.dumps(dict)
+		return HttpResponse(json)
+	else:
+		json  = simplejson.dumps(dict)
+		return HttpResponse("POST failed")
+
+# 测试使用
+class ReportIssue(forms.Form):
+    time = forms.CharField()
+    content = forms.CharField()
+    reporter = forms.CharField()
+
+def reportIssue(request):
+	dict = {}
+	resultData = {}
+	if request.method == 'POST':
+		content = request.POST.get('content')
+		time = request.POST.get('time')
+		reporter = request.POST.get('reporter')
+		cur = connection.cursor()
+		query = "insert into here_reportissue(content,reporter,time) values(%s,%s,%s)"
+		cur.execute(query,[content,reporter,time])
+		dict['errorMessage'] = "report_success"
+		dict['status'] = "0"
+		json = simplejson.dumps(dict)
+		return HttpResponse(json)
+	else:
+		# json  = simplejson.dumps(dict)
+		# return HttpResponse("POST failed")
+		tf = ReportIssue()
+		return render_to_response('test-get-post-by-location.html',{'uf':tf})
+
 def plusPostLike(request):
 	dict = {}
 	resultData = {}
@@ -553,7 +616,5 @@ def plusPostLike(request):
 		json = simplejson.dumps(dict)
 		return HttpResponse(json)
 	else:
-		# json  = simplejson.dumps(dict)
-		# return HttpResponse("POST failed")
-		tf = GetPostByUsername()
-		return render_to_response('test-get-post-by-location.html',{'uf':tf})
+		json  = simplejson.dumps(dict)
+		return HttpResponse("POST failed")
