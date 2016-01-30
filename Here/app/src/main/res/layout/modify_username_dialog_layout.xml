@@ -70,7 +70,7 @@
             android:layout_width="@dimen/universal_80dp"
             android:layout_height="@dimen/universal_40dp"
             android:text="cancel"
-            android:background="@null"
+            android:background="@drawable/universal_round_light_color_button_shape_40dp"
             android:textColor="@color/universal_grey_six" />
     </LinearLayout>
 </LinearLayout>
