@@ -44,6 +44,12 @@ public class HttpConfig {
     //根据时间获取用户帖子
     public static final String String_Url_Get_Post_By_Time = Url_Domain + "get_current_post/";
 
-    //根据时间获取用户帖子
+    //根据帖子id和用户username删除帖子
     public static final String String_Url_Delete_Post_By_Id = Url_Domain + "delete_post_by_id/";
+
+    //举报帖子
+    public static final String String_Url_Report_Post = Url_Domain + "report_post/";
+
+    //提交App建议
+    public static final String String_Url_Report_Issue = Url_Domain + "report_issue/";
 }

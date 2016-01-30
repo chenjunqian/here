@@ -63,6 +63,7 @@
             android:layout_alignStart="@+id/about_us_version_text_view"
             android:layout_below="@+id/about_us_version_text_view"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="@dimen/universal_20dp"
             android:layout_marginBottom="@dimen/universal_20dp"
             android:text="@string/about_us_activity_purpose_content" />
     </RelativeLayout>

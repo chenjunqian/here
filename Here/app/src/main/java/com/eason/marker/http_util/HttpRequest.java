@@ -341,4 +341,34 @@ public class HttpRequest {
         map.put("postid",postid);
         baseHttpPostRequest(HttpConfig.String_Url_Delete_Post_By_Id, map, httpResponseHandler, Object.class);
     }
+
+    /**
+     * 举报帖子
+     * @param content
+     * @param username
+     * @param postid
+     * @param httpResponseHandler
+     */
+    public static void reportPost(String content,String username,String postid,HttpResponseHandler httpResponseHandler){
+        Map<String,String> map = new HashMap<String,String>();
+        map.put("reporter",username);
+        map.put("postid",postid);
+        map.put("content",content);
+        map.put("time", String.valueOf(System.currentTimeMillis()));
+        baseHttpPostRequest(HttpConfig.String_Url_Report_Post, map, httpResponseHandler, Object.class);
+    }
+
+    /**
+     * 回馈用户建议
+     * @param content
+     * @param username
+     * @param httpResponseHandler
+     */
+    public static void reportIssue(String content,String username,HttpResponseHandler httpResponseHandler){
+        Map<String,String> map = new HashMap<String,String>();
+        map.put("reporter",username);
+        map.put("content",content);
+        map.put("time", String.valueOf(System.currentTimeMillis()));
+        baseHttpPostRequest(HttpConfig.String_Url_Report_Issue, map, httpResponseHandler, Object.class);
+    }
 }

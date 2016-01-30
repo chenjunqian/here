@@ -9,6 +9,8 @@
     <string name="current_list_page_title">此刻</string>
     <string name="near_list_page_title">周边</string>
     <string name="net_work_invalid">网络发生了一些问题</string>
+    <string name="report_us_hint">请在这里填写意见，小的会及时的查看</string>
+    <string name="report_us_success_toast">提交成功，感谢您的建议</string>
 
     <!-- 注册页面-->
     <string name="username">用户名</string>
@@ -64,10 +66,12 @@
     <string name="about_us_activity_purpose_content">让你知道世界上有多少人在此时此刻此地在做着爱做的事，他们的感受如何，情况如何，满足你的好奇心</string>
     <string name="about_us_activity_share_app">分享App</string>
     <string name="about_us_activity_report_issue">意见反馈</string>
+    <string name="about_us_activity_report_content_can_not_be_empty">提交的建议不能为空</string>
 
     <!-- 登录注册-->
     <string name="login_register_input_valid_username">请输入正确格式的手机号或者邮箱</string>
     <string name="login_register_input_password">请输入密码</string>
     <string name="login_register_input_valid_password">密码不得少于6位数</string>
     <string name="login_register_username_is_exist">该账户已经注册</string>
+
 </resources>

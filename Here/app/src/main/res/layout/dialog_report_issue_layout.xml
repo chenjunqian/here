@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/universal_alert_dialog_shape"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/report_dialog_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="top|left"
+        android:hint="@string/report_us_hint"
+        android:inputType="textMultiLine"
+        android:textColorHint="@color/universal_text_color_grad"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/universal_20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/report_dialog_ok"
+                android:layout_width="@dimen/universal_80dp"
+                android:layout_height="@dimen/universal_40dp"
+                android:layout_centerInParent="true"
+                android:background="@color/universal_layout_background_color"
+                android:text="ok"
+                android:textColor="@color/universal_grey_six" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/report_dialog_cancel"
+                android:layout_width="@dimen/universal_80dp"
+                android:layout_height="@dimen/universal_40dp"
+                android:layout_centerInParent="true"
+                android:textColor="@color/universal_white"
+                android:text="cancel"
+                android:background="@drawable/universal_round_green_button_shape_40dp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
