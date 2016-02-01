@@ -55,9 +55,9 @@
             android:id="@+id/modify_username_ok_button"
             android:layout_width="@dimen/universal_80dp"
             android:layout_height="@dimen/universal_40dp"
-            android:background="@drawable/universal_round_green_button_shape_40dp"
+            android:background="@null"
             android:text="ok"
-            android:textColor="@color/universal_white" />
+            android:textColor="@color/universal_title_background_red" />
 
         <TextView
             android:id="@+id/middle_text_view"
@@ -70,7 +70,7 @@
             android:layout_width="@dimen/universal_80dp"
             android:layout_height="@dimen/universal_40dp"
             android:text="cancel"
-            android:background="@drawable/universal_round_light_color_button_shape_40dp"
-            android:textColor="@color/universal_grey_six" />
+            android:background="@null"
+            android:textColor="@color/universal_item_text_color_black" />
     </LinearLayout>
 </LinearLayout>

@@ -26,9 +26,9 @@
             android:id="@+id/ok_button"
             android:layout_width="@dimen/universal_80dp"
             android:layout_height="@dimen/universal_40dp"
-            android:background="@drawable/universal_round_light_color_button_shape_40dp"
+            android:background="@null"
             android:text="ok"
-            android:textColor="@color/universal_grey_six" />
+            android:textColor="@color/universal_item_text_color_black" />
 
         <TextView
             android:id="@+id/middle_text_view"
@@ -40,9 +40,9 @@
             android:id="@+id/cancel_button"
             android:layout_width="@dimen/universal_80dp"
             android:layout_height="@dimen/universal_40dp"
-            android:background="@drawable/universal_round_green_button_shape_40dp"
+            android:background="@null"
             android:text="cancel"
-            android:textColor="@color/universal_white" />
+            android:textColor="@color/universal_title_background_red" />
     </LinearLayout>
 
 </LinearLayout>

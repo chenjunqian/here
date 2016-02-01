@@ -100,7 +100,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/universal_20dp"
-        android:layout_marginBottom="@dimen/universal_20dp"
+        android:layout_marginBottom="10dp"
         android:layout_gravity="center_horizontal"
         android:orientation="horizontal" >
 
@@ -109,20 +109,20 @@
             android:layout_alignParentLeft="true"
             android:layout_width="@dimen/universal_80dp"
             android:layout_height="@dimen/universal_40dp"
-            android:layout_marginStart="30dp"
-            android:background="@drawable/universal_round_light_color_button_shape_40dp"
+            android:layout_marginStart="@dimen/universal_20dp"
+            android:background="@null"
             android:text="ok"
-            android:textColor="@color/universal_grey_six" />
+            android:textColor="@color/universal_item_text_color_black" />
 
 
         <Button
             android:id="@+id/report_post_cancel_button"
             android:layout_alignParentRight="true"
             android:layout_width="@dimen/universal_80dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginEnd="@dimen/universal_20dp"
             android:layout_height="@dimen/universal_40dp"
-            android:background="@drawable/universal_round_green_button_shape_40dp"
+            android:background="@null"
             android:text="cancel"
-            android:textColor="@color/universal_white" />
+            android:textColor="@color/universal_title_background_red" />
     </RelativeLayout>
 </LinearLayout>
