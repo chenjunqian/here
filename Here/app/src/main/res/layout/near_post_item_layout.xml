@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/near_item_background_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/near_item_background_layout"
     android:background="@color/universal_white"
     android:orientation="vertical">
 
 
     <com.eason.marker.util.WidgetUtil.CircleImageView
         android:id="@+id/near_item_avatar"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="3dp"
         android:layout_marginTop="3dp"
         android:scaleType="fitXY"
-        android:src="@drawable/default_avatar" />
+        android:src="@drawable/default_avatar_ori" />
 
     <TextView
         android:id="@+id/near_item_nickname"
@@ -26,18 +26,31 @@
         android:layout_marginTop="5dp"
         android:layout_toRightOf="@+id/near_item_avatar"
         android:text="nickname"
-        android:textColor="@color/universal_title_background_red" />
+        android:textColor="@color/universal_item_text_color_black" />
+
+    <TextView
+        android:id="@+id/near_item_simple_profile_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="5dp"
+        android:layout_toLeftOf="@+id/post_item_delete_image_button"
+        android:layout_toRightOf="@+id/near_item_nickname"
+        android:text="simple-profile"
+        android:singleLine="true"
+        android:textColor="@color/universal_item_text_color_sub_black" />
 
     <ImageButton
         android:id="@+id/post_item_delete_image_button"
-        android:background="@drawable/ic_delete_black_18dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
         android:layout_marginEnd="5dp"
         android:layout_marginTop="5dp"
-        android:visibility="gone"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
+        android:background="@drawable/ic_delete_black_18dp"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/near_item_post_tag_text_view"
@@ -56,28 +69,28 @@
         android:id="@+id/near_post_item_post_time_text_view"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
+        android:layout_alignStart="@+id/near_item_post_tag_text_view"
+        android:layout_below="@+id/near_item_post_tag_text_view"
         android:gravity="center_vertical"
         android:text="post-time"
         android:textColor="@color/universal_text_color_grad"
-        android:textSize="12sp"
-        android:layout_below="@+id/near_item_post_tag_text_view"
-        android:layout_alignStart="@+id/near_item_post_tag_text_view" />
+        android:textSize="12sp" />
 
     <RelativeLayout
         android:id="@+id/near_item_post_address_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="5dp"
-        android:orientation="horizontal"
+        android:layout_alignStart="@+id/near_post_item_post_time_text_view"
         android:layout_below="@+id/near_post_item_post_time_text_view"
-        android:layout_alignStart="@+id/near_post_item_post_time_text_view">
+        android:layout_marginRight="5dp"
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/near_item_position_image_view"
             android:layout_width="11dp"
             android:layout_height="15dp"
-            android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="3dp"
             android:layout_marginTop="3dp"
             android:scaleType="fitXY"
@@ -90,8 +103,8 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:gravity="center_vertical"
             android:layout_toRightOf="@+id/near_item_position_image_view"
+            android:gravity="center_vertical"
             android:text="post-address"
             android:textColor="@color/universal_text_color_grad"
             android:textSize="12sp" />

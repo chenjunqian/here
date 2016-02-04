@@ -10,7 +10,7 @@
         android:id="@+id/dialog_image_view"
         android:scaleType="fitXY"
         android:layout_centerInParent="true"
-        android:src="@drawable/default_avatar"
+        android:src="@drawable/default_avatar_ori"
         android:layout_width="300dp"
         android:layout_height="300dp" />
 </RelativeLayout>

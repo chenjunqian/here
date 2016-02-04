@@ -51,7 +51,7 @@ public class CircleImageView extends ImageView{
         Bitmap tempBitmap = ((BitmapDrawable) drawable).getBitmap();
         if (tempBitmap == null) {
             tempBitmap = CommonUtil.drawableToBitmap(getResources().getDrawable(
-                    R.drawable.default_avatar));
+                    R.drawable.default_avatar_ori));
         }
 
         int w = getWidth();

@@ -1,7 +1,6 @@
 package com.eason.marker.main_activity;
 
 import android.app.Fragment;
-import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -16,11 +15,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.easemob.EMCallBack;
+import com.easemob.chat.EMChatManager;
+import com.easemob.chat.EMGroupManager;
 import com.eason.marker.R;
 import com.eason.marker.about_us_activity.AboutUsActivity;
+import com.eason.marker.emchat.EMChatUtil;
 import com.eason.marker.model.ErroCode;
 import com.eason.marker.model.IntentUtil;
+import com.eason.marker.model.LoginStatus;
 import com.eason.marker.model.Post;
+import com.eason.marker.model.User;
+import com.eason.marker.util.LogUtil;
 import com.eason.marker.util.WidgetUtil.GreenToast;
 
 import java.util.List;
@@ -200,9 +206,8 @@ public class MainActivity extends ActionBarActivity {
      * 初始化参数，及相应的布局设置
      */
     private void initParam() {
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
         setFragmentTransaction(IntentUtil.MAIN_MAP_FRAGMENT);
+        EMChatUtil.autoReConnectEMChat();
     }
 
     public Fragment getFragment(int type){
@@ -299,6 +304,7 @@ public class MainActivity extends ActionBarActivity {
 
                 FRAGMENT_TAG = IntentUtil.CURRENT_POST_FRAGMENT;
                 handler.sendEmptyMessage(msg.what);
+                isShowRefreshView = false;
                 msg.what = CHANGE_TOOL_BAR_TITLE_MINE;
                 handler.sendEmptyMessage(msg.what);
                 break;
@@ -331,11 +337,39 @@ public class MainActivity extends ActionBarActivity {
             return;
         }
 
-
         switch (requestCode) {
-
             case IntentUtil.TO_PUBLISH_PAGE:
                 mainMapFragment.getPost();
+                break;
+            case IntentUtil.MAIN_TO_LOGIN_PAGE:
+                User user = LoginStatus.getUser();
+                if (user!=null){
+                    //登录环信SDK
+                    EMChatManager.getInstance().login(user.getUsername(), user.getPassword(), new EMCallBack() {//回调
+                        @Override
+                        public void onSuccess() {
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    EMGroupManager.getInstance().loadAllGroups();
+                                    EMChatManager.getInstance().loadAllConversations();
+                                    EMChatUtil.isConnectedEMChatServer = true;
+                                    LogUtil.d("MainActivity", "登陆聊天服务器成功！");
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void onProgress(int progress, String status) {
+
+                        }
+
+                        @Override
+                        public void onError(int code, String message) {
+                            EMChatUtil.isConnectedEMChatServer = false;
+                            LogUtil.d("MainActivity", "登陆聊天服务器失败！");
+                        }
+                    });
+                }
                 break;
         }
 

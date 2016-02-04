@@ -8,8 +8,8 @@ from django.db import connection
 from django import forms
 from django.shortcuts import render,render_to_response
 import Image
-
 import sys,os
+import util
 reload(sys)
 sys.setdefaultencoding('utf8')
 
@@ -85,6 +85,7 @@ def register(request):
 				cursor = connection.cursor()
 				query = "insert into here_user(username,password,gender,pushkey,birthday,nickname) values(%s,%s,%s,%s,%s,%s)"
 				cursor.execute(query,[username,password,gender,pushKey,birthday,nickname])
+				util.registerEMChat(username,password)
 				# 返回客户端用户数据
 				resultData['username'] = username
 				resultData['password'] = password

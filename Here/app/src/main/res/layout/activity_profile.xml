@@ -17,6 +17,15 @@
             android:layout_centerInParent="true"
             android:textColor="@color/universal_white"
             android:textSize="@dimen/universal_title_text_size" />
+
+        <ImageButton
+            android:id="@+id/enter_chat_activity_image_button"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/ic_mail_white_24dp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -33,7 +42,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="@dimen/universal_20dp"
             android:scaleType="fitXY"
-            android:src="@drawable/default_avatar" />
+            android:src="@drawable/default_avatar_ori" />
 
         <TextView
             android:id="@+id/simple_profile_text_view"
@@ -139,10 +148,10 @@
     </RelativeLayout>
 
     <ListView
-        android:layout_marginTop="10dp"
         android:id="@+id/profile_activity_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
         android:dividerHeight="4dp">
 
     </ListView>

@@ -80,4 +80,6 @@
     <string name="login_register_input_valid_password">密码不得少于6位数</string>
     <string name="login_register_username_is_exist">该账户已经注册</string>
 
+
+    <!-- 环信-->
 </resources>

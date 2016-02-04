@@ -366,4 +366,5 @@ public class CommonUtil {
 
         return inSampleSize;
     }
+
 }

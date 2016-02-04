@@ -270,7 +270,7 @@ public class HttpRequest {
     public static void loadImage(ImageView imageView, String url,int w,int h) {
 
         ImageLoader.ImageListener listener = ImageLoader.getImageListener(imageView,
-                R.drawable.default_avatar, R.drawable.default_avatar);
+                R.drawable.default_avatar_ori, R.drawable.default_avatar_ori);
         ImageLoader imageLoader = new ImageLoader(queue, new BitmapCache());
 
         if (w<=0||h<=0){

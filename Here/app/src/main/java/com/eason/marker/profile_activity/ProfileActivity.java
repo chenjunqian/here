@@ -15,7 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eason.marker.BaseActivity;
+import com.eason.marker.MainApplication;
 import com.eason.marker.R;
+import com.eason.marker.emchat.chatuidemo.activity.ChatActivity;
 import com.eason.marker.http_util.HttpConfig;
 import com.eason.marker.http_util.HttpRequest;
 import com.eason.marker.http_util.HttpResponseHandler;
@@ -39,7 +41,7 @@ import java.util.List;
 /**
  * Created by Eason on 12/22/15.
  */
-public class ProfileActivity extends BaseActivity {
+public class ProfileActivity extends BaseActivity implements View.OnClickListener{
 
     private CircleImageView avatar;
     private TextView nicknameTextView;
@@ -50,6 +52,7 @@ public class ProfileActivity extends BaseActivity {
     private TextView longProfileTextView;
     private ListView historyPostListView;
     private RelativeLayout userInfoLayout;
+    private ImageButton enterChatBtn;
 
     private User user;
     /**
@@ -62,6 +65,7 @@ public class ProfileActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         initView();
+        initData();
     }
 
     private void initView(){
@@ -73,22 +77,18 @@ public class ProfileActivity extends BaseActivity {
         longProfileTextView = (TextView) findViewById(R.id.profile_activity_long_profile_text_view);
         historyPostListView = (ListView) findViewById(R.id.profile_activity_list_view);
         avatar = (CircleImageView) findViewById(R.id.profile_activity_avatar_circle_view);
+        avatar.setOnClickListener(this);
         userInfoLayout = (RelativeLayout) findViewById(R.id.profile_activity_user_info_layout);
+        enterChatBtn = (ImageButton) findViewById(R.id.enter_chat_activity_image_button);
+        enterChatBtn.setOnClickListener(this);
 
         page_status = getIntent().getIntExtra(IntentUtil.IS_SHOW_MY_USER_INFO_LAYOUT_STRING,0);
         if (page_status==IntentUtil.IS_SHOW_USER_INFO_LAYOUT_INT){
             userInfoLayout.setVisibility(View.GONE);
         }
 
-        avatar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (user==null)return;
-                ImageViewDialog imageViewDialog = new ImageViewDialog(ProfileActivity.this,user.getAvatar());
-                imageViewDialog.show();
-            }
-        });
-
+    }
+    private void initData(){
         Intent dataIntent = getIntent();
         String username = dataIntent.getStringExtra("username");
 
@@ -157,6 +157,31 @@ public class ProfileActivity extends BaseActivity {
         });
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.profile_activity_avatar_circle_view:
+                if (user==null)return;
+                ImageViewDialog imageViewDialog = new ImageViewDialog(ProfileActivity.this,user.getAvatar());
+                imageViewDialog.show();
+                break;
+            case R.id.enter_chat_activity_image_button:
+                // 进入聊天页面
+                String userId = user.getUserid();
+                if (user==null)return;
+                if (userId.equals(MainApplication.getInstance().getUserName())){
+                    GreenToast.makeText(ProfileActivity.this, getResources().getString(R.string.Cant_chat_with_yourself), 0).show();
+                }else{
+                    Intent intent = new Intent(ProfileActivity.this, ChatActivity.class);
+                    intent.putExtra("userId", userId);
+                    intent.putExtra("chatType", ChatActivity.CHATTYPE_SINGLE);
+                    startActivity(intent);
+                }
+
+                break;
+        }
+    }
+
 
     private class ListViewAdapter extends BaseAdapter{
 
@@ -198,6 +223,8 @@ public class ProfileActivity extends BaseActivity {
                 viewsHolder.nicknameTextView = (TextView) convertView.findViewById(R.id.near_item_nickname);
                 viewsHolder.nicknameTextView.setVisibility(View.INVISIBLE);
                 viewsHolder.postTagTextView = (TextView) convertView.findViewById(R.id.near_item_post_tag_text_view);
+                viewsHolder.simpleProfile = (TextView) convertView.findViewById(R.id.near_item_simple_profile_text_view);
+                viewsHolder.simpleProfile.setVisibility(View.GONE);
                 viewsHolder.postTimeTextView = (TextView) convertView.findViewById(R.id.near_post_item_post_time_text_view);
                 viewsHolder.deleteBtn = (ImageButton) convertView.findViewById(R.id.post_item_delete_image_button);
                 if (page_status==IntentUtil.IS_SHOW_USER_INFO_LAYOUT_INT){//如果是显示自己的页面，则显示删除键
@@ -283,6 +310,7 @@ public class ProfileActivity extends BaseActivity {
 
     private static class ViewsHolder{
         public TextView nicknameTextView;
+        public TextView simpleProfile;
         public CircleImageView avatarView;
         public TextView postTagTextView;
         public TextView addressTextView;

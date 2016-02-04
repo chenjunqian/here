@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.eason.marker.BaseFragment;
 import com.eason.marker.R;
+import com.eason.marker.emchat.EMChatUtil;
 import com.eason.marker.http_util.HttpConfig;
 import com.eason.marker.http_util.HttpRequest;
 import com.eason.marker.login_register.LoginActivity;
@@ -102,6 +103,7 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
                         @Override
                         public void onClick(View arg0) {
                             LoginStatus.setUser(null);
+                            EMChatUtil.logoutEMChat();
                             initData();
                             mDialog.dismiss();
                         }

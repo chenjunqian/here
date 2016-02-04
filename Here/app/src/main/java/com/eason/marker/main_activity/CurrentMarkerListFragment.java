@@ -32,6 +32,7 @@ public class CurrentMarkerListFragment extends BaseFragment implements SwipeRefr
     private SwipeRefreshLayout swipeRefreshLayout;
     private PostList postListGlobal;
     private static int LOAD_MORE_NUM = 20;
+    private boolean isShowNoMorePostToast = true;
 
     @Nullable
     @Override
@@ -56,7 +57,7 @@ public class CurrentMarkerListFragment extends BaseFragment implements SwipeRefr
             public void onScrollStateChanged(AbsListView view, int scrollState) {
                 switch (scrollState){
                     case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:
-                    if (listView.getLastVisiblePosition() == (listView.getCount()-1)) {
+                    if (listView.getLastVisiblePosition() == (listView.getCount()-1)&&isShowNoMorePostToast) {
                         LOAD_MORE_NUM = LOAD_MORE_NUM + 20;
                         loadData(LOAD_MORE_NUM);
                     }
@@ -100,8 +101,9 @@ public class CurrentMarkerListFragment extends BaseFragment implements SwipeRefr
                     }
 
 
-                } else {
+                } else if (isShowNoMorePostToast){
                     GreenToast.makeText(getActivity(), "没有帖子啦", Toast.LENGTH_SHORT).show();
+                    isShowNoMorePostToast = false;
                 }
             }
         };
@@ -113,6 +115,7 @@ public class CurrentMarkerListFragment extends BaseFragment implements SwipeRefr
     public void onRefresh() {
         LOAD_MORE_NUM = 20;
         postListGlobal = null;
+        isShowNoMorePostToast = true;
         loadData(LOAD_MORE_NUM);
         swipeRefreshLayout.setRefreshing(false);
     }

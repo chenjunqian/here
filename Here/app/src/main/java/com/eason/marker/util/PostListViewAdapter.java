@@ -62,6 +62,7 @@ public class PostListViewAdapter extends BaseAdapter {
             viewsHolder.addressTextView = (TextView) convertView.findViewById(R.id.near_item_address_text_view);
             viewsHolder.avatarView = (CircleImageView) convertView.findViewById(R.id.near_item_avatar);
             viewsHolder.nicknameTextView = (TextView) convertView.findViewById(R.id.near_item_nickname);
+            viewsHolder.simpleProfile = (TextView) convertView.findViewById(R.id.near_item_simple_profile_text_view);
             viewsHolder.postTagTextView = (TextView) convertView.findViewById(R.id.near_item_post_tag_text_view);
             viewsHolder.postTimeTextView = (TextView) convertView.findViewById(R.id.near_post_item_post_time_text_view);
             convertView.setTag(viewsHolder);
@@ -76,6 +77,7 @@ public class PostListViewAdapter extends BaseAdapter {
 
     private static class ViewsHolder{
         public TextView nicknameTextView;
+        public TextView simpleProfile;
         public CircleImageView avatarView;
         public TextView postTagTextView;
         public TextView addressTextView;
@@ -94,6 +96,7 @@ public class PostListViewAdapter extends BaseAdapter {
                         user = (User) this.result;
                         //设置内容
                         nicknameTextView.setText(user.getNickname());
+                        simpleProfile.setText(user.getSimpleProfile());
                         addressTextView.setText(post.getAddress());
                         postTagTextView.setText(post.getTag());
                         HttpRequest.loadImage(avatarView, HttpConfig.String_Url_Media + user.getAvatar(), 150, 150);
