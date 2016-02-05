@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.eason.marker.BaseFragment;
 import com.eason.marker.R;
 import com.eason.marker.emchat.EMChatUtil;
+import com.eason.marker.emchat.chatuidemo.activity.EMChatMainActivity;
 import com.eason.marker.http_util.HttpConfig;
 import com.eason.marker.http_util.HttpRequest;
 import com.eason.marker.login_register.LoginActivity;
@@ -32,6 +33,7 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
     private RelativeLayout userListLayout;
     private RelativeLayout loginLayout;
     private RelativeLayout currentPostLayout;
+    private RelativeLayout enterEMChatLayout;
     private CircleImageView circleImageView;
 
     private TextView loginTextView;
@@ -45,6 +47,7 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
         loginLayout = (RelativeLayout) root.findViewById(R.id.login_item_layout);
         userProfileLayout = (RelativeLayout) root.findViewById(R.id.left_menu_profile_layout);
         currentPostLayout = (RelativeLayout) root.findViewById(R.id.current_post_list_item_layout);
+        enterEMChatLayout = (RelativeLayout) root.findViewById(R.id.enter_chat_main_page_item_layout);
 
         loginTextView = (TextView) root.findViewById(R.id.login_text_view);
         circleImageView = (CircleImageView) userProfileLayout.findViewById(R.id.left_menu_avatar_image_view);
@@ -54,6 +57,7 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
         loginLayout.setOnClickListener(this);
         userProfileLayout.setOnClickListener(this);
         currentPostLayout.setOnClickListener(this);
+        enterEMChatLayout.setOnClickListener(this);
         return root;
     }
 
@@ -124,6 +128,11 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
                 break;
             case R.id.current_post_list_item_layout:
                 mainActivity.setFragmentTransaction(IntentUtil.CURRENT_POST_FRAGMENT);
+                break;
+
+            case R.id.enter_chat_main_page_item_layout:
+                Intent toChatPageIntent = new Intent(this.getActivity(), EMChatMainActivity.class);
+                getActivity().startActivity(toChatPageIntent);
                 break;
 
             case R.id.left_menu_profile_layout:

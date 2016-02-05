@@ -31,7 +31,7 @@ import com.eason.marker.util.WidgetUtil.GreenToast;
  * 注册页
  * 
  */
-public class RegisterActivity extends BaseActivity {
+public class EMChatRegisterActivity extends BaseActivity {
 	private EditText userNameEditText;
 	private EditText passwordEditText;
 	private EditText confirmPwdEditText;
@@ -83,7 +83,7 @@ public class RegisterActivity extends BaseActivity {
 						EMChatManager.getInstance().createAccountOnServer(username, pwd);
 						runOnUiThread(new Runnable() {
 							public void run() {
-								if (!RegisterActivity.this.isFinishing())
+								if (!EMChatRegisterActivity.this.isFinishing())
 									pd.dismiss();
 								// 保存用户名
 								MainApplication.getInstance().setUserName(username);
@@ -94,7 +94,7 @@ public class RegisterActivity extends BaseActivity {
 					} catch (final EaseMobException e) {
 						runOnUiThread(new Runnable() {
 							public void run() {
-								if (!RegisterActivity.this.isFinishing())
+								if (!EMChatRegisterActivity.this.isFinishing())
 									pd.dismiss();
 								int errorCode=e.getErrorCode();
 								if(errorCode==EMError.NONETWORK_ERROR){

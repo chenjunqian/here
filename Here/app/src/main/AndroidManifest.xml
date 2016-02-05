@@ -113,6 +113,24 @@
 
         <!-- 环信Activity-->
 
+        <!-- EMChat主页面-->
+        <activity
+            android:name=".emchat.chatuidemo.activity.EMChatMainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">>
+        </activity>
+        <!-- 登录页面-->
+        <activity
+            android:name=".emchat.chatuidemo.activity.EMChatLoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">>
+        </activity>
+        <!-- 注册页面-->
+        <activity
+            android:name=".emchat.chatuidemo.activity.EMChatRegisterActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">>
+        </activity>
         <!-- 聊天页面 -->
         <activity
             android:name="com.eason.marker.emchat.chatuidemo.activity.ChatActivity"

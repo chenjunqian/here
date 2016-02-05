@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Pair;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -13,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -21,8 +18,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -30,9 +25,9 @@ import android.widget.TextView;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMConversation;
 import com.easemob.chat.EMConversation.EMConversationType;
+import com.eason.marker.MainApplication;
 import com.eason.marker.R;
 import com.eason.marker.emchat.chatuidemo.Constant;
-import com.eason.marker.MainApplication;
 import com.eason.marker.emchat.chatuidemo.adapter.ChatAllHistoryAdapter;
 import com.eason.marker.emchat.chatuidemo.db.InviteMessgeDao;
 import com.eason.marker.util.WidgetUtil.GreenToast;
@@ -47,13 +42,13 @@ import java.util.List;
  * 显示所有会话记录，比较简单的实现，更好的可能是把陌生人存入本地，这样取到的聊天记录是可控的
  * 
  */
-public class ChatAllHistoryFragment extends Fragment implements OnClickListener {
+public class ChatAllHistoryFragment extends Fragment {
 
 	private InputMethodManager inputMethodManager;
 	private ListView listView;
 	private ChatAllHistoryAdapter adapter;
-	private EditText query;
-	private ImageButton clearSearch;
+//	private EditText query;
+//	private ImageButton clearSearch;
 	public RelativeLayout errorItem;
 
 	public TextView errorText;
@@ -126,34 +121,34 @@ public class ChatAllHistoryFragment extends Fragment implements OnClickListener 
 
 		});
 		// 搜索框
-		query = (EditText) getView().findViewById(R.id.query);
-		String strSearch = getResources().getString(R.string.search);
-		query.setHint(strSearch);
-		// 搜索框中清除button
-		clearSearch = (ImageButton) getView().findViewById(R.id.search_clear);
-		query.addTextChangedListener(new TextWatcher() {
-			public void onTextChanged(CharSequence s, int start, int before, int count) {
-				adapter.getFilter().filter(s);
-				if (s.length() > 0) {
-					clearSearch.setVisibility(View.VISIBLE);
-				} else {
-					clearSearch.setVisibility(View.INVISIBLE);
-				}
-			}
-
-			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-			}
-
-			public void afterTextChanged(Editable s) {
-			}
-		});
-		clearSearch.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				query.getText().clear();
-				hideSoftKeyboard();
-			}
-		});
+//		query = (EditText) getView().findViewById(R.id.query);
+//		String strSearch = getResources().getString(R.string.search);
+//		query.setHint(strSearch);
+//		// 搜索框中清除button
+//		clearSearch = (ImageButton) getView().findViewById(R.id.search_clear);
+//		query.addTextChangedListener(new TextWatcher() {
+//			public void onTextChanged(CharSequence s, int start, int before, int count) {
+//				adapter.getFilter().filter(s);
+//				if (s.length() > 0) {
+//					clearSearch.setVisibility(View.VISIBLE);
+//				} else {
+//					clearSearch.setVisibility(View.INVISIBLE);
+//				}
+//			}
+//
+//			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//			}
+//
+//			public void afterTextChanged(Editable s) {
+//			}
+//		});
+//		clearSearch.setOnClickListener(new OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				query.getText().clear();
+//				hideSoftKeyboard();
+//			}
+//		});
 		
 	}
 
@@ -293,7 +288,4 @@ public class ChatAllHistoryFragment extends Fragment implements OnClickListener 
         }
     }
 
-    @Override
-    public void onClick(View v) {        
-    }
 }

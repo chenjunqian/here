@@ -99,7 +99,7 @@ public class SplashActivity extends BaseActivity {
                 @Override
                 public void onError(int code, String message) {
                     EMChatUtil.isConnectedEMChatServer = false;
-                    LogUtil.d("SplashActivity", "登陆聊天服务器失败！");
+                    LogUtil.d("SplashActivity", "登陆聊天服务器失败！"+" code "+code+" message : "+message);
                 }
             });
 

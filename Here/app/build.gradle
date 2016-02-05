@@ -28,4 +28,5 @@ dependencies {
     compile files('libs/easemobchat_2.2.5.jar')
     compile files('libs/Parse-1.9.4.jar')
     compile files('libs/bolts-android-1.2.0.jar')
+    compile files('libs/MiPush_SDK_Client_2_2_19.jar')
 }

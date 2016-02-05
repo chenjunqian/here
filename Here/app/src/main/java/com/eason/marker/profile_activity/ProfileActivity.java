@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.eason.marker.BaseActivity;
 import com.eason.marker.MainApplication;
 import com.eason.marker.R;
+import com.eason.marker.emchat.EMChatUtil;
 import com.eason.marker.emchat.chatuidemo.activity.ChatActivity;
 import com.eason.marker.http_util.HttpConfig;
 import com.eason.marker.http_util.HttpRequest;
@@ -168,7 +169,10 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
             case R.id.enter_chat_activity_image_button:
                 // 进入聊天页面
                 String userId = user.getUserid();
-                if (user==null)return;
+                if (user==null|| !EMChatUtil.isConnectedEMChatServer){
+                    GreenToast.makeText(ProfileActivity.this,getResources().getString(R.string.net_work_invalid),Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if (userId.equals(MainApplication.getInstance().getUserName())){
                     GreenToast.makeText(ProfileActivity.this, getResources().getString(R.string.Cant_chat_with_yourself), 0).show();
                 }else{

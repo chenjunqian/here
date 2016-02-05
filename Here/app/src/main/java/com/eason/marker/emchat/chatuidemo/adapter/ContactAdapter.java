@@ -30,7 +30,6 @@ import com.easemob.util.EMLog;
 import com.eason.marker.R;
 import com.eason.marker.emchat.chatuidemo.Constant;
 import com.eason.marker.emchat.chatuidemo.domain.User;
-import com.eason.marker.emchat.chatuidemo.utils.UserUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -122,7 +121,7 @@ public class ContactAdapter extends ArrayAdapter<User>  implements SectionIndexe
 		}else{
 		    holder.nameTextview.setText(user.getNick());
 		    //设置用户头像
-			UserUtils.setUserAvatar(getContext(), username, holder.avatar);
+//			UserUtils.setUserAvatar(getContext(), username, holder.avatar);
 			if(holder.unreadMsgView != null)
 			    holder.unreadMsgView.setVisibility(View.INVISIBLE);
 		}

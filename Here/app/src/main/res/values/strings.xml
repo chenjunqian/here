@@ -7,6 +7,7 @@
     <string name="main_map_page">首页</string>
     <string name="my_profile_page_title">我的资料</string>
     <string name="current_list_page_title">此刻</string>
+    <string name="enter_chat_page_page_title">私信</string>
     <string name="near_list_page_title">周边</string>
     <string name="net_work_invalid">网络发生了一些问题</string>
     <string name="report_us_hint">请在这里填写意见，小的会及时的查看</string>

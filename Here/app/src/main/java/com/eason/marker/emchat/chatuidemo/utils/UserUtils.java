@@ -18,6 +18,9 @@ public class UserUtils {
      * @return
      */
     public static User getUserInfo(String username){
+		if (((DemoHXSDKHelper)HXSDKHelper.getInstance()).getContactList()==null){
+			return new User(username);
+		}
         User user = ((DemoHXSDKHelper)HXSDKHelper.getInstance()).getContactList().get(username);
         if(user == null){
             user = new User(username);

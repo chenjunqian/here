@@ -105,6 +105,33 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/enter_chat_main_page_item_layout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/layout_background_selector"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/enter_chat_main_page_image_view"
+            android:layout_width="35dp"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/ic_email_black_18dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:id="@+id/enter_chat_main_page_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/enter_chat_main_page_image_view"
+            android:text="@string/enter_chat_page_page_title"
+            android:textColor="@color/universal_item_text_color_black"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
         android:id="@+id/login_item_layout"
         android:layout_width="match_parent"
         android:layout_height="40dp"

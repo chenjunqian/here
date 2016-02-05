@@ -55,7 +55,7 @@ public class EMChatUtil {
             @Override
             public void onError(int code, String message) {
 
-                LogUtil.d("EMChatUtil", "登出失败！");
+                LogUtil.d("EMChatUtil", "登出失败！"+" code "+code+" message : "+message);
             }
         });
     }

@@ -77,10 +77,10 @@ public class EMChatMainActivity extends BaseActivity implements EMEventListener 
 	private TextView unreadAddressLable;
 
 	private Button[] mTabs;
-	private ContactlistFragment contactListFragment;
+//	private ContactlistFragment contactListFragment;
 	// private ChatHistoryFragment chatHistoryFragment;
 	private ChatAllHistoryFragment chatHistoryFragment;
-	private SettingsFragment settingFragment;
+//	private SettingsFragment settingFragment;
 	private Fragment[] fragments;
 	private int index;
 	// 当前fragment的index
@@ -109,16 +109,16 @@ public class EMChatMainActivity extends BaseActivity implements EMEventListener 
 			// 三个fragment里加的判断同理
 		    DemoHXSDKHelper.getInstance().logout(true,null);
 			finish();
-			startActivity(new Intent(this, LoginActivity.class));
+//			startActivity(new Intent(this, EMChatLoginActivity.class));
 			return;
 		} else if (savedInstanceState != null && savedInstanceState.getBoolean("isConflict", false)) {
 			// 防止被T后，没点确定按钮然后按了home键，长期在后台又进app导致的crash
 			// 三个fragment里加的判断同理
 			finish();
-			startActivity(new Intent(this, LoginActivity.class));
+//			startActivity(new Intent(this, EMChatLoginActivity.class));
 			return;
 		}
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_chat_main);
 		initView();
 
 		if (getIntent().getBooleanExtra("conflict", false) && !isConflictDialogShow) {
@@ -133,12 +133,12 @@ public class EMChatMainActivity extends BaseActivity implements EMEventListener 
 		// chatHistoryFragment = new ChatHistoryFragment();
 		// 显示所有人消息记录的fragment
 		chatHistoryFragment = new ChatAllHistoryFragment();
-		contactListFragment = new ContactlistFragment();
-		settingFragment = new SettingsFragment();
-		fragments = new Fragment[] { chatHistoryFragment, contactListFragment, settingFragment };
+//		contactListFragment = new ContactlistFragment();
+//		settingFragment = new SettingsFragment();
+		fragments = new Fragment[] { chatHistoryFragment};
 		// 添加显示第一个fragment
 		getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, chatHistoryFragment)
-				.add(R.id.fragment_container, contactListFragment).hide(contactListFragment).show(chatHistoryFragment)
+		.show(chatHistoryFragment)
 				.commit();
 		
 		init();
@@ -166,110 +166,110 @@ public class EMChatMainActivity extends BaseActivity implements EMEventListener 
 
 	
 	static void asyncFetchGroupsFromServer(){
-	    HXSDKHelper.getInstance().asyncFetchGroupsFromServer(new EMCallBack(){
+	    HXSDKHelper.getInstance().asyncFetchGroupsFromServer(new EMCallBack() {
 
-            @Override
-            public void onSuccess() {
-                HXSDKHelper.getInstance().noitifyGroupSyncListeners(true);
-                
-                if(HXSDKHelper.getInstance().isContactsSyncedWithServer()){
-                    HXSDKHelper.getInstance().notifyForRecevingEvents();
-                }
-            }
+			@Override
+			public void onSuccess() {
+				HXSDKHelper.getInstance().noitifyGroupSyncListeners(true);
 
-            @Override
-            public void onError(int code, String message) {
-                HXSDKHelper.getInstance().noitifyGroupSyncListeners(false);                
-            }
+				if (HXSDKHelper.getInstance().isContactsSyncedWithServer()) {
+					HXSDKHelper.getInstance().notifyForRecevingEvents();
+				}
+			}
 
-            @Override
-            public void onProgress(int progress, String status) {
-                
-            }
-            
-        });
+			@Override
+			public void onError(int code, String message) {
+				HXSDKHelper.getInstance().noitifyGroupSyncListeners(false);
+			}
+
+			@Override
+			public void onProgress(int progress, String status) {
+
+			}
+
+		});
 	}
 	
 	static void asyncFetchContactsFromServer(){
-	    HXSDKHelper.getInstance().asyncFetchContactsFromServer(new EMValueCallBack<List<String>>(){
+	    HXSDKHelper.getInstance().asyncFetchContactsFromServer(new EMValueCallBack<List<String>>() {
 
-            @Override
-            public void onSuccess(List<String> usernames) {
-                Context context = HXSDKHelper.getInstance().getAppContext();
-                
-                System.out.println("----------------"+usernames.toString());
-                EMLog.d("roster", "contacts size: " + usernames.size());
-                Map<String, User> userlist = new HashMap<String, User>();
-                for (String username : usernames) {
-                    User user = new User();
-                    user.setUsername(username);
-                    setUserHearder(username, user);
-                    userlist.put(username, user);
-                }
-                // 添加user"申请与通知"
-                User newFriends = new User();
-                newFriends.setUsername(Constant.NEW_FRIENDS_USERNAME);
-                String strChat = context.getString(R.string.Application_and_notify);
-                newFriends.setNick(strChat);
-        
-                userlist.put(Constant.NEW_FRIENDS_USERNAME, newFriends);
-                // 添加"群聊"
-                User groupUser = new User();
-                String strGroup = context.getString(R.string.group_chat);
-                groupUser.setUsername(Constant.GROUP_USERNAME);
-                groupUser.setNick(strGroup);
-                groupUser.setHeader("");
-                userlist.put(Constant.GROUP_USERNAME, groupUser);
-                
-                 // 添加"聊天室"
-                User chatRoomItem = new User();
-                String strChatRoom = context.getString(R.string.chat_room);
-                chatRoomItem.setUsername(Constant.CHAT_ROOM);
-                chatRoomItem.setNick(strChatRoom);
-                chatRoomItem.setHeader("");
-                userlist.put(Constant.CHAT_ROOM, chatRoomItem);
-                
-                // 添加"Robot"
-        		User robotUser = new User();
-        		String strRobot = context.getString(R.string.robot_chat);
-        		robotUser.setUsername(Constant.CHAT_ROBOT);
-        		robotUser.setNick(strRobot);
-        		robotUser.setHeader("");
-        		userlist.put(Constant.CHAT_ROBOT, robotUser);
-        		
-                 // 存入内存
-                ((DemoHXSDKHelper)HXSDKHelper.getInstance()).setContactList(userlist);
-                 // 存入db
-                UserDao dao = new UserDao(context);
-                List<User> users = new ArrayList<User>(userlist.values());
-                dao.saveContactList(users);
+			@Override
+			public void onSuccess(List<String> usernames) {
+				Context context = HXSDKHelper.getInstance().getAppContext();
 
-                HXSDKHelper.getInstance().notifyContactsSyncListener(true);
-                
-                if(HXSDKHelper.getInstance().isGroupsSyncedWithServer()){
-                    HXSDKHelper.getInstance().notifyForRecevingEvents();
-                }
-                
-                ((DemoHXSDKHelper)HXSDKHelper.getInstance()).getUserProfileManager().asyncFetchContactInfosFromServer(usernames,new EMValueCallBack<List<User>>() {
+				System.out.println("----------------" + usernames.toString());
+				EMLog.d("roster", "contacts size: " + usernames.size());
+				Map<String, User> userlist = new HashMap<String, User>();
+				for (String username : usernames) {
+					User user = new User();
+					user.setUsername(username);
+					setUserHearder(username, user);
+					userlist.put(username, user);
+				}
+				// 添加user"申请与通知"
+				User newFriends = new User();
+				newFriends.setUsername(Constant.NEW_FRIENDS_USERNAME);
+				String strChat = context.getString(R.string.Application_and_notify);
+				newFriends.setNick(strChat);
+
+				userlist.put(Constant.NEW_FRIENDS_USERNAME, newFriends);
+				// 添加"群聊"
+				User groupUser = new User();
+				String strGroup = context.getString(R.string.group_chat);
+				groupUser.setUsername(Constant.GROUP_USERNAME);
+				groupUser.setNick(strGroup);
+				groupUser.setHeader("");
+				userlist.put(Constant.GROUP_USERNAME, groupUser);
+
+				// 添加"聊天室"
+				User chatRoomItem = new User();
+				String strChatRoom = context.getString(R.string.chat_room);
+				chatRoomItem.setUsername(Constant.CHAT_ROOM);
+				chatRoomItem.setNick(strChatRoom);
+				chatRoomItem.setHeader("");
+				userlist.put(Constant.CHAT_ROOM, chatRoomItem);
+
+				// 添加"Robot"
+				User robotUser = new User();
+				String strRobot = context.getString(R.string.robot_chat);
+				robotUser.setUsername(Constant.CHAT_ROBOT);
+				robotUser.setNick(strRobot);
+				robotUser.setHeader("");
+				userlist.put(Constant.CHAT_ROBOT, robotUser);
+
+				// 存入内存
+				((DemoHXSDKHelper) HXSDKHelper.getInstance()).setContactList(userlist);
+				// 存入db
+				UserDao dao = new UserDao(context);
+				List<User> users = new ArrayList<User>(userlist.values());
+				dao.saveContactList(users);
+
+				HXSDKHelper.getInstance().notifyContactsSyncListener(true);
+
+				if (HXSDKHelper.getInstance().isGroupsSyncedWithServer()) {
+					HXSDKHelper.getInstance().notifyForRecevingEvents();
+				}
+
+				((DemoHXSDKHelper) HXSDKHelper.getInstance()).getUserProfileManager().asyncFetchContactInfosFromServer(usernames, new EMValueCallBack<List<User>>() {
 
 					@Override
 					public void onSuccess(List<User> uList) {
-						((DemoHXSDKHelper)HXSDKHelper.getInstance()).updateContactList(uList);
-						((DemoHXSDKHelper)HXSDKHelper.getInstance()).getUserProfileManager().notifyContactInfosSyncListener(true);
+						((DemoHXSDKHelper) HXSDKHelper.getInstance()).updateContactList(uList);
+						((DemoHXSDKHelper) HXSDKHelper.getInstance()).getUserProfileManager().notifyContactInfosSyncListener(true);
 					}
 
 					@Override
 					public void onError(int error, String errorMsg) {
 					}
 				});
-            }
+			}
 
-            @Override
-            public void onError(int error, String errorMsg) {
-                HXSDKHelper.getInstance().notifyContactsSyncListener(false);
-            }
-	        
-	    });
+			@Override
+			public void onError(int error, String errorMsg) {
+				HXSDKHelper.getInstance().notifyContactsSyncListener(false);
+			}
+
+		});
 	}
 	
 	static void asyncFetchBlackListFromServer(){
@@ -411,11 +411,6 @@ public class EMChatMainActivity extends BaseActivity implements EMEventListener 
 	}
 
 	@Override
-	public void back(View view) {
-		super.back(view);
-	}
-
-	@Override
 	protected void onDestroy() {
 		super.onDestroy();		
 		
@@ -457,7 +452,8 @@ public class EMChatMainActivity extends BaseActivity implements EMEventListener 
 	public void updateUnreadAddressLable() {
 		runOnUiThread(new Runnable() {
 			public void run() {
-				int count = getUnreadAddressCountTotal();
+//				int count = getUnreadAddressCountTotal();
+				int count = 0;
 				if (count > 0) {
 //					unreadAddressLable.setText(String.valueOf(count));
 					unreadAddressLable.setVisibility(View.VISIBLE);
@@ -474,13 +470,13 @@ public class EMChatMainActivity extends BaseActivity implements EMEventListener 
 	 * 
 	 * @return
 	 */
-	public int getUnreadAddressCountTotal() {
-		int unreadAddressCountTotal = 0;
-		if (((DemoHXSDKHelper)HXSDKHelper.getInstance()).getContactList().get(Constant.NEW_FRIENDS_USERNAME) != null)
-			unreadAddressCountTotal = ((DemoHXSDKHelper)HXSDKHelper.getInstance()).getContactList().get(Constant.NEW_FRIENDS_USERNAME)
-					.getUnreadMsgCount();
-		return unreadAddressCountTotal;
-	}
+//	public int getUnreadAddressCountTotal() {
+//		int unreadAddressCountTotal = 0;
+//		if (((DemoHXSDKHelper)HXSDKHelper.getInstance()).getContactList().get(Constant.NEW_FRIENDS_USERNAME) != null)
+//			unreadAddressCountTotal = ((DemoHXSDKHelper)HXSDKHelper.getInstance()).getContactList().get(Constant.NEW_FRIENDS_USERNAME)
+//					.getUnreadMsgCount();
+//		return unreadAddressCountTotal;
+//	}
 
 	/**
 	 * 获取未读消息数
@@ -522,8 +518,8 @@ public class EMChatMainActivity extends BaseActivity implements EMEventListener 
 			}
 			localUsers.putAll(toAddUsers);
 			// 刷新ui
-			if (currentTabIndex == 1)
-				contactListFragment.refresh();
+//			if (currentTabIndex == 1)
+//				contactListFragment.refresh();
 
 		}
 
@@ -548,7 +544,7 @@ public class EMChatMainActivity extends BaseActivity implements EMEventListener 
 					}
 					updateUnreadLabel();
 					// 刷新ui
-					contactListFragment.refresh();
+//					contactListFragment.refresh();
 					chatHistoryFragment.refresh();
 				}
 			});
@@ -834,8 +830,8 @@ public class EMChatMainActivity extends BaseActivity implements EMEventListener 
 		// 刷新bottom bar消息未读数
 		updateUnreadAddressLable();
 		// 刷新好友页面ui
-		if (currentTabIndex == 1)
-			contactListFragment.refresh();
+//		if (currentTabIndex == 1)
+//			contactListFragment.refresh();
 	}
 
 	/**
@@ -953,7 +949,7 @@ public class EMChatMainActivity extends BaseActivity implements EMEventListener 
 						dialog.dismiss();
 						conflictBuilder = null;
 						finish();
-						startActivity(new Intent(EMChatMainActivity.this, LoginActivity.class));
+						startActivity(new Intent(EMChatMainActivity.this, EMChatLoginActivity.class));
 					}
 				});
 				conflictBuilder.setCancelable(false);
@@ -988,7 +984,7 @@ public class EMChatMainActivity extends BaseActivity implements EMEventListener 
 						dialog.dismiss();
 						accountRemovedBuilder = null;
 						finish();
-						startActivity(new Intent(EMChatMainActivity.this, LoginActivity.class));
+						startActivity(new Intent(EMChatMainActivity.this, EMChatLoginActivity.class));
 					}
 				});
 				accountRemovedBuilder.setCancelable(false);
@@ -1028,7 +1024,7 @@ public class EMChatMainActivity extends BaseActivity implements EMEventListener 
                             public void run() {
                                 // 重新显示登陆页面
                                 finish();
-                                startActivity(new Intent(EMChatMainActivity.this, LoginActivity.class));
+                                startActivity(new Intent(EMChatMainActivity.this, EMChatLoginActivity.class));
                                 
                             }
                         });

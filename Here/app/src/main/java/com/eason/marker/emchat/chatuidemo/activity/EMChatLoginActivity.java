@@ -48,7 +48,7 @@ import java.util.Map;
  * 登陆页面
  * 
  */
-public class LoginActivity extends BaseActivity {
+public class EMChatLoginActivity extends BaseActivity {
 	private static final String TAG = "LoginActivity";
 	public static final int REQUEST_CODE_SETNICK = 1;
 	private EditText usernameEditText;
@@ -67,7 +67,7 @@ public class LoginActivity extends BaseActivity {
 		// 如果用户名密码都有，直接进入主页面
 		if (DemoHXSDKHelper.getInstance().isLogined()) {
 			autoLogin = true;
-			startActivity(new Intent(LoginActivity.this, EMChatMainActivity.class));
+			startActivity(new Intent(EMChatLoginActivity.this, EMChatMainActivity.class));
 
 			return;
 		}
@@ -121,7 +121,7 @@ public class LoginActivity extends BaseActivity {
 		}
 
 		progressShow = true;
-		final ProgressDialog pd = new ProgressDialog(LoginActivity.this);
+		final ProgressDialog pd = new ProgressDialog(EMChatLoginActivity.this);
 		pd.setCanceledOnTouchOutside(false);
 		pd.setOnCancelListener(new OnCancelListener() {
 
@@ -171,11 +171,11 @@ public class LoginActivity extends BaseActivity {
 				if (!updatenick) {
 					Log.e("LoginActivity", "update current user nick fail");
 				}
-				if (!LoginActivity.this.isFinishing() && pd.isShowing()) {
+				if (!EMChatLoginActivity.this.isFinishing() && pd.isShowing()) {
 					pd.dismiss();
 				}
 				// 进入主页面
-				Intent intent = new Intent(LoginActivity.this,
+				Intent intent = new Intent(EMChatLoginActivity.this,
 						EMChatMainActivity.class);
 				startActivity(intent);
 				
@@ -231,7 +231,7 @@ public class LoginActivity extends BaseActivity {
 		// 存入内存
 		((DemoHXSDKHelper)HXSDKHelper.getInstance()).setContactList(userlist);
 		// 存入db
-		UserDao dao = new UserDao(LoginActivity.this);
+		UserDao dao = new UserDao(EMChatLoginActivity.this);
 		List<User> users = new ArrayList<User>(userlist.values());
 		dao.saveContactList(users);
 	}
@@ -242,7 +242,7 @@ public class LoginActivity extends BaseActivity {
 	 * @param view
 	 */
 	public void register(View view) {
-		startActivityForResult(new Intent(this, RegisterActivity.class), 0);
+		startActivityForResult(new Intent(this, EMChatRegisterActivity.class), 0);
 	}
 
 	@Override

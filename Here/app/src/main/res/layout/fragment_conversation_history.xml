@@ -21,7 +21,7 @@
             android:textSize="18sp" />
 
     </RelativeLayout>
-    <include layout="@layout/search_bar" />
+    <!--<include layout="@layout/search_bar" />-->
 
     <include
         android:id="@+id/rl_error_item"
