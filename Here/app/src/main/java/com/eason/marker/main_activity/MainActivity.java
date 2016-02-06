@@ -25,7 +25,6 @@ import com.eason.marker.model.ErroCode;
 import com.eason.marker.model.IntentUtil;
 import com.eason.marker.model.LoginStatus;
 import com.eason.marker.model.Post;
-import com.eason.marker.model.User;
 import com.eason.marker.util.LogUtil;
 import com.eason.marker.util.WidgetUtil.GreenToast;
 
@@ -208,6 +207,9 @@ public class MainActivity extends ActionBarActivity {
     private void initParam() {
         setFragmentTransaction(IntentUtil.MAIN_MAP_FRAGMENT);
         EMChatUtil.autoReConnectEMChat();
+        if (LoginStatus.getIsUserMode()){
+            loginEMChat(LoginStatus.getUser().getUserid(),LoginStatus.getUser().getPassword());
+        }
     }
 
     public Fragment getFragment(int type){
@@ -348,34 +350,15 @@ public class MainActivity extends ActionBarActivity {
                 mainMapFragment.getPost();
                 break;
             case IntentUtil.MAIN_TO_LOGIN_PAGE:
-                User user = LoginStatus.getUser();
-                if (user!=null){
-                    //登录环信SDK
-                    EMChatManager.getInstance().login(user.getUsername(), user.getPassword(), new EMCallBack() {//回调
-                        @Override
-                        public void onSuccess() {
-                            runOnUiThread(new Runnable() {
-                                public void run() {
-                                    EMGroupManager.getInstance().loadAllGroups();
-                                    EMChatManager.getInstance().loadAllConversations();
-                                    EMChatUtil.isConnectedEMChatServer = true;
-                                    LogUtil.d("MainActivity", "登陆聊天服务器成功！");
-                                }
-                            });
-                        }
-
-                        @Override
-                        public void onProgress(int progress, String status) {
-
-                        }
-
-                        @Override
-                        public void onError(int code, String message) {
-                            EMChatUtil.isConnectedEMChatServer = false;
-                            LogUtil.d("SplashActivity", "登陆聊天服务器失败！"+" code "+code+" message : "+message);
-                        }
-                    });
+                if (LoginStatus.getIsUserMode()){
+                    loginEMChat(LoginStatus.getUser().getUserid(), LoginStatus.getUser().getPassword());
                 }
+                break;
+            case IntentUtil.CHAT_MAIN_PAGE:
+                /**
+                 * 这里是为了从聊天页面回来时显示主页
+                 */
+                setFragmentTransaction(IntentUtil.MAIN_MAP_FRAGMENT);
                 break;
         }
 
@@ -398,5 +381,38 @@ public class MainActivity extends ActionBarActivity {
             System.exit(0);
         }
 
+    }
+
+    /**
+     * 登录环信，因为改为使用用户id来登录，为了保证在登录本服务器后，获取到用户信息再登录环信服务器
+     * @param id
+     * @param password
+     */
+    private void loginEMChat(String id,String password){
+        //登录环信SDK
+        EMChatManager.getInstance().login(id, password, new EMCallBack() {//回调
+            @Override
+            public void onSuccess() {
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        EMGroupManager.getInstance().loadAllGroups();
+                        EMChatManager.getInstance().loadAllConversations();
+                        EMChatUtil.isConnectedEMChatServer = true;
+                        LogUtil.d("SplashActivity", "登陆聊天服务器成功！");
+                    }
+                });
+            }
+
+            @Override
+            public void onProgress(int progress, String status) {
+
+            }
+
+            @Override
+            public void onError(int code, String message) {
+                EMChatUtil.isConnectedEMChatServer = false;
+                LogUtil.d("SplashActivity", "登陆聊天服务器失败！"+" code "+code+" message : "+message);
+            }
+        });
     }
 }

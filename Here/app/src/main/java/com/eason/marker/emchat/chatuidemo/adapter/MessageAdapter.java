@@ -149,25 +149,9 @@ public class MessageAdapter extends BaseAdapter{
 		this.context = context;
 		inflater = LayoutInflater.from(context);
 		activity = (Activity) context;
-		getUserById(username);
 		this.conversation = EMChatManager.getInstance().getConversation(username);
 	}
 
-	/**
-	 * 获取对话用户信息
-	 * @param username
-	 */
-	private void getUserById(String username){
-		HttpRequest.getUserByUserId(username,new HttpResponseHandler(){
-			@Override
-			public void getResult() {
-				if (this.resultVO.getStatus()== ErroCode.ERROR_CODE_CORRECT){
-					toUser = (User) this.result;
-				}
-			}
-		});
-	}
-	
 	Handler handler = new Handler() {
 		private void refreshList() {
 			// UI线程不能直接使用conversation.getAllMessages()
@@ -593,17 +577,24 @@ public class MessageAdapter extends BaseAdapter{
 	 * @param message
 	 * @param imageView
 	 */
-	private void setUserAvatar(final EMMessage message, ImageView imageView){
+	private void setUserAvatar(final EMMessage message,final ImageView imageView){
 	    if(message.direct == Direct.SEND){
 	        //显示自己头像
 //	        UserUtils.setCurrentUserAvatar(context, imageView);
 			HttpRequest.loadImage(imageView, HttpConfig.String_Url_Media + LoginStatus.getUser().getAvatar(),70,70);
-//			LogUtil.e("MessageAdapter"," avatar : "+LoginStatus.getUser().getAvatar());
 	    }else{
-//	        UserUtils.setUserAvatar(context, message.getFrom(), imageView);
-			HttpRequest.loadImage(imageView, HttpConfig.String_Url_Media +toUser.getAvatar(), 70, 70);
-	    }
-	    imageView.setOnClickListener(new OnClickListener() {
+			if (toUser!=null)return;
+			HttpRequest.getUserByUserId(username, new HttpResponseHandler() {
+				@Override
+				public void getResult() {
+					if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT) {
+						toUser = (User) this.result;
+						HttpRequest.loadImage(imageView, HttpConfig.String_Url_Media + toUser.getAvatar(), 70, 70);
+					}
+				}
+			});
+		}
+		imageView.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {

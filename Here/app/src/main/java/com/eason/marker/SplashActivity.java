@@ -5,17 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.easemob.EMCallBack;
-import com.easemob.chat.EMChatManager;
-import com.easemob.chat.EMGroupManager;
 import com.eason.marker.emchat.EMChatUtil;
 import com.eason.marker.http_util.HttpRequest;
 import com.eason.marker.main_activity.MainActivity;
 import com.eason.marker.model.LoginStatus;
 import com.eason.marker.util.CommonUtil;
-import com.eason.marker.util.LogUtil;
-import com.eason.marker.util.SharePreferencesUtil;
 import com.eason.marker.util.OnLoginListener;
+import com.eason.marker.util.SharePreferencesUtil;
 import com.eason.marker.util.WidgetUtil.GreenToast;
 
 import java.util.Timer;
@@ -74,32 +70,6 @@ public class SplashActivity extends BaseActivity {
                 public void loginFailedListener(int info) {
                     GreenToast.makeText(SplashActivity.this,"登录失败", Toast.LENGTH_SHORT).show();
                     new Timer().schedule(task,2000);
-                }
-            });
-
-            //登录环信SDK
-            EMChatManager.getInstance().login(username, password, new EMCallBack() {//回调
-                @Override
-                public void onSuccess() {
-                    runOnUiThread(new Runnable() {
-                        public void run() {
-                            EMGroupManager.getInstance().loadAllGroups();
-                            EMChatManager.getInstance().loadAllConversations();
-                            EMChatUtil.isConnectedEMChatServer = true;
-                            LogUtil.d("SplashActivity", "登陆聊天服务器成功！");
-                        }
-                    });
-                }
-
-                @Override
-                public void onProgress(int progress, String status) {
-
-                }
-
-                @Override
-                public void onError(int code, String message) {
-                    EMChatUtil.isConnectedEMChatServer = false;
-                    LogUtil.d("SplashActivity", "登陆聊天服务器失败！"+" code "+code+" message : "+message);
                 }
             });
 

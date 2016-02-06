@@ -131,8 +131,12 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
                 break;
 
             case R.id.enter_chat_main_page_item_layout:
+                if (!LoginStatus.getIsUserMode()) {
+                    Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent toChatPageIntent = new Intent(this.getActivity(), EMChatMainActivity.class);
-                getActivity().startActivity(toChatPageIntent);
+                getActivity().startActivityForResult(toChatPageIntent,IntentUtil.CHAT_MAIN_PAGE);
                 mainActivity.setFragmentTransaction(IntentUtil.CHAT_MAIN_PAGE);
                 break;
 

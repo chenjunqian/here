@@ -43,6 +43,11 @@ import com.eason.marker.emchat.chatuidemo.domain.RobotUser;
 import com.eason.marker.emchat.chatuidemo.utils.DateUtils;
 import com.eason.marker.emchat.chatuidemo.utils.SmileUtils;
 import com.eason.marker.emchat.chatuidemo.utils.UserUtils;
+import com.eason.marker.http_util.HttpConfig;
+import com.eason.marker.http_util.HttpRequest;
+import com.eason.marker.http_util.HttpResponseHandler;
+import com.eason.marker.model.ErroCode;
+import com.eason.marker.model.User;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -75,6 +80,7 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<EMConversation> {
 		if (convertView == null) {
 			convertView = inflater.inflate(R.layout.row_chat_history, parent, false);
 		}
+
 		ViewHolder holder = (ViewHolder) convertView.getTag();
 		if (holder == null) {
 			holder = new ViewHolder();
@@ -97,6 +103,7 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<EMConversation> {
 		EMConversation conversation = getItem(position);
 		// 获取用户username或者群组groupid
 		String username = conversation.getUserName();
+
 		if (conversation.getType() == EMConversationType.GroupChat) {
 			// 群聊消息，显示群聊头像
 			holder.avatar.setImageResource(R.drawable.group_icon);
@@ -123,7 +130,7 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<EMConversation> {
 					holder.name.setText(username);
 				}
 			}else{
-				UserUtils.setUserNick(username, holder.name);
+				holder.setData(username);
 			}
 		}
 
@@ -224,6 +231,20 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<EMConversation> {
 		View msgState;
 		/** 整个list中每一行总布局 */
 		RelativeLayout list_item_layout;
+
+		public void setData(String username){
+			HttpResponseHandler getUserByUsernameHandler = new HttpResponseHandler(){
+				@Override
+				public void getResult() {
+					if (this.resultVO.getStatus()== ErroCode.ERROR_CODE_CORRECT){
+						User user = (User) this.result;
+						name.setText(user.getNickname());
+						HttpRequest.loadImage(avatar, HttpConfig.String_Url_Media+user.getAvatar(),70,70);
+					}
+				}
+			};
+			HttpRequest.getUserByUserId(username, getUserByUsernameHandler);
+		}
 
 	}
 

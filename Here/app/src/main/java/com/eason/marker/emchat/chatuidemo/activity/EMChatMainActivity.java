@@ -1042,6 +1042,7 @@ public class EMChatMainActivity extends BaseActivity implements EMEventListener 
 	@Override
 	public void onBackPressed() {
 		LogUtil.d("EMChatMain","onBackPressed");
+		setResult(RESULT_OK);
 		EMChatMainActivity.this.finish();
 	}
 }
