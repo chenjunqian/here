@@ -3,6 +3,8 @@ package com.eason.marker.profile_activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,10 +58,23 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     private ImageButton enterChatBtn;
 
     private User user;
+
+    private final int SET_ENTER_CHAT_BUTTON_GONE = 0x1;
     /**
      * 主要用于判断该页面是显示用户自己的信息，还是显示别人的信息
      */
     private int page_status = 0;
+
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what){
+                case SET_ENTER_CHAT_BUTTON_GONE:
+                    enterChatBtn.setVisibility(View.GONE);
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +118,10 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                         genderTextView.setText("男");
                     }else{
                         genderTextView.setText("女");
+                    }
+
+                    if (LoginStatus.getUser()==null||LoginStatus.getUser().getUserid()==user.getUserid()){
+                        handler.sendEmptyMessage(new Message().what=SET_ENTER_CHAT_BUTTON_GONE);
                     }
 
                     String[] birthday = user.getBirthday().split("-");

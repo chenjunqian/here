@@ -109,6 +109,7 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
                             LoginStatus.setUser(null);
                             EMChatUtil.logoutEMChat();
                             initData();
+                            circleImageView.setImageResource(R.drawable.default_avatar_ori);
                             mDialog.dismiss();
                         }
                     });
