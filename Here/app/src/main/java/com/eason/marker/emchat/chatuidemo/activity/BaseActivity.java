@@ -16,7 +16,6 @@ package com.eason.marker.emchat.chatuidemo.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.view.View;
 
 import com.eason.marker.emchat.applib.controller.HXSDKHelper;
 
@@ -39,13 +38,4 @@ public class BaseActivity extends FragmentActivity {
         super.onStart();
     }
 
-
-    /**
-     * 返回
-     * 
-     * @param view
-     */
-    public void back(View view) {
-        finish();
-    }
 }

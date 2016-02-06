@@ -78,6 +78,13 @@ import com.eason.marker.emchat.chatuidemo.utils.ImageCache;
 import com.eason.marker.emchat.chatuidemo.utils.ImageUtils;
 import com.eason.marker.emchat.chatuidemo.utils.SmileUtils;
 import com.eason.marker.emchat.chatuidemo.utils.UserUtils;
+import com.eason.marker.http_util.HttpConfig;
+import com.eason.marker.http_util.HttpRequest;
+import com.eason.marker.http_util.HttpResponseHandler;
+import com.eason.marker.model.ErroCode;
+import com.eason.marker.model.LoginStatus;
+import com.eason.marker.model.User;
+import com.eason.marker.util.LogUtil;
 import com.eason.marker.util.WidgetUtil.GreenToast;
 
 import org.json.JSONArray;
@@ -135,12 +142,30 @@ public class MessageAdapter extends BaseAdapter{
 
 	private Map<String, Timer> timers = new Hashtable<String, Timer>();
 
+	private User toUser;
+
 	public MessageAdapter(Context context, String username, int chatType) {
 		this.username = username;
 		this.context = context;
 		inflater = LayoutInflater.from(context);
 		activity = (Activity) context;
+		getUserById(username);
 		this.conversation = EMChatManager.getInstance().getConversation(username);
+	}
+
+	/**
+	 * 获取对话用户信息
+	 * @param username
+	 */
+	private void getUserById(String username){
+		HttpRequest.getUserByUserId(username,new HttpResponseHandler(){
+			@Override
+			public void getResult() {
+				if (this.resultVO.getStatus()== ErroCode.ERROR_CODE_CORRECT){
+					toUser = (User) this.result;
+				}
+			}
+		});
 	}
 	
 	Handler handler = new Handler() {
@@ -429,16 +454,16 @@ public class MessageAdapter extends BaseAdapter{
 			if (holder.tv_ack != null) {
 				if (message.isAcked) {
 					if (holder.tv_delivered != null) {
-						holder.tv_delivered.setVisibility(View.INVISIBLE);
+//						holder.tv_delivered.setVisibility(View.INVISIBLE);
 					}
-					holder.tv_ack.setVisibility(View.VISIBLE);
+//					holder.tv_ack.setVisibility(View.VISIBLE);
 				} else {
 					holder.tv_ack.setVisibility(View.INVISIBLE);
 
 					// check and display msg delivered ack status
 					if (holder.tv_delivered != null) {
 						if (message.isDelivered) {
-							holder.tv_delivered.setVisibility(View.VISIBLE);
+//							holder.tv_delivered.setVisibility(View.VISIBLE);
 						} else {
 							holder.tv_delivered.setVisibility(View.INVISIBLE);
 						}
@@ -571,18 +596,21 @@ public class MessageAdapter extends BaseAdapter{
 	private void setUserAvatar(final EMMessage message, ImageView imageView){
 	    if(message.direct == Direct.SEND){
 	        //显示自己头像
-	        UserUtils.setCurrentUserAvatar(context, imageView);
+//	        UserUtils.setCurrentUserAvatar(context, imageView);
+			HttpRequest.loadImage(imageView, HttpConfig.String_Url_Media + LoginStatus.getUser().getAvatar(),70,70);
+//			LogUtil.e("MessageAdapter"," avatar : "+LoginStatus.getUser().getAvatar());
 	    }else{
-	        UserUtils.setUserAvatar(context, message.getFrom(), imageView);
+//	        UserUtils.setUserAvatar(context, message.getFrom(), imageView);
+			HttpRequest.loadImage(imageView, HttpConfig.String_Url_Media +toUser.getAvatar(), 70, 70);
 	    }
 	    imageView.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent();
-				intent.setClass(context, UserProfileActivity.class);
-				intent.putExtra("username", message.getFrom());
-				context.startActivity(intent);
+//				Intent intent = new Intent();
+//				intent.setClass(context, UserProfileActivity.class);
+//				intent.putExtra("username", message.getFrom());
+//				context.startActivity(intent);
 			}
 		});
 	}

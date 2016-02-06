@@ -25,7 +25,7 @@ import com.eason.marker.emchat.applib.controller.HXSDKHelper;
 import com.eason.marker.emchat.chatuidemo.Constant;
 import com.eason.marker.emchat.chatuidemo.DemoHXSDKHelper;
 import com.eason.marker.emchat.chatuidemo.adapter.ContactAdapter;
-import com.eason.marker.emchat.chatuidemo.domain.User;
+import com.eason.marker.emchat.chatuidemo.domain.EMUser;
 import com.eason.marker.emchat.chatuidemo.widget.Sidebar;
 
 import java.util.ArrayList;
@@ -41,7 +41,7 @@ public class PickContactNoCheckboxActivity extends BaseActivity {
 	private ListView listView;
 	private Sidebar sidebar;
 	protected ContactAdapter contactAdapter;
-	private List<User> contactList;
+	private List<EMUser> contactList;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class PickContactNoCheckboxActivity extends BaseActivity {
 		listView = (ListView) findViewById(R.id.list);
 		sidebar = (Sidebar) findViewById(R.id.sidebar);
 		sidebar.setListView(listView);
-		contactList = new ArrayList<User>();
+		contactList = new ArrayList<EMUser>();
 		// 获取设置contactlist
 		getContactList();
 		// 设置adapter
@@ -80,18 +80,18 @@ public class PickContactNoCheckboxActivity extends BaseActivity {
 
 	private void getContactList() {
 		contactList.clear();
-		Map<String, User> users = ((DemoHXSDKHelper)HXSDKHelper.getInstance()).getContactList();
-		Iterator<Entry<String, User>> iterator = users.entrySet().iterator();
+		Map<String, EMUser> users = ((DemoHXSDKHelper)HXSDKHelper.getInstance()).getContactList();
+		Iterator<Entry<String, EMUser>> iterator = users.entrySet().iterator();
 		while (iterator.hasNext()) {
-			Entry<String, User> entry = iterator.next();
+			Entry<String, EMUser> entry = iterator.next();
 			if (!entry.getKey().equals(Constant.NEW_FRIENDS_USERNAME) && !entry.getKey().equals(Constant.GROUP_USERNAME) && !entry.getKey().equals(Constant.CHAT_ROOM) && !entry.getKey().equals(Constant.CHAT_ROBOT))
 				contactList.add(entry.getValue());
 		}
 		// 排序
-		Collections.sort(contactList, new Comparator<User>() {
+		Collections.sort(contactList, new Comparator<EMUser>() {
 
 			@Override
-			public int compare(User lhs, User rhs) {
+			public int compare(EMUser lhs, EMUser rhs) {
 				return lhs.getUsername().compareTo(rhs.getUsername());
 			}
 		});

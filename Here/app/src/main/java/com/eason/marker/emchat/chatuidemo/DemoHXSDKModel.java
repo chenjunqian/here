@@ -19,7 +19,7 @@ import com.eason.marker.emchat.applib.model.DefaultHXSDKModel;
 import com.eason.marker.emchat.chatuidemo.db.DemoDBManager;
 import com.eason.marker.emchat.chatuidemo.db.UserDao;
 import com.eason.marker.emchat.chatuidemo.domain.RobotUser;
-import com.eason.marker.emchat.chatuidemo.domain.User;
+import com.eason.marker.emchat.chatuidemo.domain.EMUser;
 
 import java.util.List;
 import java.util.Map;
@@ -39,20 +39,20 @@ public class DemoHXSDKModel extends DefaultHXSDKModel{
         return true;
     }
     
-    public boolean saveContactList(List<User> contactList) {
+    public boolean saveContactList(List<EMUser> contactList) {
         UserDao dao = new UserDao(context);
         dao.saveContactList(contactList);
         return true;
     }
 
-    public Map<String, User> getContactList() {
+    public Map<String, EMUser> getContactList() {
         UserDao dao = new UserDao(context);
         return dao.getContactList();
     }
     
-    public void saveContact(User user){
+    public void saveContact(EMUser EMUser){
     	UserDao dao = new UserDao(context);
-    	dao.saveContact(user);
+    	dao.saveContact(EMUser);
     }
     
     public Map<String, RobotUser> getRobotList(){

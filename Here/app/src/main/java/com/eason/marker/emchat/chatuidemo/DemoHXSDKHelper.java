@@ -39,7 +39,7 @@ import com.easemob.chat.EMMessage.Type;
 import com.eason.marker.emchat.chatuidemo.activity.ChatActivity;
 import com.eason.marker.emchat.chatuidemo.activity.EMChatMainActivity;
 import com.eason.marker.emchat.chatuidemo.domain.RobotUser;
-import com.eason.marker.emchat.chatuidemo.domain.User;
+import com.eason.marker.emchat.chatuidemo.domain.EMUser;
 import com.eason.marker.emchat.chatuidemo.receiver.CallReceiver;
 import com.eason.marker.emchat.chatuidemo.utils.CommonUtils;
 import com.easemob.util.EMLog;
@@ -69,7 +69,7 @@ public class DemoHXSDKHelper extends HXSDKHelper{
     /**
      * contact list in cache
      */
-    private Map<String, User> contactList;
+    private Map<String, EMUser> contactList;
     
     /**
      * robot list in cache
@@ -421,7 +421,7 @@ public class DemoHXSDKHelper extends HXSDKHelper{
      *
      * @return
      */
-    public Map<String, User> getContactList() {
+    public Map<String, EMUser> getContactList() {
         if (getHXId() != null && contactList == null) {
             contactList = ((DemoHXSDKModel) getModel()).getContactList();
         }
@@ -474,16 +474,16 @@ public class DemoHXSDKHelper extends HXSDKHelper{
      *
      * @param contactList
      */
-    public void setContactList(Map<String, User> contactList) {
+    public void setContactList(Map<String, EMUser> contactList) {
         this.contactList = contactList;
     }
     
     /**
      * 保存单个user 
      */
-    public void saveContact(User user){
-    	contactList.put(user.getUsername(), user);
-    	((DemoHXSDKModel) getModel()).saveContact(user);
+    public void saveContact(EMUser EMUser){
+    	contactList.put(EMUser.getUsername(), EMUser);
+    	((DemoHXSDKModel) getModel()).saveContact(EMUser);
     }
     
     @Override
@@ -533,11 +533,11 @@ public class DemoHXSDKHelper extends HXSDKHelper{
     /**
      * update User cach And db
      */
-    public void updateContactList(List<User> contactInfoList) {
-         for (User u : contactInfoList) {
+    public void updateContactList(List<EMUser> contactInfoList) {
+         for (EMUser u : contactInfoList) {
 			contactList.put(u.getUsername(), u);
          }
-         ArrayList<User> mList = new ArrayList<User>();
+         ArrayList<EMUser> mList = new ArrayList<EMUser>();
          mList.addAll(contactList.values());
         ((DemoHXSDKModel)getModel()).saveContactList(mList);
     }

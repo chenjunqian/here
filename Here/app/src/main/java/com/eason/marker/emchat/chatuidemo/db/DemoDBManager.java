@@ -11,7 +11,7 @@ import com.eason.marker.emchat.chatuidemo.Constant;
 import com.eason.marker.emchat.chatuidemo.domain.InviteMessage;
 import com.eason.marker.emchat.chatuidemo.domain.InviteMessage.InviteMesageStatus;
 import com.eason.marker.emchat.chatuidemo.domain.RobotUser;
-import com.eason.marker.emchat.chatuidemo.domain.User;
+import com.eason.marker.emchat.chatuidemo.domain.EMUser;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,17 +35,17 @@ public class DemoDBManager {
      * 
      * @param contactList
      */
-    synchronized public void saveContactList(List<User> contactList) {
+    synchronized public void saveContactList(List<EMUser> contactList) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         if (db.isOpen()) {
             db.delete(UserDao.TABLE_NAME, null, null);
-            for (User user : contactList) {
+            for (EMUser EMUser : contactList) {
                 ContentValues values = new ContentValues();
-                values.put(UserDao.COLUMN_NAME_ID, user.getUsername());
-                if(user.getNick() != null)
-                    values.put(UserDao.COLUMN_NAME_NICK, user.getNick());
-                if(user.getAvatar() != null)
-                    values.put(UserDao.COLUMN_NAME_AVATAR, user.getAvatar());
+                values.put(UserDao.COLUMN_NAME_ID, EMUser.getUsername());
+                if(EMUser.getNick() != null)
+                    values.put(UserDao.COLUMN_NAME_NICK, EMUser.getNick());
+                if(EMUser.getAvatar() != null)
+                    values.put(UserDao.COLUMN_NAME_AVATAR, EMUser.getAvatar());
                 db.replace(UserDao.TABLE_NAME, null, values);
             }
         }
@@ -56,40 +56,40 @@ public class DemoDBManager {
      * 
      * @return
      */
-    synchronized public Map<String, User> getContactList() {
+    synchronized public Map<String, EMUser> getContactList() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Map<String, User> users = new HashMap<String, User>();
+        Map<String, EMUser> users = new HashMap<String, EMUser>();
         if (db.isOpen()) {
             Cursor cursor = db.rawQuery("select * from " + UserDao.TABLE_NAME /* + " desc" */, null);
             while (cursor.moveToNext()) {
                 String username = cursor.getString(cursor.getColumnIndex(UserDao.COLUMN_NAME_ID));
                 String nick = cursor.getString(cursor.getColumnIndex(UserDao.COLUMN_NAME_NICK));
                 String avatar = cursor.getString(cursor.getColumnIndex(UserDao.COLUMN_NAME_AVATAR));
-                User user = new User();
-                user.setUsername(username);
-                user.setNick(nick);
-                user.setAvatar(avatar);
+                EMUser EMUser = new EMUser();
+                EMUser.setUsername(username);
+                EMUser.setNick(nick);
+                EMUser.setAvatar(avatar);
                 String headerName = null;
-                if (!TextUtils.isEmpty(user.getNick())) {
-                    headerName = user.getNick();
+                if (!TextUtils.isEmpty(EMUser.getNick())) {
+                    headerName = EMUser.getNick();
                 } else {
-                    headerName = user.getUsername();
+                    headerName = EMUser.getUsername();
                 }
                 
                 if (username.equals(Constant.NEW_FRIENDS_USERNAME) || username.equals(Constant.GROUP_USERNAME)
                         || username.equals(Constant.CHAT_ROOM)|| username.equals(Constant.CHAT_ROBOT)) {
-                    user.setHeader("");
+                    EMUser.setHeader("");
                 } else if (Character.isDigit(headerName.charAt(0))) {
-                    user.setHeader("#");
+                    EMUser.setHeader("#");
                 } else {
-                    user.setHeader(HanziToPinyin.getInstance().get(headerName.substring(0, 1))
+                    EMUser.setHeader(HanziToPinyin.getInstance().get(headerName.substring(0, 1))
                             .get(0).target.substring(0, 1).toUpperCase());
-                    char header = user.getHeader().toLowerCase().charAt(0);
+                    char header = EMUser.getHeader().toLowerCase().charAt(0);
                     if (header < 'a' || header > 'z') {
-                        user.setHeader("#");
+                        EMUser.setHeader("#");
                     }
                 }
-                users.put(username, user);
+                users.put(username, EMUser);
             }
             cursor.close();
         }
@@ -109,16 +109,16 @@ public class DemoDBManager {
     
     /**
      * 保存一个联系人
-     * @param user
+     * @param EMUser
      */
-    synchronized public void saveContact(User user){
+    synchronized public void saveContact(EMUser EMUser){
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(UserDao.COLUMN_NAME_ID, user.getUsername());
-        if(user.getNick() != null)
-            values.put(UserDao.COLUMN_NAME_NICK, user.getNick());
-        if(user.getAvatar() != null)
-            values.put(UserDao.COLUMN_NAME_AVATAR, user.getAvatar());
+        values.put(UserDao.COLUMN_NAME_ID, EMUser.getUsername());
+        if(EMUser.getNick() != null)
+            values.put(UserDao.COLUMN_NAME_NICK, EMUser.getNick());
+        if(EMUser.getAvatar() != null)
+            values.put(UserDao.COLUMN_NAME_AVATAR, EMUser.getAvatar());
         if(db.isOpen()){
             db.replace(UserDao.TABLE_NAME, null, values);
         }

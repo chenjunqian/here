@@ -67,4 +67,8 @@ public class IntentUtil {
      */
     public static final int IS_SHOW_USER_INFO_LAYOUT_INT = 0x13;
 
+    /**
+     * 跳转到私信
+     */
+    public static final int CHAT_MAIN_PAGE = 0x14;
 }

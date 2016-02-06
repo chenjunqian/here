@@ -371,4 +371,15 @@ public class HttpRequest {
         map.put("time", String.valueOf(System.currentTimeMillis()));
         baseHttpPostRequest(HttpConfig.String_Url_Report_Issue, map, httpResponseHandler, Object.class);
     }
+
+    /**
+     * 根据用户id获取用户信息
+     * @param userid
+     * @param httpResponseHandler
+     */
+    public static void getUserByUserId(String userid,HttpResponseHandler httpResponseHandler){
+        Map<String,String> map = new HashMap<String,String>();
+        map.put("userid",userid);
+        baseHttpPostRequest(HttpConfig.String_Url_Get_User_Info_By_UserId, map, httpResponseHandler, User.class);
+    }
 }

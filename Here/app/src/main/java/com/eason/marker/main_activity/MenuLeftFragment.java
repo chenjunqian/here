@@ -133,6 +133,7 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
             case R.id.enter_chat_main_page_item_layout:
                 Intent toChatPageIntent = new Intent(this.getActivity(), EMChatMainActivity.class);
                 getActivity().startActivity(toChatPageIntent);
+                mainActivity.setFragmentTransaction(IntentUtil.CHAT_MAIN_PAGE);
                 break;
 
             case R.id.left_menu_profile_layout:

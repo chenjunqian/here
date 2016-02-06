@@ -35,7 +35,7 @@ import com.eason.marker.emchat.chatuidemo.Constant;
 import com.eason.marker.MainApplication;
 import com.eason.marker.emchat.chatuidemo.DemoHXSDKHelper;
 import com.eason.marker.emchat.chatuidemo.db.UserDao;
-import com.eason.marker.emchat.chatuidemo.domain.User;
+import com.eason.marker.emchat.chatuidemo.domain.EMUser;
 import com.eason.marker.emchat.chatuidemo.utils.CommonUtils;
 import com.eason.marker.util.WidgetUtil.GreenToast;
 
@@ -203,9 +203,9 @@ public class EMChatLoginActivity extends BaseActivity {
 	}
 
 	private void initializeContacts() {
-		Map<String, User> userlist = new HashMap<String, User>();
+		Map<String, EMUser> userlist = new HashMap<String, EMUser>();
 		// 添加user"申请与通知"
-		User newFriends = new User();
+		EMUser newFriends = new EMUser();
 		newFriends.setUsername(Constant.NEW_FRIENDS_USERNAME);
 		String strChat = getResources().getString(
 				R.string.Application_and_notify);
@@ -213,27 +213,27 @@ public class EMChatLoginActivity extends BaseActivity {
 
 		userlist.put(Constant.NEW_FRIENDS_USERNAME, newFriends);
 		// 添加"群聊"
-		User groupUser = new User();
+		EMUser groupEMUser = new EMUser();
 		String strGroup = getResources().getString(R.string.group_chat);
-		groupUser.setUsername(Constant.GROUP_USERNAME);
-		groupUser.setNick(strGroup);
-		groupUser.setHeader("");
-		userlist.put(Constant.GROUP_USERNAME, groupUser);
+		groupEMUser.setUsername(Constant.GROUP_USERNAME);
+		groupEMUser.setNick(strGroup);
+		groupEMUser.setHeader("");
+		userlist.put(Constant.GROUP_USERNAME, groupEMUser);
 		
 		// 添加"Robot"
-		User robotUser = new User();
+		EMUser robotEMUser = new EMUser();
 		String strRobot = getResources().getString(R.string.robot_chat);
-		robotUser.setUsername(Constant.CHAT_ROBOT);
-		robotUser.setNick(strRobot);
-		robotUser.setHeader("");
-		userlist.put(Constant.CHAT_ROBOT, robotUser);
+		robotEMUser.setUsername(Constant.CHAT_ROBOT);
+		robotEMUser.setNick(strRobot);
+		robotEMUser.setHeader("");
+		userlist.put(Constant.CHAT_ROBOT, robotEMUser);
 		
 		// 存入内存
 		((DemoHXSDKHelper)HXSDKHelper.getInstance()).setContactList(userlist);
 		// 存入db
 		UserDao dao = new UserDao(EMChatLoginActivity.this);
-		List<User> users = new ArrayList<User>(userlist.values());
-		dao.saveContactList(users);
+		List<EMUser> EMUsers = new ArrayList<EMUser>(userlist.values());
+		dao.saveContactList(EMUsers);
 	}
 	
 	/**

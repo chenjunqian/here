@@ -24,7 +24,7 @@ import com.easemob.chat.EMChatManager;
 import com.eason.marker.R;
 import com.eason.marker.emchat.applib.controller.HXSDKHelper;
 import com.eason.marker.emchat.chatuidemo.DemoHXSDKHelper;
-import com.eason.marker.emchat.chatuidemo.domain.User;
+import com.eason.marker.emchat.chatuidemo.domain.EMUser;
 import com.eason.marker.emchat.chatuidemo.utils.UserUtils;
 import com.squareup.picasso.Picasso;
 
@@ -119,18 +119,18 @@ public class UserProfileActivity extends BaseActivity implements OnClickListener
 	}
 	
 	public void asyncFetchUserInfo(String username){
-		((DemoHXSDKHelper)HXSDKHelper.getInstance()).getUserProfileManager().asyncGetUserInfo(username, new EMValueCallBack<User>() {
+		((DemoHXSDKHelper)HXSDKHelper.getInstance()).getUserProfileManager().asyncGetUserInfo(username, new EMValueCallBack<EMUser>() {
 			
 			@Override
-			public void onSuccess(User user) {
-				if (user != null) {
-					tvNickName.setText(user.getNick());
-					if(!TextUtils.isEmpty(user.getAvatar())){
-						 Picasso.with(UserProfileActivity.this).load(user.getAvatar()).placeholder(R.drawable.default_avatar_ori).into(headAvatar);
+			public void onSuccess(EMUser EMUser) {
+				if (EMUser != null) {
+					tvNickName.setText(EMUser.getNick());
+					if(!TextUtils.isEmpty(EMUser.getAvatar())){
+						 Picasso.with(UserProfileActivity.this).load(EMUser.getAvatar()).placeholder(R.drawable.default_avatar_ori).into(headAvatar);
 					}else{
 						Picasso.with(UserProfileActivity.this).load(R.drawable.default_avatar_ori).into(headAvatar);
 					}
-					UserUtils.saveUserInfo(user);
+					UserUtils.saveUserInfo(EMUser);
 				}
 			}
 			

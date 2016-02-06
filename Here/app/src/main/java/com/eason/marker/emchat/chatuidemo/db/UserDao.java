@@ -16,7 +16,7 @@ package com.eason.marker.emchat.chatuidemo.db;
 import android.content.Context;
 
 import com.eason.marker.emchat.chatuidemo.domain.RobotUser;
-import com.eason.marker.emchat.chatuidemo.domain.User;
+import com.eason.marker.emchat.chatuidemo.domain.EMUser;
 
 import java.util.List;
 import java.util.Map;
@@ -46,7 +46,7 @@ public class UserDao {
 	 * 
 	 * @param contactList
 	 */
-	public void saveContactList(List<User> contactList) {
+	public void saveContactList(List<EMUser> contactList) {
 	    DemoDBManager.getInstance().saveContactList(contactList);
 	}
 
@@ -55,7 +55,7 @@ public class UserDao {
 	 * 
 	 * @return
 	 */
-	public Map<String, User> getContactList() {
+	public Map<String, EMUser> getContactList() {
 		
 	    return DemoDBManager.getInstance().getContactList();
 	}
@@ -70,10 +70,10 @@ public class UserDao {
 	
 	/**
 	 * 保存一个联系人
-	 * @param user
+	 * @param EMUser
 	 */
-	public void saveContact(User user){
-	    DemoDBManager.getInstance().saveContact(user);
+	public void saveContact(EMUser EMUser){
+	    DemoDBManager.getInstance().saveContact(EMUser);
 	}
 	
 	public void setDisabledGroups(List<String> groups){

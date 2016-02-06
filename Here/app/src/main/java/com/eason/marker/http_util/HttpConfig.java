@@ -52,4 +52,7 @@ public class HttpConfig {
 
     //提交App建议
     public static final String String_Url_Report_Issue = Url_Domain + "report_issue/";
+
+    //由userid获取用户信息
+    public static final String String_Url_Get_User_Info_By_UserId = Url_Domain + "get_user_info_by_useid/";
 }

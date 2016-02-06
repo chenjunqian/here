@@ -97,6 +97,10 @@ import com.eason.marker.emchat.chatuidemo.utils.SmileUtils;
 import com.eason.marker.emchat.chatuidemo.utils.UserUtils;
 import com.eason.marker.emchat.chatuidemo.widget.ExpandGridView;
 import com.eason.marker.emchat.chatuidemo.widget.PasteEditText;
+import com.eason.marker.http_util.HttpRequest;
+import com.eason.marker.http_util.HttpResponseHandler;
+import com.eason.marker.model.ErroCode;
+import com.eason.marker.model.User;
 import com.eason.marker.util.WidgetUtil.GreenToast;
 
 import java.io.File;
@@ -392,7 +396,18 @@ public class ChatActivity extends BaseActivity implements OnClickListener, EMEve
 					((TextView) findViewById(R.id.name)).setText(toChatUsername);
 				}
 			}else{
-				UserUtils.setUserNick(toChatUsername, (TextView) findViewById(R.id.name));
+
+				HttpResponseHandler getUserByUsernameHandler = new HttpResponseHandler(){
+					@Override
+					public void getResult() {
+						if (this.resultVO.getStatus()== ErroCode.ERROR_CODE_CORRECT){
+							User user = (User) this.result;
+							UserUtils.setUserNick(user.getNickname(), (TextView) findViewById(R.id.name));
+						}
+					}
+				};
+
+				HttpRequest.getUserByUserId(toChatUsername,getUserByUsernameHandler);
 			}
 		} else {
 			// 群聊
