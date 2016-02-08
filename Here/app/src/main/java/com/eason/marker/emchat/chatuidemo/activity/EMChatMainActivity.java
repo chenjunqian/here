@@ -371,10 +371,10 @@ public class EMChatMainActivity extends BaseActivity implements EMEventListener 
 		switch (event.getEvent()) {
 		case EventNewMessage: // 普通消息
 		{
-			EMMessage message = (EMMessage) event.getData();
+//			EMMessage message = (EMMessage) event.getData();
 
 			// 提示新消息
-			HXSDKHelper.getInstance().getNotifier().onNewMsg(message);
+//			HXSDKHelper.getInstance().getNotifier().onNewMsg(message);
 
 			refreshUI();
 			break;

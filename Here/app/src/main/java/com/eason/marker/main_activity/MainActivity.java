@@ -20,9 +20,11 @@ import com.easemob.EMEventListener;
 import com.easemob.EMNotifierEvent;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMGroupManager;
+import com.easemob.chat.EMMessage;
 import com.eason.marker.R;
 import com.eason.marker.about_us_activity.AboutUsActivity;
 import com.eason.marker.emchat.EMChatUtil;
+import com.eason.marker.emchat.applib.controller.HXSDKHelper;
 import com.eason.marker.model.ErroCode;
 import com.eason.marker.model.IntentUtil;
 import com.eason.marker.model.LoginStatus;
@@ -422,7 +424,10 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
     public void onEvent(EMNotifierEvent emNotifierEvent) {
         switch (emNotifierEvent.getEvent()){
             case EventNewMessage:
+                EMMessage message = (EMMessage) emNotifierEvent.getData();
 
+                // 提示新消息
+                HXSDKHelper.getInstance().getNotifier().onNewMsg(message);
                 break;
         }
     }
