@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/modify_username_dialog_parent_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/modify_username_dialog_parent_layout"
     android:background="@drawable/universal_alert_dialog_shape"
     android:orientation="vertical">
 
@@ -10,67 +10,62 @@
         android:id="@+id/modify_nickname_dialog_edit_text"
         android:layout_width="@dimen/universal_180dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:layout_marginBottom="@dimen/universal_20dp"
+        android:background="@null"
         android:hint="输入昵称"
         android:textColor="@color/universal_grey_twelve"
-        android:background="@null"
         android:textSize="16sp" />
 
     <EditText
         android:id="@+id/modify_password_dialog_edit_text"
         android:layout_width="@dimen/universal_180dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:layout_marginBottom="@dimen/universal_20dp"
-        android:visibility="gone"
-        android:inputType="textPassword"
-        android:hint="输入再次输入密码"
-        android:textColor="@color/universal_grey_twelve"
         android:background="@null"
-        android:textSize="16sp" />
+        android:hint="输入再次输入密码"
+        android:inputType="textPassword"
+        android:textColor="@color/universal_grey_twelve"
+        android:textSize="16sp"
+        android:visibility="gone" />
 
 
     <EditText
         android:id="@+id/modify_password_confirm_dialog_edit_text"
         android:layout_width="@dimen/universal_180dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:layout_marginBottom="@dimen/universal_20dp"
-        android:visibility="gone"
-        android:inputType="textPassword"
-        android:hint="输入再次输入密码"
-        android:textColor="@color/universal_grey_twelve"
         android:background="@null"
-        android:textSize="16sp" />
+        android:hint="输入再次输入密码"
+        android:inputType="textPassword"
+        android:textColor="@color/universal_grey_twelve"
+        android:textSize="16sp"
+        android:visibility="gone" />
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/modify_username_dialog_operation_layout"
-        android:layout_width="@dimen/universal_180dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/modify_username_ok_button"
             android:layout_width="@dimen/universal_80dp"
             android:layout_height="@dimen/universal_40dp"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/modify_username_cancel_button"
             android:background="@null"
             android:text="ok"
             android:textColor="@color/universal_title_background_red" />
 
-        <TextView
-            android:id="@+id/middle_text_view"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1.0" />
 
         <Button
             android:id="@+id/modify_username_cancel_button"
             android:layout_width="@dimen/universal_80dp"
             android:layout_height="@dimen/universal_40dp"
-            android:text="cancel"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
             android:background="@null"
+            android:text="cancel"
             android:textColor="@color/universal_item_text_color_black" />
-    </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

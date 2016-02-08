@@ -15,12 +15,11 @@
 
     </DatePicker>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/date_picker_modify_dialog_operation_layout"
-        android:layout_width="@dimen/universal_180dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/universal_20dp"
-        android:layout_gravity="center_horizontal"
         android:orientation="horizontal">
 
         <Button
@@ -29,13 +28,10 @@
             android:layout_height="@dimen/universal_40dp"
             android:background="@null"
             android:text="ok"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/date_picker_modify_cancel_button"
             android:textColor="@color/universal_item_text_color_black" />
 
-        <TextView
-            android:id="@+id/middle_text_view"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1.0" />
 
         <Button
             android:id="@+id/date_picker_modify_cancel_button"
@@ -43,6 +39,8 @@
             android:layout_height="@dimen/universal_40dp"
             android:background="@null"
             android:text="cancel"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
             android:textColor="@color/universal_title_background_red" />
-    </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>
