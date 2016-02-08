@@ -70,7 +70,6 @@ import com.eason.marker.emchat.chatuidemo.activity.ContextMenu;
 import com.eason.marker.emchat.chatuidemo.activity.ShowBigImage;
 import com.eason.marker.emchat.chatuidemo.activity.ShowNormalFileActivity;
 import com.eason.marker.emchat.chatuidemo.activity.ShowVideoActivity;
-import com.eason.marker.emchat.chatuidemo.activity.UserProfileActivity;
 import com.eason.marker.emchat.chatuidemo.task.LoadImageTask;
 import com.eason.marker.emchat.chatuidemo.task.LoadVideoImageTask;
 import com.eason.marker.emchat.chatuidemo.utils.DateUtils;
@@ -82,9 +81,10 @@ import com.eason.marker.http_util.HttpConfig;
 import com.eason.marker.http_util.HttpRequest;
 import com.eason.marker.http_util.HttpResponseHandler;
 import com.eason.marker.model.ErroCode;
+import com.eason.marker.model.IntentUtil;
 import com.eason.marker.model.LoginStatus;
 import com.eason.marker.model.User;
-import com.eason.marker.util.LogUtil;
+import com.eason.marker.profile_activity.ProfileActivity;
 import com.eason.marker.util.WidgetUtil.GreenToast;
 
 import org.json.JSONArray;
@@ -598,10 +598,14 @@ public class MessageAdapter extends BaseAdapter{
 			
 			@Override
 			public void onClick(View v) {
-//				Intent intent = new Intent();
-//				intent.setClass(context, UserProfileActivity.class);
-//				intent.putExtra("username", message.getFrom());
-//				context.startActivity(intent);
+				if(message.direct != Direct.SEND){
+					if (toUser==null)return;
+					Intent intent = new Intent();
+					intent.setClass(context, ProfileActivity.class);
+					intent.putExtra("username", toUser.getUsername());
+					intent.putExtra("come-from", IntentUtil.FROM_CHAT_ACTIVITY);
+					context.startActivity(intent);
+				}
 			}
 		});
 	}

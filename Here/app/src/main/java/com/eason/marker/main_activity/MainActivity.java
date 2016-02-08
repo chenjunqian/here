@@ -16,6 +16,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.easemob.EMCallBack;
+import com.easemob.EMEventListener;
+import com.easemob.EMNotifierEvent;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMGroupManager;
 import com.eason.marker.R;
@@ -31,7 +33,7 @@ import com.eason.marker.util.WidgetUtil.GreenToast;
 import java.util.List;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements EMEventListener {
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
@@ -414,5 +416,14 @@ public class MainActivity extends ActionBarActivity {
                 LogUtil.d("SplashActivity", "登陆聊天服务器失败！"+" code "+code+" message : "+message);
             }
         });
+    }
+
+    @Override
+    public void onEvent(EMNotifierEvent emNotifierEvent) {
+        switch (emNotifierEvent.getEvent()){
+            case EventNewMessage:
+
+                break;
+        }
     }
 }

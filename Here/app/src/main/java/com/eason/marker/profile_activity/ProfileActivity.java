@@ -107,6 +107,10 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     private void initData(){
         Intent dataIntent = getIntent();
         String username = dataIntent.getStringExtra("username");
+        String fromType = dataIntent.getStringExtra("come-from");
+        if (IntentUtil.FROM_CHAT_ACTIVITY.equals(fromType)){
+            handler.sendEmptyMessage(new Message().what=SET_ENTER_CHAT_BUTTON_GONE);
+        }
 
         HttpResponseHandler getUserHandler = new HttpResponseHandler(){
             @Override
@@ -170,8 +174,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
                     historyPostListView.setAdapter(new ListViewAdapter(ProfileActivity.this, postListItem));
                 } else {
-                    GreenToast.makeText(ProfileActivity.this, "获取用户信息失败啦", Toast.LENGTH_SHORT).show();
-                    ProfileActivity.this.finish();
+//                    GreenToast.makeText(ProfileActivity.this, "获取用户信息失败啦", Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -71,4 +71,9 @@ public class IntentUtil {
      * 跳转到私信
      */
     public static final int CHAT_MAIN_PAGE = 0x14;
+
+    /**
+     * 从私信界面进入个人主页
+     */
+    public static final String FROM_CHAT_ACTIVITY = "from-chat-activity";
 }
