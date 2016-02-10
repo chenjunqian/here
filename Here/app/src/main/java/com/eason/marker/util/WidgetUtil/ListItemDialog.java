@@ -27,7 +27,7 @@ import com.eason.marker.util.CommonUtil;
  */
 public class ListItemDialog extends Dialog implements View.OnClickListener {
 
-    private RelativeLayout likeLayout;
+    private RelativeLayout shareLayout;
     private RelativeLayout enterProfileLayout;
     private RelativeLayout reportLayout;
     private RelativeLayout backgroundLayout;
@@ -52,7 +52,7 @@ public class ListItemDialog extends Dialog implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_post_list_item_click_layout);
-        likeLayout = (RelativeLayout) findViewById(R.id.like_layout);
+        shareLayout = (RelativeLayout) findViewById(R.id.share_layout);
         enterProfileLayout = (RelativeLayout) findViewById(R.id.enter_profile_layout);
         reportLayout = (RelativeLayout) findViewById(R.id.report_layout);
         backgroundLayout = (RelativeLayout) findViewById(R.id.dialog_post_list_item_background_layout);
@@ -74,7 +74,7 @@ public class ListItemDialog extends Dialog implements View.OnClickListener {
             }
         });
 
-        likeLayout.setOnClickListener(new View.OnClickListener() {
+        shareLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ListItemDialog.this.dismiss();
@@ -89,7 +89,6 @@ public class ListItemDialog extends Dialog implements View.OnClickListener {
             }
         });
     }
-
 
     private void reportPost() {
         modelDialog = new ModelDialog(context, R.layout.dialog_report_post_layout, R.style.Theme_dialog);

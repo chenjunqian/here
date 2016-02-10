@@ -14,7 +14,7 @@
         android:background="@color/universal_layout_background_color">
 
         <RelativeLayout
-            android:id="@+id/like_layout"
+            android:id="@+id/share_layout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/universal_40dp"
             android:background="@drawable/layout_background_selector">
@@ -23,7 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="赞"
+                android:text="分享"
                 android:textColor="@color/universal_text_color_grad" />
         </RelativeLayout>
 

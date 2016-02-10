@@ -17,6 +17,7 @@ import com.eason.marker.model.ErroCode;
 import com.eason.marker.model.IntentUtil;
 import com.eason.marker.util.CommonUtil;
 import com.eason.marker.util.SharePreferencesUtil;
+import com.eason.marker.util.WidgetUtil.GreenToast;
 import com.eason.marker.util.WidgetUtil.ProgressDialog;
 
 /**
@@ -26,6 +27,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     private Button loginBtn;
     private Button registeBtn;
+    private Button forgotPasswordBtn;
     private EditText userAccountEditText;
     private EditText passwordEditText;
     private ProgressDialog progressDialog;
@@ -62,6 +64,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         loginBtn.setOnClickListener(this);
         registeBtn = (Button) findViewById(R.id.login_page_register_btn);
         registeBtn.setOnClickListener(this);
+        forgotPasswordBtn = (Button) findViewById(R.id.forgot_password_btn);
+        forgotPasswordBtn.setOnClickListener(this);
 
         progressDialog = new ProgressDialog(LoginActivity.this);
     }
@@ -95,6 +99,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 //跳转至注册页面，注册逻辑结束后在 onActivityResult 方法中处理相关逻辑
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivityForResult(intent, IntentUtil.LOGIN_TO_REGISTER_REQUEST_CODE);
+                break;
+
+            case R.id.forgot_password_btn:
+                GreenToast.makeText(LoginActivity.this,getResources().getString(R.string.forgot_password_text),Toast.LENGTH_LONG).show();
+
                 break;
         }
     }

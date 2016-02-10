@@ -31,6 +31,7 @@
     <string name="email_phone_edit_text_hint">请输入手机号或者邮箱</string>
     <string name="register_birthday_title">您的生日</string>
     <string name="register_birthday_text">出生日期</string>
+    <string name="forgot_password_text">非常抱歉您忘记密码了，开发者没钱买短信验证和其他的服务器了，就重新注册一个吧</string>
 
     <!-- 获取最近帖子页面-->
     <string name="current_list_page_time_status_title">最近一小时爱的标记</string>
@@ -70,10 +71,14 @@
     <string name="album_child">本地相片</string>
 
     <!-- App介绍页-->
-    <string name="about_us_activity_purpose_content">让你知道世界上有多少人在此时此刻此地在做着爱做的事，他们的感受如何，情况如何，满足你的好奇心</string>
+    <string name="about_us_activity_purpose_content">让你知道世界上有多少人在此时此刻此地在做着爱做的事，
+        他们的感受如何，情况如何，满足你的好奇心</string>
     <string name="about_us_activity_share_app">分享App</string>
     <string name="about_us_activity_report_issue">意见反馈</string>
     <string name="about_us_activity_report_content_can_not_be_empty">提交的建议不能为空</string>
+    <string name="about_us_activity_share_content">爱记 让你知道世界上有多少人在此时此刻此地在做着爱做的事，
+        他们的感受如何，情况如何，满足你的好奇心。
+        APP下载地址 https://github.com/chenjunqian/here/blob/master/app-release.apk</string>
 
     <!-- 登录注册-->
     <string name="login_register_input_valid_username">请输入正确格式的手机号或者邮箱</string>
