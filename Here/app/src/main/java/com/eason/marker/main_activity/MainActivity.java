@@ -45,6 +45,7 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
     private MainProfileFragment settingFragment;
     private NearUserListFragment nearUserListFragment;
     private CurrentMarkerListFragment currentPostFragment;
+    private MenuLeftFragment menuLeftFragment;
 
     private static final int CHANGE_TOOL_BAR_TITLE_MAIN = 0x1;
     private static final int CHANGE_TOOL_BAR_TITLE_SETTING = 0X2;
@@ -209,6 +210,8 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
      * 初始化参数，及相应的布局设置
      */
     private void initParam() {
+        menuLeftFragment = (MenuLeftFragment) getFragmentManager().
+                findFragmentById(R.id.main_left_menu_fragment);
         setFragmentTransaction(IntentUtil.MAIN_MAP_FRAGMENT);
         EMChatUtil.autoReConnectEMChat();
         if (LoginStatus.getIsUserMode()){
@@ -246,6 +249,9 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
         if (fragmentIndex != IntentUtil.MAIN_TO_LOGIN_PAGE){//跳转到注册登录页面不需要切换fragment
             hideFragment(transaction);
         }
+
+        menuLeftFragment.setItemBackground(fragmentIndex);
+
         switch (fragmentIndex) {
 
             //切换到主页
@@ -363,9 +369,7 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
                  * 这里是为了从聊天页面回来时显示主页
                  */
                 setFragmentTransaction(IntentUtil.MAIN_MAP_FRAGMENT);
-                MenuLeftFragment fragment = (MenuLeftFragment) getFragmentManager().
-                        findFragmentById(R.id.main_left_menu_fragment);
-                fragment.setItemBackground(R.id.main_page_tag_layout);
+                menuLeftFragment.setItemBackground(IntentUtil.MAIN_MAP_FRAGMENT);
                 break;
         }
 
@@ -379,9 +383,7 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
 
         if (FRAGMENT_TAG != IntentUtil.MAIN_MAP_FRAGMENT) {//在不是地图fragment的时候按返回键回到地图fragment
             setFragmentTransaction(IntentUtil.MAIN_MAP_FRAGMENT);
-            MenuLeftFragment fragment = (MenuLeftFragment) getFragmentManager().
-                    findFragmentById(R.id.main_left_menu_fragment);
-            fragment.setItemBackground(R.id.main_page_tag_layout);
+            menuLeftFragment.setItemBackground(IntentUtil.MAIN_MAP_FRAGMENT);
             return;
         } else if (currentTime - touchTime > 2000) {
             GreenToast.makeText(MainActivity.this, "再按一次返回键退出", Toast.LENGTH_SHORT).show();

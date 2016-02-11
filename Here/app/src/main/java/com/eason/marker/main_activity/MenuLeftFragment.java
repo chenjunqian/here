@@ -78,22 +78,22 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
         HttpRequest.loadImage(circleImageView, HttpConfig.String_Url_Media + LoginStatus.getUser().getAvatar(), 150, 150);
     }
 
-    public void setItemBackground(int viewId){
+    public void setItemBackground(int type){
         mainTagLayout.setBackground(getActivity().getResources().getDrawable(R.drawable.layout_background_selector));
         userListLayout.setBackground(getActivity().getResources().getDrawable(R.drawable.layout_background_selector));
         currentPostLayout.setBackground(getActivity().getResources().getDrawable(R.drawable.layout_background_selector));
         enterEMChatLayout.setBackground(getActivity().getResources().getDrawable(R.drawable.layout_background_selector));
-        switch (viewId){
-            case R.id.main_page_tag_layout:
+        switch (type){
+            case IntentUtil.MAIN_MAP_FRAGMENT:
                 mainTagLayout.setBackgroundColor(getActivity().getResources().getColor(R.color.main_map_item_selector_color));
                 break;
-            case R.id.user_list_item_layout:
+            case IntentUtil.NEAR_USER_FRAGMENT:
                 userListLayout.setBackgroundColor(getActivity().getResources().getColor(R.color.nearby_item_selector_color));
                 break;
-            case R.id.current_post_list_item_layout:
+            case IntentUtil.CURRENT_POST_FRAGMENT:
                 currentPostLayout.setBackgroundColor(getActivity().getResources().getColor(R.color.current_item_selector_color));
                 break;
-            case R.id.enter_chat_main_page_item_layout:
+            case IntentUtil.CHAT_MAIN_PAGE:
                 enterEMChatLayout.setBackgroundColor(getActivity().getResources().getColor(R.color.enter_chat_item_selector_color));
                 break;
         }
@@ -103,7 +103,7 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
     public void onClick(View v) {
 
         MainActivity mainActivity = (MainActivity) getActivity();
-        setItemBackground(v.getId());
+
         switch (v.getId()) {
             case R.id.main_page_tag_layout:
                 mainActivity.setFragmentTransaction(IntentUtil.MAIN_MAP_FRAGMENT);
