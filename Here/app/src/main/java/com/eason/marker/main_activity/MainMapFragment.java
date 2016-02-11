@@ -234,7 +234,7 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
             //添加用户覆盖物
             LatLng postCurrentLatLng = new LatLng(post.getLatitude(), post.getLongitude());
             myMarkOption.anchor(0.5f, 0.5f).
-                    position(postCurrentLatLng).title(post.getUsername()).snippet(post.getTag()+"@@"+post.address+"@@"+post.getTime()).
+                    position(postCurrentLatLng).title(post.getUsername()).snippet(post.getTag()+"@@"+post.getAddress()+"@@"+post.getTime()).
                     draggable(false).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_ic));
             myMark = aMap.addMarker(myMarkOption);
 

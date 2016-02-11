@@ -57,9 +57,7 @@ public class AboutUsActivity extends BaseActivity{
         shareIntent.setAction(Intent.ACTION_SEND);
         shareIntent.putExtra(Intent.EXTRA_TEXT, getResources().getString(R.string.about_us_activity_share_content));
         shareIntent.setType("text/plain");
-        shareIntent.putExtra(Intent.EXTRA_TITLE, "title");
-        shareIntent.putExtra(Intent.EXTRA_SUBJECT, "subject");
-        startActivity(Intent.createChooser(shareIntent, "分享到"));
+        startActivity(Intent.createChooser(shareIntent, "分享到..."));
     }
 
 

@@ -1,6 +1,6 @@
 <resources>
     <!-- 全局-->
-    <string name="app_name">LoveMarker</string>
+    <string name="app_name">爱记</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">setting</string>
     <string name="action_about">关于</string>

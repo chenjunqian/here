@@ -77,6 +77,7 @@ public class ListItemDialog extends Dialog implements View.OnClickListener {
         shareLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sharePost(post, user);
                 ListItemDialog.this.dismiss();
             }
         });
@@ -90,6 +91,33 @@ public class ListItemDialog extends Dialog implements View.OnClickListener {
         });
     }
 
+    private void sharePost(Post post, User user) {
+        if (post == null || user == null) return;
+        String nickname = user.getNickname();
+        String content = post.getTag();
+        String address = post.getAddress();
+        String time = CommonUtil.formatTimeMillis(Long.valueOf(post.getTime()));
+        String userTitle = "用户";
+        if (user.getUsername().equals(LoginStatus.getUser().getUsername())) {
+            userTitle = "我";
+        }
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, "来自爱记APP : " + "\n"
+                + userTitle + " " + nickname + " 在 " + address + " 的爱记" + "\n"
+                + "\n"
+                + content + "\n"
+                + "\n"
+                + time + "\n"
+                + "\n"
+                + "APP下载地址 https://github.com/chenjunqian/here/blob/master/app-release.apk");
+        shareIntent.setType("text/plain");
+        context.startActivity(Intent.createChooser(shareIntent, "分享到..."));
+    }
+
+    /**
+     * 举报帖子
+     */
     private void reportPost() {
         modelDialog = new ModelDialog(context, R.layout.dialog_report_post_layout, R.style.Theme_dialog);
 
@@ -141,13 +169,13 @@ public class ListItemDialog extends Dialog implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.report_post_ok_button:
-                HttpResponseHandler reportPostHandler = new HttpResponseHandler(){
+                HttpResponseHandler reportPostHandler = new HttpResponseHandler() {
                     @Override
                     public void getResult() {
-                        if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT){
+                        if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT) {
                             GreenToast.makeText(context,
                                     context.getResources().getString(R.string.current_list_page_report_report_success), Toast.LENGTH_SHORT).show();
-                        }else{
+                        } else {
                             GreenToast.makeText(context,
                                     context.getResources().getString(R.string.net_work_invalid), Toast.LENGTH_SHORT).show();
                         }
@@ -156,10 +184,10 @@ public class ListItemDialog extends Dialog implements View.OnClickListener {
                     }
                 };
 
-                if (!CommonUtil.isEmptyString(reportContent)){
-                    HttpRequest.reportPost(reportContent, LoginStatus.getUser().getUsername(),post.getPostId(),reportPostHandler);
-                }else{
-                    GreenToast.makeText(context,context.getResources().getString(R.string.current_list_page_report_report_content_empty),Toast.LENGTH_SHORT).show();
+                if (!CommonUtil.isEmptyString(reportContent)) {
+                    HttpRequest.reportPost(reportContent, LoginStatus.getUser().getUsername(), post.getPostId(), reportPostHandler);
+                } else {
+                    GreenToast.makeText(context, context.getResources().getString(R.string.current_list_page_report_report_content_empty), Toast.LENGTH_SHORT).show();
                 }
 
                 break;

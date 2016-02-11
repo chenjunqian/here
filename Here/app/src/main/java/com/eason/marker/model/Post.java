@@ -5,16 +5,16 @@ package com.eason.marker.model;
  */
 public class Post {
 
-    public double longitude = 0.0;
-    public double latitude = 0.0;
-    public String city= "";
-    public String cityCode= "";
-    public String address= "";
-    public String username= "";
-    public int like;
-    public String postId= "";
-    public String tag= "";
-    public String time= "";
+    private double longitude = 0.0;
+    private double latitude = 0.0;
+    private String city= "";
+    private String cityCode= "";
+    private String address= "";
+    private String username= "";
+    private int like;
+    private String postId= "";
+    private String tag= "";
+    private String time= "";
 
     public String getTime() {
         return time;
