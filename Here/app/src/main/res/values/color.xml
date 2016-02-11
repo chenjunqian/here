@@ -17,7 +17,10 @@
     <color name="universal_half_transparent">#90000000</color>
     <!-- 控件点击背景效果-->
     <color name="pressed">#CFCFCF</color>
-    <color name="current_item_selector_color">#FFD76DE6</color>
+    <color name="nearby_item_selector_color">#90D76DE6</color>
+    <color name="main_map_item_selector_color">#90DA5A4D</color>
+    <color name="current_item_selector_color">#90FFA500</color>
+    <color name="enter_chat_item_selector_color">#9046678d</color>
 
     <!-- 环信-->
     <color name="common_top_bar_blue">#CD0000</color>

@@ -85,16 +85,16 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
         enterEMChatLayout.setBackground(getActivity().getResources().getDrawable(R.drawable.layout_background_selector));
         switch (viewId){
             case R.id.main_page_tag_layout:
-                mainTagLayout.setBackgroundColor(getActivity().getResources().getColor(R.color.btn_logout_pressed));
+                mainTagLayout.setBackgroundColor(getActivity().getResources().getColor(R.color.main_map_item_selector_color));
                 break;
             case R.id.user_list_item_layout:
-                userListLayout.setBackgroundColor(getActivity().getResources().getColor(R.color.current_item_selector_color));
+                userListLayout.setBackgroundColor(getActivity().getResources().getColor(R.color.nearby_item_selector_color));
                 break;
             case R.id.current_post_list_item_layout:
-                currentPostLayout.setBackgroundColor(getActivity().getResources().getColor(R.color.orange));
+                currentPostLayout.setBackgroundColor(getActivity().getResources().getColor(R.color.current_item_selector_color));
                 break;
             case R.id.enter_chat_main_page_item_layout:
-                enterEMChatLayout.setBackgroundColor(getActivity().getResources().getColor(R.color.btn_login_pressed));
+                enterEMChatLayout.setBackgroundColor(getActivity().getResources().getColor(R.color.enter_chat_item_selector_color));
                 break;
         }
     }
@@ -158,7 +158,7 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
                     return;
                 }
                 Intent toChatPageIntent = new Intent(this.getActivity(), EMChatMainActivity.class);
-                getActivity().startActivityForResult(toChatPageIntent,IntentUtil.CHAT_MAIN_PAGE);
+                getActivity().startActivityForResult(toChatPageIntent, IntentUtil.CHAT_MAIN_PAGE);
                 mainActivity.setFragmentTransaction(IntentUtil.CHAT_MAIN_PAGE);
                 break;
 
