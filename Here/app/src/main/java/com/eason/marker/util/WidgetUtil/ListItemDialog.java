@@ -77,7 +77,8 @@ public class ListItemDialog extends Dialog implements View.OnClickListener {
         shareLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sharePost(post, user);
+//                new ShareDialog(context, post, user).show();
+                sharePost(post,user);
                 ListItemDialog.this.dismiss();
             }
         });

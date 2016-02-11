@@ -48,6 +48,13 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
+    <style name="Full_Screen_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
 
 
     <!-- 环信-->

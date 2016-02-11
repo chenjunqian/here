@@ -8,8 +8,8 @@
     <RelativeLayout
         android:id="@+id/left_menu_profile_layout"
         android:layout_width="match_parent"
-        android:background="@drawable/bg_drawer_layout_info"
-        android:layout_height="150dp">
+        android:layout_height="150dp"
+        android:background="@drawable/bg_drawer_layout_info">
 
         <com.eason.marker.util.WidgetUtil.CircleImageView
             android:id="@+id/left_menu_avatar_image_view"
@@ -34,10 +34,10 @@
             android:id="@+id/main_page_tag_image_view"
             android:layout_width="35dp"
             android:layout_height="20dp"
-            android:src="@drawable/ic_home"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_home" />
 
         <TextView
             android:id="@+id/main_page_tag_text_view"
@@ -62,9 +62,9 @@
             android:layout_width="35dp"
             android:layout_height="20dp"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/ic_view_list"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_view_list" />
 
         <TextView
             android:id="@+id/user_list_text_view"
@@ -89,9 +89,9 @@
             android:layout_width="35dp"
             android:layout_height="20dp"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/ic_history_black_18dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_history_black_18dp" />
 
         <TextView
             android:id="@+id/my_post_list_text_view"
@@ -116,9 +116,9 @@
             android:layout_width="35dp"
             android:layout_height="20dp"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/ic_email_black_18dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_email_black_18dp" />
 
         <TextView
             android:id="@+id/enter_chat_main_page_text_view"
@@ -131,6 +131,14 @@
             android:textSize="15sp" />
     </RelativeLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/universal_item_text_color_sub_black">
+
+    </View>
+
     <RelativeLayout
         android:id="@+id/login_item_layout"
         android:layout_width="match_parent"
@@ -142,10 +150,10 @@
             android:id="@+id/login_image_view"
             android:layout_width="35dp"
             android:layout_height="20dp"
-            android:src="@drawable/ic_lock_36pt_2x"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_lock_36pt_2x" />
 
         <TextView
             android:id="@+id/login_text_view"

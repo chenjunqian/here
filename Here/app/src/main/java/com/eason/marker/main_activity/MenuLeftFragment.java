@@ -75,14 +75,35 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
         }
 
         if (LoginStatus.getUser() == null) return;
-        HttpRequest.loadImage(circleImageView, HttpConfig.String_Url_Media + LoginStatus.getUser().getAvatar(),150,150);
+        HttpRequest.loadImage(circleImageView, HttpConfig.String_Url_Media + LoginStatus.getUser().getAvatar(), 150, 150);
+    }
+
+    public void setItemBackground(int viewId){
+        mainTagLayout.setBackground(getActivity().getResources().getDrawable(R.drawable.layout_background_selector));
+        userListLayout.setBackground(getActivity().getResources().getDrawable(R.drawable.layout_background_selector));
+        currentPostLayout.setBackground(getActivity().getResources().getDrawable(R.drawable.layout_background_selector));
+        enterEMChatLayout.setBackground(getActivity().getResources().getDrawable(R.drawable.layout_background_selector));
+        switch (viewId){
+            case R.id.main_page_tag_layout:
+                mainTagLayout.setBackgroundColor(getActivity().getResources().getColor(R.color.btn_logout_pressed));
+                break;
+            case R.id.user_list_item_layout:
+                userListLayout.setBackgroundColor(getActivity().getResources().getColor(R.color.current_item_selector_color));
+                break;
+            case R.id.current_post_list_item_layout:
+                currentPostLayout.setBackgroundColor(getActivity().getResources().getColor(R.color.orange));
+                break;
+            case R.id.enter_chat_main_page_item_layout:
+                enterEMChatLayout.setBackgroundColor(getActivity().getResources().getColor(R.color.btn_login_pressed));
+                break;
+        }
     }
 
     @Override
     public void onClick(View v) {
 
         MainActivity mainActivity = (MainActivity) getActivity();
-
+        setItemBackground(v.getId());
         switch (v.getId()) {
             case R.id.main_page_tag_layout:
                 mainActivity.setFragmentTransaction(IntentUtil.MAIN_MAP_FRAGMENT);
