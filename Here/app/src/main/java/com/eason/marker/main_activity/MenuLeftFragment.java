@@ -79,10 +79,10 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
     }
 
     public void setItemBackground(int type){
-        mainTagLayout.setBackground(getActivity().getResources().getDrawable(R.drawable.layout_background_selector));
-        userListLayout.setBackground(getActivity().getResources().getDrawable(R.drawable.layout_background_selector));
-        currentPostLayout.setBackground(getActivity().getResources().getDrawable(R.drawable.layout_background_selector));
-        enterEMChatLayout.setBackground(getActivity().getResources().getDrawable(R.drawable.layout_background_selector));
+        mainTagLayout.setBackgroundResource(R.drawable.layout_background_selector);
+        userListLayout.setBackgroundResource(R.drawable.layout_background_selector);
+        currentPostLayout.setBackgroundResource(R.drawable.layout_background_selector);
+        enterEMChatLayout.setBackgroundResource(R.drawable.layout_background_selector);
         switch (type){
             case IntentUtil.MAIN_MAP_FRAGMENT:
                 mainTagLayout.setBackgroundColor(getActivity().getResources().getColor(R.color.main_map_item_selector_color));

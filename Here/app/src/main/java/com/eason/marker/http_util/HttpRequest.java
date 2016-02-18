@@ -333,6 +333,28 @@ public class HttpRequest {
     }
 
     /**
+     * 获取最近一小时的帖子
+     * @param time
+     * @param httpResponseHandler
+     */
+    public static void getOneHourPostOnly(String time,int index,HttpResponseHandler httpResponseHandler){
+        Map<String,String> map = new HashMap<String,String>();
+        map.put("time",time);
+        map.put("index",String.valueOf(index));
+        baseHttpPostRequest(HttpConfig.String_Url_Only_Get_Post_By_Time, map, httpResponseHandler, PostList.class);
+    }
+
+    /**
+     * 获取最新的帖子
+     * @param httpResponseHandler
+     */
+    public static void getCurrentPostOnly(int index,HttpResponseHandler httpResponseHandler){
+        Map<String,String> map = new HashMap<String,String>();
+        map.put("index",String.valueOf(index));
+        baseHttpPostRequest(HttpConfig.String_Url_Get_Current_Post_Only, map, httpResponseHandler, PostList.class);
+    }
+
+    /**
      * 根据帖子id与用户username来删除帖子
      */
     public static void deletePostById(String username,String postid,HttpResponseHandler httpResponseHandler){

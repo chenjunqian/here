@@ -34,8 +34,11 @@
     <string name="forgot_password_text">非常抱歉您忘记密码了，开发者没钱买短信验证和其他的服务器了，就重新注册一个吧</string>
 
     <!-- 获取最近帖子页面-->
-    <string name="current_list_page_time_status_title">最近一小时爱的标记</string>
-    <string name="current_list_page_number_status_title">最近一小时还没爱的标记，看看最近的标记吧</string>
+    <string name="current_list_page_time_status_title">最近一小时爱的爱记</string>
+    <string name="current_list_page_time_status_sub_title">点击查看最近更多的爱记</string>
+    <string name="current_list_page_time_status_sub_title_now">点击查看最近一小时爱的爱记</string>
+    <string name="current_list_page_number_status_title">最近一小时还没爱的爱记，看看最新的爱记吧</string>
+    <string name="current_list_page_number_status_title_only_get_current">最新的爱记</string>
     <string name="current_list_page_report_rubbish_post">垃圾信息</string>
     <string name="current_list_page_report_illegal_post">违反法律法规的信息</string>
     <string name="current_list_page_report_not_for_publication_post">不宜公开的信息</string>
@@ -46,7 +49,7 @@
     <!-- 发帖页面 -->
     <string name="publish_page_title">我在这儿</string>
     <string name="publish_page_reminder_text">稍微具体的描述一下</string>
-    <string name="publish_page_public_button_text">标记一发</string>
+    <string name="publish_page_public_button_text">爱记一发</string>
 
     <!-- 他人资料页面-->
     <string name="profile_activity_header_title">爱爱标记</string>
@@ -64,7 +67,7 @@
     <string name="my_profile_fragment_long_profile">具体的关于自己</string>
     <string name="my_profile_fragment_username">账号</string>
     <string name="my_profile_fragment_change_password">修改密码</string>
-    <string name="my_profile_fragment_my_post">我的标记</string>
+    <string name="my_profile_fragment_my_post">我的爱记</string>
 
     <!--本地相册 -->
     <string name="album_group">相册</string>

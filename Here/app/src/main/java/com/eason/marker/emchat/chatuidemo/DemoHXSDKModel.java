@@ -36,7 +36,7 @@ public class DemoHXSDKModel extends DefaultHXSDKModel{
     
     // demo will switch on debug mode
     public boolean isDebugMode(){
-        return true;
+        return false;
     }
     
     public boolean saveContactList(List<EMUser> contactList) {

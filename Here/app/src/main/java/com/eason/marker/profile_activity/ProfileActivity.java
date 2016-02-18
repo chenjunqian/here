@@ -60,6 +60,8 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     private User user;
 
     private final int SET_ENTER_CHAT_BUTTON_GONE = 0x1;
+
+    private final int SET_ENTER_CHAT_BUTTON_VISIBLE = 0x2;
     /**
      * 主要用于判断该页面是显示用户自己的信息，还是显示别人的信息
      */
@@ -71,6 +73,9 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
             switch (msg.what){
                 case SET_ENTER_CHAT_BUTTON_GONE:
                     enterChatBtn.setVisibility(View.GONE);
+                    break;
+                case SET_ENTER_CHAT_BUTTON_VISIBLE:
+                    enterChatBtn.setVisibility(View.VISIBLE);
                     break;
             }
         }
@@ -126,6 +131,9 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
                     if (LoginStatus.getUser()==null||LoginStatus.getUser().getUserid()==user.getUserid()){
                         handler.sendEmptyMessage(new Message().what=SET_ENTER_CHAT_BUTTON_GONE);
+                    }else{
+                        //由于网络可能慢的问题，所以先把进入私信界面的button设置为不可见，不然会因为没有获取到数据而崩溃
+                        handler.sendEmptyMessage(new Message().what=SET_ENTER_CHAT_BUTTON_VISIBLE);
                     }
 
                     String[] birthday = user.getBirthday().split("-");
