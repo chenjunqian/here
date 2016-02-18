@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,10 +29,10 @@ import com.amap.api.maps2d.model.Marker;
 import com.amap.api.maps2d.model.MarkerOptions;
 import com.amap.api.maps2d.model.MyLocationStyle;
 import com.eason.marker.BaseFragment;
+import com.eason.marker.R;
 import com.eason.marker.http_util.HttpConfig;
 import com.eason.marker.http_util.HttpRequest;
 import com.eason.marker.http_util.HttpResponseHandler;
-import com.eason.marker.R;
 import com.eason.marker.model.ErroCode;
 import com.eason.marker.model.IntentUtil;
 import com.eason.marker.model.LocationInfo;
@@ -44,6 +43,7 @@ import com.eason.marker.model.User;
 import com.eason.marker.profile_activity.ProfileActivity;
 import com.eason.marker.publish_location_activity.PublishActivity;
 import com.eason.marker.util.CommonUtil;
+import com.eason.marker.util.LogUtil;
 import com.eason.marker.util.WidgetUtil.CircleImageView;
 import com.eason.marker.util.WidgetUtil.GreenToast;
 import com.eason.marker.util.WidgetUtil.ProgressDialog;
@@ -54,7 +54,8 @@ import java.util.List;
 /**
  * Created by Eason on 9/6/15.
  */
-public class MainMapFragment extends BaseFragment implements LocationSource, AMapLocationListener, AMap.InfoWindowAdapter {
+public class MainMapFragment extends BaseFragment implements LocationSource, AMapLocationListener,
+        AMap.InfoWindowAdapter ,AMap.OnCameraChangeListener{
 
     private final String TAG = "MainMapFragment";
     private MapView mapView;
@@ -161,7 +162,7 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
                     mainActivity.getHandler().sendEmptyMessage(new Message().what = ErroCode.ERROR_CODE_REQUEST_FORM_INVALID);
                 } else if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CLIENT_DATA_ERROR) {
                     mainActivity.getHandler().sendEmptyMessage(new Message().what = MainActivity.NONE_VALID_POST);
-                } else if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT) {
+                } else if (resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT && resultVO.getResultData() != null) {
                     PostList postList = (PostList) this.result;
                     if (postList == null) return;
                     MainActivity.postListItem = postList.getPostList();
@@ -170,7 +171,7 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
             }
         };
 
-        HttpRequest.getPost(LocationInfo.getLon(), LocationInfo.getLat(), LocationInfo.getCityName(),20, getPostHandler);
+        HttpRequest.getPost(LocationInfo.getLon(), LocationInfo.getLat(), LocationInfo.getCityName(), 20, getPostHandler);
     }
 
     /**
@@ -215,6 +216,8 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
                 marker.hideInfoWindow();
             }
         });
+
+        aMap.setOnCameraChangeListener(this);
 
         //自定义点击显示的窗口信息
         aMap.setInfoWindowAdapter(this);
@@ -273,7 +276,7 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
             LocationInfo.setCityName(aLocation.getCity());
             LocationInfo.setCityCode(aLocation.getCityCode());
             LocationInfo.setAddress(aLocation.getAddress());
-            Log.d("MainActivity", "geoLat : " + geoLat + " geoLon : " + geoLon +
+            LogUtil.d("MainActivity", "geoLat : " + geoLat + " geoLon : " + geoLon +
                     " City Name : " + aLocation.getCity() + "  City Code : " + aLocation.getCityCode() + "  Address : " + aLocation.getAddress());
 
             if (geoLon == null || geoLat == null) return;
@@ -293,6 +296,24 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
                 isFirstGetPost = false;
             }
         }
+    }
+
+    /**
+     * 当地图的可视区域改变时
+     * @param cameraPosition
+     */
+    @Override
+    public void onCameraChange(CameraPosition cameraPosition) {}
+
+    /**
+     * 当地图的可视区域改变结束时
+     * @param cameraPosition
+     */
+    @Override
+    public void onCameraChangeFinish(CameraPosition cameraPosition) {
+        LogUtil.e("MainMapFragment","onCameraChangeFinish cameraPosition latitude : "+
+                cameraPosition.target.latitude+" longitude : "+cameraPosition.target.longitude+
+                " content : "+cameraPosition.describeContents());
     }
 
     @Override
@@ -342,7 +363,7 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
     }
 
     /**
-     * 自定义infowinfow窗口
+     * 自定义infoWindow窗口
      * @param marker
      * @param view
      */
@@ -399,4 +420,5 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
             }
         });
     }
+
 }
