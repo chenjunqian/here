@@ -32,7 +32,7 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.AppCompat">
 
-        <!-- Amap apiKey-->
+        <!-- Amap apiKey  测试key  bc23383ffa4aebee0e8a6f03c3eb123c-->
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="4ae2316f87e0a294379e69c33e40b79e" />
