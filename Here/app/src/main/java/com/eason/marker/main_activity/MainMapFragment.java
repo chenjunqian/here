@@ -398,7 +398,7 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
     public void onRegeocodeSearched(RegeocodeResult regeocodeResult, int i) {
         LogUtil.e(TAG, "CityName : " + regeocodeResult.getRegeocodeAddress().getCity());
         String cityName = regeocodeResult.getRegeocodeAddress().getCity();
-        if (CommonUtil.isEmptyString(cityName)) {
+        if (CommonUtil.isEmptyString(cityName)||cityName.equals(LocationInfo.getCityName())) {
             return;
         }  else {
             getMorePost(currentCameraLatLng.getLongitude(), currentCameraLatLng.getLatitude(), cityName, 20);
