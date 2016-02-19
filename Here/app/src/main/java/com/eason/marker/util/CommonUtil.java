@@ -82,13 +82,13 @@ public class CommonUtil {
 
     /**
      * 防止视图重复点击
-     *
-     * @return boolean
+     * @param defineFastTime
+     * @return
      */
-    public static boolean isFastDoubleClick() {
+    public static boolean isFastDoubleClick(int defineFastTime) {
         long time = System.currentTimeMillis();
         long timeD = time - mLastClickTime;
-        if (0 < timeD && timeD < 500) {
+        if (0 < timeD && timeD < defineFastTime) {
             return true;
         }
 

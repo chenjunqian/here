@@ -36,5 +36,8 @@ urlpatterns = patterns('',
     url(r'^delete_post_by_id/',views.deletePostById,name='deletePostById'),
     url(r'^report_post/',views.reportPost,name='reportPost'),
     url(r'^report_issue/',views.reportIssue,name='reportIssue'),
+    url(r'^get_user_info_by_useid/',views.getUserInfoByUseId,name='getUserInfoByUseId'),
+    url(r'^get_the_current_post/',views.getTheCurrentPost,name='getTheCurrentPost'),
+    url(r'^get_current_one_hour_post/',views.getCurrentOneHourPost,name='getCurrentOneHourPost'),
     url(r'^admin/', include(admin.site.urls)),
 )

@@ -201,7 +201,7 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
                  */
 
                 //如果用户快速点击则返回
-                if (CommonUtil.isFastDoubleClick()) return;
+                if (CommonUtil.isFastDoubleClick(500)) return;
                 final ModelDialog nicknameDialog = new ModelDialog(getActivity(), R.layout.modify_username_dialog_layout, R.style.Theme_dialog);
                 LinearLayout nicknameParentLayout = (LinearLayout) nicknameDialog.findViewById(R.id.modify_username_dialog_parent_layout);
                 Button nicknameOkBtn, nicknameCancelBtn;
@@ -214,7 +214,7 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
                 nicknameOkBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (CommonUtil.isFastDoubleClick()) return;
+                        if (CommonUtil.isFastDoubleClick(500)) return;
                         String nickname = nicknameEditTextView.getText().toString();
                         if (!CommonUtil.isEmptyString(nickname) || !nickname.equals(LoginStatus.getUser().getNickname())) {
                             modifyProfile(LoginStatus.getUser().getPassword(), LoginStatus.getUser().getGender(),
@@ -247,7 +247,7 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
                  * 修改性别
                  */
                 //如果用户快速点击则返回
-                if (CommonUtil.isFastDoubleClick()) return;
+                if (CommonUtil.isFastDoubleClick(500)) return;
 
                 final ModelDialog genderDialog = new ModelDialog(getActivity(), R.layout.fragment_profile_gender_dialog_layout, R.style.Theme_dialog);
                 RadioButton maleBtn, femaleBtn;
@@ -294,7 +294,7 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
                  * 修改生日
                  */
                 //如果用户快速点击则返回
-                if (CommonUtil.isFastDoubleClick()) return;
+                if (CommonUtil.isFastDoubleClick(500)) return;
 
                 final ModelDialog birthdayDialog = new ModelDialog(getActivity(), R.layout.date_picker_dialog_layout, R.style.Theme_dialog);
                 DatePicker datePicker = (DatePicker) birthdayDialog.findViewById(R.id.date_picker_modify_username_date_picker);
@@ -316,7 +316,7 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
                 okBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (CommonUtil.isFastDoubleClick()) return;
+                        if (CommonUtil.isFastDoubleClick(500)) return;
                         String birthday = resultYear + "-" + validMonth + "-" + resultDayOfMonth;
                         if (!birthday.equals("0-0-0") || !birthday.equals(LoginStatus.getUser().getBirthday())) {
                             //提交给服务器
@@ -346,7 +346,7 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
                 break;
             case R.id.profile_password_layout:
                 //如果用户快速点击则返回
-                if (CommonUtil.isFastDoubleClick()) return;
+                if (CommonUtil.isFastDoubleClick(500)) return;
                 final ModelDialog changePasswordDialog = new ModelDialog(getActivity(), R.layout.modify_username_dialog_layout, R.style.Theme_dialog);
                 LinearLayout passwordParentLayout = (LinearLayout) changePasswordDialog.findViewById(R.id.modify_username_dialog_parent_layout);
                 Button passwordOkBtn, passwordCancelBtn;
@@ -365,7 +365,7 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
                 passwordOkBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (CommonUtil.isFastDoubleClick()) return;
+                        if (CommonUtil.isFastDoubleClick(500)) return;
                         String enterPassword = passwordEditTextView.getText().toString();
                         if (!CommonUtil.isEmptyString(enterPassword) && enterPassword.equals(LoginStatus.getUser().getPassword()) && !isPasswordCheck) {
                             passwordEditTextView.setText("");
@@ -410,7 +410,7 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
 
             case R.id.profile_simple_profile_layout:
 
-                if (CommonUtil.isFastDoubleClick()) return;
+                if (CommonUtil.isFastDoubleClick(500)) return;
                 final ModelDialog simpleProfileDialog = new ModelDialog(getActivity(), R.layout.modify_username_dialog_layout, R.style.Theme_dialog);
                 LinearLayout simpleProfileParentLayout = (LinearLayout) simpleProfileDialog.findViewById(R.id.modify_username_dialog_parent_layout);
                 Button simpleProfileOkBtn, simpleProfileCancelBtn;
@@ -424,7 +424,7 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
                 simpleProfileOkBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (CommonUtil.isFastDoubleClick()) return;
+                        if (CommonUtil.isFastDoubleClick(500)) return;
                         String simpleProfile = simpleProfileEditTextView.getText().toString();
                         if (!CommonUtil.isEmptyString(simpleProfile) || !simpleProfile.equals(LoginStatus.getUser().getSimpleProfile())) {
                             modifyProfile(LoginStatus.getUser().getPassword(), LoginStatus.getUser().getGender(),
@@ -455,7 +455,7 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
 
             case R.id.profile_long_profile_layout:
 
-                if (CommonUtil.isFastDoubleClick()) return;
+                if (CommonUtil.isFastDoubleClick(500)) return;
                 final ModelDialog longProfileDialog = new ModelDialog(getActivity(), R.layout.modify_username_dialog_layout, R.style.Theme_dialog);
                 LinearLayout longProfileParentLayout = (LinearLayout) longProfileDialog.findViewById(R.id.modify_username_dialog_parent_layout);
                 Button longProfileOkBtn, longProfileCancelBtn;
@@ -469,7 +469,7 @@ public class MainProfileFragment extends BaseFragment implements View.OnClickLis
                 longProfileOkBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (CommonUtil.isFastDoubleClick()) return;
+                        if (CommonUtil.isFastDoubleClick(500)) return;
                         String longProfile = longProfileEditTextView.getText().toString();
                         if (!CommonUtil.isEmptyString(longProfile) || !longProfile.equals(LoginStatus.getUser().getLongProfile())) {
                             modifyProfile(LoginStatus.getUser().getPassword(), LoginStatus.getUser().getGender(),

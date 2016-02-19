@@ -12,7 +12,7 @@
         <ListView
             android:id="@+id/post_list_view"
             android:layout_width="match_parent"
-            android:dividerHeight="4dp"
+            android:dividerHeight="1dp"
             android:layout_height="match_parent">
 
         </ListView>

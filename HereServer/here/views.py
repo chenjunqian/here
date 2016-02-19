@@ -58,7 +58,8 @@ def login(request):
 		dict['errorMessage'] = "POST failed"
 		dict['status'] = "8002"
 		json  = simplejson.dumps(dict)
-		return HttpResponse("POST failed")		
+		return HttpResponse("POST failed")	
+
 # 注册
 def register(request):
 	dict = {}
@@ -85,7 +86,13 @@ def register(request):
 				cursor = connection.cursor()
 				query = "insert into here_user(username,password,gender,pushkey,birthday,nickname) values(%s,%s,%s,%s,%s,%s)"
 				cursor.execute(query,[username,password,gender,pushKey,birthday,nickname])
-				util.registerEMChat(username,password)
+				# 注册环信账号
+				newCursor = connection.cursor()
+				newQuery = "select * from here_user where username = %s"
+				newCursor.execute(newQuery,[username])
+				newRes = newCursor.fetchall()
+				userid = newRes[0][0]
+				util.registerEMChat(userid,password)
 				# 返回客户端用户数据
 				resultData['username'] = username
 				resultData['password'] = password
@@ -176,9 +183,6 @@ def uploadAvatar(request):
 		json  = simplejson.dumps(dict)
 		return HttpResponse(json)
 	else:
-		# dict['errorMessage'] = "POST_FAILED"
-		# dict['status'] = 8001
-		# return HttpResponse("POST failed")
 		tf = TestForm()
 		return render_to_response('test_upload_avatar.html',{'uf':tf})
 
@@ -423,6 +427,44 @@ def getUserInfoByUsername(request):
 		json  = simplejson.dumps(dict)
 		return HttpResponse("POST failed")
 
+# 根据用户id获取用户信息
+def getUserInfoByUseId(request):
+	dict = {}
+	resultData = {}
+	if request.method == 'POST':
+		userid = request.POST.get('userid')
+		cur = connection.cursor()
+		query = "select * from here_user where id = %s"
+		cur.execute(query,[userid])
+		user = cur.fetchall()
+		if user:
+			dict['errorMessage'] = "get_user_info_success"
+			dict['status'] = "0"
+			resultData['userid'] = user[0][0]
+			resultData['username'] = user[0][1]
+			resultData['password'] = user[0][2]
+			resultData['gender'] = user[0][3]
+			resultData['pushKey'] = user[0][4]
+			resultData['birthday'] = user[0][5]
+			if user[0][6]:
+				resultData['avatar'] = user[0][6]
+			else:
+				resultData['avatar'] = ''
+			resultData['nickname'] = user[0][7]
+			resultData['longProfile'] = user[0][8]
+			resultData['simpleProfile'] = user[0][9]
+			resultData['avatarThumb'] = user[0][10]
+			dict['resultData'] = resultData
+		else:
+			dict['errorMessage'] = "no_such_user_userid_is_invalid"
+			dict['status'] = "8003"
+		json = simplejson.dumps(dict)
+		return HttpResponse(json)
+	else:
+		json  = simplejson.dumps(dict)
+		return HttpResponse("POST failed")
+
+
 def getPostByUsername(request):
 	dict = {}
 	resultData = {}
@@ -459,13 +501,6 @@ def getPostByUsername(request):
 	else:
 		json  = simplejson.dumps(dict)
 		return HttpResponse("POST failed")
-		# tf = GetPostByUsername()
-		# return render_to_response('test-get-post-by-location.html',{'uf':tf})
-
-# 测试使用
-class GetPostTest(forms.Form):
-    time = forms.CharField()
-    index = forms.CharField()
 
 # 根据时间获取前一小时的帖子
 def getCurrentPost(request):
@@ -533,8 +568,91 @@ def getCurrentPost(request):
 	else:
 		json  = simplejson.dumps(dict)
 		return HttpResponse("POST failed")
-		# tf = GetPostTest()
-		# return render_to_response('test-get-post-by-location.html',{'uf':tf})
+
+# 测试使用
+class GetPostTest(forms.Form):
+    time = forms.CharField()
+    index = forms.CharField()
+
+# 获取最近一小时的帖子
+def getCurrentOneHourPost(request):
+	dict = {}
+	resultData = {}
+	if request.method == 'POST':
+		time = request.POST.get('time')
+		index = request.POST.get('index')
+		targetTime = int(time) - 60*60*1000
+		targetIndex = int(index)
+		cursor = connection.cursor()
+		query = "select * from here_post where time >= %s limit %s,%s"
+		cursor.execute(query,[targetTime,targetIndex-20,targetIndex])
+		res = cursor.fetchall()
+		if res:
+			resultData['postList'] = []
+			for json_result in res:
+				jsonMetaResultData = {}
+				jsonMetaResultData['postId'] = json_result[0]
+				jsonMetaResultData['longitude'] = json_result[1]
+				jsonMetaResultData['latitude'] = json_result[2]
+				jsonMetaResultData['city'] = json_result[3]
+				jsonMetaResultData['address']  = json_result[4]
+				jsonMetaResultData['like'] = json_result[5]
+				jsonMetaResultData['tag'] = json_result[6]
+				jsonMetaResultData['cityCode'] = json_result[7]
+				jsonMetaResultData['username'] = json_result[8]
+				jsonMetaResultData['time'] = json_result[9]
+				resultData['postList'].append(jsonMetaResultData)
+			
+			dict['resultData'] = resultData
+			dict['errorMessage'] = "get_one_hour_post_success"
+			dict['status'] = "0"
+		else :
+			dict['errorMessage'] = "none_post"
+			dict['status'] = "8001"
+		json = simplejson.dumps(dict)
+		return HttpResponse(json)
+	else:
+		json  = simplejson.dumps(dict)
+		return HttpResponse("POST failed")
+
+# 获取最近的帖子
+def getTheCurrentPost(request):
+	dict = {}
+	resultData = {}
+	if request.method == 'POST':
+		index = request.POST.get('index')
+		targetIndex = int(index)
+		cursor = connection.cursor()
+		query = "select * from here_post order by id desc limit %s,%s"
+		cursor.execute(query,[targetIndex-20,targetIndex])
+		res = cursor.fetchall()
+		if res:
+			resultData['postList'] = []
+			for json_result in res:
+				jsonMetaResultData = {}
+				jsonMetaResultData['postId'] = json_result[0]
+				jsonMetaResultData['longitude'] = json_result[1]
+				jsonMetaResultData['latitude'] = json_result[2]
+				jsonMetaResultData['city'] = json_result[3]
+				jsonMetaResultData['address']  = json_result[4]
+				jsonMetaResultData['like'] = json_result[5]
+				jsonMetaResultData['tag'] = json_result[6]
+				jsonMetaResultData['cityCode'] = json_result[7]
+				jsonMetaResultData['username'] = json_result[8]
+				jsonMetaResultData['time'] = json_result[9]
+				resultData['postList'].append(jsonMetaResultData)
+			
+			dict['resultData'] = resultData
+			dict['errorMessage'] = "get_only_last_100_post_success"
+			dict['status'] = "0"
+		else :
+			dict['errorMessage'] = "none_post"
+			dict['status'] = "8001"
+		json = simplejson.dumps(dict)
+		return HttpResponse(json)
+	else:
+		json  = simplejson.dumps(dict)
+		return HttpResponse("POST failed")
 
 def deletePostById(request):
 	dict = {}
@@ -573,11 +691,6 @@ def reportPost(request):
 		json  = simplejson.dumps(dict)
 		return HttpResponse("POST failed")
 
-# 测试使用
-class ReportIssue(forms.Form):
-    time = forms.CharField()
-    content = forms.CharField()
-    reporter = forms.CharField()
 
 def reportIssue(request):
 	dict = {}
@@ -594,10 +707,8 @@ def reportIssue(request):
 		json = simplejson.dumps(dict)
 		return HttpResponse(json)
 	else:
-		# json  = simplejson.dumps(dict)
-		# return HttpResponse("POST failed")
-		tf = ReportIssue()
-		return render_to_response('test-get-post-by-location.html',{'uf':tf})
+		json  = simplejson.dumps(dict)
+		return HttpResponse("POST failed")
 
 def plusPostLike(request):
 	dict = {}

@@ -69,7 +69,7 @@ public class LocationUtil {
         if (location != null) {
             lat = (float) location.getLatitude();
             lon = (float) location.getLongitude();
-            setCityName(context,lat,lon);
+            getCityName(context, lat, lon);
             LogUtil.d(TAG, "获取位置信息成功");
         } else {
             LogUtil.d(TAG, "获取位置信息失败");
@@ -83,7 +83,7 @@ public class LocationUtil {
      * @param lat
      * @param lon
      */
-    private static void setCityName(Context context, double lat, double lon) {
+    public static String getCityName(Context context, double lat, double lon) {
         Geocoder geocoder = new Geocoder(context, Locale.getDefault());
         try {
             // 取得地址相关的一些信息\经度、纬度
@@ -95,8 +95,11 @@ public class LocationUtil {
                 cityName = sb.toString();
             }
         } catch (Exception e) {
-
+            LogUtil.e(LocationUtil.TAG,"Exception : "+e.toString());
+            cityName = null;
         }
+
+        return cityName;
     }
 
     /**

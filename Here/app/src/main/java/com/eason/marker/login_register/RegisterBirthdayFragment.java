@@ -76,7 +76,7 @@ public class RegisterBirthdayFragment extends BaseFragment {
             public void onClick(View v) {
 
                 //如果用户快速点击则返回
-                if (CommonUtil.isFastDoubleClick())return;
+                if (CommonUtil.isFastDoubleClick(500))return;
 
                 //注册
                 registerActivity.register();

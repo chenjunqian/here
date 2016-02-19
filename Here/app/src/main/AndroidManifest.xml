@@ -35,7 +35,7 @@
         <!-- Amap apiKey-->
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="bc23383ffa4aebee0e8a6f03c3eb123c" />
+            android:value="4ae2316f87e0a294379e69c33e40b79e" />
 
         <!-- 设置环信应用的appkey -->
         <meta-data android:name="EASEMOB_APPKEY"  android:value="lovermarker#lovermarker" />
