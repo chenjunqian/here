@@ -152,8 +152,8 @@
         android:id="@+id/profile_activity_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:dividerHeight="1dp">
+        android:divider="@null"
+        android:layout_marginTop="10dp">
 
     </ListView>
 </LinearLayout>

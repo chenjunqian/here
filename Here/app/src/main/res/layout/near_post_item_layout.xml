@@ -12,8 +12,9 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="3dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="@dimen/universal_20dp"
         android:scaleType="fitXY"
         android:src="@drawable/default_avatar_ori" />
 
@@ -23,18 +24,18 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="3dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/universal_20dp"
         android:layout_toRightOf="@+id/near_item_avatar"
-        android:textColor="@color/universal_item_text_color_black" />
+        android:textColor="@color/universal_item_text_color_black"
+        android:textSize="17sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/near_item_simple_profile_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="3dp"
-        android:layout_marginTop="5dp"
-        android:layout_toLeftOf="@+id/post_item_delete_image_button"
+        android:layout_alignBottom="@+id/near_item_nickname"
+        android:layout_toEndOf="@+id/near_item_nickname"
         android:layout_toRightOf="@+id/near_item_nickname"
         android:singleLine="true"
         android:textColor="@color/universal_item_text_color_sub_black" />
@@ -50,24 +51,40 @@
         android:background="@drawable/ic_delete_black_18dp"
         android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/near_item_post_tag_text_view"
+    <RelativeLayout
+        android:id="@+id/near_item_post_tag_content_layout"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/near_item_nickname"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="30dp"
-        android:layout_toRightOf="@+id/near_item_avatar"
-        android:gravity="center_vertical"
-        android:textColor="@color/universal_item_text_color_black" />
+        android:layout_toRightOf="@+id/near_item_avatar">
+
+        <ImageView
+            android:id="@+id/near_item_post_tag_image_view"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/marker_ic" />
+
+        <TextView
+            android:id="@+id/near_item_post_tag_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="30dp"
+            android:layout_toRightOf="@+id/near_item_post_tag_image_view"
+            android:gravity="center_vertical"
+            android:textColor="@color/universal_item_text_color_black" />
+    </RelativeLayout>
 
 
     <TextView
         android:id="@+id/near_post_item_post_time_text_view"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
-        android:layout_alignLeft="@+id/near_item_post_tag_text_view"
-        android:layout_below="@+id/near_item_post_tag_text_view"
+        android:layout_alignLeft="@+id/near_item_post_tag_content_layout"
+        android:layout_below="@+id/near_item_post_tag_content_layout"
         android:gravity="center_vertical"
         android:textColor="@color/universal_text_color_grad"
         android:textSize="12sp" />
@@ -78,8 +95,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/near_post_item_post_time_text_view"
         android:layout_below="@+id/near_post_item_post_time_text_view"
-        android:layout_marginRight="5dp"
         android:layout_marginBottom="5dp"
+        android:layout_marginRight="5dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -107,4 +124,13 @@
 
     </RelativeLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/near_item_post_address_layout"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/universal_item_text_color_sub_black">
+
+    </View>
 </RelativeLayout>

@@ -11,8 +11,9 @@
 
         <ListView
             android:id="@+id/post_list_view"
+            android:divider="@null"
+            android:background="@color/universal_white"
             android:layout_width="match_parent"
-            android:dividerHeight="1dp"
             android:layout_height="match_parent">
 
         </ListView>

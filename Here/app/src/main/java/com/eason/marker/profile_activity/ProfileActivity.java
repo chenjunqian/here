@@ -253,7 +253,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                 convertView = LayoutInflater.from(context).inflate(R.layout.near_post_item_layout, null);
                 viewsHolder.addressTextView = (TextView) convertView.findViewById(R.id.near_item_address_text_view);
                 viewsHolder.avatarView = (CircleImageView) convertView.findViewById(R.id.near_item_avatar);
-                viewsHolder.avatarView.setVisibility(View.GONE);
+                viewsHolder.avatarView.setVisibility(View.INVISIBLE);
                 viewsHolder.nicknameTextView = (TextView) convertView.findViewById(R.id.near_item_nickname);
                 viewsHolder.nicknameTextView.setVisibility(View.INVISIBLE);
                 viewsHolder.postTagTextView = (TextView) convertView.findViewById(R.id.near_item_post_tag_text_view);
