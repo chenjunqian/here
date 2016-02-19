@@ -255,7 +255,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                 viewsHolder.avatarView = (CircleImageView) convertView.findViewById(R.id.near_item_avatar);
                 viewsHolder.avatarView.setVisibility(View.INVISIBLE);
                 viewsHolder.nicknameTextView = (TextView) convertView.findViewById(R.id.near_item_nickname);
-                viewsHolder.nicknameTextView.setVisibility(View.INVISIBLE);
+                viewsHolder.nicknameTextView.setVisibility(View.GONE);
                 viewsHolder.postTagTextView = (TextView) convertView.findViewById(R.id.near_item_post_tag_text_view);
                 viewsHolder.simpleProfile = (TextView) convertView.findViewById(R.id.near_item_simple_profile_text_view);
                 viewsHolder.simpleProfile.setVisibility(View.GONE);

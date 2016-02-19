@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/universal_layout_background_color"
+    android:background="@color/universal_white"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -80,7 +80,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:gravity="left"
-                android:text="年龄"
+                android:text="@string/profile_activity_age"
                 android:textColor="@color/universal_grey_twelve" />
 
             <TextView
@@ -89,7 +89,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:text="@string/profile_activity_age"
+                android:text="星座"
                 android:textColor="@color/universal_grey_twelve" />
 
         </LinearLayout>
@@ -147,6 +147,13 @@
             android:text="@string/profile_activity_long_profile" />
 
     </RelativeLayout>
+
+    <View
+        android:background="@color/universal_layout_background_color"
+        android:layout_width="match_parent"
+        android:layout_height="1dp">
+
+    </View>
 
     <ListView
         android:id="@+id/profile_activity_list_view"
