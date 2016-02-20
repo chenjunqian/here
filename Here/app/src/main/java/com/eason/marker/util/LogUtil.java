@@ -11,7 +11,7 @@ public class LogUtil {
     /**
      * 当应用打包时，将debug该为false
      */
-    private static boolean debug = false;
+    private static boolean debug = true;
 
     public static void d(String tag,String msg){
         if (!debug)return;

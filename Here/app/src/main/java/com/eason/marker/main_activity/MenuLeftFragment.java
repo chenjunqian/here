@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +20,7 @@ import com.eason.marker.http_util.HttpRequest;
 import com.eason.marker.login_register.LoginActivity;
 import com.eason.marker.model.IntentUtil;
 import com.eason.marker.model.LoginStatus;
+import com.eason.marker.util.SharePreferencesUtil;
 import com.eason.marker.util.WidgetUtil.CircleImageView;
 import com.eason.marker.util.WidgetUtil.ModelDialog;
 
@@ -35,6 +37,7 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
     private RelativeLayout currentPostLayout;
     private RelativeLayout enterEMChatLayout;
     private CircleImageView circleImageView;
+    private ImageView newMessageRemindView;
 
     private TextView loginTextView;
 
@@ -48,6 +51,13 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
         userProfileLayout = (RelativeLayout) root.findViewById(R.id.left_menu_profile_layout);
         currentPostLayout = (RelativeLayout) root.findViewById(R.id.current_post_list_item_layout);
         enterEMChatLayout = (RelativeLayout) root.findViewById(R.id.enter_chat_main_page_item_layout);
+        newMessageRemindView = (ImageView) root.findViewById(R.id.enter_chat_main_page_item_remind_image_view);
+
+        if (SharePreferencesUtil.getEMChatNewMessegeStatus()){
+            newMessageRemindView.setVisibility(View.VISIBLE);
+        }else{
+            newMessageRemindView.setVisibility(View.GONE);
+        }
 
         loginTextView = (TextView) root.findViewById(R.id.login_text_view);
         circleImageView = (CircleImageView) userProfileLayout.findViewById(R.id.left_menu_avatar_image_view);
@@ -67,11 +77,28 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
         initData();
     }
 
+    public void setNewMessageRemindView(int viewType){
+        if (viewType == View.VISIBLE){
+            newMessageRemindView.setVisibility(View.VISIBLE);
+            SharePreferencesUtil.saveEMChatNewMessegeStatus(true);
+        }else if (viewType == View.GONE){
+            newMessageRemindView.setVisibility(View.GONE);
+            SharePreferencesUtil.saveEMChatNewMessegeStatus(false);
+        }
+
+    }
+
     private void initData() {
         if (LoginStatus.getIsUserMode()) {
             loginTextView.setText("注销");
         } else if (!LoginStatus.getIsUserMode()) {
             loginTextView.setText("登录");
+        }
+
+        if (SharePreferencesUtil.getEMChatNewMessegeStatus()){
+            newMessageRemindView.setVisibility(View.VISIBLE);
+        }else{
+            newMessageRemindView.setVisibility(View.GONE);
         }
 
         if (LoginStatus.getUser() == null) return;
@@ -160,6 +187,7 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
                 Intent toChatPageIntent = new Intent(this.getActivity(), EMChatMainActivity.class);
                 getActivity().startActivityForResult(toChatPageIntent, IntentUtil.CHAT_MAIN_PAGE);
                 mainActivity.setFragmentTransaction(IntentUtil.CHAT_MAIN_PAGE);
+                SharePreferencesUtil.saveEMChatNewMessegeStatus(false);
                 break;
 
             case R.id.left_menu_profile_layout:

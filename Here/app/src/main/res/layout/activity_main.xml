@@ -28,7 +28,7 @@
         <fragment
             android:id="@+id/main_left_menu_fragment"
             android:name="com.eason.marker.main_activity.MenuLeftFragment"
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="left">
 

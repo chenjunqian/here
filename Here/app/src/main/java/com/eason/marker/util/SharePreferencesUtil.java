@@ -56,4 +56,24 @@ public class SharePreferencesUtil {
         return share.getString("password",null);
 
     }
+
+    /**
+     * 环信消息提醒，是否有未读消息
+     * @param isNewMessage
+     */
+    public static void saveEMChatNewMessegeStatus(boolean isNewMessage){
+        editor.putBoolean("isNewMessage",isNewMessage);
+        editor.commit();
+    }
+
+    /**
+     * 获取用户是否有环信的私信
+     * @return
+     */
+    public static boolean  getEMChatNewMessegeStatus(){
+        if (share==null)return false;
+
+        return share.getBoolean("isNewMessage",false);
+
+    }
 }

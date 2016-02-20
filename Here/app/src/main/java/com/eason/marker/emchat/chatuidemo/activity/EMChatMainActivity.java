@@ -56,9 +56,12 @@ import com.eason.marker.emchat.chatuidemo.Constant;
 import com.eason.marker.emchat.chatuidemo.DemoHXSDKHelper;
 import com.eason.marker.emchat.chatuidemo.db.InviteMessgeDao;
 import com.eason.marker.emchat.chatuidemo.db.UserDao;
+import com.eason.marker.emchat.chatuidemo.domain.EMUser;
 import com.eason.marker.emchat.chatuidemo.domain.InviteMessage;
 import com.eason.marker.emchat.chatuidemo.domain.InviteMessage.InviteMesageStatus;
-import com.eason.marker.emchat.chatuidemo.domain.EMUser;
+import com.eason.marker.main_activity.MainActivity;
+import com.eason.marker.main_activity.MenuLeftFragment;
+import com.eason.marker.model.IntentUtil;
 import com.eason.marker.util.LogUtil;
 import com.eason.marker.util.WidgetUtil.GreenToast;
 
@@ -157,8 +160,14 @@ public class EMChatMainActivity extends BaseActivity implements EMEventListener 
 		groupChangeListener = new MyGroupChangeListener();
 		// 注册群聊相关的listener
         EMGroupManager.getInstance().addGroupChangeListener(groupChangeListener);
-		
-		
+
+		//将主页侧边栏的新消息提示View设为GONE
+		if (MainActivity.getInstance()!=null){
+			MenuLeftFragment menuLeftFragment = (MenuLeftFragment) ((MainActivity)MainActivity.
+					getInstance()).getFragment(IntentUtil.MENU_LEFT_FRAGMENT);
+			menuLeftFragment.setNewMessageRemindView(View.GONE);
+		}
+
 		//内部测试方法，请忽略
 //		registerInternalDebugReceiver();
 	}
@@ -375,7 +384,6 @@ public class EMChatMainActivity extends BaseActivity implements EMEventListener 
 
 			// 提示新消息
 //			HXSDKHelper.getInstance().getNotifier().onNewMsg(message);
-
 			refreshUI();
 			break;
 		}

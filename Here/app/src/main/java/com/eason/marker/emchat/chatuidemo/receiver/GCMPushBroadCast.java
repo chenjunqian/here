@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import com.eason.marker.R;
 import com.eason.marker.emchat.applib.controller.HXSDKHelper;
 
 public class GCMPushBroadCast extends BroadcastReceiver {
@@ -53,7 +54,7 @@ public class GCMPushBroadCast extends BroadcastReceiver {
 			// create and send notificaiton
 			NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(
 					appContext)
-					.setSmallIcon(appContext.getApplicationInfo().icon)
+					.setSmallIcon(R.drawable.ic_logo)
 					.setSound(defaultSoundUrlUri)
 					.setWhen(System.currentTimeMillis()).setAutoCancel(true);
 

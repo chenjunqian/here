@@ -2,6 +2,7 @@ package com.eason.marker.main_activity;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -20,11 +21,9 @@ import com.easemob.EMEventListener;
 import com.easemob.EMNotifierEvent;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMGroupManager;
-import com.easemob.chat.EMMessage;
 import com.eason.marker.R;
 import com.eason.marker.about_us_activity.AboutUsActivity;
 import com.eason.marker.emchat.EMChatUtil;
-import com.eason.marker.emchat.applib.controller.HXSDKHelper;
 import com.eason.marker.model.ErroCode;
 import com.eason.marker.model.IntentUtil;
 import com.eason.marker.model.LoginStatus;
@@ -36,6 +35,8 @@ import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity implements EMEventListener {
+
+    private static Context instance;
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
@@ -69,7 +70,7 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
 
     public static List<Post> postListItem;
 
-    private  Handler handler = new Handler() {
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -111,9 +112,17 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
         initParam();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // register the event listener when enter the foreground
+        EMChatManager.getInstance().registerEventListener(this,
+                new EMNotifierEvent.Event[]{EMNotifierEvent.Event.EventNewMessage});
+    }
+
     /*
-        初始化控件
-     */
+            初始化控件
+         */
     private void initView(Bundle savedInstanceState) {
         toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
@@ -210,17 +219,22 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
      * 初始化参数，及相应的布局设置
      */
     private void initParam() {
+        instance = this;
         menuLeftFragment = (MenuLeftFragment) getFragmentManager().
                 findFragmentById(R.id.main_left_menu_fragment);
         setFragmentTransaction(IntentUtil.MAIN_MAP_FRAGMENT);
         EMChatUtil.autoReConnectEMChat();
-        if (LoginStatus.getIsUserMode()){
-            loginEMChat(LoginStatus.getUser().getUserid(),LoginStatus.getUser().getPassword());
+        if (LoginStatus.getIsUserMode()) {
+            loginEMChat(LoginStatus.getUser().getUserid(), LoginStatus.getUser().getPassword());
         }
     }
 
-    public Fragment getFragment(int type){
-        switch (type){
+    public static Context getInstance(){
+        return instance;
+    }
+
+    public Fragment getFragment(int type) {
+        switch (type) {
             case IntentUtil.MAIN_MAP_FRAGMENT:
                 return mainMapFragment;
             case IntentUtil.NEAR_USER_FRAGMENT:
@@ -229,6 +243,8 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
                 return currentPostFragment;
             case IntentUtil.PROFLIE_FRAGMENT:
                 return settingFragment;
+            case IntentUtil.MENU_LEFT_FRAGMENT:
+                return menuLeftFragment;
         }
 
         return null;
@@ -246,7 +262,7 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
     public void setFragmentTransaction(int fragmentIndex) {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         Message msg = new Message();
-        if (fragmentIndex != IntentUtil.MAIN_TO_LOGIN_PAGE){//跳转到注册登录页面不需要切换fragment
+        if (fragmentIndex != IntentUtil.MAIN_TO_LOGIN_PAGE) {//跳转到注册登录页面不需要切换fragment
             hideFragment(transaction);
         }
 
@@ -259,7 +275,7 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
                 if (mainMapFragment == null) {
                     mainMapFragment = new MainMapFragment();
                     transaction.add(R.id.main_fragment_frame_layout, mainMapFragment);
-                }else{
+                } else {
                     transaction.show(mainMapFragment);
                 }
 
@@ -275,7 +291,7 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
                 if (settingFragment == null) {
                     settingFragment = new MainProfileFragment();
                     transaction.add(R.id.main_fragment_frame_layout, settingFragment);
-                }else{
+                } else {
                     transaction.show(settingFragment);
                 }
 
@@ -290,7 +306,7 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
                 if (nearUserListFragment == null) {
                     nearUserListFragment = new NearUserListFragment();
                     transaction.add(R.id.main_fragment_frame_layout, nearUserListFragment);
-                }else{
+                } else {
                     transaction.show(nearUserListFragment);
                 }
 
@@ -316,7 +332,7 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
                 if (currentPostFragment == null) {
                     currentPostFragment = new CurrentMarkerListFragment();
                     transaction.add(R.id.main_fragment_frame_layout, currentPostFragment);
-                }else{
+                } else {
                     transaction.show(currentPostFragment);
                 }
 
@@ -332,17 +348,17 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
         transaction.commit();
     }
 
-    private void hideFragment(FragmentTransaction transaction){
-        if (mainMapFragment!=null){
+    private void hideFragment(FragmentTransaction transaction) {
+        if (mainMapFragment != null) {
             transaction.hide(mainMapFragment);
         }
-        if (settingFragment!=null){
+        if (settingFragment != null) {
             transaction.hide(settingFragment);
         }
-        if (nearUserListFragment!=null){
+        if (nearUserListFragment != null) {
             transaction.hide(nearUserListFragment);
         }
-        if (currentPostFragment!=null){
+        if (currentPostFragment != null) {
             transaction.hide(currentPostFragment);
         }
     }
@@ -360,7 +376,7 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
                 mainMapFragment.getPost();
                 break;
             case IntentUtil.MAIN_TO_LOGIN_PAGE:
-                if (LoginStatus.getIsUserMode()){
+                if (LoginStatus.getIsUserMode()) {
                     loginEMChat(LoginStatus.getUser().getUserid(), LoginStatus.getUser().getPassword());
                 }
                 break;
@@ -397,10 +413,11 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
 
     /**
      * 登录环信，因为改为使用用户id来登录，为了保证在登录本服务器后，获取到用户信息再登录环信服务器
+     *
      * @param id
      * @param password
      */
-    private void loginEMChat(String id,String password){
+    private void loginEMChat(String id, String password) {
         //登录环信SDK
         EMChatManager.getInstance().login(id, password, new EMCallBack() {//回调
             @Override
@@ -423,19 +440,25 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
             @Override
             public void onError(int code, String message) {
                 EMChatUtil.isConnectedEMChatServer = false;
-                LogUtil.d("SplashActivity", "登陆聊天服务器失败！"+" code "+code+" message : "+message);
+                LogUtil.d("SplashActivity", "登陆聊天服务器失败！" + " code " + code + " message : " + message);
             }
         });
     }
 
     @Override
     public void onEvent(EMNotifierEvent emNotifierEvent) {
-        switch (emNotifierEvent.getEvent()){
-            case EventNewMessage:
-                EMMessage message = (EMMessage) emNotifierEvent.getData();
+        switch (emNotifierEvent.getEvent()) {
+            case EventNewMessage: // 普通消息
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (menuLeftFragment!=null){
+                            menuLeftFragment.setItemBackground(View.VISIBLE);
+                        }
+                    }
+                });
 
-                // 提示新消息
-                HXSDKHelper.getInstance().getNotifier().onNewMsg(message);
+                LogUtil.e("MainActivity", "EventNewMessage !!!!!!!!!!!!!!!!!");
                 break;
         }
     }
