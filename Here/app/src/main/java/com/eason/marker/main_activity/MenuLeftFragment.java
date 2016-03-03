@@ -44,7 +44,6 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main_left_menu_layout, container, false);
-
         mainTagLayout = (RelativeLayout) root.findViewById(R.id.main_page_tag_layout);
         userListLayout = (RelativeLayout) root.findViewById(R.id.user_list_item_layout);
         loginLayout = (RelativeLayout) root.findViewById(R.id.login_item_layout);
