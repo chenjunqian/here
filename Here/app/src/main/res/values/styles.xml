@@ -17,6 +17,7 @@
         <!--<item name="android:windowTranslucentStatus">true</item>-->
         <!--&lt;!&ndash; 避免控件都会顶到状态栏上 &ndash;&gt;-->
         <!--<item name="android:fitsSystemWindows">true</item>-->
+        <!--<item name="android:windowDrawsSystemBarBackgrounds">true</item>-->
     </style>
 
     <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
