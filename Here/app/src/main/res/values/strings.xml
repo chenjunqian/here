@@ -7,11 +7,14 @@
     <string name="main_map_page">首页</string>
     <string name="my_profile_page_title">我的资料</string>
     <string name="current_list_page_title">此刻</string>
+    <string name="notification_page_title">通知</string>
     <string name="enter_chat_page_page_title">私信</string>
     <string name="near_list_page_title">周边</string>
     <string name="net_work_invalid">网络发生了一些问题</string>
     <string name="report_us_hint">请在这里填写意见，小的会及时的查看</string>
     <string name="report_us_success_toast">提交成功，感谢您的建议</string>
+    <string name="please_login_first">请先登录</string>
+    <string name="can_not_get_your_location">没有获取到您的位置信息</string>
 
     <!-- 注册页面-->
     <string name="username">用户名</string>

@@ -112,7 +112,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
     private void initData(){
         Intent dataIntent = getIntent();
         String username = dataIntent.getStringExtra("username");
-        String fromType = dataIntent.getStringExtra("come-from");
+        final String fromType = dataIntent.getStringExtra("come-from");
         if (IntentUtil.FROM_CHAT_ACTIVITY.equals(fromType)){
             handler.sendEmptyMessage(new Message().what=SET_ENTER_CHAT_BUTTON_GONE);
         }
@@ -131,7 +131,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
                     if (LoginStatus.getUser()==null||LoginStatus.getUser().getUserid()==user.getUserid()){
                         handler.sendEmptyMessage(new Message().what=SET_ENTER_CHAT_BUTTON_GONE);
-                    }else{
+                    }else if (!IntentUtil.FROM_CHAT_ACTIVITY.equals(fromType)){
                         //由于网络可能慢的问题，所以先把进入私信界面的button设置为不可见，不然会因为没有获取到数据而崩溃
                         handler.sendEmptyMessage(new Message().what=SET_ENTER_CHAT_BUTTON_VISIBLE);
                     }

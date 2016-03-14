@@ -1439,7 +1439,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener, EMEve
 
 						if (filename != "delete_expression") { // 不是删除键，显示表情
 							// 这里用的反射，所以混淆的时候不要混淆SmileUtils这个类
-							Class clz = Class.forName("com.easemob.chatuidemo.utils.SmileUtils");
+							Class clz = Class.forName("com.eason.marker.emchat.chatuidemo.utils.SmileUtils");
 							Field field = clz.getField(filename);
 							mEditTextContent.append(SmileUtils.getSmiledText(ChatActivity.this,
 									(String) field.get(null)));

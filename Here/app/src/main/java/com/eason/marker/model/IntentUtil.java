@@ -81,4 +81,9 @@ public class IntentUtil {
      * 从私信界面进入个人主页
      */
     public static final String FROM_CHAT_ACTIVITY = "from-chat-activity";
+
+    /**
+     * 跳转到通知fragment
+     */
+    public static final int NOTIFICATION_FRAGMENT = 0x16;
 }

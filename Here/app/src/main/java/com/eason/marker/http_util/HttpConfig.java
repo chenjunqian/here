@@ -61,4 +61,10 @@ public class HttpConfig {
 
     //由userid获取用户信息
     public static final String String_Url_Get_User_Info_By_UserId = Url_Domain + "get_user_info_by_useid/";
+
+    //由用户userid获取notificationMessa
+    public static final String String_Url_Get_Notification_Message_By_UserName = Url_Domain + "get_notification_message_by_username/";
+
+    //获取系统通知
+    public static final String String_Url_Get_System_Notification_Message = Url_Domain + "get_system_notification_message/";
 }

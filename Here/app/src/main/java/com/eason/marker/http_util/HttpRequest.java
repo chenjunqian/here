@@ -14,6 +14,7 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.eason.marker.R;
+import com.eason.marker.model.NotificationMessageList;
 import com.eason.marker.model.Post;
 import com.eason.marker.model.PostList;
 import com.eason.marker.model.PostTag;
@@ -403,5 +404,15 @@ public class HttpRequest {
         Map<String,String> map = new HashMap<String,String>();
         map.put("userid",userid);
         baseHttpPostRequest(HttpConfig.String_Url_Get_User_Info_By_UserId, map, httpResponseHandler, User.class);
+    }
+
+    /**
+     * 根据用户id获取通知
+     * @param httpResponseHandler
+     */
+    public static void getSystemNotificationMessage(int index, HttpResponseHandler httpResponseHandler){
+        Map<String,String> map = new HashMap<String,String>();
+        map.put("index",String.valueOf(index));
+        baseHttpPostRequest(HttpConfig.String_Url_Get_System_Notification_Message, map, httpResponseHandler, NotificationMessageList.class);
     }
 }

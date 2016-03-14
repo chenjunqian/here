@@ -39,6 +39,8 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
     private static Context instance;
 
     private DrawerLayout drawerLayout;
+    private Menu toolBarMenu;
+    private MenuItem refreshItem;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private android.support.v7.widget.Toolbar toolbar;
 
@@ -47,6 +49,7 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
     private NearUserListFragment nearUserListFragment;
     private CurrentMarkerListFragment currentPostFragment;
     private MenuLeftFragment menuLeftFragment;
+    private NotificationFragment notificationFragment;
 
     private static final int CHANGE_TOOL_BAR_TITLE_MAIN = 0x1;
     private static final int CHANGE_TOOL_BAR_TITLE_SETTING = 0X2;
@@ -57,6 +60,7 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
     private static final int CHANGE_TOOL_BAR_TITLE_NEAR = 0X4;
     private static final int CHANGE_TOOL_BAR_TITLE_MINE = 0X5;
     public static final int NONE_VALID_MORE_POST = 0x6;
+    private static final int CHANGE_TOOL_BAR_TITLE_NOTIFICATION = 0x7;
 
     /**
      * 判断toolbar是否要显示刷新按键
@@ -87,10 +91,21 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
                     //跳转时改变Toobar相应的标题
                     toolbar.setTitle(R.string.near_list_page_title);
                     break;
+                case CHANGE_TOOL_BAR_TITLE_NOTIFICATION:
+                    //跳转时改变Toobar相应的标题
+                    toolbar.setTitle(R.string.notification_page_title);
+                    if (refreshItem!=null){
+                        refreshItem.setVisible(false);
+                    }
+
+                    break;
+
                 case CHANGE_TOOL_BAR_TITLE_MINE:
                     //跳转时改变Toobar相应的标题
                     toolbar.setTitle(R.string.current_list_page_title);
                     break;
+
+
                 case NONE_VALID_POST:
                     GreenToast.makeText(MainActivity.this, "附近还没人标记过哦，还不先码一个", Toast.LENGTH_LONG).show();
                     break;
@@ -144,6 +159,15 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
                         Intent intent = new Intent(MainActivity.this, AboutUsActivity.class);
                         startActivity(intent);
                         break;
+
+                    case R.id.action_notification:
+                        if (LoginStatus.getIsUserMode()){
+                            setFragmentTransaction(IntentUtil.NOTIFICATION_FRAGMENT);
+                        }else{
+                            GreenToast.makeText(MainActivity.instance, getResources().getString(R.string.please_login_first), Toast.LENGTH_LONG).show();
+                        }
+
+                        break;
                 }
 
                 return true;
@@ -175,6 +199,7 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+        toolBarMenu = menu;
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
@@ -204,11 +229,10 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
 
-        if (isShowRefreshView) {
-            menu.clear();
+        menu.clear();
+        if (isShowRefreshView){
             getMenuInflater().inflate(R.menu.menu_main, menu);
-        } else {
-            menu.clear();
+        }else{
             getMenuInflater().inflate(R.menu.menu_main_without_refresh, menu);
         }
 
@@ -222,11 +246,14 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
         instance = this;
         menuLeftFragment = (MenuLeftFragment) getFragmentManager().
                 findFragmentById(R.id.main_left_menu_fragment);
-        setFragmentTransaction(IntentUtil.MAIN_MAP_FRAGMENT);
+        mainMapFragment = new MainMapFragment();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.add(R.id.main_fragment_frame_layout, mainMapFragment);
         EMChatUtil.autoReConnectEMChat();
         if (LoginStatus.getIsUserMode()) {
             loginEMChat(LoginStatus.getUser().getUserid(), LoginStatus.getUser().getPassword());
         }
+
     }
 
     public static Context getInstance(){
@@ -342,6 +369,26 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
                 msg.what = CHANGE_TOOL_BAR_TITLE_MINE;
                 handler.sendEmptyMessage(msg.what);
                 break;
+
+            case IntentUtil.NOTIFICATION_FRAGMENT:
+                if (notificationFragment == null){
+                    notificationFragment = new NotificationFragment();
+                    transaction.add(R.id.main_fragment_frame_layout, notificationFragment);
+                }else{
+                    transaction.show(notificationFragment);
+                }
+
+                FRAGMENT_TAG = IntentUtil.NOTIFICATION_FRAGMENT;
+                handler.sendEmptyMessage(msg.what);
+                isShowRefreshView = false;
+                msg.what = CHANGE_TOOL_BAR_TITLE_NOTIFICATION;
+                handler.sendEmptyMessage(msg.what);
+                onPrepareOptionsMenu(toolBarMenu);
+                break;
+        }
+
+        if (refreshItem == null){
+            refreshItem  = toolBarMenu.findItem(R.id.action_refresh);
         }
 
         drawerLayout.closeDrawers();//点击Item后关闭Drawerlayout

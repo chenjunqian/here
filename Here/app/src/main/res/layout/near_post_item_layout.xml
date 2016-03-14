@@ -56,6 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/near_item_nickname"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="30dp"
         android:layout_toRightOf="@+id/near_item_avatar">
@@ -70,10 +71,11 @@
         <TextView
             android:id="@+id/near_item_post_tag_text_view"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="30dp"
             android:layout_toRightOf="@+id/near_item_post_tag_image_view"
+            android:inputType="textMultiLine"
             android:gravity="center_vertical"
             android:textColor="@color/universal_item_text_color_black" />
     </RelativeLayout>

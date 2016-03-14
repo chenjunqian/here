@@ -123,13 +123,13 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
             @Override
             public void onClick(View v) {
                 if (!LoginStatus.getIsUserMode()) {
-                    GreenToast.makeText(getActivity(), "请先登录", Toast.LENGTH_LONG).show();
+                    GreenToast.makeText(getActivity(), getResources().getString(R.string.please_login_first), Toast.LENGTH_LONG).show();
                     return;
                 } else if (CommonUtil.isEmptyString(LocationInfo.getAddress()) ||
                         CommonUtil.isEmptyString(LocationInfo.getCityName()) ||
                         CommonUtil.isEmptyString(String.valueOf(LocationInfo.getLat()))) {
 
-                    GreenToast.makeText(getActivity(), "没有获取到您的位置信息", Toast.LENGTH_LONG).show();
+                    GreenToast.makeText(getActivity(), getResources().getString(R.string.can_not_get_your_location), Toast.LENGTH_LONG).show();
                     return;
                 }
                 getActivity().startActivityForResult(new Intent(getActivity(), PublishActivity.class), IntentUtil.TO_PUBLISH_PAGE);
