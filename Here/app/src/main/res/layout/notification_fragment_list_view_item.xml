@@ -34,8 +34,8 @@
 
     <com.eason.marker.util.WidgetUtil.CircleImageView
         android:id="@+id/notification_message_avatar"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:layout_alignParentRight="true"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -46,8 +46,8 @@
     <View
         android:layout_below="@+id/notification_info_layout"
         android:layout_marginTop="@dimen/universal_20dp"
-        android:layout_marginRight="45dp"
-        android:background="@color/universal_under_line_color_black"
+        android:layout_marginRight="55dp"
+        android:background="@color/universal_item_text_color_sub_black"
         android:layout_width="match_parent"
         android:layout_height="1dp">
 

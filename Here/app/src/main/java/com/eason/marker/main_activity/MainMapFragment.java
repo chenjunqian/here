@@ -49,7 +49,6 @@ import com.eason.marker.model.User;
 import com.eason.marker.profile_activity.ProfileActivity;
 import com.eason.marker.publish_location_activity.PublishActivity;
 import com.eason.marker.util.CommonUtil;
-import com.eason.marker.util.LogUtil;
 import com.eason.marker.util.WidgetUtil.CircleImageView;
 import com.eason.marker.util.WidgetUtil.GreenToast;
 import com.eason.marker.util.WidgetUtil.ProgressDialog;
@@ -97,7 +96,6 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case GET_MAP_CAMERA_LOCATION_INFO:
-                    LogUtil.e(TAG, "Task is running shouldGetMorePost : " + shouldGetMorePost);
                     if (!CommonUtil.isFastDoubleClick(2000) && shouldGetMorePost && currentCameraLatLng != null) {
                         RegeocodeQuery query = new RegeocodeQuery(currentCameraLatLng, 200, GeocodeSearch.AMAP);
                         geocodeSearch.getFromLocationAsyn(query);
@@ -337,8 +335,6 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
             LocationInfo.setCityName(aLocation.getCity());
             LocationInfo.setCityCode(aLocation.getCityCode());
             LocationInfo.setAddress(aLocation.getAddress());
-            LogUtil.d("MainActivity", "geoLat : " + geoLat + " geoLon : " + geoLon +
-                    " City Name : " + aLocation.getCity() + "  City Code : " + aLocation.getCityCode() + "  Address : " + aLocation.getAddress());
 
             if (geoLon == null || geoLat == null) return;
             //添加用户覆盖物
@@ -380,7 +376,6 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
     @Override
     public void onCameraChangeFinish(CameraPosition cameraPosition) {
         shouldGetMorePost = true;
-        LogUtil.e(TAG, "CameraPosition : " + cameraPosition.toString());
         //latLonPoint参数表示一个Latlng，第二参数表示范围多少米，GeocodeSearch.AMAP表示是国测局坐标系还是GPS原生坐标系
         currentCameraLatLng = new LatLonPoint(cameraPosition.target.latitude,
                 cameraPosition.target.longitude);
@@ -396,7 +391,6 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
      */
     @Override
     public void onRegeocodeSearched(RegeocodeResult regeocodeResult, int i) {
-        LogUtil.e(TAG, "CityName : " + regeocodeResult.getRegeocodeAddress().getCity());
         String cityName = regeocodeResult.getRegeocodeAddress().getCity();
         if (CommonUtil.isEmptyString(cityName)||cityName.equals(LocationInfo.getCityName())) {
             return;

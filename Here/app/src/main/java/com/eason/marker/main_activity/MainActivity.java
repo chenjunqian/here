@@ -40,7 +40,6 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
 
     private DrawerLayout drawerLayout;
     private Menu toolBarMenu;
-    private MenuItem refreshItem;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private android.support.v7.widget.Toolbar toolbar;
 
@@ -94,9 +93,6 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
                 case CHANGE_TOOL_BAR_TITLE_NOTIFICATION:
                     //跳转时改变Toobar相应的标题
                     toolbar.setTitle(R.string.notification_page_title);
-                    if (refreshItem!=null){
-                        refreshItem.setVisible(false);
-                    }
 
                     break;
 
@@ -161,9 +157,9 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
                         break;
 
                     case R.id.action_notification:
-                        if (LoginStatus.getIsUserMode()){
+                        if (LoginStatus.getIsUserMode()) {
                             setFragmentTransaction(IntentUtil.NOTIFICATION_FRAGMENT);
-                        }else{
+                        } else {
                             GreenToast.makeText(MainActivity.instance, getResources().getString(R.string.please_login_first), Toast.LENGTH_LONG).show();
                         }
 
@@ -248,7 +244,7 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
                 findFragmentById(R.id.main_left_menu_fragment);
         mainMapFragment = new MainMapFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.add(R.id.main_fragment_frame_layout, mainMapFragment);
+        transaction.add(R.id.main_fragment_frame_layout, mainMapFragment).commit();
         EMChatUtil.autoReConnectEMChat();
         if (LoginStatus.getIsUserMode()) {
             loginEMChat(LoginStatus.getUser().getUserid(), LoginStatus.getUser().getPassword());
@@ -387,10 +383,6 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
                 break;
         }
 
-        if (refreshItem == null){
-            refreshItem  = toolBarMenu.findItem(R.id.action_refresh);
-        }
-
         drawerLayout.closeDrawers();//点击Item后关闭Drawerlayout
         transaction.commit();
     }
@@ -407,6 +399,10 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
         }
         if (currentPostFragment != null) {
             transaction.hide(currentPostFragment);
+        }
+
+        if (notificationFragment!=null){
+            transaction.hide(notificationFragment);
         }
     }
 

@@ -19,6 +19,7 @@ import android.content.Context;
 import com.easemob.EMCallBack;
 import com.eason.marker.emchat.chatuidemo.DemoHXSDKHelper;
 
+
 public class MainApplication extends Application {
 
 	public static Context applicationContext;
@@ -57,6 +58,7 @@ public class MainApplication extends Application {
          * }
          */
         hxSDKHelper.onInit(applicationContext);
+
 	}
 
 	public static MainApplication getInstance() {

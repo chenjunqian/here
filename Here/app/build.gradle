@@ -30,5 +30,5 @@ dependencies {
     compile files('libs/Parse-1.9.4.jar')
     compile files('libs/bolts-android-1.2.0.jar')
     compile files('libs/MiPush_SDK_Client_2_2_19.jar')
-    compile files('libs/jpush-android-2.0.6.jar')
+    compile files('libs/jpush-android-2.1.0.jar')
 }
