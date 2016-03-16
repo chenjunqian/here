@@ -30,6 +30,7 @@ import com.eason.marker.model.LoginStatus;
 import com.eason.marker.model.Post;
 import com.eason.marker.util.LogUtil;
 import com.eason.marker.util.WidgetUtil.GreenToast;
+import com.igexin.sdk.PushManager;
 
 import java.util.List;
 
@@ -250,6 +251,10 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
             loginEMChat(LoginStatus.getUser().getUserid(), LoginStatus.getUser().getPassword());
         }
 
+        /**
+         * 初始化个推SDK
+         */
+        PushManager.getInstance().initialize(this.getApplication());
     }
 
     public static Context getInstance(){

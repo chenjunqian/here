@@ -67,4 +67,7 @@ public class HttpConfig {
 
     //获取系统通知
     public static final String String_Url_Get_System_Notification_Message = Url_Domain + "get_system_notification_message/";
+
+    //上传推送Id
+    public static final String String_Url_Update_Push_Key = Url_Domain + "update_push_key/";
 }

@@ -54,7 +54,7 @@
             android:layout_alignStart="@+id/about_us_name_text_view"
             android:layout_below="@+id/about_us_name_text_view"
             android:layout_marginTop="10dp"
-            android:text="1.0.0" />
+            android:text="1.0.1" />
 
         <TextView
             android:id="@+id/about_us_app_purpose_content"

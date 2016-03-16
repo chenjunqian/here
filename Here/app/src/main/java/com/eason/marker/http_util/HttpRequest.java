@@ -415,4 +415,16 @@ public class HttpRequest {
         map.put("index",String.valueOf(index));
         baseHttpPostRequest(HttpConfig.String_Url_Get_System_Notification_Message, map, httpResponseHandler, NotificationMessageList.class);
     }
+
+    /**
+     * 上传推送Id
+     * @param username
+     * @param httpResponseHandler
+     */
+    public static void updataPushKeyByUsername(String username,String pushkey, HttpResponseHandler httpResponseHandler){
+        Map<String,String> map = new HashMap<String,String>();
+        map.put("username",username);
+        map.put("pushkey",pushkey);
+        baseHttpPostRequest(HttpConfig.String_Url_Update_Push_Key, map, httpResponseHandler, Object.class);
+    }
 }

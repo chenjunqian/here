@@ -31,4 +31,6 @@ dependencies {
     compile files('libs/bolts-android-1.2.0.jar')
     compile files('libs/MiPush_SDK_Client_2_2_19.jar')
     compile files('libs/jpush-android-2.1.0.jar')
+    compile files('libs/GetuiExt-2.0.3.jar')
+    compile files('libs/GetuiSDK2.8.1.0.jar')
 }
