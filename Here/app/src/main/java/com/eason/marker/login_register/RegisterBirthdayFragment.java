@@ -49,7 +49,7 @@ public class RegisterBirthdayFragment extends BaseFragment {
         Calendar calendar = Calendar.getInstance();
         final int currentYear = calendar.get(Calendar.YEAR);
         //在页面中显示初始化的信息
-        ageTextView.setText(currentYear-1995+" 岁");
+        ageTextView.setText(currentYear-1995);
         constellationTextView.setText(Constellation.getConstellation(6,15));
 
         //生日格式统一用 year-month-day
@@ -62,7 +62,7 @@ public class RegisterBirthdayFragment extends BaseFragment {
             public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 int age = currentYear - year;
                 int validMonth = monthOfYear+1;
-                ageTextView.setText(age+" 岁");
+                ageTextView.setText(age);
                 RegisterActivity.birthday = String.valueOf(year+"-"+validMonth+"-"+dayOfMonth);
                 constellationTextView.setText(Constellation.getConstellation(validMonth,dayOfMonth));
                 RegisterActivity.userConsellation = Constellation.getConstellation(validMonth,dayOfMonth);

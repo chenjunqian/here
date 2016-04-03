@@ -40,10 +40,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case ErroCode.ERROR_CODE_CLIENT_DATA_ERROR:
-                    Toast.makeText(LoginActivity.this, "网络状态出了点问题", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, getResources().getString(R.string.net_work_invalid), Toast.LENGTH_SHORT).show();
                     break;
                 case ErroCode.ERROR_CODE_USER_OR_PASSWORD_INVALID:
-                    Toast.makeText(LoginActivity.this, "账户名或者密码错误", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, getResources().getString(R.string.username_or_password_invalid), Toast.LENGTH_SHORT).show();
                     break;
             }
         }
@@ -82,10 +82,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 userPassword = passwordEditText.getText().toString();
 
                 if (CommonUtil.isEmptyString(userAccount)) {
-                    Toast.makeText(LoginActivity.this, "请输入账号", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, getResources().getString(R.string.please_input_username), Toast.LENGTH_SHORT).show();
                     return;
                 } else if (CommonUtil.isEmptyString(userPassword)) {
-                    Toast.makeText(LoginActivity.this, "请输入密码", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, getResources().getString(R.string.please_input_password), Toast.LENGTH_SHORT).show();
                     return;
                 }
 

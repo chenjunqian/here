@@ -175,7 +175,7 @@ public class CurrentMarkerListFragment extends BaseFragment implements SwipeRefr
                     }
 
                 } else if (isShowNoMorePostToast) {
-                    GreenToast.makeText(getActivity(), "没有帖子啦", Toast.LENGTH_SHORT).show();
+                    GreenToast.makeText(getActivity(), getActivity().getResources().getString(R.string.current_list_page_no_more_post), Toast.LENGTH_SHORT).show();
                     isShowNoMorePostToast = false;
                 }
 

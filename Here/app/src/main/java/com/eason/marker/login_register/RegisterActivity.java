@@ -87,7 +87,7 @@ public class RegisterActivity extends BaseActivity {
                     Toast.makeText(RegisterActivity.this, R.string.net_work_invalid, Toast.LENGTH_SHORT).show();
                     return;
                 }else if (this.resultVO.getStatus()==0){
-                    Toast.makeText(RegisterActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this,getResources().getString(R.string.register_success),Toast.LENGTH_SHORT).show();
                     Intent registerIntentData = new Intent();
                     registerIntentData.putExtra("username",userAccount);
                     registerIntentData.putExtra("password",password);

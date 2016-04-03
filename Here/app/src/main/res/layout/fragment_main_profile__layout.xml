@@ -102,7 +102,7 @@
                 android:layout_centerInParent="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
-                android:text="性别"
+                android:text="@string/gender"
                 android:textColor="@color/universal_item_text_color_black" />
 
             <TextView

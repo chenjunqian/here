@@ -67,9 +67,9 @@ public class RegisterUserInfoFragment extends BaseFragment {
                 RegisterActivity.nickname = nicknameEditText.getText().toString();
 
                 if (CommonUtil.isEmptyString(RegisterActivity.gender)){
-                    Toast.makeText(getActivity(),"请选择您的性别",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),getResources().getString(R.string.please_input_gender),Toast.LENGTH_SHORT).show();
                 }else if (CommonUtil.isEmptyString(RegisterActivity.nickname)){
-                    Toast.makeText(getActivity(),"请填写您的昵称",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),getResources().getString(R.string.please_input_gnickname),Toast.LENGTH_SHORT).show();
                 }else{
                     RegisterActivity registerActivity = (RegisterActivity)getActivity();
                     registerActivity.setFragmentTransaction(IntentUtil.REGISTER_USER_BIRTHDAY_PAGE);

@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/universal_20dp"
         android:background="@null"
-        android:hint="输入昵称"
+        android:hint="@string/nickname"
         android:textColor="@color/universal_grey_twelve"
         android:textSize="16sp" />
 
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/universal_20dp"
         android:background="@null"
-        android:hint="输入再次输入密码"
+        android:hint="@string/my_profile_input_password_again"
         android:inputType="textPassword"
         android:textColor="@color/universal_grey_twelve"
         android:textSize="16sp"
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/universal_20dp"
         android:background="@null"
-        android:hint="输入再次输入密码"
+        android:hint="@string/my_profile_input_password_again"
         android:inputType="textPassword"
         android:textColor="@color/universal_grey_twelve"
         android:textSize="16sp"

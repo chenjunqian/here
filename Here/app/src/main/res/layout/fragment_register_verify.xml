@@ -71,6 +71,6 @@
             android:layout_centerInParent="true"
             android:textColor="@color/universal_white"
             android:background="@drawable/green_button_selector"
-            android:text="下一步" />
+            android:text="@string/next" />
     </RelativeLayout>
 </LinearLayout>

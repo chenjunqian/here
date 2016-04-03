@@ -89,9 +89,9 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
 
     private void initData() {
         if (LoginStatus.getIsUserMode()) {
-            loginTextView.setText("注销");
+            loginTextView.setText(getResources().getString(R.string.login_register_logout));
         } else if (!LoginStatus.getIsUserMode()) {
-            loginTextView.setText("登录");
+            loginTextView.setText(getResources().getString(R.string.login));
         }
 
         if (SharePreferencesUtil.getEMChatNewMessegeStatus()){
@@ -146,9 +146,9 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
                     btnOK = (Button) mDialog.findViewById(R.id.ok_button);
                     btnCancel = (Button) mDialog.findViewById(R.id.cancel_button);
                     title = (TextView) mDialog.findViewById(R.id.alert_dialog_note_text);
-                    title.setText("确定要注销嘛？");
-                    btnOK.setText("是的");
-                    btnCancel.setText("手滑了");
+                    title.setText(getResources().getString(R.string.login_register_is_sure_logout));
+                    btnOK.setText(getResources().getString(R.string.my_profile_sure_to_delete_my_post));
+                    btnCancel.setText(getResources().getString(R.string.my_profile_cancel_delete_my_post));
 
                     btnOK.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -180,7 +180,7 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
 
             case R.id.enter_chat_main_page_item_layout:
                 if (!LoginStatus.getIsUserMode()) {
-                    Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), getResources().getString(R.string.please_login_first), Toast.LENGTH_SHORT).show();
                     return;
                 }
                 Intent toChatPageIntent = new Intent(this.getActivity(), EMChatMainActivity.class);
@@ -192,7 +192,7 @@ public class MenuLeftFragment extends BaseFragment implements View.OnClickListen
             case R.id.left_menu_profile_layout:
 
                 if (!LoginStatus.getIsUserMode()) {
-                    Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), getResources().getString(R.string.please_login_first), Toast.LENGTH_SHORT).show();
                     return;
                 }
 

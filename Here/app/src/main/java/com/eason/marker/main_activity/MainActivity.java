@@ -104,13 +104,13 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
 
 
                 case NONE_VALID_POST:
-                    GreenToast.makeText(MainActivity.this, "附近还没人标记过哦，还不先码一个", Toast.LENGTH_LONG).show();
+                    GreenToast.makeText(MainActivity.this, getResources().getString(R.string.main_map_no_post_toast), Toast.LENGTH_LONG).show();
                     break;
                 case NONE_VALID_MORE_POST:
-                    GreenToast.makeText(MainActivity.this, "没有更多的标记啦", Toast.LENGTH_LONG).show();
+                    GreenToast.makeText(MainActivity.this, getResources().getString(R.string.current_list_page_no_more_post), Toast.LENGTH_LONG).show();
                     break;
                 case ErroCode.ERROR_CODE_REQUEST_FORM_INVALID:
-                    GreenToast.makeText(MainActivity.this, "获取附近的标记似乎除了点问题，但是又不知道是为什么。。。", Toast.LENGTH_LONG).show();
+                    GreenToast.makeText(MainActivity.this, getResources().getString(R.string.main_map_some_problem_happen), Toast.LENGTH_LONG).show();
                     break;
             }
         }
@@ -450,7 +450,7 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
             menuLeftFragment.setItemBackground(IntentUtil.MAIN_MAP_FRAGMENT);
             return;
         } else if (currentTime - touchTime > 2000) {
-            GreenToast.makeText(MainActivity.this, "再按一次返回键退出", Toast.LENGTH_SHORT).show();
+            GreenToast.makeText(MainActivity.this, getResources().getString(R.string.click_twice_finish), Toast.LENGTH_SHORT).show();
             touchTime = System.currentTimeMillis();
             return;
         } else {

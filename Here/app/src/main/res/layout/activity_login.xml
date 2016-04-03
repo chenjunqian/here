@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="请登录"
+            android:text="@string/login"
             android:textColor="@color/universal_white"
             android:textSize="@dimen/universal_title_text_size" />
     </RelativeLayout>
@@ -33,7 +33,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="28dp"
             android:background="@null"
-            android:hint="用户名"
+            android:hint="@string/username"
             android:maxLines="1" />
 
     </RelativeLayout>
@@ -51,7 +51,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="28dp"
             android:background="@null"
-            android:hint="密码"
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:maxLines="1" />
 
@@ -71,7 +71,7 @@
             android:layout_height="48dp"
             android:layout_centerInParent="true"
             android:background="@drawable/green_button_selector"
-            android:text="登录"
+            android:text="@string/login"
             android:textColor="@color/universal_white" />
     </RelativeLayout>
 
@@ -89,7 +89,7 @@
             android:layout_height="40dp"
             android:layout_marginRight="20dp"
             android:background="@null"
-            android:text="马上注册"/>
+            android:text="@string/go_to_register"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -105,6 +105,6 @@
             android:layout_height="40dp"
             android:layout_marginLeft="20dp"
             android:background="@null"
-            android:text="忘记密码？" />
+            android:text="@string/forget_password" />
     </RelativeLayout>
 </RelativeLayout>

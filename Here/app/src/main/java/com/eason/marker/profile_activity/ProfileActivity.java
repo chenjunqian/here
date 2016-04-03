@@ -124,9 +124,9 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                     user = (User) this.result;
                     nicknameTextView.setText(user.getNickname());
                     if (user.getGender().equals("male")){
-                        genderTextView.setText("男");
+                        genderTextView.setText(getResources().getString(R.string.profile_activity_gender_male));
                     }else{
-                        genderTextView.setText("女");
+                        genderTextView.setText(getResources().getString(R.string.profile_activity_gender_female));
                     }
 
                     if (LoginStatus.getUser()==null||LoginStatus.getUser().getUserid()==user.getUserid()){
@@ -154,7 +154,7 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
 
 
                 }else{
-                    GreenToast.makeText(ProfileActivity.this,"获取用户信息失败啦", Toast.LENGTH_SHORT).show();
+                    GreenToast.makeText(ProfileActivity.this,getResources().getString(R.string.profile_activity_failed_to_get_user_info), Toast.LENGTH_SHORT).show();
                     ProfileActivity.this.fileList();
                 }
             }
@@ -279,9 +279,9 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                     btnOK = (Button) mDialog.findViewById(R.id.ok_button);
                     btnCancel = (Button) mDialog.findViewById(R.id.cancel_button);
                     title = (TextView) mDialog.findViewById(R.id.alert_dialog_note_text);
-                    title.setText("确定不要删除嘛");
-                    btnOK.setText("是的");
-                    btnCancel.setText("手滑了");
+                    title.setText(getResources().getString(R.string.my_profile_is_sure_to_delete_my_post));
+                    btnOK.setText(getResources().getString(R.string.my_profile_sure_to_delete_my_post));
+                    btnCancel.setText(getResources().getString(R.string.my_profile_cancel_delete_my_post));
 
                     btnOK.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -292,9 +292,9 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
                                     if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT) {
                                         postList.remove(position);
                                         ListViewAdapter.this.notifyDataSetChanged();
-                                        GreenToast.makeText(ProfileActivity.this,"删除成功",Toast.LENGTH_SHORT).show();
+                                        GreenToast.makeText(ProfileActivity.this,getResources().getString(R.string.my_profile_success_to_delete_my_post),Toast.LENGTH_SHORT).show();
                                     }else{
-                                        GreenToast.makeText(ProfileActivity.this,"因为一些原因，删除失败",Toast.LENGTH_SHORT).show();
+                                        GreenToast.makeText(ProfileActivity.this,getResources().getString(R.string.my_profile_failed_to_delete_my_post),Toast.LENGTH_SHORT).show();
                                     }
                                     mDialog.dismiss();
                                 }

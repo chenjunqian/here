@@ -110,7 +110,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:gravity="left"
-                android:text="男"
+                android:text="male"
                 android:textColor="@color/universal_grey_six" />
 
             <TextView

@@ -68,7 +68,7 @@ public class SplashActivity extends BaseActivity {
 
                 @Override
                 public void loginFailedListener(int info) {
-                    GreenToast.makeText(SplashActivity.this,"登录失败", Toast.LENGTH_SHORT).show();
+                    GreenToast.makeText(SplashActivity.this,getResources().getString(R.string.login_failed), Toast.LENGTH_SHORT).show();
                     new Timer().schedule(task,2000);
                 }
             });

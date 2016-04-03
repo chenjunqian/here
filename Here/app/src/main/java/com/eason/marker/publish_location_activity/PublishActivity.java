@@ -53,18 +53,18 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case ErroCode.ERROR_CODE_CLIENT_DATA_ERROR:
-                    GreenToast.makeText(PublishActivity.this, "发帖失败咯，我也不知道为什么，想想可能发生些什么吧", Toast.LENGTH_SHORT).show();
+                    GreenToast.makeText(PublishActivity.this, getResources().getString(R.string.publish_page_post_failed), Toast.LENGTH_SHORT).show();
                     break;
                 case POST_SUCCESS:
-                    GreenToast.makeText(PublishActivity.this, "标记成功", Toast.LENGTH_SHORT).show();
+                    GreenToast.makeText(PublishActivity.this, getResources().getString(R.string.publish_page_post_success), Toast.LENGTH_SHORT).show();
                     PublishActivity.this.setResult(RESULT_OK);
                     PublishActivity.this.finish();
                     break;
                 case POST_FAIL:
-                    GreenToast.makeText(PublishActivity.this, "发帖失败，可能是服务器的问题啦", Toast.LENGTH_SHORT).show();
+                    GreenToast.makeText(PublishActivity.this, getResources().getString(R.string.publish_page_post_success), Toast.LENGTH_SHORT).show();
                     break;
                 case GET_TAG_FAIL:
-                    GreenToast.makeText(PublishActivity.this, "网络似乎出了点问题，重新试试", Toast.LENGTH_SHORT).show();
+                    GreenToast.makeText(PublishActivity.this, getResources().getString(R.string.publish_page_post_failed_cause_network), Toast.LENGTH_SHORT).show();
                     PublishActivity.this.finish();
                     break;
             }
@@ -164,7 +164,7 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
 
                 String shareContent = addTagText.getText().toString();
                 if (CommonUtil.isEmptyString(shareContent)) {
-                    GreenToast.makeText(PublishActivity.this, "请选择或者添加分享标签", Toast.LENGTH_SHORT).show();
+                    GreenToast.makeText(PublishActivity.this, getResources().getString(R.string.publish_page_public_select_post_tag), Toast.LENGTH_SHORT).show();
                 } else {
                     publish(shareContent, postHandler);
                 }
@@ -239,9 +239,9 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
         btnOK = (Button) mDialog.findViewById(R.id.ok_button);
         btnCancel = (Button) mDialog.findViewById(R.id.cancel_button);
         title = (TextView) mDialog.findViewById(R.id.alert_dialog_note_text);
-        title.setText("确定不要分享了嘛");
-        btnOK.setText("是的");
-        btnCancel.setText("手滑了");
+        title.setText(getResources().getString(R.string.publish_page_is_sure_cancel_post));
+        btnOK.setText(getResources().getString(R.string.publish_page_sure_cancel_post));
+        btnCancel.setText(getResources().getString(R.string.publish_page_cancel_cancel_post));
 
         btnOK.setOnClickListener(new View.OnClickListener() {
             @Override
