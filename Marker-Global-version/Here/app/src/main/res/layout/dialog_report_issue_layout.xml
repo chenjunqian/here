@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/universal_alert_dialog_shape"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/report_dialog_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@null"
+        android:gravity="top|left"
+        android:hint="@string/report_us_hint"
+        android:inputType="textMultiLine"
+        android:textColorHint="@color/universal_text_color_grad"
+        android:textSize="12sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/universal_20dp">
+
+
+            <Button
+                android:id="@+id/report_dialog_ok"
+                android:layout_width="@dimen/universal_80dp"
+                android:layout_height="@dimen/universal_40dp"
+                android:background="@null"
+                android:text="ok"
+                android:textColor="@color/universal_item_text_color_black"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/report_dialog_cancel" />
+
+            <Button
+                android:id="@+id/report_dialog_cancel"
+                android:layout_width="@dimen/universal_80dp"
+                android:layout_height="@dimen/universal_40dp"
+                android:background="@null"
+                android:text="cancel"
+                android:textColor="@color/universal_title_background_red"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+
+</LinearLayout>

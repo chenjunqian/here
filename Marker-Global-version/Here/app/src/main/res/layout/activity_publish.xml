@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/universal_layout_background_color"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/universal_title_height"
+        android:background="@color/universal_title_background_red">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/publish_page_title"
+            android:textColor="@color/universal_white"
+            android:textSize="@dimen/universal_title_text_size" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/universal_title_height">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/publish_page_reminder_text"
+            android:textColor="@color/universal_item_text_color_sub_black" />
+
+    </RelativeLayout>
+
+    <GridView
+        android:id="@+id/tag_grid_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnWidth="90dp"
+        android:horizontalSpacing="10dp"
+        android:numColumns="4"
+        android:verticalSpacing="10dp">
+
+    </GridView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/universal_white">
+
+        <EditText
+            android:id="@+id/publish_page_share_content_edit_text"
+            android:layout_width="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:hint="@string/publish_page_tag_hint"
+            android:maxLength="20"
+            android:background="@color/universal_layout_background_color"
+            android:textColor="@color/universal_item_text_color_black"
+            android:textSize="13sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/universal_white">
+
+        <EditText
+            android:id="@+id/publish_page_share_address_edit_text"
+            android:layout_width="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:hint="@string/publish_page_edit_address"
+            android:maxLength="60"
+            android:background="@color/universal_layout_background_color"
+            android:textColor="@color/universal_item_text_color_black"
+            android:textSize="13sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/publish_page_public_button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/universal_title_height"
+            android:layout_centerInParent="true"
+            android:background="@drawable/green_button_selector"
+            android:text="@string/publish_page_public_button_text"
+            android:textColor="@color/universal_white" />
+    </RelativeLayout>
+
+</LinearLayout>

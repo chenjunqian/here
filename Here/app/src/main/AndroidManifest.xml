@@ -58,6 +58,9 @@
             android:name="com.amap.api.v2.apikey"
             android:value="4ae2316f87e0a294379e69c33e40b79e" />
 
+        <!-- Google map Key AIzaSyBD2zpgbnUlhLc1fNgiQ0rFEwSy70I6KB4 -->
+
+        
         <!-- 设置环信应用的appkey -->
         <meta-data android:name="EASEMOB_APPKEY"  android:value="lovermarker#lovermarker" />
         <!-- 声明sdk所需的service SDK核心功能-->

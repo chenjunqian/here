@@ -7,71 +7,73 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9B7421351C9323E7008A7520 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B7421341C9323E7008A7520 /* main.m */; };
-		9B7421381C9323E7008A7520 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B7421371C9323E7008A7520 /* AppDelegate.m */; };
-		9B74213B1C9323E7008A7520 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B74213A1C9323E7008A7520 /* ViewController.m */; };
-		9B74213E1C9323E7008A7520 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B74213C1C9323E7008A7520 /* Main.storyboard */; };
-		9B7421401C9323E7008A7520 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B74213F1C9323E7008A7520 /* Assets.xcassets */; };
-		9B7421431C9323E7008A7520 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B7421411C9323E7008A7520 /* LaunchScreen.storyboard */; };
-		9B74214E1C9323E7008A7520 /* LoveMarkerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B74214D1C9323E7008A7520 /* LoveMarkerTests.m */; };
-		9B7421591C9323E7008A7520 /* LoveMarkerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B7421581C9323E7008A7520 /* LoveMarkerUITests.m */; };
-		9B7421791C94A36E008A7520 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B7421781C94A36E008A7520 /* MapViewController.m */; };
+		9BB88DBE1CB25C92009A081A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB88DBD1CB25C92009A081A /* main.m */; };
+		9BB88DC11CB25C92009A081A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB88DC01CB25C92009A081A /* AppDelegate.m */; };
+		9BB88DC41CB25C92009A081A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB88DC31CB25C92009A081A /* ViewController.m */; };
+		9BB88DC71CB25C92009A081A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BB88DC51CB25C92009A081A /* Main.storyboard */; };
+		9BB88DC91CB25C92009A081A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9BB88DC81CB25C92009A081A /* Assets.xcassets */; };
+		9BB88DCC1CB25C92009A081A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BB88DCA1CB25C92009A081A /* LaunchScreen.storyboard */; };
+		9BB88DD71CB25C92009A081A /* LoveMarkerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB88DD61CB25C92009A081A /* LoveMarkerTests.m */; };
+		9BB88DE21CB25C92009A081A /* LoveMarkerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB88DE11CB25C92009A081A /* LoveMarkerUITests.m */; };
+		9BB88DF01CB27A3A009A081A /* splash_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BB88DEF1CB27A3A009A081A /* splash_background.png */; };
+		9BB88DF71CB27D71009A081A /* MainMapUIControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB88DF61CB27D71009A081A /* MainMapUIControllerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9B74214A1C9323E7008A7520 /* PBXContainerItemProxy */ = {
+		9BB88DD31CB25C92009A081A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9B7421281C9323E7008A7520 /* Project object */;
+			containerPortal = 9BB88DB11CB25C92009A081A /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 9B74212F1C9323E7008A7520;
+			remoteGlobalIDString = 9BB88DB81CB25C92009A081A;
 			remoteInfo = LoveMarker;
 		};
-		9B7421551C9323E7008A7520 /* PBXContainerItemProxy */ = {
+		9BB88DDE1CB25C92009A081A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 9B7421281C9323E7008A7520 /* Project object */;
+			containerPortal = 9BB88DB11CB25C92009A081A /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 9B74212F1C9323E7008A7520;
+			remoteGlobalIDString = 9BB88DB81CB25C92009A081A;
 			remoteInfo = LoveMarker;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9B7421301C9323E7008A7520 /* LoveMarker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoveMarker.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		9B7421341C9323E7008A7520 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9B7421361C9323E7008A7520 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		9B7421371C9323E7008A7520 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		9B7421391C9323E7008A7520 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		9B74213A1C9323E7008A7520 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		9B74213D1C9323E7008A7520 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9B74213F1C9323E7008A7520 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		9B7421421C9323E7008A7520 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		9B7421441C9323E7008A7520 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9B7421491C9323E7008A7520 /* LoveMarkerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoveMarkerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9B74214D1C9323E7008A7520 /* LoveMarkerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoveMarkerTests.m; sourceTree = "<group>"; };
-		9B74214F1C9323E7008A7520 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9B7421541C9323E7008A7520 /* LoveMarkerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoveMarkerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9B7421581C9323E7008A7520 /* LoveMarkerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoveMarkerUITests.m; sourceTree = "<group>"; };
-		9B74215A1C9323E7008A7520 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9B7421771C94A36E008A7520 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
-		9B7421781C94A36E008A7520 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		9BB88DB91CB25C92009A081A /* LoveMarker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoveMarker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BB88DBD1CB25C92009A081A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9BB88DBF1CB25C92009A081A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9BB88DC01CB25C92009A081A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9BB88DC21CB25C92009A081A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		9BB88DC31CB25C92009A081A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		9BB88DC61CB25C92009A081A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9BB88DC81CB25C92009A081A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9BB88DCB1CB25C92009A081A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9BB88DCD1CB25C92009A081A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9BB88DD21CB25C92009A081A /* LoveMarkerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoveMarkerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BB88DD61CB25C92009A081A /* LoveMarkerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoveMarkerTests.m; sourceTree = "<group>"; };
+		9BB88DD81CB25C92009A081A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9BB88DDD1CB25C92009A081A /* LoveMarkerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoveMarkerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BB88DE11CB25C92009A081A /* LoveMarkerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoveMarkerUITests.m; sourceTree = "<group>"; };
+		9BB88DE31CB25C92009A081A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9BB88DEF1CB27A3A009A081A /* splash_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splash_background.png; path = ../../../Here/app/src/main/res/drawable/splash_background.png; sourceTree = "<group>"; };
+		9BB88DF51CB27D71009A081A /* MainMapUIControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMapUIControllerViewController.h; sourceTree = "<group>"; };
+		9BB88DF61CB27D71009A081A /* MainMapUIControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMapUIControllerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		9B74212D1C9323E7008A7520 /* Frameworks */ = {
+		9BB88DB61CB25C92009A081A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9B7421461C9323E7008A7520 /* Frameworks */ = {
+		9BB88DCF1CB25C92009A081A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9B7421511C9323E7008A7520 /* Frameworks */ = {
+		9BB88DDA1CB25C92009A081A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -81,88 +83,89 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9B7421271C9323E7008A7520 = {
+		9BB88DB01CB25C92009A081A = {
 			isa = PBXGroup;
 			children = (
-				9B7421321C9323E7008A7520 /* LoveMarker */,
-				9B74214C1C9323E7008A7520 /* LoveMarkerTests */,
-				9B7421571C9323E7008A7520 /* LoveMarkerUITests */,
-				9B7421311C9323E7008A7520 /* Products */,
+				9BB88DBB1CB25C92009A081A /* LoveMarker */,
+				9BB88DD51CB25C92009A081A /* LoveMarkerTests */,
+				9BB88DE01CB25C92009A081A /* LoveMarkerUITests */,
+				9BB88DBA1CB25C92009A081A /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		9B7421311C9323E7008A7520 /* Products */ = {
+		9BB88DBA1CB25C92009A081A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9B7421301C9323E7008A7520 /* LoveMarker.app */,
-				9B7421491C9323E7008A7520 /* LoveMarkerTests.xctest */,
-				9B7421541C9323E7008A7520 /* LoveMarkerUITests.xctest */,
+				9BB88DB91CB25C92009A081A /* LoveMarker.app */,
+				9BB88DD21CB25C92009A081A /* LoveMarkerTests.xctest */,
+				9BB88DDD1CB25C92009A081A /* LoveMarkerUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9B7421321C9323E7008A7520 /* LoveMarker */ = {
+		9BB88DBB1CB25C92009A081A /* LoveMarker */ = {
 			isa = PBXGroup;
 			children = (
-				9B7421671C943E79008A7520 /* MapPage */,
-				9B7421361C9323E7008A7520 /* AppDelegate.h */,
-				9B7421371C9323E7008A7520 /* AppDelegate.m */,
-				9B7421391C9323E7008A7520 /* ViewController.h */,
-				9B74213A1C9323E7008A7520 /* ViewController.m */,
-				9B74213C1C9323E7008A7520 /* Main.storyboard */,
-				9B74213F1C9323E7008A7520 /* Assets.xcassets */,
-				9B7421411C9323E7008A7520 /* LaunchScreen.storyboard */,
-				9B7421441C9323E7008A7520 /* Info.plist */,
-				9B7421331C9323E7008A7520 /* Supporting Files */,
+				9BB88DF11CB27CF4009A081A /* MainMapPage */,
+				9BB88DBF1CB25C92009A081A /* AppDelegate.h */,
+				9BB88DC01CB25C92009A081A /* AppDelegate.m */,
+				9BB88DC21CB25C92009A081A /* ViewController.h */,
+				9BB88DC31CB25C92009A081A /* ViewController.m */,
+				9BB88DC51CB25C92009A081A /* Main.storyboard */,
+				9BB88DC81CB25C92009A081A /* Assets.xcassets */,
+				9BB88DCA1CB25C92009A081A /* LaunchScreen.storyboard */,
+				9BB88DCD1CB25C92009A081A /* Info.plist */,
+				9BB88DBC1CB25C92009A081A /* Supporting Files */,
 			);
 			path = LoveMarker;
 			sourceTree = "<group>";
 		};
-		9B7421331C9323E7008A7520 /* Supporting Files */ = {
+		9BB88DBC1CB25C92009A081A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9B7421341C9323E7008A7520 /* main.m */,
+				9BB88DEF1CB27A3A009A081A /* splash_background.png */,
+				9BB88DBD1CB25C92009A081A /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		9B74214C1C9323E7008A7520 /* LoveMarkerTests */ = {
+		9BB88DD51CB25C92009A081A /* LoveMarkerTests */ = {
 			isa = PBXGroup;
 			children = (
-				9B74214D1C9323E7008A7520 /* LoveMarkerTests.m */,
-				9B74214F1C9323E7008A7520 /* Info.plist */,
+				9BB88DD61CB25C92009A081A /* LoveMarkerTests.m */,
+				9BB88DD81CB25C92009A081A /* Info.plist */,
 			);
 			path = LoveMarkerTests;
 			sourceTree = "<group>";
 		};
-		9B7421571C9323E7008A7520 /* LoveMarkerUITests */ = {
+		9BB88DE01CB25C92009A081A /* LoveMarkerUITests */ = {
 			isa = PBXGroup;
 			children = (
-				9B7421581C9323E7008A7520 /* LoveMarkerUITests.m */,
-				9B74215A1C9323E7008A7520 /* Info.plist */,
+				9BB88DE11CB25C92009A081A /* LoveMarkerUITests.m */,
+				9BB88DE31CB25C92009A081A /* Info.plist */,
 			);
 			path = LoveMarkerUITests;
 			sourceTree = "<group>";
 		};
-		9B7421671C943E79008A7520 /* MapPage */ = {
+		9BB88DF11CB27CF4009A081A /* MainMapPage */ = {
 			isa = PBXGroup;
 			children = (
-				9B7421771C94A36E008A7520 /* MapViewController.h */,
-				9B7421781C94A36E008A7520 /* MapViewController.m */,
+				9BB88DF51CB27D71009A081A /* MainMapUIControllerViewController.h */,
+				9BB88DF61CB27D71009A081A /* MainMapUIControllerViewController.m */,
 			);
-			name = MapPage;
+			name = MainMapPage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9B74212F1C9323E7008A7520 /* LoveMarker */ = {
+		9BB88DB81CB25C92009A081A /* LoveMarker */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9B74215D1C9323E7008A7520 /* Build configuration list for PBXNativeTarget "LoveMarker" */;
+			buildConfigurationList = 9BB88DE61CB25C92009A081A /* Build configuration list for PBXNativeTarget "LoveMarker" */;
 			buildPhases = (
-				9B74212C1C9323E7008A7520 /* Sources */,
-				9B74212D1C9323E7008A7520 /* Frameworks */,
-				9B74212E1C9323E7008A7520 /* Resources */,
+				9BB88DB51CB25C92009A081A /* Sources */,
+				9BB88DB61CB25C92009A081A /* Frameworks */,
+				9BB88DB71CB25C92009A081A /* Resources */,
 			);
 			buildRules = (
 			);
@@ -170,68 +173,68 @@
 			);
 			name = LoveMarker;
 			productName = LoveMarker;
-			productReference = 9B7421301C9323E7008A7520 /* LoveMarker.app */;
+			productReference = 9BB88DB91CB25C92009A081A /* LoveMarker.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9B7421481C9323E7008A7520 /* LoveMarkerTests */ = {
+		9BB88DD11CB25C92009A081A /* LoveMarkerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9B7421601C9323E7008A7520 /* Build configuration list for PBXNativeTarget "LoveMarkerTests" */;
+			buildConfigurationList = 9BB88DE91CB25C92009A081A /* Build configuration list for PBXNativeTarget "LoveMarkerTests" */;
 			buildPhases = (
-				9B7421451C9323E7008A7520 /* Sources */,
-				9B7421461C9323E7008A7520 /* Frameworks */,
-				9B7421471C9323E7008A7520 /* Resources */,
+				9BB88DCE1CB25C92009A081A /* Sources */,
+				9BB88DCF1CB25C92009A081A /* Frameworks */,
+				9BB88DD01CB25C92009A081A /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9B74214B1C9323E7008A7520 /* PBXTargetDependency */,
+				9BB88DD41CB25C92009A081A /* PBXTargetDependency */,
 			);
 			name = LoveMarkerTests;
 			productName = LoveMarkerTests;
-			productReference = 9B7421491C9323E7008A7520 /* LoveMarkerTests.xctest */;
+			productReference = 9BB88DD21CB25C92009A081A /* LoveMarkerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		9B7421531C9323E7008A7520 /* LoveMarkerUITests */ = {
+		9BB88DDC1CB25C92009A081A /* LoveMarkerUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9B7421631C9323E7008A7520 /* Build configuration list for PBXNativeTarget "LoveMarkerUITests" */;
+			buildConfigurationList = 9BB88DEC1CB25C92009A081A /* Build configuration list for PBXNativeTarget "LoveMarkerUITests" */;
 			buildPhases = (
-				9B7421501C9323E7008A7520 /* Sources */,
-				9B7421511C9323E7008A7520 /* Frameworks */,
-				9B7421521C9323E7008A7520 /* Resources */,
+				9BB88DD91CB25C92009A081A /* Sources */,
+				9BB88DDA1CB25C92009A081A /* Frameworks */,
+				9BB88DDB1CB25C92009A081A /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9B7421561C9323E7008A7520 /* PBXTargetDependency */,
+				9BB88DDF1CB25C92009A081A /* PBXTargetDependency */,
 			);
 			name = LoveMarkerUITests;
 			productName = LoveMarkerUITests;
-			productReference = 9B7421541C9323E7008A7520 /* LoveMarkerUITests.xctest */;
+			productReference = 9BB88DDD1CB25C92009A081A /* LoveMarkerUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		9B7421281C9323E7008A7520 /* Project object */ = {
+		9BB88DB11CB25C92009A081A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = Eason;
 				TargetAttributes = {
-					9B74212F1C9323E7008A7520 = {
-						CreatedOnToolsVersion = 7.2.1;
+					9BB88DB81CB25C92009A081A = {
+						CreatedOnToolsVersion = 7.3;
 					};
-					9B7421481C9323E7008A7520 = {
-						CreatedOnToolsVersion = 7.2.1;
-						TestTargetID = 9B74212F1C9323E7008A7520;
+					9BB88DD11CB25C92009A081A = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 9BB88DB81CB25C92009A081A;
 					};
-					9B7421531C9323E7008A7520 = {
-						CreatedOnToolsVersion = 7.2.1;
-						TestTargetID = 9B74212F1C9323E7008A7520;
+					9BB88DDC1CB25C92009A081A = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = 9BB88DB81CB25C92009A081A;
 					};
 				};
 			};
-			buildConfigurationList = 9B74212B1C9323E7008A7520 /* Build configuration list for PBXProject "LoveMarker" */;
+			buildConfigurationList = 9BB88DB41CB25C92009A081A /* Build configuration list for PBXProject "LoveMarker" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -239,37 +242,38 @@
 				en,
 				Base,
 			);
-			mainGroup = 9B7421271C9323E7008A7520;
-			productRefGroup = 9B7421311C9323E7008A7520 /* Products */;
+			mainGroup = 9BB88DB01CB25C92009A081A;
+			productRefGroup = 9BB88DBA1CB25C92009A081A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9B74212F1C9323E7008A7520 /* LoveMarker */,
-				9B7421481C9323E7008A7520 /* LoveMarkerTests */,
-				9B7421531C9323E7008A7520 /* LoveMarkerUITests */,
+				9BB88DB81CB25C92009A081A /* LoveMarker */,
+				9BB88DD11CB25C92009A081A /* LoveMarkerTests */,
+				9BB88DDC1CB25C92009A081A /* LoveMarkerUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		9B74212E1C9323E7008A7520 /* Resources */ = {
+		9BB88DB71CB25C92009A081A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B7421431C9323E7008A7520 /* LaunchScreen.storyboard in Resources */,
-				9B7421401C9323E7008A7520 /* Assets.xcassets in Resources */,
-				9B74213E1C9323E7008A7520 /* Main.storyboard in Resources */,
+				9BB88DCC1CB25C92009A081A /* LaunchScreen.storyboard in Resources */,
+				9BB88DC91CB25C92009A081A /* Assets.xcassets in Resources */,
+				9BB88DF01CB27A3A009A081A /* splash_background.png in Resources */,
+				9BB88DC71CB25C92009A081A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9B7421471C9323E7008A7520 /* Resources */ = {
+		9BB88DD01CB25C92009A081A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9B7421521C9323E7008A7520 /* Resources */ = {
+		9BB88DDB1CB25C92009A081A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -279,61 +283,61 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		9B74212C1C9323E7008A7520 /* Sources */ = {
+		9BB88DB51CB25C92009A081A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B74213B1C9323E7008A7520 /* ViewController.m in Sources */,
-				9B7421381C9323E7008A7520 /* AppDelegate.m in Sources */,
-				9B7421351C9323E7008A7520 /* main.m in Sources */,
-				9B7421791C94A36E008A7520 /* MapViewController.m in Sources */,
+				9BB88DC41CB25C92009A081A /* ViewController.m in Sources */,
+				9BB88DC11CB25C92009A081A /* AppDelegate.m in Sources */,
+				9BB88DF71CB27D71009A081A /* MainMapUIControllerViewController.m in Sources */,
+				9BB88DBE1CB25C92009A081A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9B7421451C9323E7008A7520 /* Sources */ = {
+		9BB88DCE1CB25C92009A081A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B74214E1C9323E7008A7520 /* LoveMarkerTests.m in Sources */,
+				9BB88DD71CB25C92009A081A /* LoveMarkerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9B7421501C9323E7008A7520 /* Sources */ = {
+		9BB88DD91CB25C92009A081A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B7421591C9323E7008A7520 /* LoveMarkerUITests.m in Sources */,
+				9BB88DE21CB25C92009A081A /* LoveMarkerUITests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9B74214B1C9323E7008A7520 /* PBXTargetDependency */ = {
+		9BB88DD41CB25C92009A081A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9B74212F1C9323E7008A7520 /* LoveMarker */;
-			targetProxy = 9B74214A1C9323E7008A7520 /* PBXContainerItemProxy */;
+			target = 9BB88DB81CB25C92009A081A /* LoveMarker */;
+			targetProxy = 9BB88DD31CB25C92009A081A /* PBXContainerItemProxy */;
 		};
-		9B7421561C9323E7008A7520 /* PBXTargetDependency */ = {
+		9BB88DDF1CB25C92009A081A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9B74212F1C9323E7008A7520 /* LoveMarker */;
-			targetProxy = 9B7421551C9323E7008A7520 /* PBXContainerItemProxy */;
+			target = 9BB88DB81CB25C92009A081A /* LoveMarker */;
+			targetProxy = 9BB88DDE1CB25C92009A081A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9B74213C1C9323E7008A7520 /* Main.storyboard */ = {
+		9BB88DC51CB25C92009A081A /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				9B74213D1C9323E7008A7520 /* Base */,
+				9BB88DC61CB25C92009A081A /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		9B7421411C9323E7008A7520 /* LaunchScreen.storyboard */ = {
+		9BB88DCA1CB25C92009A081A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				9B7421421C9323E7008A7520 /* Base */,
+				9BB88DCB1CB25C92009A081A /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -341,10 +345,11 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		9B74215B1C9323E7008A7520 /* Debug */ = {
+		9BB88DE41CB25C92009A081A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -377,18 +382,18 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		9B74215C1C9323E7008A7520 /* Release */ = {
+		9BB88DE51CB25C92009A081A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -415,15 +420,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		9B74215E1C9323E7008A7520 /* Debug */ = {
+		9BB88DE71CB25C92009A081A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -434,7 +438,7 @@
 			};
 			name = Debug;
 		};
-		9B74215F1C9323E7008A7520 /* Release */ = {
+		9BB88DE81CB25C92009A081A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -445,7 +449,7 @@
 			};
 			name = Release;
 		};
-		9B7421611C9323E7008A7520 /* Debug */ = {
+		9BB88DEA1CB25C92009A081A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -457,7 +461,7 @@
 			};
 			name = Debug;
 		};
-		9B7421621C9323E7008A7520 /* Release */ = {
+		9BB88DEB1CB25C92009A081A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -469,7 +473,7 @@
 			};
 			name = Release;
 		};
-		9B7421641C9323E7008A7520 /* Debug */ = {
+		9BB88DED1CB25C92009A081A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = LoveMarkerUITests/Info.plist;
@@ -477,11 +481,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Eason.LoveMarkerUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_TARGET_NAME = LoveMarker;
-				USES_XCTRUNNER = YES;
 			};
 			name = Debug;
 		};
-		9B7421651C9323E7008A7520 /* Release */ = {
+		9BB88DEE1CB25C92009A081A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = LoveMarkerUITests/Info.plist;
@@ -489,50 +492,46 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Eason.LoveMarkerUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_TARGET_NAME = LoveMarker;
-				USES_XCTRUNNER = YES;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9B74212B1C9323E7008A7520 /* Build configuration list for PBXProject "LoveMarker" */ = {
+		9BB88DB41CB25C92009A081A /* Build configuration list for PBXProject "LoveMarker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9B74215B1C9323E7008A7520 /* Debug */,
-				9B74215C1C9323E7008A7520 /* Release */,
+				9BB88DE41CB25C92009A081A /* Debug */,
+				9BB88DE51CB25C92009A081A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9B74215D1C9323E7008A7520 /* Build configuration list for PBXNativeTarget "LoveMarker" */ = {
+		9BB88DE61CB25C92009A081A /* Build configuration list for PBXNativeTarget "LoveMarker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9B74215E1C9323E7008A7520 /* Debug */,
-				9B74215F1C9323E7008A7520 /* Release */,
+				9BB88DE71CB25C92009A081A /* Debug */,
+				9BB88DE81CB25C92009A081A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
-		9B7421601C9323E7008A7520 /* Build configuration list for PBXNativeTarget "LoveMarkerTests" */ = {
+		9BB88DE91CB25C92009A081A /* Build configuration list for PBXNativeTarget "LoveMarkerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9B7421611C9323E7008A7520 /* Debug */,
-				9B7421621C9323E7008A7520 /* Release */,
+				9BB88DEA1CB25C92009A081A /* Debug */,
+				9BB88DEB1CB25C92009A081A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
-		9B7421631C9323E7008A7520 /* Build configuration list for PBXNativeTarget "LoveMarkerUITests" */ = {
+		9BB88DEC1CB25C92009A081A /* Build configuration list for PBXNativeTarget "LoveMarkerUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9B7421641C9323E7008A7520 /* Debug */,
-				9B7421651C9323E7008A7520 /* Release */,
+				9BB88DED1CB25C92009A081A /* Debug */,
+				9BB88DEE1CB25C92009A081A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 9B7421281C9323E7008A7520 /* Project object */;
+	rootObject = 9BB88DB11CB25C92009A081A /* Project object */;
 }

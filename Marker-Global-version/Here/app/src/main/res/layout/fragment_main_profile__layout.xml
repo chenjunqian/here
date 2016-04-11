@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/universal_layout_background_color"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/universal_layout_background_color"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/profile_avatar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/layout_background_selector"
+            android:clickable="true">
+
+            <com.eason.marker.util.WidgetUtil.CircleImageView
+                android:id="@+id/profile_avatar_image_view"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/default_avatar_ori" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:text="@string/my_profile_fragment_change_avatar"
+                android:textColor="@color/universal_item_text_color_sub_black" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/profile_my_post_layout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/layout_background_selector"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:text="@string/my_profile_fragment_my_post"
+                android:textColor="@color/universal_item_text_color_black" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/profile_nickname_layout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/layout_background_selector"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:text="@string/my_profile_fragment_nickname"
+                android:textColor="@color/universal_item_text_color_black" />
+
+            <TextView
+                android:id="@+id/profile_nickname_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:text="王尼玛"
+                android:textColor="@color/universal_item_text_color_sub_black" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/profile_gender_layout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/layout_background_selector"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:text="@string/gender"
+                android:textColor="@color/universal_item_text_color_black" />
+
+            <TextView
+                android:id="@+id/profile_gender_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:text="男"
+                android:textColor="@color/universal_item_text_color_sub_black" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/profile_birthday_layout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/layout_background_selector"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:text="@string/my_profile_fragment_birthday"
+                android:textColor="@color/universal_item_text_color_black" />
+
+            <TextView
+                android:id="@+id/profile_birthday_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:text="1995-6-15"
+                android:textColor="@color/universal_item_text_color_sub_black" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/profile_simple_profile_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/layout_background_selector"
+            android:clickable="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/my_profile_fragment_simple_profile"
+                android:textColor="@color/universal_item_text_color_black" />
+
+            <TextView
+                android:id="@+id/profile_simple_profile_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="5dp"
+                android:maxLength="20"
+                android:textColor="@color/universal_item_text_color_sub_black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/profile_long_profile_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/layout_background_selector"
+            android:clickable="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/my_profile_fragment_long_profile"
+                android:textColor="@color/universal_item_text_color_black" />
+
+            <TextView
+                android:id="@+id/profile_long_profile_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:maxLength="300"
+                android:textColor="@color/universal_item_text_color_sub_black" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/profile_username_layout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/layout_background_selector"
+            android:clickable="false">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:text="@string/my_profile_fragment_username"
+                android:textColor="@color/universal_item_text_color_black" />
+
+            <TextView
+                android:id="@+id/profile_username_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/universal_item_text_color_sub_black" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/profile_password_layout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/layout_background_selector"
+            android:clickable="false">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:text="@string/my_profile_fragment_change_password"
+                android:textColor="@color/universal_item_text_color_black" />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</ScrollView>

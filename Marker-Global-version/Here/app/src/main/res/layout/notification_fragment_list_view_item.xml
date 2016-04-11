@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/universal_white"
+    android:orientation="horizontal">
+
+
+    <LinearLayout
+        android:id="@+id/notification_info_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_toLeftOf="@+id/notification_message_avatar"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/notification_message_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/universal_item_text_color_sub_black"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/notification_message_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/universal_item_text_color_black"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <com.eason.marker.util.WidgetUtil.CircleImageView
+        android:id="@+id/notification_message_avatar"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/default_avatar_ori" />
+
+    <View
+        android:layout_below="@+id/notification_info_layout"
+        android:layout_marginTop="@dimen/universal_20dp"
+        android:layout_marginRight="55dp"
+        android:background="@color/universal_item_text_color_sub_black"
+        android:layout_width="match_parent"
+        android:layout_height="1dp">
+
+    </View>
+</RelativeLayout>

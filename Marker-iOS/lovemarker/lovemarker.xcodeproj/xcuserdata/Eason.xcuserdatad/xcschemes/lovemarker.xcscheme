@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0720"
+   LastUpgradeVersion = "0730"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9B74212F1C9323E7008A7520"
+               BlueprintIdentifier = "9BB88DB81CB25C92009A081A"
                BuildableName = "LoveMarker.app"
                BlueprintName = "LoveMarker"
                ReferencedContainer = "container:LoveMarker.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9B7421481C9323E7008A7520"
+               BlueprintIdentifier = "9BB88DD11CB25C92009A081A"
                BuildableName = "LoveMarkerTests.xctest"
                BlueprintName = "LoveMarkerTests"
                ReferencedContainer = "container:LoveMarker.xcodeproj">
@@ -42,7 +42,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9B7421531C9323E7008A7520"
+               BlueprintIdentifier = "9BB88DDC1CB25C92009A081A"
                BuildableName = "LoveMarkerUITests.xctest"
                BlueprintName = "LoveMarkerUITests"
                ReferencedContainer = "container:LoveMarker.xcodeproj">
@@ -52,7 +52,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9B74212F1C9323E7008A7520"
+            BlueprintIdentifier = "9BB88DB81CB25C92009A081A"
             BuildableName = "LoveMarker.app"
             BlueprintName = "LoveMarker"
             ReferencedContainer = "container:LoveMarker.xcodeproj">
@@ -75,7 +75,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9B74212F1C9323E7008A7520"
+            BlueprintIdentifier = "9BB88DB81CB25C92009A081A"
             BuildableName = "LoveMarker.app"
             BlueprintName = "LoveMarker"
             ReferencedContainer = "container:LoveMarker.xcodeproj">
@@ -94,7 +94,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9B74212F1C9323E7008A7520"
+            BlueprintIdentifier = "9BB88DB81CB25C92009A081A"
             BuildableName = "LoveMarker.app"
             BlueprintName = "LoveMarker"
             ReferencedContainer = "container:LoveMarker.xcodeproj">

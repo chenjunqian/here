@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/album_child_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/universal_title_height"
+        android:background="@color/universal_title_background_red">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/album_child"
+            android:textColor="@color/universal_white"
+            android:textSize="@dimen/universal_title_text_size" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/image_scan_grid_view_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/image_scan_bottom_layout"
+        android:layout_below="@+id/album_child_title">
+
+        <GridView
+            android:id="@+id/child_grid"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="@android:color/transparent"
+            android:columnWidth="90dip"
+            android:gravity="center"
+            android:horizontalSpacing="5dip"
+            android:listSelector="@android:color/transparent"
+            android:numColumns="auto_fit"
+            android:padding="5dip"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="5dip"></GridView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/image_scan_bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="#3b3b42"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+</RelativeLayout>

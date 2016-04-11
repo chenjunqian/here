@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/universal_white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/universal_white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/universal_20dp"
+            android:text="@string/my_profile_gender"
+            android:textColor="@color/universal_item_text_color_black" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/profile_dialog_gender_male_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/universal_20dp"
+        android:layout_marginRight="@dimen/universal_20dp"
+        android:background="@drawable/layout_background_selector">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/universal_20dp"
+            android:text="@string/my_profile_gender_male"
+            android:textColor="@color/universal_item_text_color_black" />
+
+        <RadioButton
+            android:id="@+id/profile_dialog_gender_male_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/universal_20dp"
+            android:clickable="false" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/universal_20dp"
+        android:layout_marginRight="@dimen/universal_20dp"
+        android:background="@color/universal_item_text_color_sub_black">
+
+    </View>
+
+    <RelativeLayout
+        android:id="@+id/profile_dialog_gender_female_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/universal_20dp"
+        android:layout_marginRight="@dimen/universal_20dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/layout_background_selector">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/universal_20dp"
+            android:text="@string/my_profile_gender_female"
+            android:textColor="@color/universal_item_text_color_black" />
+
+        <RadioButton
+            android:id="@+id/profile_dialog_gender_female_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/universal_20dp"
+            android:clickable="false" />
+    </RelativeLayout>
+</LinearLayout>

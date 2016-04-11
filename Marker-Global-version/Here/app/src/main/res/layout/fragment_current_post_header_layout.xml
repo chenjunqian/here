@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/universal_layout_background_color"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/current_post_list_header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/universal_layout_background_color">
+
+        <TextView
+            android:id="@+id/current_post_list_header_tile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/universal_20dp"
+            android:text="@string/current_list_page_time_status_title" />
+
+        <TextView
+            android:id="@+id/current_post_list_header_sub_tile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/current_post_list_header_tile"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/universal_item_text_color_sub_black"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"
+            android:text="@string/current_list_page_time_status_sub_title_now" />
+
+        <View
+            android:layout_below="@+id/current_post_list_header_sub_tile"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/universal_20dp">
+
+        </View>
+    </RelativeLayout>
+</LinearLayout>

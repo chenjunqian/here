@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/modify_username_dialog_parent_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/universal_alert_dialog_shape"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/modify_nickname_dialog_edit_text"
+        android:layout_width="@dimen/universal_180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/universal_20dp"
+        android:background="@null"
+        android:hint="@string/nickname"
+        android:textColor="@color/universal_grey_twelve"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/modify_password_dialog_edit_text"
+        android:layout_width="@dimen/universal_180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/universal_20dp"
+        android:background="@null"
+        android:hint="@string/my_profile_input_password_again"
+        android:inputType="textPassword"
+        android:textColor="@color/universal_grey_twelve"
+        android:textSize="16sp"
+        android:visibility="gone" />
+
+
+    <EditText
+        android:id="@+id/modify_password_confirm_dialog_edit_text"
+        android:layout_width="@dimen/universal_180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/universal_20dp"
+        android:background="@null"
+        android:hint="@string/my_profile_input_password_again"
+        android:inputType="textPassword"
+        android:textColor="@color/universal_grey_twelve"
+        android:textSize="16sp"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/modify_username_dialog_operation_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/modify_username_ok_button"
+            android:layout_width="@dimen/universal_80dp"
+            android:layout_height="@dimen/universal_40dp"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/modify_username_cancel_button"
+            android:background="@null"
+            android:text="ok"
+            android:textColor="@color/universal_title_background_red" />
+
+
+        <Button
+            android:id="@+id/modify_username_cancel_button"
+            android:layout_width="@dimen/universal_80dp"
+            android:layout_height="@dimen/universal_40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:text="cancel"
+            android:textColor="@color/universal_item_text_color_black" />
+    </RelativeLayout>
+</LinearLayout>
