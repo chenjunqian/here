@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "MainMapUIControllerViewController.h"
+#import "HttpRequest.h"
 
 @interface ViewController ()
 
@@ -25,6 +26,9 @@
     
     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(onTick:) userInfo:nil repeats:NO];
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+    
+    HttpRequest *request = [[HttpRequest alloc] init];
+    [request BasicHttpRequestGetWithUrl:@"http://www.baidu.com/" :nil];
 }
 
 
