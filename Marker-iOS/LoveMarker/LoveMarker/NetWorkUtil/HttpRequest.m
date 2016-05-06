@@ -7,10 +7,17 @@
 //
 
 #import "HttpRequest.h"
+#import "HttpConfiguration.h"
+#import "HttpResponseHandler.h"
+
+@interface HttpRequest()
+
+@end
 
 @implementation HttpRequest
 
--(void) BasicHttpRequestPOSTWithUrl:(NSString *)url :(NSDictionary *)dictionnary{
+-(void) BasicHttpRequestPOSTWithUrl:(NSString *)url andPostDictionary:(NSDictionary *)dictionnary
+                 andResponseHandler:(HttpResponseHandler *) handler{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager POST:url parameters:dictionnary progress:^(NSProgress * _Nonnull uploadProgress) {
         
@@ -19,9 +26,11 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"POST Failed %@",error);
     }];
+    
 }
 
--(void) BasicHttpRequestGetWithUrl:(NSString *)url :(NSDictionary *)dictionnary{
+-(void) BasicHttpRequestGetWithUrl:(NSString *)url :(NSDictionary *)dictionnary
+                andResponseHandler:(HttpResponseHandler *) handler{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager GET:url parameters:dictionnary progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"POST Success %@",responseObject);

@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "MainMapUIControllerViewController.h"
 #import "HttpRequest.h"
+#import "HttpConfiguration.h"
 
 @interface ViewController ()
 
@@ -29,6 +30,7 @@
     
     HttpRequest *request = [[HttpRequest alloc] init];
     [request BasicHttpRequestGetWithUrl:@"http://www.baidu.com/" :nil];
+
 }
 
 

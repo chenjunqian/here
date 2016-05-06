@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "AFHTTPSessionManager.h"
+#import "HttpResponseHandler.h"
 
 @interface HttpRequest : NSObject
 
-- (void) BasicHttpRequestPOSTWithUrl:(NSString*) url :(NSDictionary*) dictionnary;
-- (void) BasicHttpRequestGetWithUrl:(NSString*) url :(NSDictionary*) dictionnary;
+- (void) BasicHttpRequestPOSTWithUrl:(NSString *)url andPostDictionary:(NSDictionary *)dictionnary
+                  andResponseHandler:(HttpResponseHandler *) handler;
+- (void) BasicHttpRequestGetWithUrl:(NSString*) url :(NSDictionary*) dictionnary
+                 andResponseHandler:(HttpResponseHandler *) handler;
 @end
