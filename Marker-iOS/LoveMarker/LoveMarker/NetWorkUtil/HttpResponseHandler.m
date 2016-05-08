@@ -14,4 +14,8 @@
     
 }
 
+-(void) getResult{
+    
+}
+
 @end

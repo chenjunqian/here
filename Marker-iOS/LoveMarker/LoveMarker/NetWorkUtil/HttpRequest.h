@@ -12,8 +12,9 @@
 
 @interface HttpRequest : NSObject
 
-- (void) BasicHttpRequestPOSTWithUrl:(NSString *)url andPostDictionary:(NSDictionary *)dictionnary
++ (void) BasicHttpRequestPOSTWithUrl:(NSString *)url andPostDictionary:(NSDictionary *)dictionnary
                   andResponseHandler:(HttpResponseHandler *) handler;
-- (void) BasicHttpRequestGetWithUrl:(NSString*) url :(NSDictionary*) dictionnary
++ (void) BasicHttpRequestGetWithUrl:(NSString*) url :(NSDictionary*) dictionnary
                  andResponseHandler:(HttpResponseHandler *) handler;
++ (void) loginWithUsername:(NSString *)username password:(NSString *)password pushKey:(NSString *)pushKey responseHandler:(HttpResponseHandler *) handler;
 @end

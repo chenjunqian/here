@@ -28,9 +28,8 @@
     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(onTick:) userInfo:nil repeats:NO];
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     
-    HttpRequest *request = [[HttpRequest alloc] init];
-    [request BasicHttpRequestGetWithUrl:@"http://www.baidu.com/" :nil];
-
+    HttpResponseHandler *handler = [[HttpResponseHandler alloc] init];
+    [HttpRequest loginWithUsername:@"18801731480" password:@"70233374" pushKey:@"" responseHandler:handler];
 }
 
 
