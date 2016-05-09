@@ -25,7 +25,6 @@
 		9B4FDC4E1CDA2E5E008C0E3B /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4FDC451CDA2E5E008C0E3B /* UIWebView+AFNetworking.m */; };
 		9B4FDC511CDB92A2008C0E3B /* HttpConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4FDC501CDB92A2008C0E3B /* HttpConfiguration.m */; };
 		9B4FDC571CDD0190008C0E3B /* MainMapUIControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4FDC561CDD0190008C0E3B /* MainMapUIControllerViewController.m */; };
-		9B4FDC5B1CDD064C008C0E3B /* HttpResponseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4FDC5A1CDD064C008C0E3B /* HttpResponseHandler.m */; };
 		9BB88DBE1CB25C92009A081A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB88DBD1CB25C92009A081A /* main.m */; };
 		9BB88DC11CB25C92009A081A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB88DC01CB25C92009A081A /* AppDelegate.m */; };
 		9BB88DC41CB25C92009A081A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB88DC31CB25C92009A081A /* ViewController.m */; };
@@ -94,9 +93,6 @@
 		9B4FDC501CDB92A2008C0E3B /* HttpConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpConfiguration.m; sourceTree = "<group>"; };
 		9B4FDC551CDD0190008C0E3B /* MainMapUIControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMapUIControllerViewController.h; sourceTree = "<group>"; };
 		9B4FDC561CDD0190008C0E3B /* MainMapUIControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMapUIControllerViewController.m; sourceTree = "<group>"; };
-		9B4FDC581CDD024D008C0E3B /* ProtocolResponseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolResponseHandler.h; sourceTree = "<group>"; };
-		9B4FDC591CDD064C008C0E3B /* HttpResponseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpResponseHandler.h; sourceTree = "<group>"; };
-		9B4FDC5A1CDD064C008C0E3B /* HttpResponseHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpResponseHandler.m; sourceTree = "<group>"; };
 		9BB88DB91CB25C92009A081A /* LoveMarker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoveMarker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BB88DBD1CB25C92009A081A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9BB88DBF1CB25C92009A081A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -149,9 +145,6 @@
 				9B4FDBD91CD916F9008C0E3B /* HttpRequest.m */,
 				9B4FDC4F1CDB92A2008C0E3B /* HttpConfiguration.h */,
 				9B4FDC501CDB92A2008C0E3B /* HttpConfiguration.m */,
-				9B4FDC581CDD024D008C0E3B /* ProtocolResponseHandler.h */,
-				9B4FDC591CDD064C008C0E3B /* HttpResponseHandler.h */,
-				9B4FDC5A1CDD064C008C0E3B /* HttpResponseHandler.m */,
 			);
 			path = NetWorkUtil;
 			sourceTree = "<group>";
@@ -446,7 +439,6 @@
 				9B4FDC2B1CDA2E51008C0E3B /* AFHTTPSessionManager.m in Sources */,
 				9B4FDC481CDA2E5E008C0E3B /* AFNetworkActivityIndicatorManager.m in Sources */,
 				9BB88DBE1CB25C92009A081A /* main.m in Sources */,
-				9B4FDC5B1CDD064C008C0E3B /* HttpResponseHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

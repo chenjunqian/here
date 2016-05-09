@@ -18,8 +18,10 @@
 
 +(void) BasicHttpRequestPOSTWithUrl:(NSString *)url andPostDictionary:(NSDictionary *)dictionnary
                  responseData:(void (^)(id ))handler{
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSURL *realUrl = [NSURL URLWithString:url];
+    
     [manager POST:realUrl.absoluteString parameters:dictionnary progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -34,8 +36,10 @@
 
 +(void) BasicHttpRequestGetWithUrl:(NSString *)url :(NSDictionary *)dictionnary
                 responseData:(void (^)(id ))handler;{
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSURL *realUrl = [NSURL URLWithString:url];
+    
     [manager GET:realUrl.absoluteString parameters:dictionnary progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
