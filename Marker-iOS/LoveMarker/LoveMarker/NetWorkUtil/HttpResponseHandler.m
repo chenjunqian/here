@@ -11,10 +11,10 @@
 @implementation HttpResponseHandler
 
 -(void) responseWithString:(NSString *)responseString andObject:(NSObject *)object{
-    
+
 }
 
--(void) getResult{
+-(void)getResult:(void (^)(NSString *))responseBlock{
     
 }
 

@@ -29,6 +29,9 @@
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
     
     HttpResponseHandler *handler = [[HttpResponseHandler alloc] init];
+//    [handler getResult:^(NSString *response) {
+//        NSLog(@"getResult blok");
+//    }];
     [HttpRequest loginWithUsername:@"18801731480" password:@"70233374" pushKey:@"" responseHandler:handler];
 }
 

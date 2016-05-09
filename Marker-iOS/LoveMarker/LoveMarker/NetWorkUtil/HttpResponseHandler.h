@@ -10,5 +10,5 @@
 #import "ProtocolResponseHandler.h"
 
 @interface HttpResponseHandler : NSObject <ProtocolResponseHandler>
-
+-(void) getResult:(void (^)(NSString *response))responseBlock;
 @end
