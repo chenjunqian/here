@@ -1,28 +1,29 @@
 //
-//  MainMapUIControllerViewController.m
+//  MainMapViewController.m
 //  LoveMarker
 //
-//  Created by BigHead_Chen on 4/4/16.
+//  Created by BigHead_Chen on 5/12/16.
 //  Copyright © 2016 Eason. All rights reserved.
 //
 
-#import "MainMapUIControllerViewController.h"
+#import "MainMapViewController.h"
+#import "LoginController.h"
 
-@interface MainMapUIControllerViewController ()
+@interface MainMapViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *testButton;
 
 @end
 
-@implementation MainMapUIControllerViewController
+@implementation MainMapViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
     
-    [self.view setBackgroundColor:[UIColor whiteColor]];
-    UILabel *testLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 50)];
-    [testLabel setText:@"This main map view"];
-    testLabel.textAlignment = NSTextAlignmentCenter;
-    [testLabel setCenter:self.view.center];
-    [self.view addSubview:testLabel];
+    [_testButton addTarget:self action:@selector(testBtnAction:) forControlEvents:UIControlEventTouchDown];
+}
+- (IBAction)testBtnAction:(id)sender {
+        [ self presentViewController:[[LoginController alloc] init] animated: YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

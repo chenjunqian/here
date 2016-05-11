@@ -1,0 +1,18 @@
+/* 
+  Localizable.String.strings
+  LoveMarker
+
+  Created by BigHead_Chen on 5/11/16.
+  Copyright © 2016 Eason. All rights reserved.
+*/
+
+login = "login";
+back = "back";
+register = "register";
+forget_password = "forget password";
+
+/*Login Pahe*/
+loginLabel = "Username";
+passwordLabel = "Password";
+username_place_holder = "please input username";
+password_place_holder = "please input password";

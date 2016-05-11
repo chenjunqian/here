@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "MainMapUIControllerViewController.h"
+#import "MainMapViewController.h"
 #import "HttpRequest.h"
 #import "HttpConfiguration.h"
 
@@ -27,19 +27,14 @@
     
     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(onTick:) userInfo:nil repeats:NO];
     [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-    
-    HttpResponseHandler *handler = [[HttpResponseHandler alloc] init];
-//    [handler getResult:^(NSString *response) {
-//        NSLog(@"getResult blok");
-//    }];
-    [HttpRequest loginWithUsername:@"18801731480" password:@"70233374" pushKey:@"" responseHandler:handler];
+
 }
 
 
 
 - (void)onTick:(NSTimer *)time {
     
-    [ self presentViewController:[[MainMapUIControllerViewController alloc] init] animated: YES completion:nil];
+    [ self presentViewController:[[MainMapViewController alloc] init] animated: YES completion:nil];
 
 }
 

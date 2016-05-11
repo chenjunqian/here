@@ -8,7 +8,6 @@
 
 #import "HttpRequest.h"
 #import "HttpConfiguration.h"
-#import "HttpResponseHandler.h"
 
 @interface HttpRequest()
 
@@ -16,6 +15,9 @@
 
 @implementation HttpRequest
 
+/*
+   Basic http request method , in this project all the POST request should base on this method
+ */
 +(void) BasicHttpRequestPOSTWithUrl:(NSString *)url andPostDictionary:(NSDictionary *)dictionnary
                  responseData:(void (^)(id ))handler{
     
@@ -26,14 +28,15 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         handler(responseObject);
-        NSLog(@"POST Success responseObject : %@  task : %@",responseObject,task);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         handler(error);
-        NSLog(@"POST Failed %@",error);
     }];
     
 }
 
+/*
+   Basic http request method , in this project all the GET request should base on this method
+ */
 +(void) BasicHttpRequestGetWithUrl:(NSString *)url :(NSDictionary *)dictionnary
                 responseData:(void (^)(id ))handler;{
     
@@ -44,10 +47,8 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         handler(responseObject);
-        NSLog(@"GET Success responseObject : %@  task : %@",responseObject,task);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         handler(error);
-        NSLog(@"GET Failed erro: %@  NSURLSessionDataTask %@",error , task);
     }];
 }
 

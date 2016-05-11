@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "AFHTTPSessionManager.h"
-#import "HttpResponseHandler.h"
 
 @interface HttpRequest : NSObject
 
