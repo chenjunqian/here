@@ -8,6 +8,8 @@
 
 #import "HttpRequest.h"
 #import "HttpConfiguration.h"
+#import "User.h"
+#import "ResponseResult.h"
 
 @interface HttpRequest()
 
@@ -19,17 +21,19 @@
    Basic http request method , in this project all the POST request should base on this method
  */
 +(void) BasicHttpRequestPOSTWithUrl:(NSString *)url andPostDictionary:(NSDictionary *)dictionnary
-                 responseData:(void (^)(id ))handler{
+                     responseData:(void (^)(NSObject *response,NSObject *resultObject))handler{
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    NSURL *realUrl = [NSURL URLWithString:url];
-    
-    [manager POST:realUrl.absoluteString parameters:dictionnary progress:^(NSProgress * _Nonnull uploadProgress) {
+    NSURL *realUrl = [NSURL URLWithString:url];    [manager POST:realUrl.absoluteString parameters:dictionnary progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        handler(responseObject);
+        ResponseResult *response = [[ResponseResult alloc] init];
+        [response setObject:responseObject[@"resultData"]];
+        [response setErrorMessage:responseObject[@"errorMessage"]];
+        [response setStatus:responseObject[@"status"]];
+        handler(response,[response getObject]);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        handler(error);
+        handler(task,error);
     }];
     
 }
@@ -38,7 +42,7 @@
    Basic http request method , in this project all the GET request should base on this method
  */
 +(void) BasicHttpRequestGetWithUrl:(NSString *)url :(NSDictionary *)dictionnary
-                responseData:(void (^)(id ))handler;{
+                responseData:(void (^)(NSObject *response,NSObject *resultObject))handler;{
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSURL *realUrl = [NSURL URLWithString:url];
@@ -46,13 +50,13 @@
     [manager GET:realUrl.absoluteString parameters:dictionnary progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        handler(responseObject);
+        handler(task,responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        handler(error);
+        handler(task,error);
     }];
 }
 
-+(void) loginWithUsername:(NSString *)username password:(NSString *)password pushKey:(NSString *)pushKey responseData:(void (^)(id ))handler{
++(void) loginWithUsername:(NSString *)username password:(NSString *)password pushKey:(NSString *)pushKey responseData:(void (^)(NSObject *response,NSObject *resultObject))handler{
 
     NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionary];
     [mutableDictionary setObject:username forKey:@"username"];

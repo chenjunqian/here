@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
 @property (weak, nonatomic) IBOutlet UIButton *forgetPasswordButton;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
 
 @property (nonatomic,strong) NSString *inputUsername;
 @property (nonatomic,strong) NSString *inputPassword;
@@ -36,6 +37,7 @@
     [_passwordLabel setText:NSLocalizedString(@"passwordLabel", nil)];
     [_loginButton setTitle:NSLocalizedString(@"login", nil) forState:UIControlStateNormal];
     [_loginButton addTarget:self action:@selector(loginAction:) forControlEvents:UIControlEventTouchDown];
+    [_backButton addTarget:self action:@selector(backBttuonAction:) forControlEvents:UIControlEventTouchDown];
     [_registerButton setTitle:NSLocalizedString(@"register", nil) forState:UIControlStateNormal];
     [_forgetPasswordButton setTitle:NSLocalizedString(@"forget_password", nil) forState:UIControlStateNormal];
     [_usernameTextFiled setPlaceholder:NSLocalizedString(@"username_place_holder", nil)];
@@ -49,12 +51,16 @@
     _user = [[User alloc] init];
     
     if (_inputUsername && _inputPassword) {
-        [HttpRequest loginWithUsername:_inputUsername password:_inputPassword pushKey:@"" responseData:^(id response) {
-            NSLog(@"response %@",response);
-        }];
+
     }else{
         
     }
+}
+- (IBAction)backBttuonAction:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {

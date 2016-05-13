@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginController">
             <connections>
+                <outlet property="backButton" destination="ZXz-R0-SFA" id="LYg-ue-O1z"/>
                 <outlet property="forgetPasswordButton" destination="n6P-uO-TEZ" id="baf-VS-3ua"/>
                 <outlet property="loginButton" destination="UHQ-Z2-eWA" id="6yC-MU-lrr"/>
                 <outlet property="passwordLabel" destination="6gk-oJ-4Gx" id="4dY-93-pki"/>
@@ -53,10 +54,13 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="UHQ-Z2-eWA">
                     <rect key="frame" x="64" y="284" width="192" height="30"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.99952679872512817" green="0.0054588695056736469" blue="0.14801537990570068" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <accessibility key="accessibilityConfiguration">
                         <bool key="isElement" value="NO"/>
                     </accessibility>
-                    <state key="normal" title="LOGIN"/>
+                    <state key="normal" title="LOGIN">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4YQ-Dg-Csc">
                     <rect key="frame" x="8" y="530" width="81" height="30"/>
@@ -79,6 +83,14 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ZXz-R0-SFA">
+                            <rect key="frame" x="8" y="12" width="40" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
+                            <state key="normal" title="Back"/>
+                            <connections>
+                                <action selector="backBttuonAction:" destination="-1" eventType="touchUpInside" id="TYU-BO-e9f"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.99952679872512817" green="0.0054588695056736469" blue="0.14801537990570068" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
