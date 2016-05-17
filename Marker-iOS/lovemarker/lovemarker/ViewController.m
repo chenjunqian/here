@@ -8,6 +8,11 @@
 
 #import "ViewController.h"
 #import "MainMapViewController.h"
+#import "CurrentPostViewController.h"
+#import "NearbyViewController.h"
+#import "ProfilePageViewController.h"
+#import "PublishViewController.h"
+#import "LoginViewController.h"
 #import "HttpRequest.h"
 #import "HttpConfiguration.h"
 
@@ -19,23 +24,38 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    UIImageView *splashImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    [splashImageView setImage:[UIImage imageNamed:@"splash_background"]];
+    MainMapViewController *mapViewController = [[MainMapViewController alloc] init];
+    [mapViewController.view setBackgroundColor:[UIColor whiteColor]];
+    mapViewController.tabBarItem.title = @"map";
     
-    [self.view addSubview:splashImageView];
+    mapViewController.tabBarItem.image = [[UIImage imageNamed:@"ic_home_white_18pt_2x"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(onTick:) userInfo:nil repeats:NO];
-    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-
-}
-
-
-
-- (void)onTick:(NSTimer *)time {
+    CurrentPostViewController *currentPostViewController = [[CurrentPostViewController alloc] init];
+    [currentPostViewController.view setBackgroundColor:[UIColor whiteColor]];
+    currentPostViewController.tabBarItem.title = @"current";
+    currentPostViewController.tabBarItem.image = [[UIImage imageNamed:@"ic_access_time_white_18dp"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
-    [ self presentViewController:[[MainMapViewController alloc] init] animated: YES completion:nil];
-
+    NearbyViewController *nearbyViewController = [[NearbyViewController alloc] init];
+    [nearbyViewController.view setBackgroundColor:[UIColor whiteColor]];
+    nearbyViewController.tabBarItem.title = @"nearby";
+    nearbyViewController.tabBarItem.image = [[UIImage imageNamed:@"ic_format_list_numbered_white_18dp"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    
+    ProfilePageViewController *profileViewController = [[ProfilePageViewController alloc] init];
+    [profileViewController.view setBackgroundColor:[UIColor whiteColor]];
+    profileViewController.tabBarItem.title = @"profile";
+    profileViewController.tabBarItem.image = [[UIImage imageNamed:@"ic_account_box_white_18dp"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    
+    LoginViewController *loginViewController = [[LoginViewController alloc] init];
+    [loginViewController.view setBackgroundColor:[UIColor whiteColor]];
+    loginViewController.tabBarItem.title = @"profile";
+    loginViewController.tabBarItem.image = [[UIImage imageNamed:@"ic_account_box_white_18dp"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    
+    PublishViewController *publishViewController = [[PublishViewController alloc] init];
+    [publishViewController.view setBackgroundColor:[UIColor whiteColor]];
+//    publishViewController.tabBarItem.title = @"profile";
+    publishViewController.tabBarItem.image = [[UIImage imageNamed:@"ic_add_box_white_18pt_2x"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    
+    self.viewControllers = @[mapViewController,currentPostViewController,publishViewController,nearbyViewController,loginViewController];
 }
 
 - (void)didReceiveMemoryWarning {
