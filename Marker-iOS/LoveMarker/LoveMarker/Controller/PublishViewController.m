@@ -2,7 +2,7 @@
 //  PublishViewController.m
 //  LoveMarker
 //
-//  Created by BigHead_Chen on 5/17/16.
+//  Created by BigHead_Chen on 5/19/16.
 //  Copyright © 2016 Eason. All rights reserved.
 //
 
@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning {

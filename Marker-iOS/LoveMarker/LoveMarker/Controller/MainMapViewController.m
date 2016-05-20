@@ -2,7 +2,7 @@
 //  MainMapViewController.m
 //  LoveMarker
 //
-//  Created by BigHead_Chen on 5/12/16.
+//  Created by BigHead_Chen on 5/19/16.
 //  Copyright © 2016 Eason. All rights reserved.
 //
 
@@ -17,15 +17,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 50)];
-    [label setText:@"MainMapViewController"];
-    [label setTextColor:[UIColor blackColor]];
-    [self.view addSubview:label];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end

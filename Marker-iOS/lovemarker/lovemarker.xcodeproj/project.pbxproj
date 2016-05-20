@@ -26,16 +26,18 @@
 		9B0CCA8A1CE61EBF00207858 /* HttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CCA791CE61EBF00207858 /* HttpRequest.m */; };
 		9B0CCA8D1CE61F1600207858 /* NSObject+ObjectMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CCA8C1CE61F1600207858 /* NSObject+ObjectMap.m */; };
 		9B0CCA901CE65F7C00207858 /* TopLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CCA8F1CE65F7C00207858 /* TopLayoutView.m */; };
-		9B0CCA961CE8C61A00207858 /* NearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CCA951CE8C61A00207858 /* NearbyViewController.m */; };
-		9B0CCA991CE8C63B00207858 /* CurrentPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CCA981CE8C63B00207858 /* CurrentPostViewController.m */; };
-		9B0CCA9C1CE8C64A00207858 /* ProfilePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CCA9B1CE8C64A00207858 /* ProfilePageViewController.m */; };
 		9B0CCAA11CEA367E00207858 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B0CCAA01CEA367E00207858 /* Assets.xcassets */; };
-		9B0CCAA61CEA634500207858 /* PublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CCAA51CEA634500207858 /* PublishViewController.m */; };
 		9B0CCAA91CEA648E00207858 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CCAA81CEA648E00207858 /* LoginViewController.m */; };
 		9B4FDC701CE24E5C008C0E3B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9B4FDC721CE24E5C008C0E3B /* Localizable.strings */; };
 		9B4FDC781CE38A06008C0E3B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4FDC771CE38A06008C0E3B /* User.m */; };
-		9B4FDC831CE3A1DE008C0E3B /* MainMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4FDC811CE3A1DE008C0E3B /* MainMapViewController.m */; };
 		9B4FDC871CE49D82008C0E3B /* ResponseResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4FDC861CE49D82008C0E3B /* ResponseResult.m */; };
+		9B8843C31CEE14CE00FCC077 /* PublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8843C11CEE14CE00FCC077 /* PublishViewController.m */; };
+		9B8843C81CEE157E00FCC077 /* ProfilePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8843C61CEE157E00FCC077 /* ProfilePageViewController.m */; };
+		9B8843CD1CEE15A900FCC077 /* CurrentPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8843CB1CEE15A900FCC077 /* CurrentPostViewController.m */; };
+		9B8843D21CEE15EB00FCC077 /* NearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8843D01CEE15EB00FCC077 /* NearbyViewController.m */; };
+		9B8843D71CEE161B00FCC077 /* MainMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8843D51CEE161B00FCC077 /* MainMapViewController.m */; };
+		9B8843DB1CEF916100FCC077 /* CommomUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8843DA1CEF916100FCC077 /* CommomUtils.m */; };
+		9B8843DE1CEF91A600FCC077 /* BasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8843DD1CEF91A600FCC077 /* BasicViewController.m */; };
 		9BB88DBE1CB25C92009A081A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB88DBD1CB25C92009A081A /* main.m */; };
 		9BB88DC11CB25C92009A081A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB88DC01CB25C92009A081A /* AppDelegate.m */; };
 		9BB88DC41CB25C92009A081A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB88DC31CB25C92009A081A /* ViewController.m */; };
@@ -105,25 +107,29 @@
 		9B0CCA8C1CE61F1600207858 /* NSObject+ObjectMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ObjectMap.m"; sourceTree = "<group>"; };
 		9B0CCA8E1CE65F7C00207858 /* TopLayoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopLayoutView.h; sourceTree = "<group>"; };
 		9B0CCA8F1CE65F7C00207858 /* TopLayoutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopLayoutView.m; sourceTree = "<group>"; };
-		9B0CCA941CE8C61A00207858 /* NearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyViewController.h; sourceTree = "<group>"; };
-		9B0CCA951CE8C61A00207858 /* NearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyViewController.m; sourceTree = "<group>"; };
-		9B0CCA971CE8C63B00207858 /* CurrentPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentPostViewController.h; sourceTree = "<group>"; };
-		9B0CCA981CE8C63B00207858 /* CurrentPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentPostViewController.m; sourceTree = "<group>"; };
-		9B0CCA9A1CE8C64A00207858 /* ProfilePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfilePageViewController.h; sourceTree = "<group>"; };
-		9B0CCA9B1CE8C64A00207858 /* ProfilePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfilePageViewController.m; sourceTree = "<group>"; };
 		9B0CCAA01CEA367E00207858 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		9B0CCAA41CEA634500207858 /* PublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishViewController.h; sourceTree = "<group>"; };
-		9B0CCAA51CEA634500207858 /* PublishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishViewController.m; sourceTree = "<group>"; };
 		9B0CCAA71CEA648E00207858 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		9B0CCAA81CEA648E00207858 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		9B4FDC711CE24E5C008C0E3B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9B4FDC731CE24EC0008C0E3B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		9B4FDC761CE38A06008C0E3B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		9B4FDC771CE38A06008C0E3B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		9B4FDC801CE3A1DE008C0E3B /* MainMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMapViewController.h; sourceTree = "<group>"; };
-		9B4FDC811CE3A1DE008C0E3B /* MainMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMapViewController.m; sourceTree = "<group>"; };
 		9B4FDC851CE49D82008C0E3B /* ResponseResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseResult.h; sourceTree = "<group>"; };
 		9B4FDC861CE49D82008C0E3B /* ResponseResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseResult.m; sourceTree = "<group>"; };
+		9B8843C01CEE14CE00FCC077 /* PublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishViewController.h; sourceTree = "<group>"; };
+		9B8843C11CEE14CE00FCC077 /* PublishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishViewController.m; sourceTree = "<group>"; };
+		9B8843C51CEE157E00FCC077 /* ProfilePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfilePageViewController.h; sourceTree = "<group>"; };
+		9B8843C61CEE157E00FCC077 /* ProfilePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfilePageViewController.m; sourceTree = "<group>"; };
+		9B8843CA1CEE15A900FCC077 /* CurrentPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentPostViewController.h; sourceTree = "<group>"; };
+		9B8843CB1CEE15A900FCC077 /* CurrentPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentPostViewController.m; sourceTree = "<group>"; };
+		9B8843CF1CEE15EB00FCC077 /* NearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyViewController.h; sourceTree = "<group>"; };
+		9B8843D01CEE15EB00FCC077 /* NearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyViewController.m; sourceTree = "<group>"; };
+		9B8843D41CEE161B00FCC077 /* MainMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMapViewController.h; sourceTree = "<group>"; };
+		9B8843D51CEE161B00FCC077 /* MainMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMapViewController.m; sourceTree = "<group>"; };
+		9B8843D91CEF916100FCC077 /* CommomUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommomUtils.h; sourceTree = "<group>"; };
+		9B8843DA1CEF916100FCC077 /* CommomUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommomUtils.m; sourceTree = "<group>"; };
+		9B8843DC1CEF91A600FCC077 /* BasicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicViewController.h; sourceTree = "<group>"; };
+		9B8843DD1CEF91A600FCC077 /* BasicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicViewController.m; sourceTree = "<group>"; };
 		9BB88DB91CB25C92009A081A /* LoveMarker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoveMarker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BB88DBD1CB25C92009A081A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9BB88DBF1CB25C92009A081A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -173,6 +179,8 @@
 				9B0CCA8B1CE61F1600207858 /* NSObject+ObjectMap.h */,
 				9B0CCA8C1CE61F1600207858 /* NSObject+ObjectMap.m */,
 				9B0CCA521CE61EBF00207858 /* NetWorkUtil */,
+				9B8843D91CEF916100FCC077 /* CommomUtils.h */,
+				9B8843DA1CEF916100FCC077 /* CommomUtils.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -260,18 +268,20 @@
 		9B4FDC541CDD0190008C0E3B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				9B4FDC801CE3A1DE008C0E3B /* MainMapViewController.h */,
-				9B4FDC811CE3A1DE008C0E3B /* MainMapViewController.m */,
-				9B0CCA941CE8C61A00207858 /* NearbyViewController.h */,
-				9B0CCA951CE8C61A00207858 /* NearbyViewController.m */,
-				9B0CCA971CE8C63B00207858 /* CurrentPostViewController.h */,
-				9B0CCA981CE8C63B00207858 /* CurrentPostViewController.m */,
-				9B0CCA9A1CE8C64A00207858 /* ProfilePageViewController.h */,
-				9B0CCA9B1CE8C64A00207858 /* ProfilePageViewController.m */,
-				9B0CCAA41CEA634500207858 /* PublishViewController.h */,
-				9B0CCAA51CEA634500207858 /* PublishViewController.m */,
 				9B0CCAA71CEA648E00207858 /* LoginViewController.h */,
 				9B0CCAA81CEA648E00207858 /* LoginViewController.m */,
+				9B8843C01CEE14CE00FCC077 /* PublishViewController.h */,
+				9B8843C11CEE14CE00FCC077 /* PublishViewController.m */,
+				9B8843C51CEE157E00FCC077 /* ProfilePageViewController.h */,
+				9B8843C61CEE157E00FCC077 /* ProfilePageViewController.m */,
+				9B8843CA1CEE15A900FCC077 /* CurrentPostViewController.h */,
+				9B8843CB1CEE15A900FCC077 /* CurrentPostViewController.m */,
+				9B8843CF1CEE15EB00FCC077 /* NearbyViewController.h */,
+				9B8843D01CEE15EB00FCC077 /* NearbyViewController.m */,
+				9B8843D41CEE161B00FCC077 /* MainMapViewController.h */,
+				9B8843D51CEE161B00FCC077 /* MainMapViewController.m */,
+				9B8843DC1CEF91A600FCC077 /* BasicViewController.h */,
+				9B8843DD1CEF91A600FCC077 /* BasicViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -484,21 +494,24 @@
 				9B0CCA881CE61EBF00207858 /* UIWebView+AFNetworking.m in Sources */,
 				9B0CCA811CE61EBF00207858 /* AFImageDownloader.m in Sources */,
 				9BB88DC11CB25C92009A081A /* AppDelegate.m in Sources */,
-				9B0CCAA61CEA634500207858 /* PublishViewController.m in Sources */,
 				9B4FDC781CE38A06008C0E3B /* User.m in Sources */,
+				9B8843D71CEE161B00FCC077 /* MainMapViewController.m in Sources */,
+				9B8843C31CEE14CE00FCC077 /* PublishViewController.m in Sources */,
 				9B0CCA831CE61EBF00207858 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				9B0CCA8D1CE61F1600207858 /* NSObject+ObjectMap.m in Sources */,
 				9B0CCA7C1CE61EBF00207858 /* AFSecurityPolicy.m in Sources */,
 				9B0CCA841CE61EBF00207858 /* UIButton+AFNetworking.m in Sources */,
-				9B0CCA961CE8C61A00207858 /* NearbyViewController.m in Sources */,
+				9B8843CD1CEE15A900FCC077 /* CurrentPostViewController.m in Sources */,
 				9B0CCAA91CEA648E00207858 /* LoginViewController.m in Sources */,
-				9B0CCA9C1CE8C64A00207858 /* ProfilePageViewController.m in Sources */,
+				9B8843DB1CEF916100FCC077 /* CommomUtils.m in Sources */,
+				9B8843DE1CEF91A600FCC077 /* BasicViewController.m in Sources */,
+				9B8843C81CEE157E00FCC077 /* ProfilePageViewController.m in Sources */,
 				9B0CCA7A1CE61EBF00207858 /* AFHTTPSessionManager.m in Sources */,
-				9B0CCA991CE8C63B00207858 /* CurrentPostViewController.m in Sources */,
 				9B0CCA901CE65F7C00207858 /* TopLayoutView.m in Sources */,
 				9B0CCA7F1CE61EBF00207858 /* AFURLSessionManager.m in Sources */,
 				9B0CCA891CE61EBF00207858 /* HttpConfiguration.m in Sources */,
 				9B0CCA7B1CE61EBF00207858 /* AFNetworkReachabilityManager.m in Sources */,
+				9B8843D21CEE15EB00FCC077 /* NearbyViewController.m in Sources */,
 				9B0CCA7E1CE61EBF00207858 /* AFURLResponseSerialization.m in Sources */,
 				9B0CCA7D1CE61EBF00207858 /* AFURLRequestSerialization.m in Sources */,
 				9B0CCA821CE61EBF00207858 /* AFNetworkActivityIndicatorManager.m in Sources */,
@@ -506,7 +519,6 @@
 				9B0CCA8A1CE61EBF00207858 /* HttpRequest.m in Sources */,
 				9B0CCA861CE61EBF00207858 /* UIProgressView+AFNetworking.m in Sources */,
 				9BB88DBE1CB25C92009A081A /* main.m in Sources */,
-				9B4FDC831CE3A1DE008C0E3B /* MainMapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,3 +16,7 @@ loginLabel = "账号";
 passwordLabel = "密码";
 username_place_holder = "请输入账号";
 password_place_holder = "请输入密码";
+
+/*个人资料页面*/
+me = "我的";
+my_marker = "我的爱记";

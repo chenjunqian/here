@@ -16,3 +16,7 @@ loginLabel = "Username";
 passwordLabel = "Password";
 username_place_holder = "please input username";
 password_place_holder = "please input password";
+
+/*Me page*/
+me = "me";
+my_marker = "My Markers";
