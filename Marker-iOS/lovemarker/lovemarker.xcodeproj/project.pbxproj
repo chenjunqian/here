@@ -38,6 +38,9 @@
 		9B8843D71CEE161B00FCC077 /* MainMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8843D51CEE161B00FCC077 /* MainMapViewController.m */; };
 		9B8843DB1CEF916100FCC077 /* CommomUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8843DA1CEF916100FCC077 /* CommomUtils.m */; };
 		9B8843DE1CEF91A600FCC077 /* BasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8843DD1CEF91A600FCC077 /* BasicViewController.m */; };
+		9B8843E11CF0C49000FCC077 /* MyMarkerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8843E01CF0C49000FCC077 /* MyMarkerTableViewCell.m */; };
+		9B8843ED1CF35DAD00FCC077 /* LoginStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8843EC1CF35DAD00FCC077 /* LoginStatus.m */; };
+		9B8843F01CF5CCBC00FCC077 /* AvatarUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8843EF1CF5CCBC00FCC077 /* AvatarUIImageView.m */; };
 		9BB88DBE1CB25C92009A081A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB88DBD1CB25C92009A081A /* main.m */; };
 		9BB88DC11CB25C92009A081A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB88DC01CB25C92009A081A /* AppDelegate.m */; };
 		9BB88DC41CB25C92009A081A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB88DC31CB25C92009A081A /* ViewController.m */; };
@@ -130,6 +133,12 @@
 		9B8843DA1CEF916100FCC077 /* CommomUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommomUtils.m; sourceTree = "<group>"; };
 		9B8843DC1CEF91A600FCC077 /* BasicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicViewController.h; sourceTree = "<group>"; };
 		9B8843DD1CEF91A600FCC077 /* BasicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicViewController.m; sourceTree = "<group>"; };
+		9B8843DF1CF0C49000FCC077 /* MyMarkerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMarkerTableViewCell.h; sourceTree = "<group>"; };
+		9B8843E01CF0C49000FCC077 /* MyMarkerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMarkerTableViewCell.m; sourceTree = "<group>"; };
+		9B8843EB1CF35DAD00FCC077 /* LoginStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginStatus.h; sourceTree = "<group>"; };
+		9B8843EC1CF35DAD00FCC077 /* LoginStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginStatus.m; sourceTree = "<group>"; };
+		9B8843EE1CF5CCBC00FCC077 /* AvatarUIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatarUIImageView.h; sourceTree = "<group>"; };
+		9B8843EF1CF5CCBC00FCC077 /* AvatarUIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvatarUIImageView.m; sourceTree = "<group>"; };
 		9BB88DB91CB25C92009A081A /* LoveMarker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoveMarker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BB88DBD1CB25C92009A081A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9BB88DBF1CB25C92009A081A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -252,6 +261,8 @@
 				9B4FDC771CE38A06008C0E3B /* User.m */,
 				9B4FDC851CE49D82008C0E3B /* ResponseResult.h */,
 				9B4FDC861CE49D82008C0E3B /* ResponseResult.m */,
+				9B8843EB1CF35DAD00FCC077 /* LoginStatus.h */,
+				9B8843EC1CF35DAD00FCC077 /* LoginStatus.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -261,6 +272,10 @@
 			children = (
 				9B0CCA8E1CE65F7C00207858 /* TopLayoutView.h */,
 				9B0CCA8F1CE65F7C00207858 /* TopLayoutView.m */,
+				9B8843DF1CF0C49000FCC077 /* MyMarkerTableViewCell.h */,
+				9B8843E01CF0C49000FCC077 /* MyMarkerTableViewCell.m */,
+				9B8843EE1CF5CCBC00FCC077 /* AvatarUIImageView.h */,
+				9B8843EF1CF5CCBC00FCC077 /* AvatarUIImageView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -508,9 +523,12 @@
 				9B8843C81CEE157E00FCC077 /* ProfilePageViewController.m in Sources */,
 				9B0CCA7A1CE61EBF00207858 /* AFHTTPSessionManager.m in Sources */,
 				9B0CCA901CE65F7C00207858 /* TopLayoutView.m in Sources */,
+				9B8843ED1CF35DAD00FCC077 /* LoginStatus.m in Sources */,
 				9B0CCA7F1CE61EBF00207858 /* AFURLSessionManager.m in Sources */,
 				9B0CCA891CE61EBF00207858 /* HttpConfiguration.m in Sources */,
 				9B0CCA7B1CE61EBF00207858 /* AFNetworkReachabilityManager.m in Sources */,
+				9B8843E11CF0C49000FCC077 /* MyMarkerTableViewCell.m in Sources */,
+				9B8843F01CF5CCBC00FCC077 /* AvatarUIImageView.m in Sources */,
 				9B8843D21CEE15EB00FCC077 /* NearbyViewController.m in Sources */,
 				9B0CCA7E1CE61EBF00207858 /* AFURLResponseSerialization.m in Sources */,
 				9B0CCA7D1CE61EBF00207858 /* AFURLRequestSerialization.m in Sources */,

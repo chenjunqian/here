@@ -9,6 +9,8 @@
 #import "LoginViewController.h"
 #import "TopLayoutView.h"
 #import "HttpRequest.h"
+#import "LoginStatus.h"
+#import "User.h"
 
 @interface LoginViewController ()
 
@@ -34,6 +36,8 @@
 }
 
 -(void)initView {
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+    
     TopLayoutView *topLayoutView = [[TopLayoutView alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, 40)];
     [[topLayoutView getBackBtn] setHidden:YES];
     [[topLayoutView getTitleLabel] setText:NSLocalizedString(@"login", nil)];
@@ -113,12 +117,17 @@
     _passwordString = _passwordTextField.text;
     if (_usernameString && _passwordString) {
         [HttpRequest loginWithUsername:_usernameString password:_passwordString pushKey:@"" responseData:^(NSObject *response, NSObject *resultObject) {
-            NSLog(@"login success : %@",resultObject);
-            
+            if (resultObject!=nil) {
+                
+            }else{
+                
+            }
         }];
+        
     }else{
         
     }
+    
 }
 
 - (void)didReceiveMemoryWarning {

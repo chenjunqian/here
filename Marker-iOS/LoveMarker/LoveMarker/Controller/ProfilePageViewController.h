@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "BasicViewController.h"
 
-@interface ProfilePageViewController : BasicViewController
+@interface ProfilePageViewController : BasicViewController <UITableViewDelegate, UITableViewDataSource>
 
 @end

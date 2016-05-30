@@ -15,6 +15,8 @@
 #import "LoginViewController.h"
 #import "HttpRequest.h"
 #import "HttpConfiguration.h"
+#import "LoginStatus.h"
+#import "User.h"
 
 @interface ViewController ()
 
@@ -24,6 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     MainMapViewController *mapViewController = [[MainMapViewController alloc] init];
     mapViewController.tabBarItem.title = @"map";
     
