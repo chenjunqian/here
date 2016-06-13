@@ -24,6 +24,7 @@
 @property(nonatomic,strong,getter=getLoginLayoutView) UIView *loginLayoutView;
 @property(nonatomic,strong,getter=getToLoginPageButton) UIButton *toLoginPageButton;
 @property(nonatomic,strong) UITableView *myMarkerTableView;
+@property(nonatomic,strong) User *user;
 
 @end
 
@@ -32,6 +33,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initView];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [self loadData];
 }
 
 -(void)initView{
@@ -53,14 +58,11 @@
     
     _nicknameLabel = [[UILabel alloc] init];
     _nicknameLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [_nicknameLabel setText:@"nick name"];
     [_avatarLayout addSubview:_nicknameLabel];
     
     _simpleProfileLabel = [[UILabel alloc] init];
     _simpleProfileLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [_simpleProfileLabel setTextColor:[UIColor grayColor]];
-    [_simpleProfileLabel setText:@"this is simple profile text label"];
-    [_avatarLayout addSubview:_simpleProfileLabel];
+    [_simpleProfileLabel setTextColor:[UIColor grayColor]];    [_avatarLayout addSubview:_simpleProfileLabel];
     
     UIView *longProfileLayout = [[UIView alloc]init];
     [longProfileLayout sizeToFit];
@@ -71,17 +73,16 @@
     UILabel *aboutMeLabel = [[UILabel alloc] init];
     aboutMeLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [aboutMeLabel setFont:[UIFont systemFontOfSize:12]];
-    [aboutMeLabel setText:@"about me"];
+    [aboutMeLabel setText:NSLocalizedString(@"about_me", nil)];
     [longProfileLayout addSubview:aboutMeLabel];
     
     _longProfileLabel = [[UILabel alloc] init];
     _longProfileLabel.translatesAutoresizingMaskIntoConstraints = NO;
     [_longProfileLabel setTextColor:[UIColor grayColor]];
-    [_longProfileLabel setText:@"this is long profile label test text l l l l l l l l l l l hahahahahahahahahahahahaaaaaaaaaaaaaaaaa"];
+    [_longProfileLabel setText:@""];
     [_longProfileLabel setLineBreakMode:NSLineBreakByCharWrapping];
     [_longProfileLabel setNumberOfLines:0];
     [longProfileLayout addSubview:_longProfileLabel];
-
     
     _myMarkerTableView = [[UITableView alloc] init];
     _myMarkerTableView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -170,6 +171,19 @@
     [self presentViewController:loginViewController animated:YES completion:^{
         
     }];
+}
+
+-(void)loadData{
+    if ([[LoginStatus getInstance] getIsUserModel]) {
+        self.user = [[LoginStatus getInstance] getUser];
+        if (self.user.avatar) {
+//            [self.avatarImageView setImage:[UIImage imageWithData:[self.user getAvatar]]];
+        }
+        
+        [self.nicknameLabel setText:[self.user getNickname]];
+        [self.simpleProfileLabel setText:[self.user getSimpleProfile]];
+        [self.longProfileLabel setText:[self.user getLongProfile]];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

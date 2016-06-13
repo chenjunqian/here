@@ -31,6 +31,10 @@
 		9B4FDC701CE24E5C008C0E3B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9B4FDC721CE24E5C008C0E3B /* Localizable.strings */; };
 		9B4FDC781CE38A06008C0E3B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4FDC771CE38A06008C0E3B /* User.m */; };
 		9B4FDC871CE49D82008C0E3B /* ResponseResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4FDC861CE49D82008C0E3B /* ResponseResult.m */; };
+		9B53667E1D03502D008D803A /* ErrorState.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B53667D1D03502D008D803A /* ErrorState.m */; };
+		9B774B1D1D0D76C7000BF4B3 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B774B1B1D0D76C7000BF4B3 /* CoreDataModel.xcdatamodeld */; };
+		9B774B291D0D8000000BF4B3 /* MyDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B774B281D0D8000000BF4B3 /* MyDataController.m */; };
+		9B774B2C1D0F1F43000BF4B3 /* CoreDataUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B774B2B1D0F1F43000BF4B3 /* CoreDataUser.m */; };
 		9B8843C31CEE14CE00FCC077 /* PublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8843C11CEE14CE00FCC077 /* PublishViewController.m */; };
 		9B8843C81CEE157E00FCC077 /* ProfilePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8843C61CEE157E00FCC077 /* ProfilePageViewController.m */; };
 		9B8843CD1CEE15A900FCC077 /* CurrentPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8843CB1CEE15A900FCC077 /* CurrentPostViewController.m */; };
@@ -119,6 +123,13 @@
 		9B4FDC771CE38A06008C0E3B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		9B4FDC851CE49D82008C0E3B /* ResponseResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseResult.h; sourceTree = "<group>"; };
 		9B4FDC861CE49D82008C0E3B /* ResponseResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseResult.m; sourceTree = "<group>"; };
+		9B53667C1D03502D008D803A /* ErrorState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorState.h; sourceTree = "<group>"; };
+		9B53667D1D03502D008D803A /* ErrorState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorState.m; sourceTree = "<group>"; };
+		9B774B1C1D0D76C7000BF4B3 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		9B774B271D0D8000000BF4B3 /* MyDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDataController.h; sourceTree = "<group>"; };
+		9B774B281D0D8000000BF4B3 /* MyDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDataController.m; sourceTree = "<group>"; };
+		9B774B2A1D0F1F43000BF4B3 /* CoreDataUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataUser.h; sourceTree = "<group>"; };
+		9B774B2B1D0F1F43000BF4B3 /* CoreDataUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataUser.m; sourceTree = "<group>"; };
 		9B8843C01CEE14CE00FCC077 /* PublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishViewController.h; sourceTree = "<group>"; };
 		9B8843C11CEE14CE00FCC077 /* PublishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishViewController.m; sourceTree = "<group>"; };
 		9B8843C51CEE157E00FCC077 /* ProfilePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfilePageViewController.h; sourceTree = "<group>"; };
@@ -185,11 +196,13 @@
 		9B0CCA511CE61EBF00207858 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				9B0CCA8B1CE61F1600207858 /* NSObject+ObjectMap.h */,
-				9B0CCA8C1CE61F1600207858 /* NSObject+ObjectMap.m */,
 				9B0CCA521CE61EBF00207858 /* NetWorkUtil */,
 				9B8843D91CEF916100FCC077 /* CommomUtils.h */,
 				9B8843DA1CEF916100FCC077 /* CommomUtils.m */,
+				9B0CCA8C1CE61F1600207858 /* NSObject+ObjectMap.m */,
+				9B0CCA8B1CE61F1600207858 /* NSObject+ObjectMap.h */,
+				9B774B271D0D8000000BF4B3 /* MyDataController.h */,
+				9B774B281D0D8000000BF4B3 /* MyDataController.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -263,6 +276,10 @@
 				9B4FDC861CE49D82008C0E3B /* ResponseResult.m */,
 				9B8843EB1CF35DAD00FCC077 /* LoginStatus.h */,
 				9B8843EC1CF35DAD00FCC077 /* LoginStatus.m */,
+				9B53667C1D03502D008D803A /* ErrorState.h */,
+				9B53667D1D03502D008D803A /* ErrorState.m */,
+				9B774B2A1D0F1F43000BF4B3 /* CoreDataUser.h */,
+				9B774B2B1D0F1F43000BF4B3 /* CoreDataUser.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -336,6 +353,7 @@
 				9BB88DCA1CB25C92009A081A /* LaunchScreen.storyboard */,
 				9BB88DCD1CB25C92009A081A /* Info.plist */,
 				9B0CCAA01CEA367E00207858 /* Assets.xcassets */,
+				9B774B1B1D0D76C7000BF4B3 /* CoreDataModel.xcdatamodeld */,
 				9BB88DBC1CB25C92009A081A /* Supporting Files */,
 			);
 			path = LoveMarker;
@@ -504,13 +522,16 @@
 			files = (
 				9B4FDC871CE49D82008C0E3B /* ResponseResult.m in Sources */,
 				9B0CCA801CE61EBF00207858 /* AFAutoPurgingImageCache.m in Sources */,
+				9B53667E1D03502D008D803A /* ErrorState.m in Sources */,
 				9BB88DC41CB25C92009A081A /* ViewController.m in Sources */,
 				9B0CCA851CE61EBF00207858 /* UIImageView+AFNetworking.m in Sources */,
 				9B0CCA881CE61EBF00207858 /* UIWebView+AFNetworking.m in Sources */,
 				9B0CCA811CE61EBF00207858 /* AFImageDownloader.m in Sources */,
 				9BB88DC11CB25C92009A081A /* AppDelegate.m in Sources */,
+				9B774B1D1D0D76C7000BF4B3 /* CoreDataModel.xcdatamodeld in Sources */,
 				9B4FDC781CE38A06008C0E3B /* User.m in Sources */,
 				9B8843D71CEE161B00FCC077 /* MainMapViewController.m in Sources */,
+				9B774B2C1D0F1F43000BF4B3 /* CoreDataUser.m in Sources */,
 				9B8843C31CEE14CE00FCC077 /* PublishViewController.m in Sources */,
 				9B0CCA831CE61EBF00207858 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				9B0CCA8D1CE61F1600207858 /* NSObject+ObjectMap.m in Sources */,
@@ -529,6 +550,7 @@
 				9B0CCA7B1CE61EBF00207858 /* AFNetworkReachabilityManager.m in Sources */,
 				9B8843E11CF0C49000FCC077 /* MyMarkerTableViewCell.m in Sources */,
 				9B8843F01CF5CCBC00FCC077 /* AvatarUIImageView.m in Sources */,
+				9B774B291D0D8000000BF4B3 /* MyDataController.m in Sources */,
 				9B8843D21CEE15EB00FCC077 /* NearbyViewController.m in Sources */,
 				9B0CCA7E1CE61EBF00207858 /* AFURLResponseSerialization.m in Sources */,
 				9B0CCA7D1CE61EBF00207858 /* AFURLRequestSerialization.m in Sources */,
@@ -790,6 +812,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9B774B1B1D0D76C7000BF4B3 /* CoreDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9B774B1C1D0D76C7000BF4B3 /* CoreDataModel.xcdatamodel */,
+			);
+			currentVersion = 9B774B1C1D0D76C7000BF4B3 /* CoreDataModel.xcdatamodel */;
+			name = CoreDataModel.xcdatamodeld;
+			path = ../CoreDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9BB88DB11CB25C92009A081A /* Project object */;
 }

@@ -11,11 +11,10 @@
 
 @interface LoginStatus : NSObject
 
-@property (nonatomic,strong,getter=getUser) User* user;
-@property (nonatomic,strong) NSString* testString;
+@property (nonatomic,strong,getter=getUser,setter=setUser:) User* user;
 
++(void)initInstanc;
 +(instancetype)getInstance;
 -(Boolean)getIsUserModel;
 -(void)logout;
--(void)setUser:(User*)user;
 @end

@@ -52,6 +52,10 @@
     self.viewControllers = @[mapViewController,currentPostViewController,publishViewController,nearbyViewController,profileViewController];
 }
 
+-(void)initSetting{
+    [LoginStatus initInstanc];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

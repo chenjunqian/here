@@ -14,12 +14,16 @@
     
     self = [super initWithFrame:frame];
     if (self) {
-        self.layer.cornerRadius = self.frame.size.height/2;
-        self.layer.masksToBounds = YES;
-        [self setImage:[UIImage imageNamed:@"default_avatar_ori"]];
+        
     }
     
     return self;
+}
+
+-(void)layoutSubviews{
+    self.layer.cornerRadius = self.frame.size.height/2;
+    self.layer.masksToBounds = YES;
+    [self setImage:[UIImage imageNamed:@"default_avatar_ori"]];
 }
 
 @end

@@ -10,4 +10,17 @@
 
 @implementation User
 
+@synthesize
+username,
+userid,
+pushKey,
+nickname,
+avatar,
+avatarThumb,
+password,
+gender,
+birthday,
+simpleProfile,
+longProfile;
+
 @end

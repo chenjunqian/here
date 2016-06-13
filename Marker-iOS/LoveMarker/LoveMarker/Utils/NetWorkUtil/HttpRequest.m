@@ -30,7 +30,7 @@
         ResponseResult *response = [[ResponseResult alloc] init];
         [response setObject:responseObject[@"resultData"]];
         [response setErrorMessage:responseObject[@"errorMessage"]];
-        [response setStatus:responseObject[@"status"]];
+        [response setStatus:[responseObject[@"status"] integerValue]];
         handler(response,[response getObject]);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         handler(task,error);

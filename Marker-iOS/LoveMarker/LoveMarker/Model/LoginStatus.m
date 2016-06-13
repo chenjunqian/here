@@ -12,6 +12,12 @@
 
 __strong static id instance = nil;
 
++(void)initInstanc{
+    if (!instance) {
+        instance = [[self alloc] init];
+    }
+}
+
 +(instancetype)getInstance{
     if (!instance) {
         instance = [[self alloc] init];
@@ -19,11 +25,6 @@ __strong static id instance = nil;
     
     return instance;
 }
-
--(void)setUser:(User*)user{
-    self.user = user;
-}
-
 
 -(Boolean)getIsUserModel{
     if (self.user) {

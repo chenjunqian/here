@@ -11,12 +11,7 @@
 @interface ResponseResult : NSObject
 
 @property (nonatomic,strong,setter=setObject:,getter=getObject) NSObject *object;
-@property (nonatomic,setter=setStatus:,getter=getStatus) NSObject *status;
+@property (nonatomic,setter=setStatus:,getter=getStatus) NSInteger status;
 @property (nonatomic,strong,setter=setErrorMessage: ,getter=getErrorMessage) NSObject *errorMessage;
 
-//-(NSObject*)getResponseObject;
-//
-//-(NSInteger*)getResponseStatus;
-//
-//-(NSObject*)getErrorMessage;
 @end

@@ -11,6 +11,10 @@
 #import "HttpRequest.h"
 #import "LoginStatus.h"
 #import "User.h"
+#import "ErrorState.h"
+#import "ResponseResult.h"
+#import "NSObject+ObjectMap.h"
+#import "MyDataController.h"
 
 @interface LoginViewController ()
 
@@ -77,6 +81,7 @@
     [_registerButton setTitle:NSLocalizedString(@"register", nil) forState:UIControlStateNormal];
     [_registerButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     _registerButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [_registerButton addTarget:self action:@selector(toRegisterPageAction:) forControlEvents:UIControlEventTouchDown];
     [self.view addSubview:_registerButton];
     
     _forgetPasswordButton = [[UIButton alloc] init];
@@ -117,8 +122,16 @@
     _passwordString = _passwordTextField.text;
     if (_usernameString && _passwordString) {
         [HttpRequest loginWithUsername:_usernameString password:_passwordString pushKey:@"" responseData:^(NSObject *response, NSObject *resultObject) {
-            if (resultObject!=nil) {
-                
+            ResponseResult* result = (ResponseResult*)response;
+            if (resultObject!=nil&&(result.status) == Error_Code_Correct) {
+                User* user = [NSObject objectOfClass:@"User" fromJSON:(NSDictionary*)resultObject];
+                [[LoginStatus getInstance] setUser:user];
+                [[[MyDataController alloc]init] saveOrUpdataUserCoreDataWithUsername:user.username password:user.password];
+                NSArray *result = [[[MyDataController alloc]init] getUserCoreDataWithUsername:user.username];
+                NSLog(@"fetch result :%@",result);
+                [self dismissViewControllerAnimated:YES completion:^{
+                    
+                }];
             }else{
                 
             }
@@ -127,6 +140,10 @@
     }else{
         
     }
+    
+}
+
+-(IBAction)toRegisterPageAction:(id)sender{
     
 }
 

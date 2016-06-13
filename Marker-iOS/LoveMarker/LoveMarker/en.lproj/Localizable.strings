@@ -20,3 +20,4 @@ password_place_holder = "please input password";
 /*Me page*/
 me = "me";
 my_marker = "My Markers";
+about_me = "about me";
