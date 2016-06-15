@@ -17,4 +17,5 @@
 +(instancetype)getInstance;
 -(Boolean)getIsUserModel;
 -(void)logout;
+-(void)autoLogin;
 @end

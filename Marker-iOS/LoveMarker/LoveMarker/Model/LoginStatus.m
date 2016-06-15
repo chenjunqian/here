@@ -7,6 +7,12 @@
 //
 
 #import "LoginStatus.h"
+#import "CoreDataUser.h"
+#import "MyDataController.h"
+#import "HttpRequest.h"
+#import "ErrorState.h"
+#import "NSObject+ObjectMap.h"
+#import "ResponseResult.h"
 
 @implementation LoginStatus
 
@@ -36,6 +42,24 @@ __strong static id instance = nil;
 
 -(void)logout{
     self.user = nil;
+}
+
+-(void)autoLogin{
+    CoreDataUser* user = [[[[MyDataController alloc] init] getUserCoreDataWithDefualKey] firstObject];
+    if (user) {
+        [HttpRequest loginWithUsername:user.username password:user.password pushKey:@"" responseData:^(NSObject *response, NSObject *resultObject) {
+            ResponseResult* result = (ResponseResult*)response;
+            if (resultObject!=nil&&(result.status) == Error_Code_Correct) {
+                User* user = [NSObject objectOfClass:@"User" fromJSON:(NSDictionary*)resultObject];
+                [[LoginStatus getInstance] setUser:user];
+                [[[MyDataController alloc]init] saveOrUpdataUserCoreDataWithUsername:user.username password:user.password key:KEY_VALUE];
+                NSLog(@"aotu login success");
+                
+            }else{
+                
+            }
+        }];
+    }
 }
 
 @end

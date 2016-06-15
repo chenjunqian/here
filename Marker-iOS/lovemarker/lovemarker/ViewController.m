@@ -27,6 +27,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self initSetting];
+    
     MainMapViewController *mapViewController = [[MainMapViewController alloc] init];
     mapViewController.tabBarItem.title = @"map";
     
@@ -54,6 +56,7 @@
 
 -(void)initSetting{
     [LoginStatus initInstanc];
+//    [[LoginStatus getInstance] autoLogin];
 }
 
 - (void)didReceiveMemoryWarning {

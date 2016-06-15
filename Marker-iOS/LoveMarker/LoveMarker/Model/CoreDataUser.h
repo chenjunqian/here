@@ -9,7 +9,9 @@
 #import <CoreData/CoreData.h>
 
 @interface CoreDataUser : NSManagedObject
+//The value of the key is auto-login
+extern NSString* const KEY_VALUE;
 
-@property (nonatomic,strong) NSString *username , *password;
+@property (nonatomic,strong) NSString *username , *password , *key;
 
 @end

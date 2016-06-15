@@ -8,8 +8,10 @@
 
 #import "CoreDataUser.h"
 
+NSString* const KEY_VALUE = @"auto-login";
+
 @implementation CoreDataUser
 
-@dynamic username , password;
+@dynamic username , password , key;
 
 @end

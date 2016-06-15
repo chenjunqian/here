@@ -16,6 +16,7 @@
 
 @interface ProfilePageViewController ()
 
+@property(nonatomic,strong) TopLayoutView *topLayoutView;
 @property(nonatomic,strong,getter=getAvatarUIView) UIView *avatarLayout;
 @property(nonatomic,strong,getter=getAvatarImageView) AvatarUIImageView *avatarImageView;
 @property(nonatomic,strong,getter=getNicknameLabel) UILabel *nicknameLabel;
@@ -42,10 +43,19 @@
 -(void)initView{
     [self.view setBackgroundColor:[super colorWithHexString:@"F3F3F3"]];
     
-    TopLayoutView *topLayoutView = [[TopLayoutView alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, 40)];
-    [[topLayoutView getBackBtn] setHidden:YES];
-    [[topLayoutView getTitleLabel] setText:NSLocalizedString(@"me", nil)];
-    [self.view addSubview:topLayoutView];
+    if (![[LoginStatus getInstance] getIsUserModel]) {
+        [self addLoginView];
+    }else{
+        [self addLoginedView];
+    }
+
+}
+
+-(void)addLoginedView{
+    _topLayoutView = [[TopLayoutView alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, 40)];
+    [[_topLayoutView getBackBtn] setHidden:YES];
+    [[_topLayoutView getTitleLabel] setText:NSLocalizedString(@"me", nil)];
+    [self.view addSubview:_topLayoutView];
     
     _avatarLayout = [[UIView alloc] init];
     _avatarLayout.translatesAutoresizingMaskIntoConstraints = NO;
@@ -88,33 +98,12 @@
     _myMarkerTableView.translatesAutoresizingMaskIntoConstraints = NO;
     _myMarkerTableView.delegate = self;
     _myMarkerTableView.dataSource = self;
-    [_myMarkerTableView setBackgroundColor:[UIColor redColor]];
+    [_myMarkerTableView setBackgroundColor:[UIColor whiteColor]];
     [self.view addSubview:_myMarkerTableView];
     
-    _loginLayoutView = [[UIView alloc] init];
-    _loginLayoutView.translatesAutoresizingMaskIntoConstraints = NO;
-    [_loginLayoutView setBackgroundColor:[super colorWithHexString:@"F3F3F3"]];
-    [self.view addSubview:_loginLayoutView];
+    NSDictionary *views = NSDictionaryOfVariableBindings(_topLayoutView,_avatarLayout,_avatarImageView,_nicknameLabel,_simpleProfileLabel,longProfileLayout,_longProfileLabel,aboutMeLabel,_myMarkerTableView);
     
-    _toLoginPageButton = [[UIButton alloc] init];
-        _toLoginPageButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [_toLoginPageButton setTitle:NSLocalizedString(@"login", nil) forState:UIControlStateNormal];
-    [_toLoginPageButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    [_toLoginPageButton setBackgroundColor:[UIColor whiteColor]];
-    [_toLoginPageButton addTarget:self action:@selector(toLoginPageSelector:) forControlEvents:UIControlEventTouchDown];
-    [_loginLayoutView addSubview:_toLoginPageButton];
-
-    if (![[LoginStatus getInstance] getIsUserModel]) {
-        [_myMarkerTableView setHidden:YES];
-        [_loginLayoutView setHidden:NO];
-    }else{
-        [_myMarkerTableView setHidden:NO];
-        [_loginLayoutView setHidden:YES];
-    }
-    
-    NSDictionary *views = NSDictionaryOfVariableBindings(topLayoutView,_avatarLayout,_avatarImageView,_nicknameLabel,_simpleProfileLabel,longProfileLayout,_longProfileLabel,aboutMeLabel,_myMarkerTableView,_loginLayoutView,_toLoginPageButton);
-    
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[topLayoutView]-0-[_avatarLayout(80)]" options:0 metrics:0 views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_topLayoutView]-0-[_avatarLayout(80)]" options:0 metrics:0 views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_avatarLayout(>=200)]-0-|" options:0 metrics:0 views:views]];
     //avatar image view contraints
     [_avatarLayout addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-5-[_avatarImageView(60)]" options:0 metrics:0 views:views]];
@@ -138,9 +127,28 @@
     //table view constraints
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[longProfileLayout]-0-[_myMarkerTableView(>=100)]-0-|" options:0 metrics:0 views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_myMarkerTableView]-0-|" options:0 metrics:0 views:views]];
+}
+
+-(void)addLoginView{
+    _loginLayoutView = [[UIView alloc] init];
+    _loginLayoutView.translatesAutoresizingMaskIntoConstraints = NO;
+    [_loginLayoutView setBackgroundColor:[super colorWithHexString:@"F3F3F3"]];
+    [self.view addSubview:_loginLayoutView];
+    
+    _toLoginPageButton = [[UIButton alloc] init];
+    _toLoginPageButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [_toLoginPageButton setTitle:NSLocalizedString(@"login", nil) forState:UIControlStateNormal];
+    [_toLoginPageButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [_toLoginPageButton setBackgroundColor:[UIColor whiteColor]];
+    [_toLoginPageButton addTarget:self action:@selector(toLoginPageSelector:) forControlEvents:UIControlEventTouchDown];
+    [_loginLayoutView addSubview:_toLoginPageButton];
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(_loginLayoutView,_toLoginPageButton);
+    
     //login layout constraints
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_loginLayoutView]-0-|" options:0 metrics:0 views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[longProfileLayout]-1-[_loginLayoutView(>=100)]-0-|" options:0 metrics:0 views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[_loginLayoutView(>=100)]-0-|" options:0 metrics:0 views:views]];
+    
     [_loginLayoutView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_toLoginPageButton(40)]" options:0 metrics:0 views:views]];
     [_loginLayoutView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_toLoginPageButton(150)]" options:0 metrics:0 views:views]];
     [_loginLayoutView addConstraint:[NSLayoutConstraint constraintWithItem:_toLoginPageButton attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:_loginLayoutView attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];

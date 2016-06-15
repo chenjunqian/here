@@ -15,6 +15,7 @@
 #import "ResponseResult.h"
 #import "NSObject+ObjectMap.h"
 #import "MyDataController.h"
+#import "CoreDataUser.h"
 
 @interface LoginViewController ()
 
@@ -126,7 +127,7 @@
             if (resultObject!=nil&&(result.status) == Error_Code_Correct) {
                 User* user = [NSObject objectOfClass:@"User" fromJSON:(NSDictionary*)resultObject];
                 [[LoginStatus getInstance] setUser:user];
-                [[[MyDataController alloc]init] saveOrUpdataUserCoreDataWithUsername:user.username password:user.password];
+                [[[MyDataController alloc]init] saveOrUpdataUserCoreDataWithUsername:user.username password:user.password key:KEY_VALUE];
                 NSArray *result = [[[MyDataController alloc]init] getUserCoreDataWithUsername:user.username];
                 NSLog(@"fetch result :%@",result);
                 [self dismissViewControllerAnimated:YES completion:^{

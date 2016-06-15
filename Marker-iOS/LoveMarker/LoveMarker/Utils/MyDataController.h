@@ -16,5 +16,6 @@
 - (void)initializeCoreData;
 +(instancetype)getInstanc;
 -(NSArray*)getUserCoreDataWithUsername:(NSString*)username;
--(void)saveOrUpdataUserCoreDataWithUsername:(NSString*)username password:(NSString*)password;
+-(void)saveOrUpdataUserCoreDataWithUsername:(NSString*)username password:(NSString*)password key:(NSString*)key;
+-(NSArray*)getUserCoreDataWithDefualKey;
 @end

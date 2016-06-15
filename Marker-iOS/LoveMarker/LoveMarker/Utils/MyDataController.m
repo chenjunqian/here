@@ -55,6 +55,18 @@ __strong static id instacne = nil;
     });
 }
 
+-(NSArray*)getUserCoreDataWithDefualKey{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"CoreDataUser"];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"key == %@",KEY_VALUE]];
+    NSError *error = nil;\
+    NSArray *results = [_managedObjectContext executeFetchRequest:request error:&error];
+    if (!results) {
+        NSAssert(NO, @"Error fetch Core Data CoreDataUser context: %@\n%@", [error localizedDescription], [error userInfo]);
+    }
+    
+    return results;
+}
+
 -(NSArray*)getUserCoreDataWithUsername:(NSString*)username{
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"CoreDataUser"];
     [request setPredicate:[NSPredicate predicateWithFormat:@"username == %@",username]];
@@ -67,7 +79,7 @@ __strong static id instacne = nil;
     return results;
 }
 
--(void)saveOrUpdataUserCoreDataWithUsername:(NSString*)username password:(NSString*)password{
+-(void)saveOrUpdataUserCoreDataWithUsername:(NSString*)username password:(NSString*)password key:(NSString*)key{
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:[NSEntityDescription entityForName:@"CoreDataUser" inManagedObjectContext:_managedObjectContext]];
     [request setPredicate:[NSPredicate predicateWithFormat:@"username == %@",username]];
@@ -82,6 +94,7 @@ __strong static id instacne = nil;
         CoreDataUser *newUser = [NSEntityDescription insertNewObjectForEntityForName:@"CoreDataUser" inManagedObjectContext:_managedObjectContext];
         [newUser setUsername:username];
         [newUser setPassword:password];
+        [newUser setKey:key];
     }
     
     if ([[self managedObjectContext] save:&error] == NO) {
