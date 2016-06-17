@@ -16,8 +16,21 @@ loginLabel = "Username";
 passwordLabel = "Password";
 username_place_holder = "please input username";
 password_place_holder = "please input password";
+input_correct_data = "Please input username or password";
+user_not_found = "The username is not exist";
+username_or_password_incorrect = "Incorrect username or password";
+password_length_must_bigger_than_six = "Password's length must more than six figures";
+action_ok = "ok";
 
 /*Me page*/
 me = "me";
 my_marker = "My Markers";
 about_me = "about me";
+you_have_not_logined = "you haven't logined yet";
+please_login_first = "please login first";
+
+/*登录界面*/
+register = "register";
+input_phone_number_or_email = "phone number or email address";
+set_password = "password,more than six figures";
+next_step = "next";

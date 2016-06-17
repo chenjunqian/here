@@ -12,5 +12,5 @@
 @interface CommomUtils : NSObject
 
 -(void)CommomVisualFormatConstraints:(UIView*)parentView visualFormat:(NSString*)formatString views:(NSDictionary*)views;
-
++(BOOL)isEmptyString:(NSString*)string;
 @end

@@ -143,16 +143,34 @@
     [_toLoginPageButton addTarget:self action:@selector(toLoginPageSelector:) forControlEvents:UIControlEventTouchDown];
     [_loginLayoutView addSubview:_toLoginPageButton];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_loginLayoutView,_toLoginPageButton);
+    UILabel *topLabel = [[UILabel alloc] init];
+    topLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    topLabel.textColor = [UIColor blueColor];
+    topLabel.text = NSLocalizedString(@"you_have_not_logined", nil);
+    [_loginLayoutView addSubview:topLabel];
+    
+    UILabel *bottomLabel = [[UILabel alloc] init];
+    bottomLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    bottomLabel.textColor = [UIColor blueColor];
+    bottomLabel.text = NSLocalizedString(@"please_login_first", nil);
+    [_loginLayoutView addSubview:bottomLabel];
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(_loginLayoutView,_toLoginPageButton,topLabel,bottomLabel);
     
     //login layout constraints
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_loginLayoutView]-0-|" options:0 metrics:0 views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[_loginLayoutView(>=100)]-0-|" options:0 metrics:0 views:views]];
     
-    [_loginLayoutView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_toLoginPageButton(40)]" options:0 metrics:0 views:views]];
-    [_loginLayoutView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_toLoginPageButton(150)]" options:0 metrics:0 views:views]];
+    [_loginLayoutView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_toLoginPageButton(35)]" options:0 metrics:0 views:views]];
+    [_loginLayoutView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_toLoginPageButton(80)]" options:0 metrics:0 views:views]];
     [_loginLayoutView addConstraint:[NSLayoutConstraint constraintWithItem:_toLoginPageButton attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:_loginLayoutView attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
     [_loginLayoutView addConstraint:[NSLayoutConstraint constraintWithItem:_toLoginPageButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:_loginLayoutView attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+    
+    [_loginLayoutView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[bottomLabel]-10-[_toLoginPageButton]" options:0 metrics:0 views:views]];
+    [_loginLayoutView addConstraint:[NSLayoutConstraint constraintWithItem:bottomLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:_toLoginPageButton attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
+    
+    [_loginLayoutView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[topLabel]-5-[bottomLabel]" options:0 metrics:0 views:views]];
+    [_loginLayoutView addConstraint:[NSLayoutConstraint constraintWithItem:topLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:_toLoginPageButton attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

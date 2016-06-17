@@ -16,6 +16,8 @@
 #import "NSObject+ObjectMap.h"
 #import "MyDataController.h"
 #import "CoreDataUser.h"
+#import "CommomUtils.h"
+#import "RegisterViewController.h"
 
 @interface LoginViewController ()
 
@@ -41,7 +43,6 @@
 }
 
 -(void)initView {
-    [self.view setBackgroundColor:[UIColor whiteColor]];
     
     TopLayoutView *topLayoutView = [[TopLayoutView alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, 40)];
     [[topLayoutView getBackBtn] setHidden:YES];
@@ -82,7 +83,7 @@
     [_registerButton setTitle:NSLocalizedString(@"register", nil) forState:UIControlStateNormal];
     [_registerButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     _registerButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [_registerButton addTarget:self action:@selector(toRegisterPageAction:) forControlEvents:UIControlEventTouchDown];
+    [_registerButton addTarget:self action:@selector(registerBtnAction:) forControlEvents:UIControlEventTouchDown];
     [self.view addSubview:_registerButton];
     
     _forgetPasswordButton = [[UIButton alloc] init];
@@ -121,7 +122,7 @@
 -(IBAction)loginBtnAction:(id)sender{
     _usernameString = _usernameTextField.text;
     _passwordString = _passwordTextField.text;
-    if (_usernameString && _passwordString) {
+    if (![CommomUtils isEmptyString:_usernameString]  && ![CommomUtils isEmptyString:_usernameString]) {
         [HttpRequest loginWithUsername:_usernameString password:_passwordString pushKey:@"" responseData:^(NSObject *response, NSObject *resultObject) {
             ResponseResult* result = (ResponseResult*)response;
             if (resultObject!=nil&&(result.status) == Error_Code_Correct) {
@@ -130,22 +131,41 @@
                 [[[MyDataController alloc]init] saveOrUpdataUserCoreDataWithUsername:user.username password:user.password key:KEY_VALUE];
                 NSArray *result = [[[MyDataController alloc]init] getUserCoreDataWithUsername:user.username];
                 NSLog(@"fetch result :%@",result);
+                
                 [self dismissViewControllerAnimated:YES completion:^{
                     
                 }];
-            }else{
                 
+            }else if((result.status) == Error_Code_User_Not_Found){
+                [self showLoginAlertWithMessage:NSLocalizedString(@"user_not_found", nil) actionOK:NSLocalizedString(@"action_ok", nil)];
+                
+            }else if ((result.status) == ERROR_CODE_USER_OR_PASSWORD_INVALID){
+                [self showLoginAlertWithMessage:NSLocalizedString(@"username_or_password_incorrect", nil) actionOK:NSLocalizedString(@"action_ok", nil)];
             }
+            
         }];
         
     }else{
-        
+        [self showLoginAlertWithMessage:NSLocalizedString(@"input_correct_data", nil) actionOK:NSLocalizedString(@"action_ok", nil)];
     }
     
 }
 
--(IBAction)toRegisterPageAction:(id)sender{
+-(IBAction)registerBtnAction:(id)sender{
+    RegisterViewController *registerViewController = [[RegisterViewController alloc] init];
+    [self presentViewController:registerViewController animated:YES completion:nil];
+}
+
+-(void)showLoginAlertWithMessage:(NSString*)message actionOK:(NSString*)okTitle{
+    UIAlertController *loginAlert = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
     
+    UIAlertAction* okAction = [UIAlertAction actionWithTitle:okTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [loginAlert dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    [loginAlert addAction:okAction];
+    
+    [self presentViewController:loginAlert animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

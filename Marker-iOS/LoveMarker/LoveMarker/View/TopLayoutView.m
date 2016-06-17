@@ -17,6 +17,7 @@
         self.backButton = [[UIButton alloc] init];
         self.backButton.translatesAutoresizingMaskIntoConstraints = NO;
         [self.backButton setBackgroundColor:[UIColor whiteColor]];
+        self.backButton.hidden = YES;
         [self addSubview:self.backButton];
         
         self.titleLabel = [[UILabel alloc] init];

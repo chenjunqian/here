@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B07BD481D147CD8002B145E /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B07BD471D147CD8002B145E /* RegisterViewController.m */; };
 		9B0CCA7A1CE61EBF00207858 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CCA551CE61EBF00207858 /* AFHTTPSessionManager.m */; };
 		9B0CCA7B1CE61EBF00207858 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CCA581CE61EBF00207858 /* AFNetworkReachabilityManager.m */; };
 		9B0CCA7C1CE61EBF00207858 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CCA5A1CE61EBF00207858 /* AFSecurityPolicy.m */; };
@@ -53,6 +54,7 @@
 		9BB88DD71CB25C92009A081A /* LoveMarkerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB88DD61CB25C92009A081A /* LoveMarkerTests.m */; };
 		9BB88DE21CB25C92009A081A /* LoveMarkerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB88DE11CB25C92009A081A /* LoveMarkerUITests.m */; };
 		9BB88DF01CB27A3A009A081A /* splash_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BB88DEF1CB27A3A009A081A /* splash_background.png */; };
+		9BC15D2F1D13FFAC00BC1E0B /* RegisterLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC15D2E1D13FFAC00BC1E0B /* RegisterLayoutView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9B07BD461D147CD8002B145E /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		9B07BD471D147CD8002B145E /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		9B0CCA541CE61EBF00207858 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
 		9B0CCA551CE61EBF00207858 /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
 		9B0CCA561CE61EBF00207858 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
@@ -166,6 +170,8 @@
 		9BB88DE11CB25C92009A081A /* LoveMarkerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoveMarkerUITests.m; sourceTree = "<group>"; };
 		9BB88DE31CB25C92009A081A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BB88DEF1CB27A3A009A081A /* splash_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splash_background.png; path = ../../../Here/app/src/main/res/drawable/splash_background.png; sourceTree = "<group>"; };
+		9BC15D2D1D13FFAC00BC1E0B /* RegisterLayoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterLayoutView.h; sourceTree = "<group>"; };
+		9BC15D2E1D13FFAC00BC1E0B /* RegisterLayoutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterLayoutView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,6 +299,8 @@
 				9B8843E01CF0C49000FCC077 /* MyMarkerTableViewCell.m */,
 				9B8843EE1CF5CCBC00FCC077 /* AvatarUIImageView.h */,
 				9B8843EF1CF5CCBC00FCC077 /* AvatarUIImageView.m */,
+				9BC15D2D1D13FFAC00BC1E0B /* RegisterLayoutView.h */,
+				9BC15D2E1D13FFAC00BC1E0B /* RegisterLayoutView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -314,6 +322,8 @@
 				9B8843D51CEE161B00FCC077 /* MainMapViewController.m */,
 				9B8843DC1CEF91A600FCC077 /* BasicViewController.h */,
 				9B8843DD1CEF91A600FCC077 /* BasicViewController.m */,
+				9B07BD461D147CD8002B145E /* RegisterViewController.h */,
+				9B07BD471D147CD8002B145E /* RegisterViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -543,6 +553,7 @@
 				9B8843DE1CEF91A600FCC077 /* BasicViewController.m in Sources */,
 				9B8843C81CEE157E00FCC077 /* ProfilePageViewController.m in Sources */,
 				9B0CCA7A1CE61EBF00207858 /* AFHTTPSessionManager.m in Sources */,
+				9B07BD481D147CD8002B145E /* RegisterViewController.m in Sources */,
 				9B0CCA901CE65F7C00207858 /* TopLayoutView.m in Sources */,
 				9B8843ED1CF35DAD00FCC077 /* LoginStatus.m in Sources */,
 				9B0CCA7F1CE61EBF00207858 /* AFURLSessionManager.m in Sources */,
@@ -557,6 +568,7 @@
 				9B0CCA821CE61EBF00207858 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				9B0CCA871CE61EBF00207858 /* UIRefreshControl+AFNetworking.m in Sources */,
 				9B0CCA8A1CE61EBF00207858 /* HttpRequest.m in Sources */,
+				9BC15D2F1D13FFAC00BC1E0B /* RegisterLayoutView.m in Sources */,
 				9B0CCA861CE61EBF00207858 /* UIProgressView+AFNetworking.m in Sources */,
 				9BB88DBE1CB25C92009A081A /* main.m in Sources */,
 			);

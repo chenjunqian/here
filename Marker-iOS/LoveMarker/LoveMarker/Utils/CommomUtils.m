@@ -14,4 +14,12 @@
     [parentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:formatString options:0 metrics:0 views:views]];
 }
 
++(BOOL)isEmptyString:(NSString*)string{
+    if ([string isEqualToString:@""]||[string isEqual:nil]) {
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
 @end
