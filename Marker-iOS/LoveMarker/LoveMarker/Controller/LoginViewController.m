@@ -18,6 +18,7 @@
 #import "CoreDataUser.h"
 #import "CommomUtils.h"
 #import "RegisterViewController.h"
+#import "UnitViewUtil.h"
 
 @interface LoginViewController ()
 
@@ -137,16 +138,16 @@
                 }];
                 
             }else if((result.status) == Error_Code_User_Not_Found){
-                [self showLoginAlertWithMessage:NSLocalizedString(@"user_not_found", nil) actionOK:NSLocalizedString(@"action_ok", nil)];
+                [UnitViewUtil showLoginAlertWithMessage:NSLocalizedString(@"user_not_found", nil) actionOK:NSLocalizedString(@"action_ok", nil) context:self];
                 
             }else if ((result.status) == ERROR_CODE_USER_OR_PASSWORD_INVALID){
-                [self showLoginAlertWithMessage:NSLocalizedString(@"username_or_password_incorrect", nil) actionOK:NSLocalizedString(@"action_ok", nil)];
+                [UnitViewUtil showLoginAlertWithMessage:NSLocalizedString(@"username_or_password_incorrect", nil) actionOK:NSLocalizedString(@"action_ok", nil) context:self];
             }
             
         }];
         
     }else{
-        [self showLoginAlertWithMessage:NSLocalizedString(@"input_correct_data", nil) actionOK:NSLocalizedString(@"action_ok", nil)];
+        [UnitViewUtil showLoginAlertWithMessage:NSLocalizedString(@"input_correct_data", nil) actionOK:NSLocalizedString(@"action_ok", nil) context:self];
     }
     
 }

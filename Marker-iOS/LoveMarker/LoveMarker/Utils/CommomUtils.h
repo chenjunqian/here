@@ -13,4 +13,6 @@
 
 -(void)CommomVisualFormatConstraints:(UIView*)parentView visualFormat:(NSString*)formatString views:(NSDictionary*)views;
 +(BOOL)isEmptyString:(NSString*)string;
++(BOOL)isValidateEmail:(NSString *)email;
++(BOOL) isValidateMobile:(NSString *)mobile;
 @end

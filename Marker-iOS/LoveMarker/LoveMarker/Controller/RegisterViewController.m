@@ -8,10 +8,14 @@
 
 #import "RegisterViewController.h"
 #import "RegisterLayoutView.h"
+#import "UnitViewUtil.h"
+#import "CommomUtils.h"
 
 @interface RegisterViewController ()
 
 @property(strong,nonatomic)RegisterLayoutView *globalLayout;
+@property(strong,nonatomic)NSString* usernameString;
+@property(strong,nonatomic)NSString* passwordString;
 
 @end
 
@@ -30,7 +34,18 @@
 }
 
 -(IBAction)nextStepButtonAction:(id)sender{
+    _usernameString = _globalLayout.usernameTextField.text;
+    _passwordString = _globalLayout.passwordTextField.text;
     
+    if (![CommomUtils isEmptyString:_usernameString]&& ![CommomUtils isEmptyString:_passwordString]) {
+        if (![CommomUtils isValidateEmail:_usernameString]) {
+            [UnitViewUtil showLoginAlertWithMessage:NSLocalizedString(@"user_not_found", nil) actionOK:NSLocalizedString(@"action_ok", nil) context:self];
+        }else if (![CommomUtils isValidateMobile:_usernameString]){
+            [UnitViewUtil showLoginAlertWithMessage:NSLocalizedString(@"user_not_found", nil) actionOK:NSLocalizedString(@"action_ok", nil) context:self];
+        }
+        
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning {

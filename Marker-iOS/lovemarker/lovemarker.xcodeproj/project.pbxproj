@@ -29,6 +29,7 @@
 		9B0CCA901CE65F7C00207858 /* TopLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CCA8F1CE65F7C00207858 /* TopLayoutView.m */; };
 		9B0CCAA11CEA367E00207858 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B0CCAA01CEA367E00207858 /* Assets.xcassets */; };
 		9B0CCAA91CEA648E00207858 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CCAA81CEA648E00207858 /* LoginViewController.m */; };
+		9B114F031D1563BD0098C26B /* UnitViewUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B114F021D1563BD0098C26B /* UnitViewUtil.m */; };
 		9B4FDC701CE24E5C008C0E3B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9B4FDC721CE24E5C008C0E3B /* Localizable.strings */; };
 		9B4FDC781CE38A06008C0E3B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4FDC771CE38A06008C0E3B /* User.m */; };
 		9B4FDC871CE49D82008C0E3B /* ResponseResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4FDC861CE49D82008C0E3B /* ResponseResult.m */; };
@@ -121,6 +122,8 @@
 		9B0CCAA01CEA367E00207858 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B0CCAA71CEA648E00207858 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		9B0CCAA81CEA648E00207858 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		9B114F011D1563BD0098C26B /* UnitViewUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitViewUtil.h; sourceTree = "<group>"; };
+		9B114F021D1563BD0098C26B /* UnitViewUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitViewUtil.m; sourceTree = "<group>"; };
 		9B4FDC711CE24E5C008C0E3B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9B4FDC731CE24EC0008C0E3B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		9B4FDC761CE38A06008C0E3B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -301,6 +304,8 @@
 				9B8843EF1CF5CCBC00FCC077 /* AvatarUIImageView.m */,
 				9BC15D2D1D13FFAC00BC1E0B /* RegisterLayoutView.h */,
 				9BC15D2E1D13FFAC00BC1E0B /* RegisterLayoutView.m */,
+				9B114F011D1563BD0098C26B /* UnitViewUtil.h */,
+				9B114F021D1563BD0098C26B /* UnitViewUtil.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -568,6 +573,7 @@
 				9B0CCA821CE61EBF00207858 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				9B0CCA871CE61EBF00207858 /* UIRefreshControl+AFNetworking.m in Sources */,
 				9B0CCA8A1CE61EBF00207858 /* HttpRequest.m in Sources */,
+				9B114F031D1563BD0098C26B /* UnitViewUtil.m in Sources */,
 				9BC15D2F1D13FFAC00BC1E0B /* RegisterLayoutView.m in Sources */,
 				9B0CCA861CE61EBF00207858 /* UIProgressView+AFNetworking.m in Sources */,
 				9BB88DBE1CB25C92009A081A /* main.m in Sources */,
