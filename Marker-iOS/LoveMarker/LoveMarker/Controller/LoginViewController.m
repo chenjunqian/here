@@ -124,7 +124,7 @@
     _usernameString = _usernameTextField.text;
     _passwordString = _passwordTextField.text;
     if (![CommomUtils isEmptyString:_usernameString]  && ![CommomUtils isEmptyString:_usernameString]) {
-        [HttpRequest loginWithUsername:_usernameString password:_passwordString pushKey:@"" responseData:^(NSObject *response, NSObject *resultObject) {
+        [HttpRequest loginWithUsername:_usernameString password:_passwordString pushKey:@"" responseData:^(ResponseResult *response, NSObject *resultObject) {
             ResponseResult* result = (ResponseResult*)response;
             if (resultObject!=nil&&(result.status) == Error_Code_Correct) {
                 User* user = [NSObject objectOfClass:@"User" fromJSON:(NSDictionary*)resultObject];
@@ -155,18 +155,6 @@
 -(IBAction)registerBtnAction:(id)sender{
     RegisterViewController *registerViewController = [[RegisterViewController alloc] init];
     [self presentViewController:registerViewController animated:YES completion:nil];
-}
-
--(void)showLoginAlertWithMessage:(NSString*)message actionOK:(NSString*)okTitle{
-    UIAlertController *loginAlert = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* okAction = [UIAlertAction actionWithTitle:okTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [loginAlert dismissViewControllerAnimated:YES completion:nil];
-    }];
-    
-    [loginAlert addAction:okAction];
-    
-    [self presentViewController:loginAlert animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

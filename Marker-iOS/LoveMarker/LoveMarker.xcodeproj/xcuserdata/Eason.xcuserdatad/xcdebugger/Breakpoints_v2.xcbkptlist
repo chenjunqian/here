@@ -230,11 +230,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveMarker/Controller/LoginViewController.m"
-            timestampString = "487883166.059057"
+            timestampString = "487951043.082862"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
             landmarkName = "-loginBtnAction:"
             landmarkType = "5">
          </BreakpointContent>
@@ -294,11 +294,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveMarker/Controller/LoginViewController.m"
-            timestampString = "487883166.059057"
+            timestampString = "487951043.082862"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
             landmarkName = "-loginBtnAction:"
             landmarkType = "5">
          </BreakpointContent>
@@ -310,11 +310,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveMarker/Controller/LoginViewController.m"
-            timestampString = "487883166.059057"
+            timestampString = "487951043.082862"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
             landmarkName = "-loginBtnAction:"
             landmarkType = "5">
          </BreakpointContent>
@@ -326,12 +326,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveMarker/Controller/LoginViewController.m"
-            timestampString = "487883166.059057"
+            timestampString = "487951043.082862"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
             landmarkName = "-loginBtnAction:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoveMarker/Controller/RegisterViewController.m"
+            timestampString = "487953773.33014"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "-nextStepButtonAction:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoveMarker/Controller/RegisterViewController.m"
+            timestampString = "487953773.33014"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "-nextStepButtonAction:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

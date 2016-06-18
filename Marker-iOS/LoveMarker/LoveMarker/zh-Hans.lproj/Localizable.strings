@@ -34,3 +34,9 @@ register = "注册";
 input_phone_number_or_email = "输入手机号或者邮箱";
 set_password = "设置密码";
 next_step = "next";
+
+/*注册界面*/
+please_input_valid_eamil_or_phone_number = "请输入正确的邮箱或者手机号";
+please_input_password = "请输入密码";
+please_input_username = "请输入账号";
+user_account_is_already_exsit = "该用户名已存在";

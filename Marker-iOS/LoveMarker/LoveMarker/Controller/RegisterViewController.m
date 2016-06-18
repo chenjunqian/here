@@ -10,6 +10,8 @@
 #import "RegisterLayoutView.h"
 #import "UnitViewUtil.h"
 #import "CommomUtils.h"
+#import "HttpRequest.h"
+#import "ErrorState.h"
 
 @interface RegisterViewController ()
 
@@ -38,14 +40,30 @@
     _passwordString = _globalLayout.passwordTextField.text;
     
     if (![CommomUtils isEmptyString:_usernameString]&& ![CommomUtils isEmptyString:_passwordString]) {
-        if (![CommomUtils isValidateEmail:_usernameString]) {
-            [UnitViewUtil showLoginAlertWithMessage:NSLocalizedString(@"user_not_found", nil) actionOK:NSLocalizedString(@"action_ok", nil) context:self];
-        }else if (![CommomUtils isValidateMobile:_usernameString]){
-            [UnitViewUtil showLoginAlertWithMessage:NSLocalizedString(@"user_not_found", nil) actionOK:NSLocalizedString(@"action_ok", nil) context:self];
+        //password' length must bigger than 6
+        if ([_passwordString length]<6) {
+            [UnitViewUtil showLoginAlertWithMessage:NSLocalizedString(@"set_password", nil) actionOK:NSLocalizedString(@"action_ok", nil) context:self];
         }
         
+        if ([CommomUtils isValidateEmail:_usernameString]||[CommomUtils isValidateMobile:_usernameString]) {
+            //check is user accout is already exist
+            [HttpRequest checkIsUserExistWithUsername:_usernameString responseData:^(ResponseResult *responese, NSObject *resultObject) {
+                if (responese && responese.status==Error_Code_Correct) {
+                    [UnitViewUtil showLoginAlertWithMessage:NSLocalizedString(@"user_account_is_already_exsit", nil) actionOK:NSLocalizedString(@"action_ok", nil) context:self];
+                    
+                }
+            }];
+            
+        }else{
+            [UnitViewUtil showLoginAlertWithMessage:NSLocalizedString(@"please_input_valid_eamil_or_phone_number", nil) actionOK:NSLocalizedString(@"action_ok", nil) context:self];
+        }
         
+    }else if([CommomUtils isEmptyString:_usernameString]){
+        [UnitViewUtil showLoginAlertWithMessage:NSLocalizedString(@"please_input_username", nil) actionOK:NSLocalizedString(@"action_ok", nil) context:self];
+    }else if([CommomUtils isEmptyString:_passwordString]){
+        [UnitViewUtil showLoginAlertWithMessage:NSLocalizedString(@"please_input_password", nil) actionOK:NSLocalizedString(@"action_ok", nil) context:self];
     }
+    
 }
 
 - (void)didReceiveMemoryWarning {

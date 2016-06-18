@@ -34,3 +34,9 @@ register = "register";
 input_phone_number_or_email = "phone number or email address";
 set_password = "password,more than six figures";
 next_step = "next";
+
+/*注册界面*/
+please_input_valid_eamil_or_phone_number = "please input valid eamail address or phone number";
+please_input_password = "please input password";
+please_input_username = "please input user account";
+user_account_is_already_exsit = "The user account is already exsit";
