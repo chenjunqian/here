@@ -45,10 +45,7 @@
 
 -(void)initView {
     
-    TopLayoutView *topLayoutView = [[TopLayoutView alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, 40)];
-    [[topLayoutView getBackBtn] setHidden:YES];
-    [[topLayoutView getTitleLabel] setText:NSLocalizedString(@"login", nil)];
-//    topLayoutView.translatesAutoresizingMaskIntoConstraints = NO;
+    TopLayoutView *topLayoutView = [[TopLayoutView alloc] initWithContext:self title:NSLocalizedString(@"login", nil) andFrame:CGRectMake(0, 20, self.view.frame.size.width, 50)];
     [self.view addSubview:topLayoutView];
     
     _usernameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 25)];

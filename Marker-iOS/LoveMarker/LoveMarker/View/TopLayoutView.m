@@ -8,41 +8,57 @@
 
 #import "TopLayoutView.h"
 
+@interface TopLayoutView ()
+
+
+@end
+
 @implementation TopLayoutView
 
--(id)initWithFrame:(CGRect)frame{
+@synthesize navigationItem,leftButton,rightButton;
+
+__strong id instance = nil;
+
+-(id)initWithContext:(id)context title:(NSString*)title andFrame:(CGRect)frame{
     self= [super initWithFrame:frame];
     
     if (self) {
-        self.backButton = [[UIButton alloc] init];
-        self.backButton.translatesAutoresizingMaskIntoConstraints = NO;
-        [self.backButton setBackgroundColor:[UIColor whiteColor]];
-        self.backButton.hidden = YES;
-        [self addSubview:self.backButton];
+        [self initViewWithTitle:title];
         
-        self.titleLabel = [[UILabel alloc] init];
-        self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        [self.titleLabel setTextColor:[UIColor whiteColor]];
-        [self addSubview:self.titleLabel];
-        
-        [self setBackgroundColor:[UIColor redColor]];
-        
-
+        instance = context;
     }
     
     return self;
 }
 
+-(void)initViewWithTitle:(NSString*)title{
+    navigationItem = [[UINavigationItem alloc] initWithTitle:title];
+    [self setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    
+    leftButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(back:)];
+    
+    rightButton = [[UIBarButtonItem alloc] init];
+    
+    [self pushNavigationItem:navigationItem animated:YES];
+    [navigationItem setLeftBarButtonItem:leftButton];
+    [navigationItem setRightBarButtonItem:rightButton];
+    
+    [self setBarTintColor:[UIColor redColor]];
+}
+
+-(IBAction)back:(id)sender{
+    if(instance){
+        [instance dismissViewControllerAnimated:YES completion:^{
+            
+        }];
+    }
+}
+
 -(void)layoutSubviews{
-    NSDictionary *views = NSDictionaryOfVariableBindings(_backButton,_titleLabel);
-    NSDictionary *metrics = @{@"margin":@5,@"height":@30};
-    NSArray *buttonHConts = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-margin-[_backButton(height)]" options:0 metrics:metrics views:views];
-    [self addConstraints:buttonHConts];
-    [_backButton setFrame:CGRectMake(0, 0, 30, 30)];
-    [self addConstraint: [NSLayoutConstraint constraintWithItem:_backButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
-    [self.titleLabel setFrame:CGRectMake(0, 0, 80, 35)];
-    [self addConstraint: [NSLayoutConstraint constraintWithItem:_titleLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
-    [self addConstraint: [NSLayoutConstraint constraintWithItem:_titleLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
+    [leftButton setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
+    [leftButton setTitlePositionAdjustment:UIOffsetMake(10, 0) forBarMetrics:0];
+    
+    [rightButton setTitlePositionAdjustment:UIOffsetMake(10, 0) forBarMetrics:0];
 }
 
 @end

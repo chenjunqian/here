@@ -47,6 +47,7 @@
 		9B8843E11CF0C49000FCC077 /* MyMarkerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8843E01CF0C49000FCC077 /* MyMarkerTableViewCell.m */; };
 		9B8843ED1CF35DAD00FCC077 /* LoginStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8843EC1CF35DAD00FCC077 /* LoginStatus.m */; };
 		9B8843F01CF5CCBC00FCC077 /* AvatarUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8843EF1CF5CCBC00FCC077 /* AvatarUIImageView.m */; };
+		9B9D99171D16E3AC00535922 /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B9D99161D16E3AC00535922 /* TestView.xib */; };
 		9BB88DBE1CB25C92009A081A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB88DBD1CB25C92009A081A /* main.m */; };
 		9BB88DC11CB25C92009A081A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB88DC01CB25C92009A081A /* AppDelegate.m */; };
 		9BB88DC41CB25C92009A081A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB88DC31CB25C92009A081A /* ViewController.m */; };
@@ -157,6 +158,7 @@
 		9B8843EC1CF35DAD00FCC077 /* LoginStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginStatus.m; sourceTree = "<group>"; };
 		9B8843EE1CF5CCBC00FCC077 /* AvatarUIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatarUIImageView.h; sourceTree = "<group>"; };
 		9B8843EF1CF5CCBC00FCC077 /* AvatarUIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvatarUIImageView.m; sourceTree = "<group>"; };
+		9B9D99161D16E3AC00535922 /* TestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestView.xib; sourceTree = "<group>"; };
 		9BB88DB91CB25C92009A081A /* LoveMarker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoveMarker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BB88DBD1CB25C92009A081A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9BB88DBF1CB25C92009A081A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 				9BC15D2E1D13FFAC00BC1E0B /* RegisterLayoutView.m */,
 				9B114F011D1563BD0098C26B /* UnitViewUtil.h */,
 				9B114F021D1563BD0098C26B /* UnitViewUtil.m */,
+				9B9D99161D16E3AC00535922 /* TestView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -506,6 +509,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B9D99171D16E3AC00535922 /* TestView.xib in Resources */,
 				9BB88DCC1CB25C92009A081A /* LaunchScreen.storyboard in Resources */,
 				9BB88DF01CB27A3A009A081A /* splash_background.png in Resources */,
 				9BB88DC71CB25C92009A081A /* Main.storyboard in Resources */,

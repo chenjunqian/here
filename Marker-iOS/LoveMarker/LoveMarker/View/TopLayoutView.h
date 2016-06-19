@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TopLayoutView : UIView
+@interface TopLayoutView : UINavigationBar
 
-@property (nonatomic,strong,getter=getBackBtn) UIButton *backButton;
-@property (nonatomic,strong,getter=getTitleLabel) UILabel *titleLabel;
+-(id)initWithContext:(id)context title:(NSString*)title andFrame:(CGRect)frame;
+
+@property(strong,nonatomic) UINavigationItem* navigationItem;
+@property(strong,nonatomic) UIBarButtonItem* leftButton;
+@property(strong,nonatomic) UIBarButtonItem* rightButton;
 
 @end

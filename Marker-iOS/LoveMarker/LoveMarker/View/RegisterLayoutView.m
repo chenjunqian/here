@@ -27,12 +27,11 @@
 
 @synthesize usernameTextField , passwordTextField , nextStepButton;
 
--(id)initWithFrame:(CGRect)frame{
+-(id)initWithContext:(id)context frame:(CGRect)frame{
     self = [super initWithFrame:frame];
     
     if (self) {
-        _topLayoutView = [[TopLayoutView alloc] initWithFrame:CGRectMake(0, 20, self.frame.size.width, 40)];
-        [[_topLayoutView getTitleLabel] setText:NSLocalizedString(@"register", nil)];
+        _topLayoutView = [[TopLayoutView alloc] initWithContext:context title:NSLocalizedString(@"register", nil) andFrame:CGRectMake(0, 20, self.frame.size.width, 50)];
         [self addSubview:_topLayoutView];
         
         usernameTextField = [[UITextField alloc] init];

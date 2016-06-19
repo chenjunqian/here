@@ -6,9 +6,9 @@
   Copyright © 2016 Eason. All rights reserved.
 */
 
-login = "login";
+login = "Login";
 back = "back";
-register = "register";
+register = "Register";
 forget_password = "forget password";
 
 /*Login Pahe*/

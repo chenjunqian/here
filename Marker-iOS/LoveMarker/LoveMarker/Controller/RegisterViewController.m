@@ -29,7 +29,7 @@
 }
 
 -(void)initView{
-    _globalLayout = [[RegisterLayoutView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    _globalLayout = [[RegisterLayoutView alloc] initWithContext:self frame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [self.view addSubview:_globalLayout];
     
     [_globalLayout.nextStepButton addTarget:self action:@selector(nextStepButtonAction:) forControlEvents:UIControlEventTouchDown];

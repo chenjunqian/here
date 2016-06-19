@@ -53,8 +53,6 @@
 
 -(void)addLoginedView{
     _topLayoutView = [[TopLayoutView alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, 40)];
-    [[_topLayoutView getBackBtn] setHidden:YES];
-    [[_topLayoutView getTitleLabel] setText:NSLocalizedString(@"me", nil)];
     [self.view addSubview:_topLayoutView];
     
     _avatarLayout = [[UIView alloc] init];
