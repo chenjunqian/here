@@ -40,3 +40,7 @@ please_input_valid_eamil_or_phone_number = "请输入正确的邮箱或者手机
 please_input_password = "请输入密码";
 please_input_username = "请输入账号";
 user_account_is_already_exsit = "该用户名已存在";
+please_input_nickname = "请输入昵称";
+please_select_gender = "选择性别";
+male = "男";
+female = "女";

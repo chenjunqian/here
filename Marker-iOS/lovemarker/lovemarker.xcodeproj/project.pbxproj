@@ -30,6 +30,9 @@
 		9B0CCAA11CEA367E00207858 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B0CCAA01CEA367E00207858 /* Assets.xcassets */; };
 		9B0CCAA91CEA648E00207858 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CCAA81CEA648E00207858 /* LoginViewController.m */; };
 		9B114F031D1563BD0098C26B /* UnitViewUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B114F021D1563BD0098C26B /* UnitViewUtil.m */; };
+		9B21B18D1D1C4E8300F560DF /* RegisterUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B21B18C1D1C4E8300F560DF /* RegisterUserInfoViewController.m */; };
+		9B21B1901D1C4E9B00F560DF /* RegisterUserInfoLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B21B18F1D1C4E9B00F560DF /* RegisterUserInfoLayoutView.m */; };
+		9B21B1931D1C4F5600F560DF /* BasicLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B21B1921D1C4F5600F560DF /* BasicLayoutView.m */; };
 		9B4FDC701CE24E5C008C0E3B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9B4FDC721CE24E5C008C0E3B /* Localizable.strings */; };
 		9B4FDC781CE38A06008C0E3B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4FDC771CE38A06008C0E3B /* User.m */; };
 		9B4FDC871CE49D82008C0E3B /* ResponseResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4FDC861CE49D82008C0E3B /* ResponseResult.m */; };
@@ -125,6 +128,12 @@
 		9B0CCAA81CEA648E00207858 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		9B114F011D1563BD0098C26B /* UnitViewUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitViewUtil.h; sourceTree = "<group>"; };
 		9B114F021D1563BD0098C26B /* UnitViewUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitViewUtil.m; sourceTree = "<group>"; };
+		9B21B18B1D1C4E8300F560DF /* RegisterUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterUserInfoViewController.h; sourceTree = "<group>"; };
+		9B21B18C1D1C4E8300F560DF /* RegisterUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterUserInfoViewController.m; sourceTree = "<group>"; };
+		9B21B18E1D1C4E9B00F560DF /* RegisterUserInfoLayoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterUserInfoLayoutView.h; sourceTree = "<group>"; };
+		9B21B18F1D1C4E9B00F560DF /* RegisterUserInfoLayoutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterUserInfoLayoutView.m; sourceTree = "<group>"; };
+		9B21B1911D1C4F5600F560DF /* BasicLayoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BasicLayoutView.h; path = ../Controller/BasicLayoutView.h; sourceTree = "<group>"; };
+		9B21B1921D1C4F5600F560DF /* BasicLayoutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BasicLayoutView.m; path = ../Controller/BasicLayoutView.m; sourceTree = "<group>"; };
 		9B4FDC711CE24E5C008C0E3B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9B4FDC731CE24EC0008C0E3B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		9B4FDC761CE38A06008C0E3B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -298,6 +307,9 @@
 		9B4FDC531CDD0186008C0E3B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9B9D99161D16E3AC00535922 /* TestView.xib */,
+				9B21B1911D1C4F5600F560DF /* BasicLayoutView.h */,
+				9B21B1921D1C4F5600F560DF /* BasicLayoutView.m */,
 				9B0CCA8E1CE65F7C00207858 /* TopLayoutView.h */,
 				9B0CCA8F1CE65F7C00207858 /* TopLayoutView.m */,
 				9B8843DF1CF0C49000FCC077 /* MyMarkerTableViewCell.h */,
@@ -308,7 +320,8 @@
 				9BC15D2E1D13FFAC00BC1E0B /* RegisterLayoutView.m */,
 				9B114F011D1563BD0098C26B /* UnitViewUtil.h */,
 				9B114F021D1563BD0098C26B /* UnitViewUtil.m */,
-				9B9D99161D16E3AC00535922 /* TestView.xib */,
+				9B21B18E1D1C4E9B00F560DF /* RegisterUserInfoLayoutView.h */,
+				9B21B18F1D1C4E9B00F560DF /* RegisterUserInfoLayoutView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -332,6 +345,8 @@
 				9B8843DD1CEF91A600FCC077 /* BasicViewController.m */,
 				9B07BD461D147CD8002B145E /* RegisterViewController.h */,
 				9B07BD471D147CD8002B145E /* RegisterViewController.m */,
+				9B21B18B1D1C4E8300F560DF /* RegisterUserInfoViewController.h */,
+				9B21B18C1D1C4E8300F560DF /* RegisterUserInfoViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -542,6 +557,7 @@
 				9B4FDC871CE49D82008C0E3B /* ResponseResult.m in Sources */,
 				9B0CCA801CE61EBF00207858 /* AFAutoPurgingImageCache.m in Sources */,
 				9B53667E1D03502D008D803A /* ErrorState.m in Sources */,
+				9B21B18D1D1C4E8300F560DF /* RegisterUserInfoViewController.m in Sources */,
 				9BB88DC41CB25C92009A081A /* ViewController.m in Sources */,
 				9B0CCA851CE61EBF00207858 /* UIImageView+AFNetworking.m in Sources */,
 				9B0CCA881CE61EBF00207858 /* UIWebView+AFNetworking.m in Sources */,
@@ -570,6 +586,8 @@
 				9B0CCA7B1CE61EBF00207858 /* AFNetworkReachabilityManager.m in Sources */,
 				9B8843E11CF0C49000FCC077 /* MyMarkerTableViewCell.m in Sources */,
 				9B8843F01CF5CCBC00FCC077 /* AvatarUIImageView.m in Sources */,
+				9B21B1931D1C4F5600F560DF /* BasicLayoutView.m in Sources */,
+				9B21B1901D1C4E9B00F560DF /* RegisterUserInfoLayoutView.m in Sources */,
 				9B774B291D0D8000000BF4B3 /* MyDataController.m in Sources */,
 				9B8843D21CEE15EB00FCC077 /* NearbyViewController.m in Sources */,
 				9B0CCA7E1CE61EBF00207858 /* AFURLResponseSerialization.m in Sources */,

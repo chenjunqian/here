@@ -8,6 +8,7 @@
 
 #import "RegisterViewController.h"
 #import "RegisterLayoutView.h"
+#import "RegisterUserInfoViewController.h"
 #import "UnitViewUtil.h"
 #import "CommomUtils.h"
 #import "HttpRequest.h"
@@ -43,13 +44,22 @@
         //password' length must bigger than 6
         if ([_passwordString length]<6) {
             [UnitViewUtil showLoginAlertWithMessage:NSLocalizedString(@"set_password", nil) actionOK:NSLocalizedString(@"action_ok", nil) context:self];
+            return;
         }
         
         if ([CommomUtils isValidateEmail:_usernameString]||[CommomUtils isValidateMobile:_usernameString]) {
             //check is user accout is already exist
             [HttpRequest checkIsUserExistWithUsername:_usernameString responseData:^(ResponseResult *responese, NSObject *resultObject) {
                 if (responese && responese.status==Error_Code_Correct) {
+                    //user account is exist
                     [UnitViewUtil showLoginAlertWithMessage:NSLocalizedString(@"user_account_is_already_exsit", nil) actionOK:NSLocalizedString(@"action_ok", nil) context:self];
+                    
+                }else{
+                    //user account is not exist
+                    RegisterUserInfoViewController *registerUserInfoController = [[RegisterUserInfoViewController alloc] init];
+                    [self presentViewController:registerUserInfoController animated:YES completion:^{
+                        
+                    }];
                     
                 }
             }];
