@@ -29,23 +29,19 @@
 __strong static id instanc = nil;
 
 +(instancetype)getInstance{
-    
-    if (instanc == nil) {
-        return instanc = [[self alloc] init];
-    }
-    
     return instanc;
-    
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    instanc = self;
     [self initView];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    if ([[LoginStatus getInstance] getIsUserModel]) {
+    User* testUser =[[LoginStatus getInstance] getUser];
+    if (testUser) {
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
@@ -86,6 +82,7 @@ __strong static id instanc = nil;
                     //user account is not exist
                     RegisterUserInfoViewController *registerUserInfoController = [[RegisterUserInfoViewController alloc] init];
                     [self presentViewController:registerUserInfoController animated:YES completion:^{
+                        _registerTempUser = [[User alloc] init];
                         _registerTempUser.nickname = _nicknameString;
                         _registerTempUser.username = _usernameString;
                         _registerTempUser.password = _passwordString;
