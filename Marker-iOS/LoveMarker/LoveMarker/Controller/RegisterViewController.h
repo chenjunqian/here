@@ -7,7 +7,10 @@
 //
 
 #import "BasicViewController.h"
+#import "User.h"
 
 @interface RegisterViewController : BasicViewController
++(instancetype)getInstance;
 
+@property (strong,nonatomic) User* registerTempUser;
 @end

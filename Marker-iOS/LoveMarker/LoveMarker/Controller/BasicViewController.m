@@ -7,6 +7,7 @@
 //
 
 #import "BasicViewController.h"
+#import "ColorUtil.h"
 
 @interface BasicViewController ()
 
@@ -16,7 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [ColorUtil viewBackgroundGrey];
 }
 
 - (void)didReceiveMemoryWarning {

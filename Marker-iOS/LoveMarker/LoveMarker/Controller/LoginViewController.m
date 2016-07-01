@@ -19,6 +19,7 @@
 #import "CommomUtils.h"
 #import "RegisterViewController.h"
 #import "UnitViewUtil.h"
+#import "ColorUtil.h"
 
 @interface LoginViewController ()
 
@@ -43,6 +44,12 @@
     [self initView];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    if ([[LoginStatus getInstance] getIsUserModel]) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
 -(void)initView {
     
     TopLayoutView *topLayoutView = [[TopLayoutView alloc] initWithContext:self title:NSLocalizedString(@"login", nil) andFrame:CGRectMake(0, 20, self.view.frame.size.width, 50)];
@@ -55,7 +62,7 @@
     
     _passwordLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, 25)];
     _passwordLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    [_passwordLabel setText:NSLocalizedString(@"password", nil)];
+    [_passwordLabel setText:NSLocalizedString(@"passwordLabel", nil)];
     [self.view addSubview:_passwordLabel];
     
     _usernameTextField = [[UITextField alloc] init];
@@ -73,13 +80,13 @@
     [_loginButton setTitle:NSLocalizedString(@"login", nil) forState:UIControlStateNormal];
     _loginButton.translatesAutoresizingMaskIntoConstraints = NO;
     [_loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [_loginButton setBackgroundColor:[UIColor redColor]];
+    [_loginButton setBackgroundColor:[ColorUtil themeColor]];
     [_loginButton addTarget:self action:@selector(loginBtnAction:) forControlEvents:UIControlEventTouchDown];
     [self.view addSubview:_loginButton];
     
     _registerButton = [[UIButton alloc] init];
     [_registerButton setTitle:NSLocalizedString(@"register", nil) forState:UIControlStateNormal];
-    [_registerButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [_registerButton setTitleColor:[ColorUtil tealBlueColor] forState:UIControlStateNormal];
     _registerButton.translatesAutoresizingMaskIntoConstraints = NO;
     [_registerButton addTarget:self action:@selector(registerBtnAction:) forControlEvents:UIControlEventTouchDown];
     [self.view addSubview:_registerButton];
@@ -87,7 +94,7 @@
     _forgetPasswordButton = [[UIButton alloc] init];
     [_forgetPasswordButton setTitle:NSLocalizedString(@"forget_password", nil) forState:UIControlStateNormal];
     _forgetPasswordButton.translatesAutoresizingMaskIntoConstraints = NO;
-    [_forgetPasswordButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [_forgetPasswordButton setTitleColor:[ColorUtil tealBlueColor] forState:UIControlStateNormal];
     [self.view addSubview:_forgetPasswordButton];
     
     
@@ -121,26 +128,19 @@
     _usernameString = _usernameTextField.text;
     _passwordString = _passwordTextField.text;
     if (![CommomUtils isEmptyString:_usernameString]  && ![CommomUtils isEmptyString:_usernameString]) {
-        [HttpRequest loginWithUsername:_usernameString password:_passwordString pushKey:@"" responseData:^(ResponseResult *response, NSObject *resultObject) {
-            ResponseResult* result = (ResponseResult*)response;
-            if (resultObject!=nil&&(result.status) == Error_Code_Correct) {
-                User* user = [NSObject objectOfClass:@"User" fromJSON:(NSDictionary*)resultObject];
-                [[LoginStatus getInstance] setUser:user];
-                [[[MyDataController alloc]init] saveOrUpdataUserCoreDataWithUsername:user.username password:user.password key:KEY_VALUE];
-                NSArray *result = [[[MyDataController alloc]init] getUserCoreDataWithUsername:user.username];
-                NSLog(@"fetch result :%@",result);
+        [[LoginStatus getInstance] loginWithUsername:_usernameString password:_passwordString pushKey:@"" successHandler:^{
+            
+            [self dismissViewControllerAnimated:YES completion:^{
                 
-                [self dismissViewControllerAnimated:YES completion:^{
-                    
-                }];
-                
-            }else if((result.status) == Error_Code_User_Not_Found){
+            }];
+            
+        } failedHandler:^(NSInteger errorCode) {
+            if(errorCode == Error_Code_User_Not_Found){
                 [UnitViewUtil showLoginAlertWithMessage:NSLocalizedString(@"user_not_found", nil) actionOK:NSLocalizedString(@"action_ok", nil) context:self];
                 
-            }else if ((result.status) == ERROR_CODE_USER_OR_PASSWORD_INVALID){
+            }else if (errorCode== ERROR_CODE_USER_OR_PASSWORD_INVALID){
                 [UnitViewUtil showLoginAlertWithMessage:NSLocalizedString(@"username_or_password_incorrect", nil) actionOK:NSLocalizedString(@"action_ok", nil) context:self];
             }
-            
         }];
         
     }else{

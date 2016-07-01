@@ -29,6 +29,7 @@
 		9B0CCA901CE65F7C00207858 /* TopLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CCA8F1CE65F7C00207858 /* TopLayoutView.m */; };
 		9B0CCAA11CEA367E00207858 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B0CCAA01CEA367E00207858 /* Assets.xcassets */; };
 		9B0CCAA91CEA648E00207858 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CCAA81CEA648E00207858 /* LoginViewController.m */; };
+		9B0D28E91D203CD800A1287D /* ClickableUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0D28E81D203CD800A1287D /* ClickableUIView.m */; };
 		9B114F031D1563BD0098C26B /* UnitViewUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B114F021D1563BD0098C26B /* UnitViewUtil.m */; };
 		9B21B18D1D1C4E8300F560DF /* RegisterUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B21B18C1D1C4E8300F560DF /* RegisterUserInfoViewController.m */; };
 		9B21B1901D1C4E9B00F560DF /* RegisterUserInfoLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B21B18F1D1C4E9B00F560DF /* RegisterUserInfoLayoutView.m */; };
@@ -37,6 +38,7 @@
 		9B4FDC781CE38A06008C0E3B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4FDC771CE38A06008C0E3B /* User.m */; };
 		9B4FDC871CE49D82008C0E3B /* ResponseResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4FDC861CE49D82008C0E3B /* ResponseResult.m */; };
 		9B53667E1D03502D008D803A /* ErrorState.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B53667D1D03502D008D803A /* ErrorState.m */; };
+		9B6782151D1ECB9000910922 /* ColorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6782141D1ECB9000910922 /* ColorUtil.m */; };
 		9B774B1D1D0D76C7000BF4B3 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B774B1B1D0D76C7000BF4B3 /* CoreDataModel.xcdatamodeld */; };
 		9B774B291D0D8000000BF4B3 /* MyDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B774B281D0D8000000BF4B3 /* MyDataController.m */; };
 		9B774B2C1D0F1F43000BF4B3 /* CoreDataUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B774B2B1D0F1F43000BF4B3 /* CoreDataUser.m */; };
@@ -126,8 +128,10 @@
 		9B0CCAA01CEA367E00207858 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B0CCAA71CEA648E00207858 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		9B0CCAA81CEA648E00207858 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		9B114F011D1563BD0098C26B /* UnitViewUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitViewUtil.h; sourceTree = "<group>"; };
-		9B114F021D1563BD0098C26B /* UnitViewUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitViewUtil.m; sourceTree = "<group>"; };
+		9B0D28E71D203CD800A1287D /* ClickableUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickableUIView.h; sourceTree = "<group>"; };
+		9B0D28E81D203CD800A1287D /* ClickableUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickableUIView.m; sourceTree = "<group>"; };
+		9B114F011D1563BD0098C26B /* UnitViewUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UnitViewUtil.h; path = ../View/UnitViewUtil.h; sourceTree = "<group>"; };
+		9B114F021D1563BD0098C26B /* UnitViewUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UnitViewUtil.m; path = ../View/UnitViewUtil.m; sourceTree = "<group>"; };
 		9B21B18B1D1C4E8300F560DF /* RegisterUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterUserInfoViewController.h; sourceTree = "<group>"; };
 		9B21B18C1D1C4E8300F560DF /* RegisterUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterUserInfoViewController.m; sourceTree = "<group>"; };
 		9B21B18E1D1C4E9B00F560DF /* RegisterUserInfoLayoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterUserInfoLayoutView.h; sourceTree = "<group>"; };
@@ -142,6 +146,8 @@
 		9B4FDC861CE49D82008C0E3B /* ResponseResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseResult.m; sourceTree = "<group>"; };
 		9B53667C1D03502D008D803A /* ErrorState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorState.h; sourceTree = "<group>"; };
 		9B53667D1D03502D008D803A /* ErrorState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorState.m; sourceTree = "<group>"; };
+		9B6782131D1ECB9000910922 /* ColorUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorUtil.h; sourceTree = "<group>"; };
+		9B6782141D1ECB9000910922 /* ColorUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorUtil.m; sourceTree = "<group>"; };
 		9B774B1C1D0D76C7000BF4B3 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		9B774B271D0D8000000BF4B3 /* MyDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDataController.h; sourceTree = "<group>"; };
 		9B774B281D0D8000000BF4B3 /* MyDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDataController.m; sourceTree = "<group>"; };
@@ -217,12 +223,16 @@
 			isa = PBXGroup;
 			children = (
 				9B0CCA521CE61EBF00207858 /* NetWorkUtil */,
+				9B114F011D1563BD0098C26B /* UnitViewUtil.h */,
+				9B114F021D1563BD0098C26B /* UnitViewUtil.m */,
 				9B8843D91CEF916100FCC077 /* CommomUtils.h */,
 				9B8843DA1CEF916100FCC077 /* CommomUtils.m */,
 				9B0CCA8C1CE61F1600207858 /* NSObject+ObjectMap.m */,
 				9B0CCA8B1CE61F1600207858 /* NSObject+ObjectMap.h */,
 				9B774B271D0D8000000BF4B3 /* MyDataController.h */,
 				9B774B281D0D8000000BF4B3 /* MyDataController.m */,
+				9B6782131D1ECB9000910922 /* ColorUtil.h */,
+				9B6782141D1ECB9000910922 /* ColorUtil.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -310,6 +320,8 @@
 				9B9D99161D16E3AC00535922 /* TestView.xib */,
 				9B21B1911D1C4F5600F560DF /* BasicLayoutView.h */,
 				9B21B1921D1C4F5600F560DF /* BasicLayoutView.m */,
+				9B0D28E71D203CD800A1287D /* ClickableUIView.h */,
+				9B0D28E81D203CD800A1287D /* ClickableUIView.m */,
 				9B0CCA8E1CE65F7C00207858 /* TopLayoutView.h */,
 				9B0CCA8F1CE65F7C00207858 /* TopLayoutView.m */,
 				9B8843DF1CF0C49000FCC077 /* MyMarkerTableViewCell.h */,
@@ -318,8 +330,6 @@
 				9B8843EF1CF5CCBC00FCC077 /* AvatarUIImageView.m */,
 				9BC15D2D1D13FFAC00BC1E0B /* RegisterLayoutView.h */,
 				9BC15D2E1D13FFAC00BC1E0B /* RegisterLayoutView.m */,
-				9B114F011D1563BD0098C26B /* UnitViewUtil.h */,
-				9B114F021D1563BD0098C26B /* UnitViewUtil.m */,
 				9B21B18E1D1C4E9B00F560DF /* RegisterUserInfoLayoutView.h */,
 				9B21B18F1D1C4E9B00F560DF /* RegisterUserInfoLayoutView.m */,
 			);
@@ -329,6 +339,8 @@
 		9B4FDC541CDD0190008C0E3B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				9B8843DC1CEF91A600FCC077 /* BasicViewController.h */,
+				9B8843DD1CEF91A600FCC077 /* BasicViewController.m */,
 				9B0CCAA71CEA648E00207858 /* LoginViewController.h */,
 				9B0CCAA81CEA648E00207858 /* LoginViewController.m */,
 				9B8843C01CEE14CE00FCC077 /* PublishViewController.h */,
@@ -341,8 +353,6 @@
 				9B8843D01CEE15EB00FCC077 /* NearbyViewController.m */,
 				9B8843D41CEE161B00FCC077 /* MainMapViewController.h */,
 				9B8843D51CEE161B00FCC077 /* MainMapViewController.m */,
-				9B8843DC1CEF91A600FCC077 /* BasicViewController.h */,
-				9B8843DD1CEF91A600FCC077 /* BasicViewController.m */,
 				9B07BD461D147CD8002B145E /* RegisterViewController.h */,
 				9B07BD471D147CD8002B145E /* RegisterViewController.m */,
 				9B21B18B1D1C4E8300F560DF /* RegisterUserInfoViewController.h */,
@@ -559,6 +569,7 @@
 				9B53667E1D03502D008D803A /* ErrorState.m in Sources */,
 				9B21B18D1D1C4E8300F560DF /* RegisterUserInfoViewController.m in Sources */,
 				9BB88DC41CB25C92009A081A /* ViewController.m in Sources */,
+				9B6782151D1ECB9000910922 /* ColorUtil.m in Sources */,
 				9B0CCA851CE61EBF00207858 /* UIImageView+AFNetworking.m in Sources */,
 				9B0CCA881CE61EBF00207858 /* UIWebView+AFNetworking.m in Sources */,
 				9B0CCA811CE61EBF00207858 /* AFImageDownloader.m in Sources */,
@@ -598,6 +609,7 @@
 				9B114F031D1563BD0098C26B /* UnitViewUtil.m in Sources */,
 				9BC15D2F1D13FFAC00BC1E0B /* RegisterLayoutView.m in Sources */,
 				9B0CCA861CE61EBF00207858 /* UIProgressView+AFNetworking.m in Sources */,
+				9B0D28E91D203CD800A1287D /* ClickableUIView.m in Sources */,
 				9BB88DBE1CB25C92009A081A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

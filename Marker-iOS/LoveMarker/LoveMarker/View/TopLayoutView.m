@@ -7,9 +7,11 @@
 //
 
 #import "TopLayoutView.h"
+#import "ColorUtil.h"
 
 @interface TopLayoutView ()
 
+@property (strong) id instance;
 
 @end
 
@@ -17,15 +19,12 @@
 
 @synthesize navigationItem,leftButton,rightButton;
 
-__strong id instance = nil;
-
 -(id)initWithContext:(id)context title:(NSString*)title andFrame:(CGRect)frame{
     self= [super initWithFrame:frame];
     
     if (self) {
+        _instance = context;
         [self initViewWithTitle:title];
-        
-        instance = context;
     }
     
     return self;
@@ -43,14 +42,12 @@ __strong id instance = nil;
     [navigationItem setLeftBarButtonItem:leftButton];
     [navigationItem setRightBarButtonItem:rightButton];
     
-    [self setBarTintColor:[UIColor redColor]];
+    [self setBarTintColor:[ColorUtil themeColor]];
 }
 
 -(IBAction)back:(id)sender{
-    if(instance){
-        [instance dismissViewControllerAnimated:YES completion:^{
-            
-        }];
+    if(_instance){
+        [_instance dismissViewControllerAnimated:YES completion:nil];
     }
 }
 

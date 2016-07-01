@@ -15,4 +15,5 @@
 +(BOOL)isEmptyString:(NSString*)string;
 +(BOOL)isValidateEmail:(NSString *)email;
 +(BOOL) isValidateMobile:(NSString *)mobile;
++(NSUInteger)getMixStringLength:(NSString*)string;
 @end

@@ -11,9 +11,11 @@
 @interface RegisterLayoutView : UIView
 
 -(id)initWithContext:(id)context frame:(CGRect)frame;
-
+@property (strong,nonatomic) UITextField *nicknameTextField;
 @property (strong,nonatomic) UITextField* usernameTextField;
 @property (strong,nonatomic) UITextField* passwordTextField;
 @property (strong,nonatomic) UIButton* nextStepButton;
+
+
 
 @end

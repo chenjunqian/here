@@ -13,6 +13,7 @@
 #import "LoginStatus.h"
 #import "User.h"
 #import "LoginViewController.h"
+#import "ColorUtil.h"
 
 @interface ProfilePageViewController ()
 
@@ -136,20 +137,20 @@
     _toLoginPageButton = [[UIButton alloc] init];
     _toLoginPageButton.translatesAutoresizingMaskIntoConstraints = NO;
     [_toLoginPageButton setTitle:NSLocalizedString(@"login", nil) forState:UIControlStateNormal];
-    [_toLoginPageButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [_toLoginPageButton setTitleColor:[ColorUtil tealBlueColor] forState:UIControlStateNormal];
     [_toLoginPageButton setBackgroundColor:[UIColor whiteColor]];
     [_toLoginPageButton addTarget:self action:@selector(toLoginPageSelector:) forControlEvents:UIControlEventTouchDown];
     [_loginLayoutView addSubview:_toLoginPageButton];
     
     UILabel *topLabel = [[UILabel alloc] init];
     topLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    topLabel.textColor = [UIColor blueColor];
+    topLabel.textColor = [ColorUtil tealBlueColor];
     topLabel.text = NSLocalizedString(@"you_have_not_logined", nil);
     [_loginLayoutView addSubview:topLabel];
     
     UILabel *bottomLabel = [[UILabel alloc] init];
     bottomLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    bottomLabel.textColor = [UIColor blueColor];
+    bottomLabel.textColor = [ColorUtil tealBlueColor];
     bottomLabel.text = NSLocalizedString(@"please_login_first", nil);
     [_loginLayoutView addSubview:bottomLabel];
     

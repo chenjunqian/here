@@ -10,15 +10,19 @@
 #import "AFHTTPSessionManager.h"
 #import "ResponseResult.h"
 
+typedef void (^HttpResponseHandler)(ResponseResult *response,NSObject *resultObject);
+
 @interface HttpRequest : NSObject
 
 +(void) BasicHttpRequestPOSTWithUrl:(NSString *)url andPostDictionary:(NSDictionary *)dictionnary
-                     responseData:(void (^)(ResponseResult *response,NSObject *resultObject))handler;
+                     responseData:(HttpResponseHandler)handler;
 
 + (void) BasicHttpRequestGetWithUrl:(NSString*) url :(NSDictionary*) dictionnary
-                 responseData:(void (^)(ResponseResult *response,NSObject *resultObject))handler;
+                 responseData:(HttpResponseHandler)handler;
 
-+ (void) loginWithUsername:(NSString *)username password:(NSString *)password pushKey:(NSString *)pushKey responseData:(void (^)(ResponseResult *response,NSObject *resultObject))handler;
++ (void) loginWithUsername:(NSString *)username password:(NSString *)password pushKey:(NSString *)pushKey responseData:(HttpResponseHandler)handler;
 
-+(void) checkIsUserExistWithUsername:(NSString*)username responseData:(void (^)(ResponseResult* responese,NSObject* resultObject))handler;
++(void) checkIsUserExistWithUsername:(NSString*)username responseData:(HttpResponseHandler)handler;
+
++(void) registerWithUsername:(NSString*)username password:(NSString*)password pushKey:(NSString*)pushKey nickname:(NSString*)nickname gender:(NSString*)gender birthday:(NSString*)birthday responseData:(HttpResponseHandler)handler;
 @end

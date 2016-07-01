@@ -39,10 +39,15 @@ next_step = "next";
 please_input_valid_eamil_or_phone_number = "please input valid eamail address or phone number";
 please_input_password = "please input password";
 please_input_username = "please input user account";
+please_input_nickname = "please input user nickname";
 user_account_is_already_exsit = "The user account is already exsit";
 please_input_nickname = "please input nickname";
-please_select_gender = "select gender";
+nickname_length_should_not_bigger_than = "nickname's length too long";
+please_select_gender = "gender";
+please_select_gender_first = "please select gender";
+please_select_birthday_first = "please select birthday first";
 male = "boy";
 female = "girl";
+register_info = "info";
 
 

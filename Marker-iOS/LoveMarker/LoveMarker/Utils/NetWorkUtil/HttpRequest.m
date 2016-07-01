@@ -21,7 +21,7 @@
    Basic http request method , in this project all the POST request should base on this method
  */
 +(void) BasicHttpRequestPOSTWithUrl:(NSString *)url andPostDictionary:(NSDictionary *)dictionnary
-                     responseData:(void (^)(ResponseResult *response,NSObject *resultObject))handler{
+                     responseData:(HttpResponseHandler)handler{
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSURL *realUrl = [NSURL URLWithString:url];    [manager POST:realUrl.absoluteString parameters:dictionnary progress:^(NSProgress * _Nonnull uploadProgress) {
@@ -42,7 +42,7 @@
    Basic http request method , in this project all the GET request should base on this method
  */
 +(void) BasicHttpRequestGetWithUrl:(NSString *)url :(NSDictionary *)dictionnary
-                responseData:(void (^)(ResponseResult *response,NSObject *resultObject))handler;{
+                responseData:(HttpResponseHandler)handler{
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     NSURL *realUrl = [NSURL URLWithString:url];
@@ -60,7 +60,7 @@
     }];
 }
 
-+(void) loginWithUsername:(NSString *)username password:(NSString *)password pushKey:(NSString *)pushKey responseData:(void (^)(ResponseResult *response,NSObject *resultObject))handler{
++(void) loginWithUsername:(NSString *)username password:(NSString *)password pushKey:(NSString *)pushKey responseData:(HttpResponseHandler)handler{
 
     NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionary];
     [mutableDictionary setObject:username forKey:@"username"];
@@ -70,10 +70,23 @@
     [self BasicHttpRequestPOSTWithUrl:[HttpConfiguration getLoginUrl] andPostDictionary:mutableDictionary responseData:handler];
 }
 
-+(void) checkIsUserExistWithUsername:(NSString*)username responseData:(void (^)(ResponseResult* responese,NSObject* resultObject))handler{
++(void) checkIsUserExistWithUsername:(NSString*)username responseData:(HttpResponseHandler)handler{
     NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionary];
     [mutableDictionary setObject:username forKey:@"username"];
     [self BasicHttpRequestPOSTWithUrl:[HttpConfiguration getUtlCheckUserExist] andPostDictionary:mutableDictionary responseData:handler];
+}
+
++(void) registerWithUsername:(NSString*)username password:(NSString*)password pushKey:(NSString*)pushKey nickname:(NSString*)nickname gender:(NSString*)gender birthday:(NSString*)birthday responseData:(HttpResponseHandler)handler{
+    
+    NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionary];
+    [mutableDictionary setObject:username forKey:@"username"];
+    [mutableDictionary setObject:password forKey:@"password"];
+    [mutableDictionary setObject:pushKey forKey:@"pushKey"];
+    [mutableDictionary setObject:nickname forKey:@"nickname"];
+    [mutableDictionary setObject:gender forKey:@"gender"];
+    [mutableDictionary setObject:birthday forKey:@"birthday"];
+    
+    [self BasicHttpRequestPOSTWithUrl:[HttpConfiguration getRegisterUrl] andPostDictionary:mutableDictionary responseData:handler];
 }
 
 @end

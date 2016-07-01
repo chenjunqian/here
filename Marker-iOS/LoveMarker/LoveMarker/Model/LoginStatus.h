@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "User.h"
 
+typedef void (^LoginSuccessHandler)();
+typedef void (^LoginFailedHandler)(NSInteger errorCode);
+
 @interface LoginStatus : NSObject
 
 @property (nonatomic,strong,getter=getUser,setter=setUser:) User* user;
@@ -18,4 +21,6 @@
 -(Boolean)getIsUserModel;
 -(void)logout;
 -(void)autoLogin;
+-(void)loginWithUsername:(NSString*)username password:(NSString*)password pushKey:(NSString*)pushKey successHandler:(LoginSuccessHandler)successHandler
+           failedHandler:(LoginFailedHandler)failedHandler;
 @end

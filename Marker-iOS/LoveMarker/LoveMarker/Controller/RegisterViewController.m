@@ -10,6 +10,7 @@
 #import "RegisterLayoutView.h"
 #import "RegisterUserInfoViewController.h"
 #import "UnitViewUtil.h"
+#import "LoginStatus.h"
 #import "CommomUtils.h"
 #import "HttpRequest.h"
 #import "ErrorState.h"
@@ -19,14 +20,34 @@
 @property(strong,nonatomic)RegisterLayoutView *globalLayout;
 @property(strong,nonatomic)NSString* usernameString;
 @property(strong,nonatomic)NSString* passwordString;
+@property(strong,nonatomic)NSString* nicknameString;
 
 @end
 
 @implementation RegisterViewController
 
+__strong static id instanc = nil;
+
++(instancetype)getInstance{
+    
+    if (instanc == nil) {
+        return instanc = [[self alloc] init];
+    }
+    
+    return instanc;
+    
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initView];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    if ([[LoginStatus getInstance] getIsUserModel]) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 -(void)initView{
@@ -39,11 +60,18 @@
 -(IBAction)nextStepButtonAction:(id)sender{
     _usernameString = _globalLayout.usernameTextField.text;
     _passwordString = _globalLayout.passwordTextField.text;
+    _nicknameString = _globalLayout.nicknameTextField.text;
     
     if (![CommomUtils isEmptyString:_usernameString]&& ![CommomUtils isEmptyString:_passwordString]) {
         //password' length must bigger than 6
         if ([_passwordString length]<6) {
             [UnitViewUtil showLoginAlertWithMessage:NSLocalizedString(@"set_password", nil) actionOK:NSLocalizedString(@"action_ok", nil) context:self];
+            return;
+        }else if ([CommomUtils isEmptyString:_nicknameString]){
+            [UnitViewUtil showLoginAlertWithMessage:NSLocalizedString(@"please_input_nickname", nil) actionOK:NSLocalizedString(@"action_ok", nil) context:self];
+            return;
+        }else if([CommomUtils getMixStringLength:_nicknameString]>12){
+            [UnitViewUtil showLoginAlertWithMessage:NSLocalizedString(@"nickname_length_should_not_bigger_than", nil) actionOK:NSLocalizedString(@"action_ok", nil) context:self];
             return;
         }
         
@@ -58,7 +86,10 @@
                     //user account is not exist
                     RegisterUserInfoViewController *registerUserInfoController = [[RegisterUserInfoViewController alloc] init];
                     [self presentViewController:registerUserInfoController animated:YES completion:^{
-                        
+                        _registerTempUser.nickname = _nicknameString;
+                        _registerTempUser.username = _usernameString;
+                        _registerTempUser.password = _passwordString;
+                        _registerTempUser.pushKey = @"";
                     }];
                     
                 }

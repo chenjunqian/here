@@ -44,6 +44,28 @@ __strong static id instance = nil;
     self.user = nil;
 }
 
+-(void)loginWithUsername:(NSString*)username password:(NSString*)password pushKey:(NSString*)pushKey successHandler:(LoginSuccessHandler)successHandler
+           failedHandler:(LoginFailedHandler)failedHandler{
+    
+    [HttpRequest loginWithUsername:username password:password pushKey:pushKey responseData:^(ResponseResult *response, NSObject *resultObject) {
+        ResponseResult* result = (ResponseResult*)response;
+        if (resultObject!=nil&&(result.status) == Error_Code_Correct) {
+            User* user = [NSObject objectOfClass:@"User" fromJSON:(NSDictionary*)resultObject];
+            [[LoginStatus getInstance] setUser:user];
+            [[[MyDataController alloc]init] saveOrUpdataUserCoreDataWithUsername:user.username password:user.password key:KEY_VALUE];
+            NSArray *result = [[[MyDataController alloc]init] getUserCoreDataWithUsername:user.username];
+            successHandler();
+            NSLog(@"fetch result :%@",result);
+            
+        }else if((result.status) == Error_Code_User_Not_Found){
+            failedHandler(result.status);
+        }else if ((result.status) == ERROR_CODE_USER_OR_PASSWORD_INVALID){
+            failedHandler(result.status);
+        }
+        
+    }];
+}
+
 -(void)autoLogin{
     CoreDataUser* user = [[[[MyDataController alloc] init] getUserCoreDataWithDefualKey] firstObject];
     if (user) {
