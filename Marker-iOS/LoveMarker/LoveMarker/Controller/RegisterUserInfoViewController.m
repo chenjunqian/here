@@ -72,28 +72,28 @@
     NSArray* birthdayArray = [birthdayString componentsSeparatedByString:@"/"];
     NSString* formatBirthdayString = [NSString stringWithFormat:@"%@-%@-%@",birthdayArray[0],birthdayArray[1],birthdayArray[2]];
     NSLog(@"date : %@",formatBirthdayString);
-    [RegisterViewController getInstance].registerTempUser.birthday = formatBirthdayString;
+    User* user = [RegisterViewController getInstance].registerTempUser;
+    user.birthday = formatBirthdayString;
     if (_isCheckGender == 1) {
-        [RegisterViewController getInstance].registerTempUser.gender = @"male";
+        user.gender = @"male";
     }else if(_isCheckGender == 2){
-        [RegisterViewController getInstance].registerTempUser.gender = @"female";
+        user.gender = @"female";
     }
     
-    [[LoginStatus getInstance] setUser:[RegisterViewController getInstance].registerTempUser];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [[LoginStatus getInstance] setUser:user];
     
-//    [HttpRequest registerWithUsername:user.username password:user.password pushKey:user.pushKey nickname:user.nickname gender:user.gender birthday:user.birthday responseData:^(ResponseResult *response, NSObject *resultObject) {
-//        if (resultObject!=nil&&response.status == Error_Code_Correct) {
-//            
-//            //注册完毕后马上登陆
-//            [[LoginStatus getInstance] loginWithUsername:user.username password:user.password pushKey:user.pushKey successHandler:^{
-//                [self dismissViewControllerAnimated:YES completion:nil];
-//            } failedHandler:^(NSInteger errorCode) {
-//                
-//            }];
-//        }
-//        
-//    }];
+    [HttpRequest registerWithUsername:user.username password:user.password pushKey:user.pushKey nickname:user.nickname gender:user.gender birthday:user.birthday responseData:^(ResponseResult *response, NSObject *resultObject) {
+        if (resultObject!=nil&&response.status == Error_Code_Correct) {
+            
+            //注册完毕后马上登陆
+            [[LoginStatus getInstance] loginWithUsername:user.username password:user.password pushKey:user.pushKey successHandler:^{
+                [self dismissViewControllerAnimated:YES completion:nil];
+            } failedHandler:^(NSInteger errorCode) {
+                
+            }];
+        }
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
