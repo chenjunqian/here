@@ -14,6 +14,7 @@
 #import "User.h"
 #import "LoginViewController.h"
 #import "ColorUtil.h"
+#import "GlobalActivityIndicators.h"
 
 @interface ProfilePageViewController ()
 
@@ -196,6 +197,7 @@
     [self presentViewController:loginViewController animated:YES completion:^{
         
     }];
+    
 }
 
 -(void)loadData{

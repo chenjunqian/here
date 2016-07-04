@@ -32,7 +32,6 @@
 		9B0D28E91D203CD800A1287D /* ClickableUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0D28E81D203CD800A1287D /* ClickableUIView.m */; };
 		9B114F031D1563BD0098C26B /* UnitViewUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B114F021D1563BD0098C26B /* UnitViewUtil.m */; };
 		9B21B18D1D1C4E8300F560DF /* RegisterUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B21B18C1D1C4E8300F560DF /* RegisterUserInfoViewController.m */; };
-		9B21B1901D1C4E9B00F560DF /* RegisterUserInfoLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B21B18F1D1C4E9B00F560DF /* RegisterUserInfoLayoutView.m */; };
 		9B21B1931D1C4F5600F560DF /* BasicLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B21B1921D1C4F5600F560DF /* BasicLayoutView.m */; };
 		9B4FDC701CE24E5C008C0E3B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9B4FDC721CE24E5C008C0E3B /* Localizable.strings */; };
 		9B4FDC781CE38A06008C0E3B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4FDC771CE38A06008C0E3B /* User.m */; };
@@ -49,7 +48,6 @@
 		9B8843D71CEE161B00FCC077 /* MainMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8843D51CEE161B00FCC077 /* MainMapViewController.m */; };
 		9B8843DB1CEF916100FCC077 /* CommomUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8843DA1CEF916100FCC077 /* CommomUtils.m */; };
 		9B8843DE1CEF91A600FCC077 /* BasicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8843DD1CEF91A600FCC077 /* BasicViewController.m */; };
-		9B8843E11CF0C49000FCC077 /* MyMarkerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8843E01CF0C49000FCC077 /* MyMarkerTableViewCell.m */; };
 		9B8843ED1CF35DAD00FCC077 /* LoginStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8843EC1CF35DAD00FCC077 /* LoginStatus.m */; };
 		9B8843F01CF5CCBC00FCC077 /* AvatarUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8843EF1CF5CCBC00FCC077 /* AvatarUIImageView.m */; };
 		9B9D99171D16E3AC00535922 /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B9D99161D16E3AC00535922 /* TestView.xib */; };
@@ -61,7 +59,10 @@
 		9BB88DD71CB25C92009A081A /* LoveMarkerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB88DD61CB25C92009A081A /* LoveMarkerTests.m */; };
 		9BB88DE21CB25C92009A081A /* LoveMarkerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB88DE11CB25C92009A081A /* LoveMarkerUITests.m */; };
 		9BB88DF01CB27A3A009A081A /* splash_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BB88DEF1CB27A3A009A081A /* splash_background.png */; };
-		9BC15D2F1D13FFAC00BC1E0B /* RegisterLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BC15D2E1D13FFAC00BC1E0B /* RegisterLayoutView.m */; };
+		9BCB54221D2ACD0F00853776 /* RegisterLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCB541F1D2ACD0F00853776 /* RegisterLayoutView.m */; };
+		9BCB54231D2ACD0F00853776 /* RegisterUserInfoLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCB54211D2ACD0F00853776 /* RegisterUserInfoLayoutView.m */; };
+		9BCB54271D2ACD3400853776 /* MyMarkerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCB54261D2ACD3400853776 /* MyMarkerTableViewCell.m */; };
+		9BCB542A1D2ACD9B00853776 /* GlobalActivityIndicators.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCB54291D2ACD9B00853776 /* GlobalActivityIndicators.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,8 +135,6 @@
 		9B114F021D1563BD0098C26B /* UnitViewUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UnitViewUtil.m; path = ../View/UnitViewUtil.m; sourceTree = "<group>"; };
 		9B21B18B1D1C4E8300F560DF /* RegisterUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterUserInfoViewController.h; sourceTree = "<group>"; };
 		9B21B18C1D1C4E8300F560DF /* RegisterUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterUserInfoViewController.m; sourceTree = "<group>"; };
-		9B21B18E1D1C4E9B00F560DF /* RegisterUserInfoLayoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterUserInfoLayoutView.h; sourceTree = "<group>"; };
-		9B21B18F1D1C4E9B00F560DF /* RegisterUserInfoLayoutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterUserInfoLayoutView.m; sourceTree = "<group>"; };
 		9B21B1911D1C4F5600F560DF /* BasicLayoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BasicLayoutView.h; path = ../Controller/BasicLayoutView.h; sourceTree = "<group>"; };
 		9B21B1921D1C4F5600F560DF /* BasicLayoutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BasicLayoutView.m; path = ../Controller/BasicLayoutView.m; sourceTree = "<group>"; };
 		9B4FDC711CE24E5C008C0E3B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -167,8 +166,6 @@
 		9B8843DA1CEF916100FCC077 /* CommomUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommomUtils.m; sourceTree = "<group>"; };
 		9B8843DC1CEF91A600FCC077 /* BasicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicViewController.h; sourceTree = "<group>"; };
 		9B8843DD1CEF91A600FCC077 /* BasicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicViewController.m; sourceTree = "<group>"; };
-		9B8843DF1CF0C49000FCC077 /* MyMarkerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMarkerTableViewCell.h; sourceTree = "<group>"; };
-		9B8843E01CF0C49000FCC077 /* MyMarkerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMarkerTableViewCell.m; sourceTree = "<group>"; };
 		9B8843EB1CF35DAD00FCC077 /* LoginStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginStatus.h; sourceTree = "<group>"; };
 		9B8843EC1CF35DAD00FCC077 /* LoginStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginStatus.m; sourceTree = "<group>"; };
 		9B8843EE1CF5CCBC00FCC077 /* AvatarUIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatarUIImageView.h; sourceTree = "<group>"; };
@@ -190,8 +187,14 @@
 		9BB88DE11CB25C92009A081A /* LoveMarkerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoveMarkerUITests.m; sourceTree = "<group>"; };
 		9BB88DE31CB25C92009A081A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BB88DEF1CB27A3A009A081A /* splash_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splash_background.png; path = ../../../Here/app/src/main/res/drawable/splash_background.png; sourceTree = "<group>"; };
-		9BC15D2D1D13FFAC00BC1E0B /* RegisterLayoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterLayoutView.h; sourceTree = "<group>"; };
-		9BC15D2E1D13FFAC00BC1E0B /* RegisterLayoutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterLayoutView.m; sourceTree = "<group>"; };
+		9BCB541E1D2ACD0F00853776 /* RegisterLayoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterLayoutView.h; sourceTree = "<group>"; };
+		9BCB541F1D2ACD0F00853776 /* RegisterLayoutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterLayoutView.m; sourceTree = "<group>"; };
+		9BCB54201D2ACD0F00853776 /* RegisterUserInfoLayoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterUserInfoLayoutView.h; sourceTree = "<group>"; };
+		9BCB54211D2ACD0F00853776 /* RegisterUserInfoLayoutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterUserInfoLayoutView.m; sourceTree = "<group>"; };
+		9BCB54251D2ACD3400853776 /* MyMarkerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMarkerTableViewCell.h; sourceTree = "<group>"; };
+		9BCB54261D2ACD3400853776 /* MyMarkerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMarkerTableViewCell.m; sourceTree = "<group>"; };
+		9BCB54281D2ACD9B00853776 /* GlobalActivityIndicators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalActivityIndicators.h; sourceTree = "<group>"; };
+		9BCB54291D2ACD9B00853776 /* GlobalActivityIndicators.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalActivityIndicators.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -317,6 +320,8 @@
 		9B4FDC531CDD0186008C0E3B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9BCB54241D2ACD3400853776 /* Cells */,
+				9BCB541D1D2ACD0F00853776 /* ControllerView */,
 				9B9D99161D16E3AC00535922 /* TestView.xib */,
 				9B21B1911D1C4F5600F560DF /* BasicLayoutView.h */,
 				9B21B1921D1C4F5600F560DF /* BasicLayoutView.m */,
@@ -324,14 +329,10 @@
 				9B0D28E81D203CD800A1287D /* ClickableUIView.m */,
 				9B0CCA8E1CE65F7C00207858 /* TopLayoutView.h */,
 				9B0CCA8F1CE65F7C00207858 /* TopLayoutView.m */,
-				9B8843DF1CF0C49000FCC077 /* MyMarkerTableViewCell.h */,
-				9B8843E01CF0C49000FCC077 /* MyMarkerTableViewCell.m */,
 				9B8843EE1CF5CCBC00FCC077 /* AvatarUIImageView.h */,
 				9B8843EF1CF5CCBC00FCC077 /* AvatarUIImageView.m */,
-				9BC15D2D1D13FFAC00BC1E0B /* RegisterLayoutView.h */,
-				9BC15D2E1D13FFAC00BC1E0B /* RegisterLayoutView.m */,
-				9B21B18E1D1C4E9B00F560DF /* RegisterUserInfoLayoutView.h */,
-				9B21B18F1D1C4E9B00F560DF /* RegisterUserInfoLayoutView.m */,
+				9BCB54281D2ACD9B00853776 /* GlobalActivityIndicators.h */,
+				9BCB54291D2ACD9B00853776 /* GlobalActivityIndicators.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -428,6 +429,26 @@
 				9BB88DE31CB25C92009A081A /* Info.plist */,
 			);
 			path = LoveMarkerUITests;
+			sourceTree = "<group>";
+		};
+		9BCB541D1D2ACD0F00853776 /* ControllerView */ = {
+			isa = PBXGroup;
+			children = (
+				9BCB541E1D2ACD0F00853776 /* RegisterLayoutView.h */,
+				9BCB541F1D2ACD0F00853776 /* RegisterLayoutView.m */,
+				9BCB54201D2ACD0F00853776 /* RegisterUserInfoLayoutView.h */,
+				9BCB54211D2ACD0F00853776 /* RegisterUserInfoLayoutView.m */,
+			);
+			path = ControllerView;
+			sourceTree = "<group>";
+		};
+		9BCB54241D2ACD3400853776 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				9BCB54251D2ACD3400853776 /* MyMarkerTableViewCell.h */,
+				9BCB54261D2ACD3400853776 /* MyMarkerTableViewCell.m */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -576,12 +597,14 @@
 				9BB88DC11CB25C92009A081A /* AppDelegate.m in Sources */,
 				9B774B1D1D0D76C7000BF4B3 /* CoreDataModel.xcdatamodeld in Sources */,
 				9B4FDC781CE38A06008C0E3B /* User.m in Sources */,
+				9BCB54231D2ACD0F00853776 /* RegisterUserInfoLayoutView.m in Sources */,
 				9B8843D71CEE161B00FCC077 /* MainMapViewController.m in Sources */,
 				9B774B2C1D0F1F43000BF4B3 /* CoreDataUser.m in Sources */,
 				9B8843C31CEE14CE00FCC077 /* PublishViewController.m in Sources */,
 				9B0CCA831CE61EBF00207858 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				9B0CCA8D1CE61F1600207858 /* NSObject+ObjectMap.m in Sources */,
 				9B0CCA7C1CE61EBF00207858 /* AFSecurityPolicy.m in Sources */,
+				9BCB542A1D2ACD9B00853776 /* GlobalActivityIndicators.m in Sources */,
 				9B0CCA841CE61EBF00207858 /* UIButton+AFNetworking.m in Sources */,
 				9B8843CD1CEE15A900FCC077 /* CurrentPostViewController.m in Sources */,
 				9B0CCAA91CEA648E00207858 /* LoginViewController.m in Sources */,
@@ -595,10 +618,8 @@
 				9B0CCA7F1CE61EBF00207858 /* AFURLSessionManager.m in Sources */,
 				9B0CCA891CE61EBF00207858 /* HttpConfiguration.m in Sources */,
 				9B0CCA7B1CE61EBF00207858 /* AFNetworkReachabilityManager.m in Sources */,
-				9B8843E11CF0C49000FCC077 /* MyMarkerTableViewCell.m in Sources */,
 				9B8843F01CF5CCBC00FCC077 /* AvatarUIImageView.m in Sources */,
 				9B21B1931D1C4F5600F560DF /* BasicLayoutView.m in Sources */,
-				9B21B1901D1C4E9B00F560DF /* RegisterUserInfoLayoutView.m in Sources */,
 				9B774B291D0D8000000BF4B3 /* MyDataController.m in Sources */,
 				9B8843D21CEE15EB00FCC077 /* NearbyViewController.m in Sources */,
 				9B0CCA7E1CE61EBF00207858 /* AFURLResponseSerialization.m in Sources */,
@@ -607,8 +628,9 @@
 				9B0CCA871CE61EBF00207858 /* UIRefreshControl+AFNetworking.m in Sources */,
 				9B0CCA8A1CE61EBF00207858 /* HttpRequest.m in Sources */,
 				9B114F031D1563BD0098C26B /* UnitViewUtil.m in Sources */,
-				9BC15D2F1D13FFAC00BC1E0B /* RegisterLayoutView.m in Sources */,
 				9B0CCA861CE61EBF00207858 /* UIProgressView+AFNetworking.m in Sources */,
+				9BCB54221D2ACD0F00853776 /* RegisterLayoutView.m in Sources */,
+				9BCB54271D2ACD3400853776 /* MyMarkerTableViewCell.m in Sources */,
 				9B0D28E91D203CD800A1287D /* ClickableUIView.m in Sources */,
 				9BB88DBE1CB25C92009A081A /* main.m in Sources */,
 			);

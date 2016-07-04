@@ -31,7 +31,6 @@
 @property (nonatomic,strong) UIButton *registerButton;
 @property (nonatomic,strong) UIButton *forgetPasswordButton;
 
-
 @property (nonatomic,strong) NSString *usernameString;
 @property (nonatomic,strong) NSString *passwordString;
 

@@ -80,11 +80,9 @@
         user.gender = @"female";
     }
     
-    [[LoginStatus getInstance] setUser:user];
-    
     [HttpRequest registerWithUsername:user.username password:user.password pushKey:user.pushKey nickname:user.nickname gender:user.gender birthday:user.birthday responseData:^(ResponseResult *response, NSObject *resultObject) {
         if (resultObject!=nil&&response.status == Error_Code_Correct) {
-            
+            [[LoginStatus getInstance] setUser:user];
             //注册完毕后马上登陆
             [[LoginStatus getInstance] loginWithUsername:user.username password:user.password pushKey:user.pushKey successHandler:^{
                 [self dismissViewControllerAnimated:YES completion:nil];
