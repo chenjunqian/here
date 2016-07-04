@@ -34,6 +34,7 @@ register = "注册";
 input_phone_number_or_email = "输入手机号或者邮箱";
 set_password = "设置密码";
 next_step = "next";
+indicator_is_login = "登录 ...";
 
 /*注册界面*/
 please_input_valid_eamil_or_phone_number = "请输入正确的邮箱或者手机号";
@@ -49,3 +50,4 @@ please_select_birthday_first = "请填写生日";
 male = "男";
 female = "女";
 register_info = "个人信息";
+indicator_is_registering = "正在注册 ....";

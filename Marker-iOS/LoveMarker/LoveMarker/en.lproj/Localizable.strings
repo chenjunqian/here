@@ -34,6 +34,7 @@ register = "register";
 input_phone_number_or_email = "phone number or email address";
 set_password = "password,more than six figures";
 next_step = "next";
+indicator_is_login = "login ...";
 
 /*注册界面*/
 please_input_valid_eamil_or_phone_number = "please input valid eamail address or phone number";
@@ -49,5 +50,6 @@ please_select_birthday_first = "please select birthday first";
 male = "boy";
 female = "girl";
 register_info = "info";
+indicator_is_registering = "register ....";
 
 

@@ -15,6 +15,7 @@
 #import "CommomUtils.h"
 #import "LoginStatus.h"
 #import "User.h"
+#import "GlobalActivityIndicators.h"
 
 @interface RegisterUserInfoViewController ()
 
@@ -56,6 +57,9 @@
 }
 
 -(IBAction)nextStep:(id)sender{
+    GlobalActivityIndicators* indicator = [[GlobalActivityIndicators alloc] initWithTitle:NSLocalizedString(@"indicator_is_registering", nil) frame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    [indicator.activityIndicatorView startAnimating];
+    
     NSDate *birthday = _registerUserInfoLayoutView.datePicker.date;
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"yyyy/MM/dd"];
@@ -84,8 +88,11 @@
         if (resultObject!=nil&&response.status == Error_Code_Correct) {
             [[LoginStatus getInstance] setUser:user];
             //注册完毕后马上登陆
+            [indicator setTitle:NSLocalizedString(@"indicator_is_login", nil)];
             [[LoginStatus getInstance] loginWithUsername:user.username password:user.password pushKey:user.pushKey successHandler:^{
-                [self dismissViewControllerAnimated:YES completion:nil];
+                [self dismissViewControllerAnimated:YES completion:^{
+                    [indicator setHidden:YES];
+                }];
             } failedHandler:^(NSInteger errorCode) {
                 
             }];

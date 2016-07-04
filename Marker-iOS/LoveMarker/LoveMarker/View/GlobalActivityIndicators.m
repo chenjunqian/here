@@ -63,4 +63,8 @@
     
 }
 
+-(void)setTitle:(NSString*)title{
+    indicatorLabel.text = title;
+}
+
 @end

@@ -11,6 +11,7 @@
 @interface GlobalActivityIndicators : UIView
 
 -(id)initWithTitle:(NSString*)title frame:(CGRect)frame;
+-(void)setTitle:(NSString*)title;
 
 @property (strong,nonatomic) UIView* containnerView;
 @property (strong,nonatomic) UILabel* indicatorLabel;
