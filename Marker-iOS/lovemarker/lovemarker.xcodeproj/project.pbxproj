@@ -38,6 +38,8 @@
 		9B4FDC871CE49D82008C0E3B /* ResponseResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4FDC861CE49D82008C0E3B /* ResponseResult.m */; };
 		9B53667E1D03502D008D803A /* ErrorState.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B53667D1D03502D008D803A /* ErrorState.m */; };
 		9B6782151D1ECB9000910922 /* ColorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6782141D1ECB9000910922 /* ColorUtil.m */; };
+		9B67F9EA1D3017BC00EF4E61 /* ProfilePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B67F9E91D3017BC00EF4E61 /* ProfilePageView.m */; };
+		9B67F9ED1D301A9700EF4E61 /* UserInforCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B67F9EC1D301A9700EF4E61 /* UserInforCell.m */; };
 		9B774B1D1D0D76C7000BF4B3 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B774B1B1D0D76C7000BF4B3 /* CoreDataModel.xcdatamodeld */; };
 		9B774B291D0D8000000BF4B3 /* MyDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B774B281D0D8000000BF4B3 /* MyDataController.m */; };
 		9B774B2C1D0F1F43000BF4B3 /* CoreDataUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B774B2B1D0F1F43000BF4B3 /* CoreDataUser.m */; };
@@ -147,6 +149,10 @@
 		9B53667D1D03502D008D803A /* ErrorState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorState.m; sourceTree = "<group>"; };
 		9B6782131D1ECB9000910922 /* ColorUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorUtil.h; sourceTree = "<group>"; };
 		9B6782141D1ECB9000910922 /* ColorUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorUtil.m; sourceTree = "<group>"; };
+		9B67F9E81D3017BC00EF4E61 /* ProfilePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfilePageView.h; path = ../ProfilePageView.h; sourceTree = "<group>"; };
+		9B67F9E91D3017BC00EF4E61 /* ProfilePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfilePageView.m; path = ../ProfilePageView.m; sourceTree = "<group>"; };
+		9B67F9EB1D301A9700EF4E61 /* UserInforCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInforCell.h; sourceTree = "<group>"; };
+		9B67F9EC1D301A9700EF4E61 /* UserInforCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInforCell.m; sourceTree = "<group>"; };
 		9B774B1C1D0D76C7000BF4B3 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		9B774B271D0D8000000BF4B3 /* MyDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDataController.h; sourceTree = "<group>"; };
 		9B774B281D0D8000000BF4B3 /* MyDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDataController.m; sourceTree = "<group>"; };
@@ -434,6 +440,8 @@
 		9BCB541D1D2ACD0F00853776 /* ControllerView */ = {
 			isa = PBXGroup;
 			children = (
+				9B67F9E81D3017BC00EF4E61 /* ProfilePageView.h */,
+				9B67F9E91D3017BC00EF4E61 /* ProfilePageView.m */,
 				9BCB541E1D2ACD0F00853776 /* RegisterLayoutView.h */,
 				9BCB541F1D2ACD0F00853776 /* RegisterLayoutView.m */,
 				9BCB54201D2ACD0F00853776 /* RegisterUserInfoLayoutView.h */,
@@ -447,6 +455,8 @@
 			children = (
 				9BCB54251D2ACD3400853776 /* MyMarkerTableViewCell.h */,
 				9BCB54261D2ACD3400853776 /* MyMarkerTableViewCell.m */,
+				9B67F9EB1D301A9700EF4E61 /* UserInforCell.h */,
+				9B67F9EC1D301A9700EF4E61 /* UserInforCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -587,8 +597,10 @@
 			files = (
 				9B4FDC871CE49D82008C0E3B /* ResponseResult.m in Sources */,
 				9B0CCA801CE61EBF00207858 /* AFAutoPurgingImageCache.m in Sources */,
+				9B67F9EA1D3017BC00EF4E61 /* ProfilePageView.m in Sources */,
 				9B53667E1D03502D008D803A /* ErrorState.m in Sources */,
 				9B21B18D1D1C4E8300F560DF /* RegisterUserInfoViewController.m in Sources */,
+				9B67F9ED1D301A9700EF4E61 /* UserInforCell.m in Sources */,
 				9BB88DC41CB25C92009A081A /* ViewController.m in Sources */,
 				9B6782151D1ECB9000910922 /* ColorUtil.m in Sources */,
 				9B0CCA851CE61EBF00207858 /* UIImageView+AFNetworking.m in Sources */,

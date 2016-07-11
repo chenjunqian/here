@@ -26,7 +26,17 @@ action_ok = "好的";
 me = "我的";
 my_marker = "我的爱记";
 about_me = "关于";
+change_avatar = "修改头像";
+my_nickname = "昵称";
+my_gender = "性别";
+my_birthday = "生日";
+my_simple_profile = "一句话介绍自己";
+my_simple_profile_content_hint = "empty";
+my_long_profile = "具体描述";
+my_long_profile_content_hint = "empty";
+my_password = "修改密码";
 you_have_not_logined = "您还没有登录";
+my_username = "账号";
 please_login_first = "请先登录";
 
 /*登录界面*/

@@ -24,10 +24,20 @@ action_ok = "ok";
 
 /*Me page*/
 me = "me";
-my_marker = "My Markers";
+my_marker = "my markers";
 about_me = "about me";
 you_have_not_logined = "you haven't logined yet";
 please_login_first = "please login first";
+change_avatar = "change avatar";
+my_nickname = "nickname";
+my_gender = "gender";
+my_birthday = "birthday";
+my_simple_profile = "brief introduction";
+my_simple_profile_content_hint = "empty";
+my_long_profile = "detail introduction";
+my_long_profile_content_hint = "empty";
+my_username = "account";
+my_password = "change password";
 
 /*登录界面*/
 register = "register";

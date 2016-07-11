@@ -31,4 +31,10 @@
     return viewBackgroundGrey;
 }
 
++(UIColor*)textColorSubBlack{
+    UIColor* textColorSubBlack = [UIColor colorWithRed:0xcc/255.0 green:0xcc/255.0 blue:0xcc/255.0 alpha:1.0];
+    
+    return textColorSubBlack;
+}
+
 @end

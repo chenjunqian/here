@@ -13,4 +13,5 @@
 +(UIColor*)themeColor;
 +(UIColor*)tealBlueColor;
 +(UIColor*)viewBackgroundGrey;
++(UIColor*)textColorSubBlack;
 @end
