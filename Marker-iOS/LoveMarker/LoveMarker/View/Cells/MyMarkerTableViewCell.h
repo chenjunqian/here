@@ -14,5 +14,5 @@
 @property (nonatomic,strong,getter=getLocationLabel) UILabel *locationLabel;
 @property (nonatomic,strong,getter=getTimeLabel) UILabel *timeLabel;
 
-+(NSInteger)getCellHight;
+-(NSInteger)getCellHight;
 @end

@@ -16,4 +16,5 @@
 +(BOOL)isValidateEmail:(NSString *)email;
 +(BOOL) isValidateMobile:(NSString *)mobile;
 +(NSUInteger)getMixStringLength:(NSString*)string;
++(NSDate*)timestampToDate:(NSString*)timestamp;
 @end

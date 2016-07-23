@@ -89,4 +89,11 @@
     [self BasicHttpRequestPOSTWithUrl:[HttpConfiguration getRegisterUrl] andPostDictionary:mutableDictionary responseData:handler];
 }
 
++(void) getPosyByUsername:(NSString*)username responseData:(HttpResponseHandler)handler{
+    NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionary];
+    [mutableDictionary setObject:username forKey:@"username"];
+    
+    [self BasicHttpRequestPOSTWithUrl:[HttpConfiguration getUrlUrlGetPostByUsername] andPostDictionary:mutableDictionary responseData:handler];
+}
+
 @end

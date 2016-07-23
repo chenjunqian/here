@@ -25,4 +25,6 @@ typedef void (^HttpResponseHandler)(ResponseResult *response,NSObject *resultObj
 +(void) checkIsUserExistWithUsername:(NSString*)username responseData:(HttpResponseHandler)handler;
 
 +(void) registerWithUsername:(NSString*)username password:(NSString*)password pushKey:(NSString*)pushKey nickname:(NSString*)nickname gender:(NSString*)gender birthday:(NSString*)birthday responseData:(HttpResponseHandler)handler;
+
++(void) getPosyByUsername:(NSString*)username responseData:(HttpResponseHandler)handler;
 @end

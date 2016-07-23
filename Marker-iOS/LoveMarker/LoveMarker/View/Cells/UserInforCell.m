@@ -39,7 +39,7 @@
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[titleUILabel]" options:0 metrics:0 views:views]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:titleUILabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[titleUILabel]-10-|" options:0 metrics:0 views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[parameterUILabel]-10-|" options:0 metrics:0 views:views]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:parameterUILabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
 }
 

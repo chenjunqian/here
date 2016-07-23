@@ -18,7 +18,8 @@ simpleProfileUIView , simpleProfileUILabel , simpleProfileContentUILabel , longP
     self = [super initWithFrame:frame];
     
     if (self) {
-        topLayoutView = [[TopLayoutView alloc] initWithContext:context title:topTitle andFrame:CGRectMake(0, 20, self.frame.size.width, 50)];
+        topLayoutView = [[TopLayoutView alloc] initWithoutButtom:context title:topTitle andFrame:CGRectMake(0, 20, self.frame.size.width, 50)];
+        [topLayoutView.leftButton setAccessibilityElementsHidden:YES];
         [self addSubview:topLayoutView];
         
         avatarUIView  = [[ClickableUIView alloc] init];
@@ -99,7 +100,7 @@ simpleProfileUIView , simpleProfileUILabel , simpleProfileContentUILabel , longP
         usernameUIView = [[UserInforCell alloc] init];
         usernameUIView.titleUILabel.text = NSLocalizedString(@"my_username", nil);
         usernameUIView.translatesAutoresizingMaskIntoConstraints = NO;
-        usernameUIView.parameterUILabel.hidden = YES;
+        usernameUIView.parameterUILabel.hidden = NO;
         [self addSubview:usernameUIView];
         
         passwordUIView = [[UserInforCell alloc] init];

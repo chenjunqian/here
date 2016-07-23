@@ -37,12 +37,16 @@
 		9B4FDC781CE38A06008C0E3B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4FDC771CE38A06008C0E3B /* User.m */; };
 		9B4FDC871CE49D82008C0E3B /* ResponseResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4FDC861CE49D82008C0E3B /* ResponseResult.m */; };
 		9B53667E1D03502D008D803A /* ErrorState.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B53667D1D03502D008D803A /* ErrorState.m */; };
+		9B5E7A311D42819C002286A5 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5E7A301D42819C002286A5 /* Post.m */; };
+		9B5E7A341D42869B002286A5 /* PostList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5E7A331D42869B002286A5 /* PostList.m */; };
 		9B6782151D1ECB9000910922 /* ColorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6782141D1ECB9000910922 /* ColorUtil.m */; };
 		9B67F9EA1D3017BC00EF4E61 /* ProfilePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B67F9E91D3017BC00EF4E61 /* ProfilePageView.m */; };
 		9B67F9ED1D301A9700EF4E61 /* UserInforCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B67F9EC1D301A9700EF4E61 /* UserInforCell.m */; };
 		9B774B1D1D0D76C7000BF4B3 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B774B1B1D0D76C7000BF4B3 /* CoreDataModel.xcdatamodeld */; };
 		9B774B291D0D8000000BF4B3 /* MyDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B774B281D0D8000000BF4B3 /* MyDataController.m */; };
 		9B774B2C1D0F1F43000BF4B3 /* CoreDataUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B774B2B1D0F1F43000BF4B3 /* CoreDataUser.m */; };
+		9B7BD7C41D3E1B4D0088C951 /* MyMarkerUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B7BD7C31D3E1B4D0088C951 /* MyMarkerUIViewController.m */; };
+		9B7BD7C71D3E1B830088C951 /* MyMarkerUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B7BD7C61D3E1B830088C951 /* MyMarkerUIView.m */; };
 		9B8843C31CEE14CE00FCC077 /* PublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8843C11CEE14CE00FCC077 /* PublishViewController.m */; };
 		9B8843C81CEE157E00FCC077 /* ProfilePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8843C61CEE157E00FCC077 /* ProfilePageViewController.m */; };
 		9B8843CD1CEE15A900FCC077 /* CurrentPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B8843CB1CEE15A900FCC077 /* CurrentPostViewController.m */; };
@@ -147,6 +151,10 @@
 		9B4FDC861CE49D82008C0E3B /* ResponseResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseResult.m; sourceTree = "<group>"; };
 		9B53667C1D03502D008D803A /* ErrorState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorState.h; sourceTree = "<group>"; };
 		9B53667D1D03502D008D803A /* ErrorState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorState.m; sourceTree = "<group>"; };
+		9B5E7A2F1D42819C002286A5 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		9B5E7A301D42819C002286A5 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
+		9B5E7A321D42869B002286A5 /* PostList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostList.h; sourceTree = "<group>"; };
+		9B5E7A331D42869B002286A5 /* PostList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostList.m; sourceTree = "<group>"; };
 		9B6782131D1ECB9000910922 /* ColorUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorUtil.h; sourceTree = "<group>"; };
 		9B6782141D1ECB9000910922 /* ColorUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorUtil.m; sourceTree = "<group>"; };
 		9B67F9E81D3017BC00EF4E61 /* ProfilePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfilePageView.h; path = ../ProfilePageView.h; sourceTree = "<group>"; };
@@ -158,6 +166,10 @@
 		9B774B281D0D8000000BF4B3 /* MyDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDataController.m; sourceTree = "<group>"; };
 		9B774B2A1D0F1F43000BF4B3 /* CoreDataUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataUser.h; sourceTree = "<group>"; };
 		9B774B2B1D0F1F43000BF4B3 /* CoreDataUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataUser.m; sourceTree = "<group>"; };
+		9B7BD7C21D3E1B4D0088C951 /* MyMarkerUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMarkerUIViewController.h; sourceTree = "<group>"; };
+		9B7BD7C31D3E1B4D0088C951 /* MyMarkerUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMarkerUIViewController.m; sourceTree = "<group>"; };
+		9B7BD7C51D3E1B830088C951 /* MyMarkerUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMarkerUIView.h; sourceTree = "<group>"; };
+		9B7BD7C61D3E1B830088C951 /* MyMarkerUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMarkerUIView.m; sourceTree = "<group>"; };
 		9B8843C01CEE14CE00FCC077 /* PublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishViewController.h; sourceTree = "<group>"; };
 		9B8843C11CEE14CE00FCC077 /* PublishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishViewController.m; sourceTree = "<group>"; };
 		9B8843C51CEE157E00FCC077 /* ProfilePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfilePageViewController.h; sourceTree = "<group>"; };
@@ -319,6 +331,10 @@
 				9B53667D1D03502D008D803A /* ErrorState.m */,
 				9B774B2A1D0F1F43000BF4B3 /* CoreDataUser.h */,
 				9B774B2B1D0F1F43000BF4B3 /* CoreDataUser.m */,
+				9B5E7A2F1D42819C002286A5 /* Post.h */,
+				9B5E7A301D42819C002286A5 /* Post.m */,
+				9B5E7A321D42869B002286A5 /* PostList.h */,
+				9B5E7A331D42869B002286A5 /* PostList.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -364,6 +380,8 @@
 				9B07BD471D147CD8002B145E /* RegisterViewController.m */,
 				9B21B18B1D1C4E8300F560DF /* RegisterUserInfoViewController.h */,
 				9B21B18C1D1C4E8300F560DF /* RegisterUserInfoViewController.m */,
+				9B7BD7C21D3E1B4D0088C951 /* MyMarkerUIViewController.h */,
+				9B7BD7C31D3E1B4D0088C951 /* MyMarkerUIViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -446,6 +464,8 @@
 				9BCB541F1D2ACD0F00853776 /* RegisterLayoutView.m */,
 				9BCB54201D2ACD0F00853776 /* RegisterUserInfoLayoutView.h */,
 				9BCB54211D2ACD0F00853776 /* RegisterUserInfoLayoutView.m */,
+				9B7BD7C51D3E1B830088C951 /* MyMarkerUIView.h */,
+				9B7BD7C61D3E1B830088C951 /* MyMarkerUIView.m */,
 			);
 			path = ControllerView;
 			sourceTree = "<group>";
@@ -616,11 +636,14 @@
 				9B0CCA831CE61EBF00207858 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				9B0CCA8D1CE61F1600207858 /* NSObject+ObjectMap.m in Sources */,
 				9B0CCA7C1CE61EBF00207858 /* AFSecurityPolicy.m in Sources */,
+				9B5E7A341D42869B002286A5 /* PostList.m in Sources */,
 				9BCB542A1D2ACD9B00853776 /* GlobalActivityIndicators.m in Sources */,
 				9B0CCA841CE61EBF00207858 /* UIButton+AFNetworking.m in Sources */,
 				9B8843CD1CEE15A900FCC077 /* CurrentPostViewController.m in Sources */,
+				9B7BD7C71D3E1B830088C951 /* MyMarkerUIView.m in Sources */,
 				9B0CCAA91CEA648E00207858 /* LoginViewController.m in Sources */,
 				9B8843DB1CEF916100FCC077 /* CommomUtils.m in Sources */,
+				9B7BD7C41D3E1B4D0088C951 /* MyMarkerUIViewController.m in Sources */,
 				9B8843DE1CEF91A600FCC077 /* BasicViewController.m in Sources */,
 				9B8843C81CEE157E00FCC077 /* ProfilePageViewController.m in Sources */,
 				9B0CCA7A1CE61EBF00207858 /* AFHTTPSessionManager.m in Sources */,
@@ -639,6 +662,7 @@
 				9B0CCA821CE61EBF00207858 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				9B0CCA871CE61EBF00207858 /* UIRefreshControl+AFNetworking.m in Sources */,
 				9B0CCA8A1CE61EBF00207858 /* HttpRequest.m in Sources */,
+				9B5E7A311D42819C002286A5 /* Post.m in Sources */,
 				9B114F031D1563BD0098C26B /* UnitViewUtil.m in Sources */,
 				9B0CCA861CE61EBF00207858 /* UIProgressView+AFNetworking.m in Sources */,
 				9BCB54221D2ACD0F00853776 /* RegisterLayoutView.m in Sources */,

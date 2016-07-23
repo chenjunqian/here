@@ -56,7 +56,7 @@
 
 -(void)initSetting{
     [LoginStatus initInstanc];
-//    [[LoginStatus getInstance] autoLogin];
+    [[LoginStatus getInstance] autoLogin];
 }
 
 - (void)didReceiveMemoryWarning {

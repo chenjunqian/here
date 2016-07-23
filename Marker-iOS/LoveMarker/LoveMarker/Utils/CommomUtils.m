@@ -52,4 +52,10 @@
     return strLength;
 }
 
++(NSDate*)timestampToDate:(NSString *)timestamp{
+    NSTimeInterval time = [timestamp doubleValue]/1000.00;
+    NSDate* finalDate = [NSDate dateWithTimeIntervalSince1970:time];
+    return finalDate;
+}
+
 @end
