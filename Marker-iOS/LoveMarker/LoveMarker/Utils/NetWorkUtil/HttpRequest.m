@@ -10,6 +10,7 @@
 #import "HttpConfiguration.h"
 #import "User.h"
 #import "ResponseResult.h"
+#import "HttpConfiguration.h"
 
 @interface HttpRequest()
 
@@ -60,6 +61,50 @@
     }];
 }
 
++(void) upLoadTaskWithUrl:(NSString*)url filePath:(NSString*)filePath handler:(HttpResponseHandler)handler{
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    
+    NSURL* URL = [NSURL URLWithString:url];
+    NSURLRequest* request = [NSURLRequest requestWithURL:URL];
+    
+    NSURL* realFilePath = [NSURL fileURLWithPath:filePath];
+    NSURLSessionUploadTask* uploadTask = [manager uploadTaskWithRequest:request fromFile:realFilePath progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        ResponseResult *responseResult = [[ResponseResult alloc] init];
+        [responseResult setObject:responseObject[@"resultData"]];
+        [responseResult setErrorMessage:responseObject[@"errorMessage"]];
+        [responseResult setStatus:[responseObject[@"status"] integerValue]];
+        handler(responseResult,[responseResult getObject]);
+    }];
+    
+    [uploadTask resume];
+}
+
++(void) downloadTaskWithURL:(NSString*)url handler:(HttpDownloadHandler)handler{
+    NSURLSessionConfiguration* configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager* manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    
+    NSURL* URL = [NSURL URLWithString:url];
+    NSURLRequest* request = [NSURLRequest requestWithURL:URL];
+    
+    NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request
+      progress:nil
+                                              
+      destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+          
+        NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
+        return [documentsDirectoryURL URLByAppendingPathComponent:[response suggestedFilename]];
+          
+    } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+        NSLog(@"File downloaded to: %@", filePath);
+        handler(response,[filePath path],error);
+    }];
+    
+    [downloadTask resume];
+}
+
 +(void) loginWithUsername:(NSString *)username password:(NSString *)password pushKey:(NSString *)pushKey responseData:(HttpResponseHandler)handler{
 
     NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionary];
@@ -94,6 +139,11 @@
     [mutableDictionary setObject:username forKey:@"username"];
     
     [self BasicHttpRequestPOSTWithUrl:[HttpConfiguration getUrlUrlGetPostByUsername] andPostDictionary:mutableDictionary responseData:handler];
+}
+
++(void)downloadAvatarWithUrl:(NSString*)url handler:(HttpDownloadHandler)handler{
+    NSString* realUrl = [[HttpConfiguration getUrlUrlMedia] stringByAppendingString:url];
+    [self downloadTaskWithURL:realUrl handler:handler];
 }
 
 @end

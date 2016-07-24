@@ -12,6 +12,8 @@
 #import "LoginStatus.h"
 #import "User.h"
 #import "ColorUtil.h"
+#import "HttpRequest.h"
+#import "CommomUtils.h"
 
 @interface ProfilePageViewController()
 
@@ -41,6 +43,13 @@
     _profilePageView = [[ProfilePageView alloc] initWithContext:self title:NSLocalizedString(@"me", nil) frame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [self.view addSubview:_profilePageView];
     
+    _profilePageView.nicknameUIView.parameterUILabel.text = user.nickname;
+    _profilePageView.genderUIView.parameterUILabel.text = user.gender;
+    _profilePageView.birthdayUIView.parameterUILabel.text = user.birthday;
+    _profilePageView.simpleProfileContentUILabel.text = user.simpleProfile;
+    _profilePageView.longProfileContentUILabel.text = user.longProfile;
+    _profilePageView.usernameUIView.parameterUILabel.text = user.username;
+    
     [_profilePageView.myMarkerUIView whenSingleClick:^{
         MyMarkerUIViewController* myMarkerView = [[MyMarkerUIViewController alloc] init];
         [self presentViewController:myMarkerView animated:YES completion:^{
@@ -48,12 +57,16 @@
         }];
     }];
     
-    _profilePageView.nicknameUIView.parameterUILabel.text = user.nickname;
-    _profilePageView.genderUIView.parameterUILabel.text = user.gender;
-    _profilePageView.birthdayUIView.parameterUILabel.text = user.birthday;
-    _profilePageView.simpleProfileContentUILabel.text = user.simpleProfile;
-    _profilePageView.longProfileContentUILabel.text = user.longProfile;
-    _profilePageView.usernameUIView.parameterUILabel.text = user.username;
+    [HttpRequest downloadAvatarWithUrl:user.avatar handler:^(NSURLResponse *response, NSString *filePath, NSError *error) {
+        if (![CommomUtils isEmptyString:filePath]) {
+            NSData* avatarData = [ NSData dataWithContentsOfFile:filePath];
+            UIImage* avatarImage = [UIImage imageWithData:avatarData];
+            
+            if (avatarImage!=nil) {
+                [_profilePageView.avatarUIImageView setImage:avatarImage];
+            }
+        }
+    }];
 }
 
 -(void)initLoginView{
