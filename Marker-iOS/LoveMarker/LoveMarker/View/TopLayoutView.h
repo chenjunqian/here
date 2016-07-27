@@ -12,6 +12,7 @@
 
 -(id)initWithContext:(id)context title:(NSString*)title andFrame:(CGRect)frame;
 -(id)initWithoutButtom:(id)context title:(NSString*)title andFrame:(CGRect)frame;
+-(id)initWithLeftAndRightButtom:(id)context title:(NSString *)title andFrame:(CGRect)frame;
 
 @property(strong,nonatomic) UINavigationItem* navigationItem;
 @property(strong,nonatomic) UIBarButtonItem* leftButton;

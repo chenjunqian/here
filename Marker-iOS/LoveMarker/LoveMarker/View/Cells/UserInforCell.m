@@ -28,10 +28,12 @@
         parameterUILabel.translatesAutoresizingMaskIntoConstraints = NO;
         parameterUILabel.textColor = [ColorUtil textColorSubBlack];
         [self addSubview:parameterUILabel];
+        
     }
     
     return self;
 }
+
 
 -(void)layoutSubviews{
     NSDictionary* views = NSDictionaryOfVariableBindings(titleUILabel,parameterUILabel);
@@ -41,6 +43,8 @@
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[parameterUILabel]-10-|" options:0 metrics:0 views:views]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:parameterUILabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+
 }
+
 
 @end

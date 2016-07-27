@@ -69,6 +69,8 @@
 		9BCB54231D2ACD0F00853776 /* RegisterUserInfoLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCB54211D2ACD0F00853776 /* RegisterUserInfoLayoutView.m */; };
 		9BCB54271D2ACD3400853776 /* MyMarkerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCB54261D2ACD3400853776 /* MyMarkerTableViewCell.m */; };
 		9BCB542A1D2ACD9B00853776 /* GlobalActivityIndicators.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCB54291D2ACD9B00853776 /* GlobalActivityIndicators.m */; };
+		9BFA3C401D4776F0001F5063 /* EditUserInfoUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BFA3C3F1D4776F0001F5063 /* EditUserInfoUIView.m */; };
+		9BFA3C4C1D47BBD4001F5063 /* UserInfoEditerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BFA3C4B1D47BBD4001F5063 /* UserInfoEditerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,8 +139,8 @@
 		9B0CCAA81CEA648E00207858 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		9B0D28E71D203CD800A1287D /* ClickableUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickableUIView.h; sourceTree = "<group>"; };
 		9B0D28E81D203CD800A1287D /* ClickableUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickableUIView.m; sourceTree = "<group>"; };
-		9B114F011D1563BD0098C26B /* UnitViewUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UnitViewUtil.h; path = ../View/UnitViewUtil.h; sourceTree = "<group>"; };
-		9B114F021D1563BD0098C26B /* UnitViewUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UnitViewUtil.m; path = ../View/UnitViewUtil.m; sourceTree = "<group>"; };
+		9B114F011D1563BD0098C26B /* UnitViewUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitViewUtil.h; sourceTree = "<group>"; };
+		9B114F021D1563BD0098C26B /* UnitViewUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitViewUtil.m; sourceTree = "<group>"; };
 		9B21B18B1D1C4E8300F560DF /* RegisterUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterUserInfoViewController.h; sourceTree = "<group>"; };
 		9B21B18C1D1C4E8300F560DF /* RegisterUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterUserInfoViewController.m; sourceTree = "<group>"; };
 		9B21B1911D1C4F5600F560DF /* BasicLayoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BasicLayoutView.h; path = ../Controller/BasicLayoutView.h; sourceTree = "<group>"; };
@@ -213,6 +215,10 @@
 		9BCB54261D2ACD3400853776 /* MyMarkerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMarkerTableViewCell.m; sourceTree = "<group>"; };
 		9BCB54281D2ACD9B00853776 /* GlobalActivityIndicators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalActivityIndicators.h; sourceTree = "<group>"; };
 		9BCB54291D2ACD9B00853776 /* GlobalActivityIndicators.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalActivityIndicators.m; sourceTree = "<group>"; };
+		9BFA3C3E1D4776F0001F5063 /* EditUserInfoUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditUserInfoUIView.h; sourceTree = "<group>"; };
+		9BFA3C3F1D4776F0001F5063 /* EditUserInfoUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditUserInfoUIView.m; sourceTree = "<group>"; };
+		9BFA3C4A1D47BBD4001F5063 /* UserInfoEditerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoEditerViewController.h; sourceTree = "<group>"; };
+		9BFA3C4B1D47BBD4001F5063 /* UserInfoEditerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoEditerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,8 +250,6 @@
 			isa = PBXGroup;
 			children = (
 				9B0CCA521CE61EBF00207858 /* NetWorkUtil */,
-				9B114F011D1563BD0098C26B /* UnitViewUtil.h */,
-				9B114F021D1563BD0098C26B /* UnitViewUtil.m */,
 				9B8843D91CEF916100FCC077 /* CommomUtils.h */,
 				9B8843DA1CEF916100FCC077 /* CommomUtils.m */,
 				9B0CCA8C1CE61F1600207858 /* NSObject+ObjectMap.m */,
@@ -355,6 +359,8 @@
 				9B8843EF1CF5CCBC00FCC077 /* AvatarUIImageView.m */,
 				9BCB54281D2ACD9B00853776 /* GlobalActivityIndicators.h */,
 				9BCB54291D2ACD9B00853776 /* GlobalActivityIndicators.m */,
+				9B114F011D1563BD0098C26B /* UnitViewUtil.h */,
+				9B114F021D1563BD0098C26B /* UnitViewUtil.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -382,6 +388,8 @@
 				9B21B18C1D1C4E8300F560DF /* RegisterUserInfoViewController.m */,
 				9B7BD7C21D3E1B4D0088C951 /* MyMarkerUIViewController.h */,
 				9B7BD7C31D3E1B4D0088C951 /* MyMarkerUIViewController.m */,
+				9BFA3C4A1D47BBD4001F5063 /* UserInfoEditerViewController.h */,
+				9BFA3C4B1D47BBD4001F5063 /* UserInfoEditerViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -466,6 +474,8 @@
 				9BCB54211D2ACD0F00853776 /* RegisterUserInfoLayoutView.m */,
 				9B7BD7C51D3E1B830088C951 /* MyMarkerUIView.h */,
 				9B7BD7C61D3E1B830088C951 /* MyMarkerUIView.m */,
+				9BFA3C3E1D4776F0001F5063 /* EditUserInfoUIView.h */,
+				9BFA3C3F1D4776F0001F5063 /* EditUserInfoUIView.m */,
 			);
 			path = ControllerView;
 			sourceTree = "<group>";
@@ -651,9 +661,11 @@
 				9B0CCA901CE65F7C00207858 /* TopLayoutView.m in Sources */,
 				9B8843ED1CF35DAD00FCC077 /* LoginStatus.m in Sources */,
 				9B0CCA7F1CE61EBF00207858 /* AFURLSessionManager.m in Sources */,
+				9BFA3C401D4776F0001F5063 /* EditUserInfoUIView.m in Sources */,
 				9B0CCA891CE61EBF00207858 /* HttpConfiguration.m in Sources */,
 				9B0CCA7B1CE61EBF00207858 /* AFNetworkReachabilityManager.m in Sources */,
 				9B8843F01CF5CCBC00FCC077 /* AvatarUIImageView.m in Sources */,
+				9BFA3C4C1D47BBD4001F5063 /* UserInfoEditerViewController.m in Sources */,
 				9B21B1931D1C4F5600F560DF /* BasicLayoutView.m in Sources */,
 				9B774B291D0D8000000BF4B3 /* MyDataController.m in Sources */,
 				9B8843D21CEE15EB00FCC077 /* NearbyViewController.m in Sources */,

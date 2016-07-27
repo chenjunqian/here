@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveMarker/View/TopLayoutView.m"
-            timestampString = "490982218.685315"
+            timestampString = "491247876.631155"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81">
+            startingLineNumber = "89"
+            endingLineNumber = "89">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -278,11 +278,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveMarker/View/TopLayoutView.m"
-            timestampString = "490982218.685315"
+            timestampString = "491247876.631155"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "-back:"
             landmarkType = "5">
          </BreakpointContent>
@@ -294,11 +294,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveMarker/View/TopLayoutView.m"
-            timestampString = "490982218.685315"
+            timestampString = "491247876.631155"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "-back:"
             landmarkType = "5">
             <Locations>
@@ -389,22 +389,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LoveMarker/Controller/ProfilePageViewController.m"
-            timestampString = "491061225.983875"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "-initProfileView"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "LoveMarker/Controller/MyMarkerUIViewController.m"
             timestampString = "490978250.971056"
             startingColumnNumber = "9223372036854775807"
@@ -443,8 +427,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "88"
             endingLineNumber = "88"
-            landmarkName = "-didReceiveMemoryWarning"
-            landmarkType = "5">
+            landmarkName = "@implementation MyMarkerUIViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -614,11 +598,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveMarker/Controller/ProfilePageViewController.m"
-            timestampString = "491062360.971346"
+            timestampString = "491340044.561713"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "-initLoginView"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoveMarker/Controller/ProfilePageViewController.m"
+            timestampString = "491340044.561713"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
+            landmarkName = "-imagePickerController:didFinishPickingMediaWithInfo:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoveMarker/Controller/ProfilePageViewController.m"
+            timestampString = "491340044.561713"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "-initProfileView"
             landmarkType = "5">
          </BreakpointContent>
@@ -630,12 +646,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveMarker/Controller/ProfilePageViewController.m"
-            timestampString = "491062360.971346"
+            timestampString = "491340044.561713"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
-            landmarkName = "-initProfileView"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
+            landmarkName = "-imagePickerController:didFinishPickingMediaWithInfo:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -646,12 +662,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveMarker/Utils/NetWorkUtil/HttpRequest.m"
-            timestampString = "491061601.034889"
+            timestampString = "491149044.03262"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
-            landmarkName = "+downloadAvatarWithUrl:handler:"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "+uploadTaskForMultiPartPOSTRequestWithUrl:parameters:fileURL:fileName:handler:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -662,43 +678,123 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveMarker/Controller/ProfilePageViewController.m"
-            timestampString = "491061608.578633"
+            timestampString = "491340044.561713"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "-initProfileView"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "-initLoginView"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoveMarker/Controller/ProfilePageViewController.m"
+            timestampString = "491340044.561713"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
+            landmarkName = "-initLoginView"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoveMarker/Controller/UserInfoEditerViewController.m"
+            timestampString = "491335637.752892"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "-initView"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoveMarker/View/ControllerView/EditUserInfoUIView.m"
+            timestampString = "491335637.752892"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "-initWithContext:title:editerType:frame:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoveMarker/View/ControllerView/EditUserInfoUIView.m"
+            timestampString = "491339269.496059"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "-initUsernameEditer"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoveMarker/Controller/ProfilePageViewController.m"
+            timestampString = "491340044.561713"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "-setViewClickListener"
             landmarkType = "5">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "-[ProfilePageViewController initProfileView]"
+                  symbolName = "-[ProfilePageViewController setViewClickListener]"
                   moduleName = "LoveMarker"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Eason/Documents/MyGitHub/here/Marker-iOS/LoveMarker/LoveMarker/Controller/ProfilePageViewController.m"
-                  timestampString = "491061609.753507"
+                  timestampString = "491248016.587635"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "60"
-                  endingLineNumber = "60"
-                  offsetFromSymbolStart = "2014">
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
+                  offsetFromSymbolStart = "492">
                </Location>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__44-[ProfilePageViewController initProfileView]_block_invoke.71"
+                  symbolName = "__49-[ProfilePageViewController setViewClickListener]_block_invoke.80"
                   moduleName = "LoveMarker"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Eason/Documents/MyGitHub/here/Marker-iOS/LoveMarker/LoveMarker/Controller/ProfilePageViewController.m"
-                  timestampString = "491061609.753748"
+                  timestampString = "491248016.587828"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "61"
-                  endingLineNumber = "61"
-                  offsetFromSymbolStart = "106">
+                  startingLineNumber = "87"
+                  endingLineNumber = "87"
+                  offsetFromSymbolStart = "19">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -710,12 +806,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LoveMarker/Controller/ProfilePageViewController.m"
-            timestampString = "491062360.971346"
+            timestampString = "491340044.561713"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "-initProfileView"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "-setViewClickListener"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -725,13 +821,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LoveMarker/Controller/ProfilePageViewController.m"
-            timestampString = "491062360.971346"
+            filePath = "LoveMarker/Controller/UserInfoEditerViewController.m"
+            timestampString = "491335637.752892"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "-initProfileView"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "-setEditerType:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -741,13 +837,157 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LoveMarker/Controller/ProfilePageViewController.m"
-            timestampString = "491062360.971346"
+            filePath = "LoveMarker/View/ControllerView/EditUserInfoUIView.m"
+            timestampString = "491337990.759704"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "-initProfileView"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "-initWithContext:title:editerType:frame:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoveMarker/View/ControllerView/EditUserInfoUIView.m"
+            timestampString = "491337990.759704"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "-initWithContext:title:editerType:frame:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoveMarker/Controller/UserInfoEditerViewController.m"
+            timestampString = "491339741.869188"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "-confirmAction:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoveMarker/Controller/UserInfoEditerViewController.m"
+            timestampString = "491339749.821606"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "-confirmAction:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoveMarker/Controller/UserInfoEditerViewController.m"
+            timestampString = "491339794.264125"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "-confirmAction:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoveMarker/Controller/UserInfoEditerViewController.m"
+            timestampString = "491339923.380138"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "-confirmAction:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoveMarker/Controller/UserInfoEditerViewController.m"
+            timestampString = "491339923.380138"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "-changeUserInfoByUser:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoveMarker/Controller/UserInfoEditerViewController.m"
+            timestampString = "491339932.779239"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "-confirmAction:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoveMarker/Controller/UserInfoEditerViewController.m"
+            timestampString = "491340102.500264"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "-confirmAction:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LoveMarker/Controller/UserInfoEditerViewController.m"
+            timestampString = "491340118.900833"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "-confirmAction:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -7,9 +7,12 @@
 */
 
 login = "Login";
+logout = "logout";
 back = "back";
 register = "Register";
 forget_password = "forget password";
+ok = "ok";
+cancel = "cancel";
 
 /*Login Pahe*/
 loginLabel = "Username";
@@ -38,6 +41,16 @@ my_long_profile = "detail introduction";
 my_long_profile_content_hint = "empty";
 my_username = "account";
 my_password = "change password";
+uploading = "uploading...";
+editor_page = "edit info";
+
+/*Editor Page*/
+nickname_editor = "change nickname";
+gender_editor = "change gender";
+birthday_editor = "change birthday";
+simple_profile_editor = "edit brief introduction";
+long_profile_editor = "edit detail introduction";
+password_editor = "change password";
 
 /*登录界面*/
 register = "register";

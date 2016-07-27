@@ -29,6 +29,7 @@
 @property (strong,nonatomic) UILabel *longProfileContentUILabel;
 @property (strong,nonatomic) UserInforCell *usernameUIView;
 @property (strong,nonatomic) UserInforCell *passwordUIView;
+@property (strong,nonatomic) UserInforCell *logoutUIView;
 
 -(id)initWithContext:(id)context title:(NSString*)topTitle frame:(CGRect)frame;
 @end

@@ -12,14 +12,13 @@
 @implementation ProfilePageView
 
 @synthesize topLayoutView , avatarUIView , avatarUIImageView , changeAvatarUILabel , myMarkerUIView , nicknameUIView , genderUIView , birthdayUIView ,
-simpleProfileUIView , simpleProfileUILabel , simpleProfileContentUILabel , longProfileUIView , longProfileUILabel , longProfileContentUILabel ,usernameUIView , passwordUIView;
+simpleProfileUIView , simpleProfileUILabel , simpleProfileContentUILabel , longProfileUIView , longProfileUILabel , longProfileContentUILabel ,usernameUIView , passwordUIView , logoutUIView;
 
 -(id)initWithContext:(id)context title:(NSString*)topTitle frame:(CGRect)frame{
     self = [super initWithFrame:frame];
     
     if (self) {
         topLayoutView = [[TopLayoutView alloc] initWithoutButtom:context title:topTitle andFrame:CGRectMake(0, 20, self.frame.size.width, 50)];
-        [topLayoutView.leftButton setAccessibilityElementsHidden:YES];
         [self addSubview:topLayoutView];
         
         avatarUIView  = [[ClickableUIView alloc] init];
@@ -108,13 +107,19 @@ simpleProfileUIView , simpleProfileUILabel , simpleProfileContentUILabel , longP
         passwordUIView.translatesAutoresizingMaskIntoConstraints = NO;
         passwordUIView.parameterUILabel.hidden = YES;
         [self addSubview:passwordUIView];
+        
+        logoutUIView = [[UserInforCell alloc] init];
+        logoutUIView.titleUILabel.text = NSLocalizedString(@"logout", nil);
+        logoutUIView.translatesAutoresizingMaskIntoConstraints = NO;
+        logoutUIView.parameterUILabel.hidden = YES;
+        [self addSubview:logoutUIView];
     }
     
     return self;
 }
 
 -(void)layoutSubviews{
-    NSDictionary* views = NSDictionaryOfVariableBindings(topLayoutView , avatarUIView , avatarUIImageView , changeAvatarUILabel , myMarkerUIView , nicknameUIView , genderUIView , birthdayUIView ,simpleProfileUIView , simpleProfileUILabel , simpleProfileContentUILabel , longProfileUIView , longProfileUILabel , longProfileContentUILabel , usernameUIView , passwordUIView);
+    NSDictionary* views = NSDictionaryOfVariableBindings(topLayoutView , avatarUIView , avatarUIImageView , changeAvatarUILabel , myMarkerUIView , nicknameUIView , genderUIView , birthdayUIView ,simpleProfileUIView , simpleProfileUILabel , simpleProfileContentUILabel , longProfileUIView , longProfileUILabel , longProfileContentUILabel , usernameUIView , passwordUIView , logoutUIView);
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[avatarUIView]-0-|" options:0 metrics:0 views:views]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[topLayoutView]-0-[avatarUIView]" options:0 metrics:0 views:views]];
@@ -156,6 +161,9 @@ simpleProfileUIView , simpleProfileUILabel , simpleProfileContentUILabel , longP
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[passwordUIView]-0-|" options:0 metrics:0 views:views]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[usernameUIView]-1-[passwordUIView(30)]" options:0 metrics:0 views:views]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[logoutUIView]-0-|" options:0 metrics:0 views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[passwordUIView]-20-[logoutUIView(30)]" options:0 metrics:0 views:views]];
 }
 
 @end

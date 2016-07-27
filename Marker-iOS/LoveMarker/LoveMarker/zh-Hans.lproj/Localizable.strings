@@ -7,9 +7,12 @@
 */
 
 login = "登录";
+logout = "登出";
 back = "返回";
 register = "注册";
 forget_password = "忘记密码";
+ok = "确认";
+cancel = "取消";
 
 /*登录界面*/
 loginLabel = "账号";
@@ -38,6 +41,16 @@ my_password = "修改密码";
 you_have_not_logined = "您还没有登录";
 my_username = "账号";
 please_login_first = "请先登录";
+uploading = "正在上传...";
+editor_page = "修改个人信息";
+
+/*个人资料编辑页面*/
+nickname_editor = "修改昵称";
+gender_editor = "修改性别";
+birthday_editor = "修改生日";
+simple_profile_editor = "修改简介";
+long_profile_editor = "修改具体描述";
+password_editor = "修改密码";
 
 /*登录界面*/
 register = "注册";

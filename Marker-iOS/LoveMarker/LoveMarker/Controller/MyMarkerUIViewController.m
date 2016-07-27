@@ -78,10 +78,6 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    static NSString* myMarkerTableViewCell = @"MyMarkerTableViewCell";
-//    MyMarkerTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:myMarkerTableViewCell];
-    
-//    return cell.markerContentLabel.frame.size.height + cell.timeLabel.frame.size.height + cell.locationLabel.frame.size.height +1 ;
     return 105;
 }
 

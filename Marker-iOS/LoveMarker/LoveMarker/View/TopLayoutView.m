@@ -41,6 +41,17 @@
     return self;
 }
 
+-(id)initWithLeftAndRightButtom:(id)context title:(NSString *)title andFrame:(CGRect)frame{
+    self= [super initWithFrame:frame];
+    
+    if (self) {
+        _instance = context;
+        [self initViewWithTitle:title hideButtonItem:NO];
+    }
+    
+    return self;
+}
+
 -(void)initViewWithTitle:(NSString*)title hideButtonItem:(BOOL)isHiden{
     navigationItem = [[UINavigationItem alloc] initWithTitle:title];
     [self setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
@@ -48,9 +59,7 @@
     [self pushNavigationItem:navigationItem animated:YES];
     if (!isHiden) {
         leftButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(back:)];
-        rightButton = [[UIBarButtonItem alloc] init];
         [navigationItem setLeftBarButtonItem:leftButton];
-        [navigationItem setRightBarButtonItem:rightButton];
     }
     
     [self setBarTintColor:[ColorUtil themeColor]];
@@ -66,7 +75,6 @@
     [leftButton setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
     [leftButton setTitlePositionAdjustment:UIOffsetMake(10, 0) forBarMetrics:0];
     
-    [rightButton setTitlePositionAdjustment:UIOffsetMake(10, 0) forBarMetrics:0];
 }
 
 @end

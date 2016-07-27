@@ -11,6 +11,8 @@
 #import "User.h"
 #import "ResponseResult.h"
 #import "HttpConfiguration.h"
+#import "AFImageDownloader.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface HttpRequest()
 
@@ -82,6 +84,72 @@
     [uploadTask resume];
 }
 
++(void)uploadTaskForMultiPartPOSTRequestWithUrl:(NSString*)urlString parameters:(NSDictionary*)parameters fileURLWithPath:(NSString*)fileURLWithPath fileName:(NSString*)filename handler:(HttpResponseHandler)handler{
+    
+    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:urlString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileURL:[NSURL fileURLWithPath:fileURLWithPath] name:@"file" fileName:filename mimeType:@"image/jpeg" error:nil];
+    } error:nil];
+    
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    
+    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request
+                  progress:^(NSProgress * _Nonnull uploadProgress) {
+                      // This is not called back on the main queue.
+                      // You are responsible for dispatching to the main queue for UI updates
+                      dispatch_async(dispatch_get_main_queue(), ^{
+                          //Update the progress view
+//                          [progressView setProgress:uploadProgress.fractionCompleted];
+                      });
+                  }
+                  completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+                      if (error) {
+                          NSLog(@"Error: %@", error);
+                      } else {
+                          ResponseResult *responseResult = [[ResponseResult alloc] init];
+                          [responseResult setObject:responseObject[@"resultData"]];
+                          [responseResult setErrorMessage:responseObject[@"errorMessage"]];
+                          [responseResult setStatus:[responseObject[@"status"] integerValue]];
+                          handler(responseResult,[responseResult getObject]);
+                          NSLog(@"%@ %@", response, responseObject);
+                      }
+                  }];
+    
+    [uploadTask resume];
+}
+
++(void)uploadTaskForMultiPartPOSTRequestWithUrl:(NSString*)urlString parameters:(NSDictionary*)parameters fileURL:(NSURL*)fileURL fileName:(NSString*)fielName handler:(HttpResponseHandler)handler{
+    
+    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:urlString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileURL:fileURL name:@"file" fileName:fielName mimeType:@"image/jpeg" error:nil];
+    } error:nil];
+    
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    
+    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request
+                progress:^(NSProgress * _Nonnull uploadProgress) {
+                    // This is not called back on the main queue.
+                    // You are responsible for dispatching to the main queue for UI updates
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        //Update the progress view
+                        //                          [progressView setProgress:uploadProgress.fractionCompleted];
+                        });
+                    }
+                completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+                    if (error) {
+                        NSLog(@"Error: %@", error);
+                    } else {
+                        ResponseResult *responseResult = [[ResponseResult alloc] init];
+                        [responseResult setObject:responseObject[@"resultData"]];
+                        [responseResult setErrorMessage:responseObject[@"errorMessage"]];
+                        [responseResult setStatus:[responseObject[@"status"] integerValue]];
+                        handler(responseResult,[responseResult getObject]);
+                        NSLog(@"upload task response : %@ %@", response, responseObject);
+                        }
+                }];
+    
+    [uploadTask resume];
+}
+
 +(void) downloadTaskWithURL:(NSString*)url handler:(HttpDownloadHandler)handler{
     NSURLSessionConfiguration* configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager* manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
@@ -141,9 +209,40 @@
     [self BasicHttpRequestPOSTWithUrl:[HttpConfiguration getUrlUrlGetPostByUsername] andPostDictionary:mutableDictionary responseData:handler];
 }
 
-+(void)downloadAvatarWithUrl:(NSString*)url handler:(HttpDownloadHandler)handler{
++(void)downloadAvatarWithUrl:(NSString*)url UIImageView:(UIImageView*)imageView{
     NSString* realUrl = [[HttpConfiguration getUrlUrlMedia] stringByAppendingString:url];
-    [self downloadTaskWithURL:realUrl handler:handler];
+    NSURL* imageURL = [NSURL URLWithString:realUrl];
+    [imageView setImageWithURL:imageURL];
 }
 
++(void)uploadAvatarWithUsername:(NSString*)username fileURL:(NSURL*)fileURL handler:(HttpResponseHandler)handler{
+    NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionary];
+    [mutableDictionary setObject:username forKey:@"username"];
+    [self uploadTaskForMultiPartPOSTRequestWithUrl:[HttpConfiguration getUrlUploadAvatar] parameters:mutableDictionary fileURL:fileURL fileName:[fileURL lastPathComponent] handler:handler];
+}
+
++(void)uploadAvatarWithUsername:(NSString*)username filePath:(NSString*)filePath handler:(HttpResponseHandler)handler{
+    NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionary];
+    [mutableDictionary setObject:username forKey:@"username"];
+    [self uploadAvatarWithUsername:username filePath:filePath handler:handler];
+}
+
++(void)getUserInfoByUsername:(NSString*)username handler:(HttpResponseHandler)handler{
+    NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionary];
+    [mutableDictionary setObject:username forKey:@"username"];
+    [self BasicHttpRequestPOSTWithUrl:[HttpConfiguration getUrlGetUserInfoByUsername] andPostDictionary:mutableDictionary responseData:handler];
+}
+
++(void)changeUserInfoByUser:(User*)user handler:(HttpResponseHandler)handler{
+    NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionary];
+    [mutableDictionary setObject:user.username forKey:@"username"];
+    [mutableDictionary setObject:user.password forKey:@"password"];
+    [mutableDictionary setObject:user.gender forKey:@"gender"];
+    [mutableDictionary setObject:user.birthday forKey:@"birthday"];
+    [mutableDictionary setObject:user.nickname forKey:@"nickname"];
+    [mutableDictionary setObject:user.userid forKey:@"userid"];
+    [mutableDictionary setObject:user.longProfile forKey:@"longProfile"];
+    [mutableDictionary setObject:user.simpleProfile forKey:@"simpleProfile"];
+    [self BasicHttpRequestPOSTWithUrl:[HttpConfiguration getUrlModifyUserInfo] andPostDictionary:mutableDictionary responseData:handler];
+}
 @end
