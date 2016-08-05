@@ -11,28 +11,32 @@
 @implementation UnitViewUtil
 
 
-+(void)showLoginAlertWithMessage:(NSString*)message actionOK:(NSString*)okTitle context:(id)context{
-    UIAlertController *loginAlert = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
++(void)showWarningAlertWithMessage:(NSString*)message actionOK:(NSString*)okTitle context:(id)context{
+    UIAlertController *warningAlter = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction* okAction = [UIAlertAction actionWithTitle:okTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [loginAlert dismissViewControllerAnimated:YES completion:nil];
+        [warningAlter dismissViewControllerAnimated:YES completion:nil];
     }];
     
-    [loginAlert addAction:okAction];
+    [warningAlter addAction:okAction];
     
-    [context presentViewController:loginAlert animated:YES completion:nil];
+    [context presentViewController:warningAlter animated:YES completion:nil];
 }
 
-+(void)showEditUserInfoAlertWithMessage:(NSString*)message actionOK:(NSString*)okTitle context:(id)context{
-    UIAlertController *loginAlert = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
++(void)showWarningAlertWithMessage:(NSString *)message actionOK:(NSString *)okTitle actionCancle:(NSString *)cancelTitle context:(id)context okButtonHandler:(void (^)())handler{
+    UIAlertController *warningAlter = [UIAlertController alertControllerWithTitle:@"" message:message preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction* okAction = [UIAlertAction actionWithTitle:okTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [loginAlert dismissViewControllerAnimated:YES completion:nil];
+        handler();
     }];
     
-    [loginAlert addAction:okAction];
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:cancelTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [warningAlter dismissViewControllerAnimated:YES completion:nil];
+    }];
     
-    [context presentViewController:loginAlert animated:YES completion:nil];
+    [warningAlter addAction:cancelAction];
+    [warningAlter addAction:okAction];
+    
+    [context presentViewController:warningAlter animated:YES completion:nil];
 }
-
 @end

@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "BasicViewController.h"
 
-@interface PublishViewController : BasicViewController
+@interface PublishViewController : BasicViewController <UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 
 @end

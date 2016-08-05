@@ -8,6 +8,7 @@
 
 #import "MyMarkerUIView.h"
 #import "TopLayoutView.h"
+#import "ColorUtil.h"
 
 @interface MyMarkerUIView()
 
@@ -25,7 +26,7 @@
 }
 */
 
-@synthesize tableView;
+@synthesize tableView,refreshControl;
 
 -(id)initWithContext:(id)context title:(NSString*)title frame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -38,6 +39,10 @@
         tableView.translatesAutoresizingMaskIntoConstraints = NO;
         tableView.backgroundColor = [UIColor whiteColor];
         [self addSubview:tableView];
+        
+        refreshControl = [[UIRefreshControl alloc] init];
+        refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"", nil) attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14] , NSForegroundColorAttributeName:[ColorUtil tealBlueColor]}];
+        [tableView  addSubview:refreshControl];
     }
     
     return self;

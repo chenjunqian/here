@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15B42" minimumToolsVersion="Xcode 7.0">
     <entity name="CoreDataUser" representedClassName="CoreDataUser" syncable="YES">
+        <attribute name="isLogout" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="CoreDataUser" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="CoreDataUser" positionX="-63" positionY="-18" width="128" height="105"/>
     </elements>
 </model>

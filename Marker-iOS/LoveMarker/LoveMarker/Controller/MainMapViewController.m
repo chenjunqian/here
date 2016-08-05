@@ -7,31 +7,60 @@
 //
 
 #import "MainMapViewController.h"
+#import "MainMapPageUIView.h"
 
-@interface MainMapViewController ()
+@interface MainMapViewController () <CLLocationManagerDelegate>
+
+@property (strong,nonatomic) MainMapPageUIView* mainMapPageUIView;
+@property (strong,nonatomic) CLLocationManager* locationManager;
 
 @end
 
 @implementation MainMapViewController
 
+@synthesize mainMapPageUIView,locationManager;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self initView];
+    [self initData];
+}
+
+-(void)initView{
+    mainMapPageUIView = [[MainMapPageUIView alloc] initViewContext:self title:NSLocalizedString(@"", nil) frame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    [self.view addSubview:mainMapPageUIView];
+}
+
+-(void)initData{
+    locationManager = [[CLLocationManager alloc] init];
+    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+    if (![CLLocationManager locationServicesEnabled]) {
+        NSLog(@"定位服务当前可能尚未打开，请设置打开！");
+        return;
+    }
+    
+    if (status == kCLAuthorizationStatusNotDetermined) {
+        [locationManager requestWhenInUseAuthorization];
+    }else if (status== kCLAuthorizationStatusAuthorizedWhenInUse || status == kCLAuthorizationStatusAuthorizedAlways){
+        
+        locationManager.delegate = self;
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        CLLocationDistance distance = 100.0;
+        locationManager.distanceFilter = distance;
+        [locationManager startUpdatingLocation];
+        
+    }
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations{
+    CLLocation *location=[locations firstObject];//取出第一个位置
+    CLLocationCoordinate2D coordinate=location.coordinate;//位置坐标
+    NSLog(@"经度：%f,纬度：%f,海拔：%f,航向：%f,行走速度：%f",coordinate.longitude,coordinate.latitude,location.altitude,location.course,location.speed);
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

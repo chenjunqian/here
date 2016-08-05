@@ -10,6 +10,6 @@
 #import "BasicViewController.h"
 
 
-@interface CurrentPostViewController : BasicViewController
+@interface CurrentPostViewController : BasicViewController <UITableViewDelegate,UITableViewDataSource>
 
 @end

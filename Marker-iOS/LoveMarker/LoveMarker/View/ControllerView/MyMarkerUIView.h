@@ -10,6 +10,8 @@
 
 @interface MyMarkerUIView : UIView
 
-@property (strong,nonatomic) UITableView* tableView;
--(id)initWithContext:(id)context title:(NSString*)title frame:(CGRect)frame;
+@property (strong,nonnull) UIRefreshControl* refreshControl;
+@property (strong,nonatomic,nullable) UITableView* tableView;
+
+-(_Nullable id)initWithContext:(_Nullable id)context title:( NSString* _Nullable )title frame:(CGRect)frame;
 @end

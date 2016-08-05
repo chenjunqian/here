@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "BasicViewController.h"
 
-@interface NearbyViewController : BasicViewController
+@interface NearbyViewController : BasicViewController <UITableViewDelegate,UITableViewDataSource>
 
 @end

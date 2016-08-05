@@ -12,6 +12,6 @@ NSString* const KEY_VALUE = @"auto-login";
 
 @implementation CoreDataUser
 
-@dynamic username , password , key;
+@dynamic username , password , key , isLogout;
 
 @end

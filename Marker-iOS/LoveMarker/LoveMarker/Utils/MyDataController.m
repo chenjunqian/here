@@ -79,7 +79,7 @@ __strong static id instacne = nil;
     return results;
 }
 
--(void)saveOrUpdataUserCoreDataWithUsername:(NSString*)username password:(NSString*)password key:(NSString*)key{
+-(void)saveOrUpdataUserCoreDataWithUsername:(NSString*)username password:(NSString*)password key:(NSString*)key isLogout:(Boolean)isLogout{
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:[NSEntityDescription entityForName:@"CoreDataUser" inManagedObjectContext:_managedObjectContext]];
     [request setPredicate:[NSPredicate predicateWithFormat:@"username == %@",username]];
@@ -90,10 +90,13 @@ __strong static id instacne = nil;
         CoreDataUser *user = [results objectAtIndex:0];
         [user setUsername:username];
         [user setPassword:password];
+        [user setIsLogout:isLogout];
+        [user setKey:key];
     }else{
         CoreDataUser *newUser = [NSEntityDescription insertNewObjectForEntityForName:@"CoreDataUser" inManagedObjectContext:_managedObjectContext];
         [newUser setUsername:username];
         [newUser setPassword:password];
+        [newUser setIsLogout:isLogout];
         [newUser setKey:key];
     }
     

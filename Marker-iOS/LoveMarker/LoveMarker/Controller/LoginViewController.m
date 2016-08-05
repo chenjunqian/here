@@ -81,6 +81,8 @@
     [_loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_loginButton setBackgroundColor:[ColorUtil themeColor]];
     [_loginButton addTarget:self action:@selector(loginBtnAction:) forControlEvents:UIControlEventTouchDown];
+    _loginButton.layer.cornerRadius = 5;
+    _loginButton.layer.masksToBounds = YES;
     [self.view addSubview:_loginButton];
     
     _registerButton = [[UIButton alloc] init];
@@ -88,6 +90,8 @@
     [_registerButton setTitleColor:[ColorUtil tealBlueColor] forState:UIControlStateNormal];
     _registerButton.translatesAutoresizingMaskIntoConstraints = NO;
     [_registerButton addTarget:self action:@selector(registerBtnAction:) forControlEvents:UIControlEventTouchDown];
+    _registerButton.layer.cornerRadius = 5;
+    _registerButton.layer.masksToBounds = YES;
     [self.view addSubview:_registerButton];
     
     _forgetPasswordButton = [[UIButton alloc] init];
@@ -135,15 +139,15 @@
             
         } failedHandler:^(NSInteger errorCode) {
             if(errorCode == Error_Code_User_Not_Found){
-                [UnitViewUtil showLoginAlertWithMessage:NSLocalizedString(@"user_not_found", nil) actionOK:NSLocalizedString(@"action_ok", nil) context:self];
+                [UnitViewUtil showWarningAlertWithMessage:NSLocalizedString(@"user_not_found", nil) actionOK:NSLocalizedString(@"action_ok", nil) context:self];
                 
             }else if (errorCode== ERROR_CODE_USER_OR_PASSWORD_INVALID){
-                [UnitViewUtil showLoginAlertWithMessage:NSLocalizedString(@"username_or_password_incorrect", nil) actionOK:NSLocalizedString(@"action_ok", nil) context:self];
+                [UnitViewUtil showWarningAlertWithMessage:NSLocalizedString(@"username_or_password_incorrect", nil) actionOK:NSLocalizedString(@"action_ok", nil) context:self];
             }
         }];
         
     }else{
-        [UnitViewUtil showLoginAlertWithMessage:NSLocalizedString(@"input_correct_data", nil) actionOK:NSLocalizedString(@"action_ok", nil) context:self];
+        [UnitViewUtil showWarningAlertWithMessage:NSLocalizedString(@"input_correct_data", nil) actionOK:NSLocalizedString(@"action_ok", nil) context:self];
     }
     
 }

@@ -10,5 +10,6 @@
 #import <UIKit/UIKit.h>
 
 @interface UnitViewUtil : NSObject
-+(void)showLoginAlertWithMessage:(NSString*)message actionOK:(NSString*)okTitle context:(id)context;
++(void)showWarningAlertWithMessage:(NSString*)message actionOK:(NSString*)okTitle context:(id)context;
++(void)showWarningAlertWithMessage:(NSString *)message actionOK:(NSString *)okTitle actionCancle:(NSString *)cancelTitle context:(id)context okButtonHandler:(void (^)())handler;
 @end

@@ -5,6 +5,10 @@
   Created by BigHead_Chen on 5/11/16.
   Copyright © 2016 Eason. All rights reserved.
 */
+home_page = "首页";
+current_page = "此刻";
+nearby_page = "周边";
+profile_page = "我";
 
 login = "登录";
 logout = "登出";
@@ -13,6 +17,7 @@ register = "注册";
 forget_password = "忘记密码";
 ok = "确认";
 cancel = "取消";
+refreshing = "加载中...";
 
 /*登录界面*/
 loginLabel = "账号";
@@ -43,6 +48,7 @@ my_username = "账号";
 please_login_first = "请先登录";
 uploading = "正在上传...";
 editor_page = "修改个人信息";
+are_you_sure_you_want_to_logout = "确定要注销账号吗？";
 
 /*个人资料编辑页面*/
 nickname_editor = "修改昵称";
@@ -51,6 +57,9 @@ birthday_editor = "修改生日";
 simple_profile_editor = "修改简介";
 long_profile_editor = "修改具体描述";
 password_editor = "修改密码";
+password_editor_place_holder = "    请输入新的密码";
+confirm_password_editor_place_holder = "    请再输入一遍新的密码";
+two_password_is_invalid = "两次输入的密码不正确，请再输入一次";
 
 /*登录界面*/
 register = "注册";
@@ -74,3 +83,15 @@ male = "男";
 female = "女";
 register_info = "个人信息";
 indicator_is_registering = "正在注册 ....";
+
+/*最新帖子界面*/
+current_post_title = "最近的帖子";
+last_hour_post_title = "过去一小时";
+there_is_no_last_hour_post = "最近一小时都没有来一发哦";
+
+/*发帖页面*/
+publish_page_title = "爱记";
+hint_label_text = "稍微具体的描述一下呗";
+publish_post_button_text = "标记一发";
+add_mark_hint = "添加标签";
+location_hint_text = "添加位置描述";

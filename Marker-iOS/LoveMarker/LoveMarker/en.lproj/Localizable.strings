@@ -6,6 +6,11 @@
   Copyright © 2016 Eason. All rights reserved.
 */
 
+home_page = "map";
+current_page = "current";
+nearby_page = "nearby";
+profile_page = "me";
+
 login = "Login";
 logout = "logout";
 back = "back";
@@ -13,6 +18,7 @@ register = "Register";
 forget_password = "forget password";
 ok = "ok";
 cancel = "cancel";
+refreshing = "loading...";
 
 /*Login Pahe*/
 loginLabel = "Username";
@@ -43,6 +49,8 @@ my_username = "account";
 my_password = "change password";
 uploading = "uploading...";
 editor_page = "edit info";
+two_password_is_invalid = "the two password you inputed are different , please try again";
+are_you_sure_you_want_to_logout = "are you sure you want to logout ?";
 
 /*Editor Page*/
 nickname_editor = "change nickname";
@@ -51,6 +59,8 @@ birthday_editor = "change birthday";
 simple_profile_editor = "edit brief introduction";
 long_profile_editor = "edit detail introduction";
 password_editor = "change password";
+password_editor_place_holder = "    please input your new password";
+confirm_password_editor_place_holder = "    please confirm your password";
 
 /*登录界面*/
 register = "register";
@@ -75,4 +85,15 @@ female = "girl";
 register_info = "info";
 indicator_is_registering = "register ....";
 
+/*最新帖子界面*/
+current_post_title = "current";
+last_hour_post_title = "last an hour";
+there_is_no_last_hour_post = "No one had a shot last an hour";
+
+/*发帖页面*/
+publish_page_title = "marker";
+hint_label_text = "describe your feeling";
+publish_post_button_text = "mark";
+add_mark_hint = "add marker";
+location_hint_text = "Add location";
 

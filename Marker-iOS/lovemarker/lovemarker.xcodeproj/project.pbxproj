@@ -36,6 +36,8 @@
 		9B4FDC701CE24E5C008C0E3B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9B4FDC721CE24E5C008C0E3B /* Localizable.strings */; };
 		9B4FDC781CE38A06008C0E3B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4FDC771CE38A06008C0E3B /* User.m */; };
 		9B4FDC871CE49D82008C0E3B /* ResponseResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4FDC861CE49D82008C0E3B /* ResponseResult.m */; };
+		9B50E4F91D5072C1003D79F7 /* CurrentPostUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B50E4F81D5072C1003D79F7 /* CurrentPostUIView.m */; };
+		9B50E4FC1D511584003D79F7 /* LastHourPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B50E4FB1D511584003D79F7 /* LastHourPostViewController.m */; };
 		9B53667E1D03502D008D803A /* ErrorState.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B53667D1D03502D008D803A /* ErrorState.m */; };
 		9B5E7A311D42819C002286A5 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5E7A301D42819C002286A5 /* Post.m */; };
 		9B5E7A341D42869B002286A5 /* PostList.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B5E7A331D42869B002286A5 /* PostList.m */; };
@@ -65,10 +67,14 @@
 		9BB88DD71CB25C92009A081A /* LoveMarkerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB88DD61CB25C92009A081A /* LoveMarkerTests.m */; };
 		9BB88DE21CB25C92009A081A /* LoveMarkerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB88DE11CB25C92009A081A /* LoveMarkerUITests.m */; };
 		9BB88DF01CB27A3A009A081A /* splash_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BB88DEF1CB27A3A009A081A /* splash_background.png */; };
+		9BB8CD0B1D4F471A00E571C2 /* NearbyPageUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8CD0A1D4F471A00E571C2 /* NearbyPageUIView.m */; };
+		9BB8CD0E1D4F7FA400E571C2 /* NormalPostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BB8CD0D1D4F7FA400E571C2 /* NormalPostTableViewCell.m */; };
 		9BCB54221D2ACD0F00853776 /* RegisterLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCB541F1D2ACD0F00853776 /* RegisterLayoutView.m */; };
 		9BCB54231D2ACD0F00853776 /* RegisterUserInfoLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCB54211D2ACD0F00853776 /* RegisterUserInfoLayoutView.m */; };
 		9BCB54271D2ACD3400853776 /* MyMarkerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCB54261D2ACD3400853776 /* MyMarkerTableViewCell.m */; };
 		9BCB542A1D2ACD9B00853776 /* GlobalActivityIndicators.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCB54291D2ACD9B00853776 /* GlobalActivityIndicators.m */; };
+		9BEC9E881D54A1F2002E3D15 /* PublishUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BEC9E871D54A1F2002E3D15 /* PublishUIView.m */; };
+		9BF889541D522F8C0040D33E /* MainMapPageUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BF889531D522F8C0040D33E /* MainMapPageUIView.m */; };
 		9BFA3C401D4776F0001F5063 /* EditUserInfoUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BFA3C3F1D4776F0001F5063 /* EditUserInfoUIView.m */; };
 		9BFA3C4C1D47BBD4001F5063 /* UserInfoEditerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BFA3C4B1D47BBD4001F5063 /* UserInfoEditerViewController.m */; };
 /* End PBXBuildFile section */
@@ -151,6 +157,10 @@
 		9B4FDC771CE38A06008C0E3B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		9B4FDC851CE49D82008C0E3B /* ResponseResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseResult.h; sourceTree = "<group>"; };
 		9B4FDC861CE49D82008C0E3B /* ResponseResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseResult.m; sourceTree = "<group>"; };
+		9B50E4F71D5072C1003D79F7 /* CurrentPostUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentPostUIView.h; sourceTree = "<group>"; };
+		9B50E4F81D5072C1003D79F7 /* CurrentPostUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentPostUIView.m; sourceTree = "<group>"; };
+		9B50E4FA1D511584003D79F7 /* LastHourPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LastHourPostViewController.h; sourceTree = "<group>"; };
+		9B50E4FB1D511584003D79F7 /* LastHourPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LastHourPostViewController.m; sourceTree = "<group>"; };
 		9B53667C1D03502D008D803A /* ErrorState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorState.h; sourceTree = "<group>"; };
 		9B53667D1D03502D008D803A /* ErrorState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorState.m; sourceTree = "<group>"; };
 		9B5E7A2F1D42819C002286A5 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
@@ -207,6 +217,10 @@
 		9BB88DE11CB25C92009A081A /* LoveMarkerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoveMarkerUITests.m; sourceTree = "<group>"; };
 		9BB88DE31CB25C92009A081A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9BB88DEF1CB27A3A009A081A /* splash_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splash_background.png; path = ../../../Here/app/src/main/res/drawable/splash_background.png; sourceTree = "<group>"; };
+		9BB8CD091D4F471A00E571C2 /* NearbyPageUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NearbyPageUIView.h; sourceTree = "<group>"; };
+		9BB8CD0A1D4F471A00E571C2 /* NearbyPageUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NearbyPageUIView.m; sourceTree = "<group>"; };
+		9BB8CD0C1D4F7FA400E571C2 /* NormalPostTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NormalPostTableViewCell.h; sourceTree = "<group>"; };
+		9BB8CD0D1D4F7FA400E571C2 /* NormalPostTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NormalPostTableViewCell.m; sourceTree = "<group>"; };
 		9BCB541E1D2ACD0F00853776 /* RegisterLayoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterLayoutView.h; sourceTree = "<group>"; };
 		9BCB541F1D2ACD0F00853776 /* RegisterLayoutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterLayoutView.m; sourceTree = "<group>"; };
 		9BCB54201D2ACD0F00853776 /* RegisterUserInfoLayoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterUserInfoLayoutView.h; sourceTree = "<group>"; };
@@ -215,6 +229,10 @@
 		9BCB54261D2ACD3400853776 /* MyMarkerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMarkerTableViewCell.m; sourceTree = "<group>"; };
 		9BCB54281D2ACD9B00853776 /* GlobalActivityIndicators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalActivityIndicators.h; sourceTree = "<group>"; };
 		9BCB54291D2ACD9B00853776 /* GlobalActivityIndicators.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalActivityIndicators.m; sourceTree = "<group>"; };
+		9BEC9E861D54A1F2002E3D15 /* PublishUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishUIView.h; sourceTree = "<group>"; };
+		9BEC9E871D54A1F2002E3D15 /* PublishUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishUIView.m; sourceTree = "<group>"; };
+		9BF889521D522F8C0040D33E /* MainMapPageUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMapPageUIView.h; sourceTree = "<group>"; };
+		9BF889531D522F8C0040D33E /* MainMapPageUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMapPageUIView.m; sourceTree = "<group>"; };
 		9BFA3C3E1D4776F0001F5063 /* EditUserInfoUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditUserInfoUIView.h; sourceTree = "<group>"; };
 		9BFA3C3F1D4776F0001F5063 /* EditUserInfoUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditUserInfoUIView.m; sourceTree = "<group>"; };
 		9BFA3C4A1D47BBD4001F5063 /* UserInfoEditerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoEditerViewController.h; sourceTree = "<group>"; };
@@ -378,6 +396,8 @@
 				9B8843C61CEE157E00FCC077 /* ProfilePageViewController.m */,
 				9B8843CA1CEE15A900FCC077 /* CurrentPostViewController.h */,
 				9B8843CB1CEE15A900FCC077 /* CurrentPostViewController.m */,
+				9B50E4FA1D511584003D79F7 /* LastHourPostViewController.h */,
+				9B50E4FB1D511584003D79F7 /* LastHourPostViewController.m */,
 				9B8843CF1CEE15EB00FCC077 /* NearbyViewController.h */,
 				9B8843D01CEE15EB00FCC077 /* NearbyViewController.m */,
 				9B8843D41CEE161B00FCC077 /* MainMapViewController.h */,
@@ -476,6 +496,14 @@
 				9B7BD7C61D3E1B830088C951 /* MyMarkerUIView.m */,
 				9BFA3C3E1D4776F0001F5063 /* EditUserInfoUIView.h */,
 				9BFA3C3F1D4776F0001F5063 /* EditUserInfoUIView.m */,
+				9BB8CD091D4F471A00E571C2 /* NearbyPageUIView.h */,
+				9BB8CD0A1D4F471A00E571C2 /* NearbyPageUIView.m */,
+				9B50E4F71D5072C1003D79F7 /* CurrentPostUIView.h */,
+				9B50E4F81D5072C1003D79F7 /* CurrentPostUIView.m */,
+				9BF889521D522F8C0040D33E /* MainMapPageUIView.h */,
+				9BF889531D522F8C0040D33E /* MainMapPageUIView.m */,
+				9BEC9E861D54A1F2002E3D15 /* PublishUIView.h */,
+				9BEC9E871D54A1F2002E3D15 /* PublishUIView.m */,
 			);
 			path = ControllerView;
 			sourceTree = "<group>";
@@ -487,6 +515,8 @@
 				9BCB54261D2ACD3400853776 /* MyMarkerTableViewCell.m */,
 				9B67F9EB1D301A9700EF4E61 /* UserInforCell.h */,
 				9B67F9EC1D301A9700EF4E61 /* UserInforCell.m */,
+				9BB8CD0C1D4F7FA400E571C2 /* NormalPostTableViewCell.h */,
+				9BB8CD0D1D4F7FA400E571C2 /* NormalPostTableViewCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -629,6 +659,7 @@
 				9B0CCA801CE61EBF00207858 /* AFAutoPurgingImageCache.m in Sources */,
 				9B67F9EA1D3017BC00EF4E61 /* ProfilePageView.m in Sources */,
 				9B53667E1D03502D008D803A /* ErrorState.m in Sources */,
+				9BB8CD0E1D4F7FA400E571C2 /* NormalPostTableViewCell.m in Sources */,
 				9B21B18D1D1C4E8300F560DF /* RegisterUserInfoViewController.m in Sources */,
 				9B67F9ED1D301A9700EF4E61 /* UserInforCell.m in Sources */,
 				9BB88DC41CB25C92009A081A /* ViewController.m in Sources */,
@@ -660,8 +691,12 @@
 				9B07BD481D147CD8002B145E /* RegisterViewController.m in Sources */,
 				9B0CCA901CE65F7C00207858 /* TopLayoutView.m in Sources */,
 				9B8843ED1CF35DAD00FCC077 /* LoginStatus.m in Sources */,
+				9BF889541D522F8C0040D33E /* MainMapPageUIView.m in Sources */,
+				9B50E4F91D5072C1003D79F7 /* CurrentPostUIView.m in Sources */,
 				9B0CCA7F1CE61EBF00207858 /* AFURLSessionManager.m in Sources */,
 				9BFA3C401D4776F0001F5063 /* EditUserInfoUIView.m in Sources */,
+				9BEC9E881D54A1F2002E3D15 /* PublishUIView.m in Sources */,
+				9BB8CD0B1D4F471A00E571C2 /* NearbyPageUIView.m in Sources */,
 				9B0CCA891CE61EBF00207858 /* HttpConfiguration.m in Sources */,
 				9B0CCA7B1CE61EBF00207858 /* AFNetworkReachabilityManager.m in Sources */,
 				9B8843F01CF5CCBC00FCC077 /* AvatarUIImageView.m in Sources */,
@@ -680,6 +715,7 @@
 				9BCB54221D2ACD0F00853776 /* RegisterLayoutView.m in Sources */,
 				9BCB54271D2ACD3400853776 /* MyMarkerTableViewCell.m in Sources */,
 				9B0D28E91D203CD800A1287D /* ClickableUIView.m in Sources */,
+				9B50E4FC1D511584003D79F7 /* LastHourPostViewController.m in Sources */,
 				9BB88DBE1CB25C92009A081A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -30,23 +30,24 @@
     [self initSetting];
     
     MainMapViewController *mapViewController = [[MainMapViewController alloc] init];
-    mapViewController.tabBarItem.title = @"map";
+    mapViewController.tabBarItem.title = NSLocalizedString(@"home_page", nil);
     
     mapViewController.tabBarItem.image = [[UIImage imageNamed:@"ic_home_white_18pt_2x"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
-    CurrentPostViewController *currentPostViewController = [[CurrentPostViewController alloc] init];    currentPostViewController.tabBarItem.title = @"current";
+    CurrentPostViewController *currentPostViewController = [[CurrentPostViewController alloc] init];    currentPostViewController.tabBarItem.title = NSLocalizedString(@"current_page", nil);
     currentPostViewController.tabBarItem.image = [[UIImage imageNamed:@"ic_access_time_white_18dp"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
     NearbyViewController *nearbyViewController = [[NearbyViewController alloc] init];
-    nearbyViewController.tabBarItem.title = @"nearby";
+    nearbyViewController.tabBarItem.title = NSLocalizedString(@"nearby_page", nil);
     nearbyViewController.tabBarItem.image = [[UIImage imageNamed:@"ic_format_list_numbered_white_18dp"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
-    ProfilePageViewController *profileViewController = [[ProfilePageViewController alloc] init];    profileViewController.tabBarItem.title = @"profile";
+    ProfilePageViewController *profileViewController = [[ProfilePageViewController alloc] init];
+    profileViewController.tabBarItem.title = NSLocalizedString(@"profile_page", nil);
     profileViewController.tabBarItem.image = [[UIImage imageNamed:@"ic_account_box_white_18dp"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
-    LoginViewController *loginViewController = [[LoginViewController alloc] init];
-    loginViewController.tabBarItem.title = @"profile";
-    loginViewController.tabBarItem.image = [[UIImage imageNamed:@"ic_account_box_white_18dp"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+//    LoginViewController *loginViewController = [[LoginViewController alloc] init];
+//    loginViewController.tabBarItem.title = @"profile";
+//    loginViewController.tabBarItem.image = [[UIImage imageNamed:@"ic_account_box_white_18dp"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
     PublishViewController *publishViewController = [[PublishViewController alloc] init];//    publishViewController.tabBarItem.title = @"profile";
     publishViewController.tabBarItem.image = [[UIImage imageNamed:@"ic_add_box_white_18pt_2x"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];

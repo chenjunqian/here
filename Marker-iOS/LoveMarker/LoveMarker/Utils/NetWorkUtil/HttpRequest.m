@@ -245,4 +245,17 @@
     [mutableDictionary setObject:user.simpleProfile forKey:@"simpleProfile"];
     [self BasicHttpRequestPOSTWithUrl:[HttpConfiguration getUrlModifyUserInfo] andPostDictionary:mutableDictionary responseData:handler];
 }
+
++(void)getCurrentPostByNumberOfPost:(NSInteger)index handler:(HttpResponseHandler)handler{
+    NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionary];
+    [mutableDictionary setObject:[NSString stringWithFormat:@"%ld",(long)index] forKey:@"index"];
+    [self BasicHttpRequestPOSTWithUrl:[HttpConfiguration getUrlUrlGetCurrentPostOnly] andPostDictionary:mutableDictionary responseData:handler];
+}
+
++(void)getLastHourPostByNumberOfPost:(NSInteger)index handler:(HttpResponseHandler)handler{
+    NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionary];
+    [mutableDictionary setObject:[NSString stringWithFormat:@"%ld",(long)index] forKey:@"index"];
+    [mutableDictionary setObject:[NSString stringWithFormat:@"%ld",(long)[[NSDate date] timeIntervalSince1970]*1000] forKey:@"time"];
+    [self BasicHttpRequestPOSTWithUrl:[HttpConfiguration getUrlUrlGetCurrentOneHourPost] andPostDictionary:mutableDictionary responseData:handler];
+}
 @end

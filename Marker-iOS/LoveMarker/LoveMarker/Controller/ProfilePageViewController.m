@@ -19,6 +19,7 @@
 #import "GlobalActivityIndicators.h"
 #import "UnitViewUtil.h"
 #import "UserInfoEditerViewController.h"
+#import "LoginViewController.h"
 
 @interface ProfilePageViewController()
 
@@ -35,16 +36,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if ([[LoginStatus getInstance] getIsUserModel]) {
-        [self initProfileView];
-        [self refreshUserInfoDataByUser:[[LoginStatus getInstance] getUser]];
-    }else{
-        [self initLoginView];
-    }
-    
+    [self setViewBaseOnLoginStatus];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    [self setViewBaseOnLoginStatus];
     [self refreshUserInfoDataByUser:[[LoginStatus getInstance] getUser]];
 }
 
@@ -76,6 +72,31 @@
     [self setViewClickListener];
 }
 
+-(void)setViewBaseOnLoginStatus{
+    if ([[LoginStatus getInstance] getIsUserModel]) {
+        if (_toLoginView) {
+            [_toLoginView setHidden:YES];
+        }
+        
+        if (_profilePageView) {
+            [_profilePageView setHidden:NO];
+        }else{
+            [self initProfileView];
+        }
+        
+    }else{
+        if (_profilePageView) {
+            [_profilePageView setHidden:YES];
+        }
+        
+        if (_toLoginView) {
+            [_toLoginView setHidden:NO];
+        }else{
+            [self initLoginView];
+        }
+    }
+}
+
 -(void)setViewClickListener{
     [_profilePageView.nicknameUIView whenSingleClick:^{
         UserInfoEditerViewController* editor = [[UserInfoEditerViewController alloc] init];
@@ -92,7 +113,11 @@
     [_profilePageView.birthdayUIView whenSingleClick:^{
         UserInfoEditerViewController* editor = [[UserInfoEditerViewController alloc] init];
         [editor setEditerType:BIRTHDAY_EDITER];
-        [self presentViewController:editor animated:YES completion:nil];
+        //为了半透明背景的效果
+        editor.providesPresentationContextTransitionStyle = YES;
+        editor.definesPresentationContext = YES;
+        editor.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+        [self presentViewController:editor animated:NO completion:nil];
     }];
     
     [_profilePageView.simpleProfileUIView whenSingleClick:^{
@@ -115,7 +140,11 @@
     
     
     [_profilePageView.logoutUIView whenSingleClick:^{
-        
+        [UnitViewUtil showWarningAlertWithMessage:NSLocalizedString(@"are_you_sure_you_want_to_logout", nil) actionOK:NSLocalizedString(@"ok", nil) actionCancle:NSLocalizedString(@"cancel", nil) context:self okButtonHandler:^{
+            [[LoginStatus getInstance] logout];
+            [self setViewBaseOnLoginStatus];
+        }];
+
     }];
 }
 
@@ -148,9 +177,14 @@
     _toLoginButton = [[UIButton alloc] init];
     [_toLoginButton setTitle:NSLocalizedString(@"login", nil) forState:UIControlStateNormal];
     _toLoginButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [_toLoginButton setTitleColor:[ColorUtil textColorSubBlack] forState:UIControlStateNormal];
+    [_toLoginButton setBackgroundColor:[UIColor whiteColor]];
     [_toLoginView addSubview:_toLoginButton];
     
+    [_toLoginButton addTarget:self action:@selector(toLoginView:) forControlEvents:UIControlEventTouchDown];
+    
     NSDictionary* views = NSDictionaryOfVariableBindings(_toLoginView,_upLabel,_downLabel,_toLoginButton);
+    [_toLoginView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_toLoginButton(60)]" options:0 metrics:0 views:views]];
     [_toLoginView addConstraint:[NSLayoutConstraint constraintWithItem:_toLoginButton attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:_toLoginView attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
     [_toLoginView addConstraint:[NSLayoutConstraint constraintWithItem:_toLoginButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:_toLoginView attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
     
@@ -159,6 +193,11 @@
     
     [_toLoginView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_upLabel]-5-[_downLabel]" options:0 metrics:0 views:views]];
     [_toLoginView addConstraint:[NSLayoutConstraint constraintWithItem:_upLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:_toLoginView attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
+}
+
+-(IBAction)toLoginView:(id)sender{
+    LoginViewController* loginViewController = [[LoginViewController alloc] init];
+    [self presentViewController:loginViewController animated:YES completion:nil];
 }
 
 //使用UIImagePickerController 修改头像 的回调方法

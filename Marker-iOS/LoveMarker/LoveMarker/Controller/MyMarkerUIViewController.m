@@ -13,7 +13,6 @@
 #import "LoginStatus.h"
 #import "ErrorState.h"
 #import "Post.h"
-#import "NSObject+ObjectMap.h"
 
 @interface MyMarkerUIViewController ()
 
@@ -31,12 +30,19 @@
 
 -(void)getMyPost{
     
+    if (![_myMarkerUIView.refreshControl isRefreshing]) {
+        [_myMarkerUIView.refreshControl beginRefreshing];
+    }
+    
+    
     if ([[LoginStatus getInstance] getIsUserModel]) {
         [HttpRequest getPosyByUsername:[[LoginStatus getInstance] getUser].username responseData:^(ResponseResult *response, NSObject *resultObject) {
             if (response.status == Error_Code_Correct) {
                 [_myMarkerList setChildPostWith:(NSDictionary*)resultObject targetPostList:_myMarkerList.postList];
                 [_myMarkerUIView.tableView reloadData];
             }
+            
+            [_myMarkerUIView.refreshControl endRefreshing];
         }];
     }
     
@@ -50,6 +56,12 @@
     _myMarkerUIView.tableView.delegate = self;
     _myMarkerUIView.tableView.dataSource =self;
     _myMarkerUIView.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    [_myMarkerUIView.refreshControl addTarget:self action:@selector(refreshAction:) forControlEvents:UIControlEventValueChanged];
+}
+
+-(void)refreshAction:(id)sender{
+    [self getMyPost];
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

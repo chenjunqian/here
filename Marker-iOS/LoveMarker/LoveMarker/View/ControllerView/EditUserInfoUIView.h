@@ -46,8 +46,14 @@ typedef enum{
 @property (strong,nonatomic) ClickableUIView *femaleView;
 @property (strong,nonatomic) UIView *femalCheckView;
 
+@property (strong,nonatomic) UIView* birthdayUIView;
 @property (strong,nonatomic) UIDatePicker* datePicker;
+@property (strong,nonatomic) UIButton* cancelButton;
+@property (strong,nonatomic) UIButton* okButton;
 
 @property (strong,nonatomic) UITextView* simpleProfileEditerTextView;
 @property (strong,nonatomic) UITextView* longProfileEditerTextView;
+
+@property (strong,nonatomic) UITextField* passwordTextField;
+@property (strong,nonatomic) UITextField* confirmPasswordTextField;
 @end

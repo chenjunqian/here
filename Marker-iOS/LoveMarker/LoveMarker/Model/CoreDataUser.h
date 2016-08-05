@@ -13,5 +13,6 @@
 extern NSString* const KEY_VALUE;
 
 @property (nonatomic,strong) NSString *username , *password , *key;
+@property (nonatomic) Boolean isLogout;
 
 @end

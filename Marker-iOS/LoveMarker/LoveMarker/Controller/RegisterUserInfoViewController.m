@@ -66,10 +66,10 @@
     NSString *birthdayString = [dateFormat stringFromDate:birthday];
     
     if (_isCheckGender == 0) {
-        [UnitViewUtil showLoginAlertWithMessage:NSLocalizedString(@"please_select_gender_first", nil) actionOK:NSLocalizedString(@"action_ok", nil) context:self];
+        [UnitViewUtil showWarningAlertWithMessage:NSLocalizedString(@"please_select_gender_first", nil) actionOK:NSLocalizedString(@"action_ok", nil) context:self];
         return;
     }else if([CommomUtils isEmptyString:birthdayString]){
-        [UnitViewUtil showLoginAlertWithMessage:NSLocalizedString(@"please_select_birthday_first", nil) actionOK:NSLocalizedString(@"action_ok", nil) context:self];
+        [UnitViewUtil showWarningAlertWithMessage:NSLocalizedString(@"please_select_birthday_first", nil) actionOK:NSLocalizedString(@"action_ok", nil) context:self];
         return;
     }
 

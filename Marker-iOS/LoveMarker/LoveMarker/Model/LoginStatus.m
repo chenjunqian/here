@@ -41,6 +41,7 @@ __strong static id instance = nil;
 }
 
 -(void)logout{
+    [[[MyDataController alloc]init] saveOrUpdataUserCoreDataWithUsername:self.user.username password:self.user.password key:KEY_VALUE isLogout:YES];
     self.user = nil;
 }
 
@@ -52,7 +53,7 @@ __strong static id instance = nil;
         if (resultObject!=nil&&(result.status) == Error_Code_Correct) {
             User* user = [NSObject objectOfClass:@"User" fromJSON:(NSDictionary*)resultObject];
             [[LoginStatus getInstance] setUser:user];
-            [[[MyDataController alloc]init] saveOrUpdataUserCoreDataWithUsername:user.username password:user.password key:KEY_VALUE];
+            [[[MyDataController alloc]init] saveOrUpdataUserCoreDataWithUsername:user.username password:user.password key:KEY_VALUE isLogout:NO];
             NSArray *result = [[[MyDataController alloc]init] getUserCoreDataWithUsername:user.username];
             successHandler();
             NSLog(@"fetch result :%@",result);
@@ -68,13 +69,13 @@ __strong static id instance = nil;
 
 -(void)autoLogin{
     CoreDataUser* user = [[[[MyDataController alloc] init] getUserCoreDataWithDefualKey] firstObject];
-    if (user) {
+    if (user && !user.isLogout) {
         [HttpRequest loginWithUsername:user.username password:user.password pushKey:@"" responseData:^(NSObject *response, NSObject *resultObject) {
             ResponseResult* result = (ResponseResult*)response;
             if (resultObject!=nil&&(result.status) == Error_Code_Correct) {
                 User* user = [NSObject objectOfClass:@"User" fromJSON:(NSDictionary*)resultObject];
                 [[LoginStatus getInstance] setUser:user];
-                [[[MyDataController alloc]init] saveOrUpdataUserCoreDataWithUsername:user.username password:user.password key:KEY_VALUE];
+                [[[MyDataController alloc]init] saveOrUpdataUserCoreDataWithUsername:user.username password:user.password key:KEY_VALUE isLogout:NO];
                 NSLog(@"aotu login success");
                 
             }else{

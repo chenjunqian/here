@@ -90,6 +90,8 @@
         [_nextStepButton setTitle:NSLocalizedString(@"next_step", nil) forState:UIControlStateNormal];
         [_nextStepButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _nextStepButton.backgroundColor = [ColorUtil themeColor];
+        _nextStepButton.layer.cornerRadius = 5;
+        _nextStepButton.layer.masksToBounds = YES;
         [self addSubview:_nextStepButton];
         
     }
