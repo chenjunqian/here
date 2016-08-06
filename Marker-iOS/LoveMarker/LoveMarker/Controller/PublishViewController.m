@@ -8,20 +8,27 @@
 
 #import "PublishViewController.h"
 #import "PublishUIView.h"
+#import "TagCollectionViewCell.h"
+#import "ColorUtil.h"
+#import "HttpRequest.h"
+#import "ErrorState.h"
+#import "PostTag.h"
 
 @interface PublishViewController ()
 
 @property (strong,nonatomic) PublishUIView* publishView;
+@property (strong,nonatomic) NSArray* postTagArray;
 
 @end
 
 @implementation PublishViewController
 
-@synthesize publishView;
+@synthesize publishView,postTagArray;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initView];
+    [self getPostTag];
 }
 
 -(void)initView{
@@ -29,19 +36,40 @@
     [self.view addSubview:publishView];
     publishView.collectionView.delegate = self;
     publishView.collectionView.dataSource = self;
-    [publishView.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"TagCollectionCell"];
+    [publishView.collectionView registerClass:[TagCollectionViewCell class] forCellWithReuseIdentifier:@"TagCollectionViewCell"];
+}
+
+-(void)getPostTag{
+    [HttpRequest getPostTag:^(ResponseResult *response, NSObject *resultObject) {
+        if (response && response.status == Error_Code_Correct) {
+            NSString* tagString = [((NSDictionary*)resultObject) objectForKey:@"tag"];
+            postTagArray = [tagString componentsSeparatedByString:@"@@"];
+            [publishView.collectionView reloadData];
+        }
+        
+    }];
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 9;
+    if (postTagArray) {
+        return postTagArray.count;
+    }
+    
+    return 0;
 }
 
 -(UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString * CellIdentifier = @"TagCollectionCell";
-    UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString * CellIdentifier = @"TagCollectionViewCell";
+    TagCollectionViewCell* cell;
+    cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     cell.layer.cornerRadius = 8;
     cell.layer.masksToBounds = YES;
-    cell.backgroundColor = [UIColor colorWithRed:((10 * indexPath.row) / 255.0) green:((20 * indexPath.row)/255.0) blue:((30 * indexPath.row)/255.0) alpha:1.0f];
+    cell.layer.borderWidth = 0.5f;
+    cell.backgroundColor = [ColorUtil viewBackgroundGrey];
+    cell.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    if (postTagArray) {
+        cell.tagUILabel.text = postTagArray[indexPath.row];
+    }
     return cell;
 }
 
@@ -50,8 +78,8 @@
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    UICollectionViewCell * cell = (UICollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    cell.backgroundColor = [UIColor whiteColor];
+    TagCollectionViewCell * cell = (TagCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    [publishView.tagUITextField setText:cell.tagUILabel.text];
 }
 
 

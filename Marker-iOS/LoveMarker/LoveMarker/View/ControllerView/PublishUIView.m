@@ -44,7 +44,8 @@
         locationDescriptionUITextField.backgroundColor = [ColorUtil viewBackgroundGrey];
         locationDescriptionUITextField.placeholder = NSLocalizedString(@"location_hint_text", nil);
         locationDescriptionUITextField.textAlignment = NSTextAlignmentCenter;
-        locationDescriptionUITextField.font = [UIFont fontWithName:@"" size:12];
+        locationDescriptionUITextField.font = [UIFont systemFontOfSize:12];
+        locationDescriptionUITextField.textColor = [UIColor grayColor];
         [locationDescriptionUILabelHolder addSubview:locationDescriptionUITextField];
         
         tagUILabelHolder = [[UIView alloc] init];
@@ -59,7 +60,8 @@
         tagUITextField.placeholder = NSLocalizedString(@"add_mark_hint", nil);
         tagUITextField.textAlignment = NSTextAlignmentCenter;
         tagUITextField.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        tagUITextField.font = [UIFont fontWithName:@"" size:12];
+        tagUITextField.font = [UIFont systemFontOfSize:12];
+        tagUITextField.textColor = [UIColor grayColor];
         [tagUILabelHolder addSubview:tagUITextField];
 
         publishButton = [[UIButton alloc] init];
@@ -81,17 +83,17 @@
     [self addConstraint:[NSLayoutConstraint constraintWithItem:hintUILabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[collectionView]-20-|" options:0 metrics:0 views:views]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[hintUILabel]-10-[collectionView(150)]" options:0 metrics:0 views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[hintUILabel]-10-[collectionView(160)]" options:0 metrics:0 views:views]];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[tagUILabelHolder]-0-|" options:0 metrics:0 views:views]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[collectionView]-0-[tagUILabelHolder]" options:0 metrics:0 views:views]];
     [tagUILabelHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-30-[tagUITextField]-30-|" options:0 metrics:0 views:views]];
-    [tagUILabelHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[tagUITextField(30)]-10-|" options:0 metrics:0 views:views]];
+    [tagUILabelHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[tagUITextField(30)]-15-|" options:0 metrics:0 views:views]];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[locationDescriptionUILabelHolder]-0-|" options:0 metrics:0 views:views]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[tagUILabelHolder]-20-[locationDescriptionUILabelHolder]" options:0 metrics:0 views:views]];
     [locationDescriptionUILabelHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-30-[locationDescriptionUITextField]-30-|" options:0 metrics:0 views:views]];
-    [locationDescriptionUILabelHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[locationDescriptionUITextField(30)]-10-|" options:0 metrics:0 views:views]];
+    [locationDescriptionUILabelHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[locationDescriptionUITextField(30)]-15-|" options:0 metrics:0 views:views]];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-40-[publishButton]-40-|" options:0 metrics:0 views:views]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[locationDescriptionUILabelHolder]-50-[publishButton(40)]" options:0 metrics:0 views:views]];

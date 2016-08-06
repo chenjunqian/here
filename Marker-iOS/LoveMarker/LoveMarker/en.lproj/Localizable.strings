@@ -88,7 +88,7 @@ indicator_is_registering = "register ....";
 /*最新帖子界面*/
 current_post_title = "current";
 last_hour_post_title = "last an hour";
-there_is_no_last_hour_post = "No one had a shot last an hour";
+there_is_no_last_hour_post = "No one had a shot last an hour yet";
 
 /*发帖页面*/
 publish_page_title = "marker";

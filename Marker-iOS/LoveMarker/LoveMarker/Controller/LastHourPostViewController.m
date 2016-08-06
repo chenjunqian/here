@@ -57,7 +57,7 @@
     [self.view addSubview:noPostUIView];
     [noPostUIView setHidden:YES];
     UILabel* noPostUILabel = [[UILabel alloc] init];
-    noPostUILabel.text = NSLocalizedString(@"没有帖子！", nil);
+    noPostUILabel.text = NSLocalizedString(@"there_is_no_last_hour_post", nil);
     noPostUILabel.textColor = [ColorUtil tealBlueColor];
     noPostUILabel.translatesAutoresizingMaskIntoConstraints = NO;
     [noPostUIView addSubview:noPostUILabel];

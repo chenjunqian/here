@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B0630B21D564D2600234569 /* TagCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0630B11D564D2600234569 /* TagCollectionViewCell.m */; };
+		9B0630B51D565C6D00234569 /* PostTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0630B41D565C6D00234569 /* PostTag.m */; };
 		9B07BD481D147CD8002B145E /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B07BD471D147CD8002B145E /* RegisterViewController.m */; };
 		9B0CCA7A1CE61EBF00207858 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CCA551CE61EBF00207858 /* AFHTTPSessionManager.m */; };
 		9B0CCA7B1CE61EBF00207858 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CCA581CE61EBF00207858 /* AFNetworkReachabilityManager.m */; };
@@ -97,6 +99,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9B0630B01D564D2600234569 /* TagCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagCollectionViewCell.h; sourceTree = "<group>"; };
+		9B0630B11D564D2600234569 /* TagCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagCollectionViewCell.m; sourceTree = "<group>"; };
+		9B0630B31D565C6D00234569 /* PostTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostTag.h; sourceTree = "<group>"; };
+		9B0630B41D565C6D00234569 /* PostTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostTag.m; sourceTree = "<group>"; };
 		9B07BD461D147CD8002B145E /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		9B07BD471D147CD8002B145E /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		9B0CCA541CE61EBF00207858 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
@@ -357,6 +363,8 @@
 				9B5E7A301D42819C002286A5 /* Post.m */,
 				9B5E7A321D42869B002286A5 /* PostList.h */,
 				9B5E7A331D42869B002286A5 /* PostList.m */,
+				9B0630B31D565C6D00234569 /* PostTag.h */,
+				9B0630B41D565C6D00234569 /* PostTag.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -517,6 +525,8 @@
 				9B67F9EC1D301A9700EF4E61 /* UserInforCell.m */,
 				9BB8CD0C1D4F7FA400E571C2 /* NormalPostTableViewCell.h */,
 				9BB8CD0D1D4F7FA400E571C2 /* NormalPostTableViewCell.m */,
+				9B0630B01D564D2600234569 /* TagCollectionViewCell.h */,
+				9B0630B11D564D2600234569 /* TagCollectionViewCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -677,6 +687,7 @@
 				9B0CCA831CE61EBF00207858 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				9B0CCA8D1CE61F1600207858 /* NSObject+ObjectMap.m in Sources */,
 				9B0CCA7C1CE61EBF00207858 /* AFSecurityPolicy.m in Sources */,
+				9B0630B21D564D2600234569 /* TagCollectionViewCell.m in Sources */,
 				9B5E7A341D42869B002286A5 /* PostList.m in Sources */,
 				9BCB542A1D2ACD9B00853776 /* GlobalActivityIndicators.m in Sources */,
 				9B0CCA841CE61EBF00207858 /* UIButton+AFNetworking.m in Sources */,
@@ -692,6 +703,7 @@
 				9B0CCA901CE65F7C00207858 /* TopLayoutView.m in Sources */,
 				9B8843ED1CF35DAD00FCC077 /* LoginStatus.m in Sources */,
 				9BF889541D522F8C0040D33E /* MainMapPageUIView.m in Sources */,
+				9B0630B51D565C6D00234569 /* PostTag.m in Sources */,
 				9B50E4F91D5072C1003D79F7 /* CurrentPostUIView.m in Sources */,
 				9B0CCA7F1CE61EBF00207858 /* AFURLSessionManager.m in Sources */,
 				9BFA3C401D4776F0001F5063 /* EditUserInfoUIView.m in Sources */,

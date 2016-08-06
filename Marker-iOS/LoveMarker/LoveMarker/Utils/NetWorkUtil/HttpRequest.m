@@ -258,4 +258,9 @@
     [mutableDictionary setObject:[NSString stringWithFormat:@"%ld",(long)[[NSDate date] timeIntervalSince1970]*1000] forKey:@"time"];
     [self BasicHttpRequestPOSTWithUrl:[HttpConfiguration getUrlUrlGetCurrentOneHourPost] andPostDictionary:mutableDictionary responseData:handler];
 }
+
++(void)getPostTag:(HttpResponseHandler)handler{
+    NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionary];
+    [self BasicHttpRequestPOSTWithUrl:[HttpConfiguration getUrlGetPostTag] andPostDictionary:mutableDictionary responseData:handler];
+}
 @end
