@@ -14,6 +14,8 @@
 @interface ProfilePageView : UIView
 
 @property (strong,nonatomic) TopLayoutView *topLayoutView;
+@property (strong,nonatomic) UIScrollView *scrollView;
+@property (strong,nonatomic) UIView *contentView;
 @property (strong,nonatomic) ClickableUIView *avatarUIView;
 @property (strong,nonatomic) UILabel *changeAvatarUILabel;
 @property (strong,nonatomic) AvatarUIImageView *avatarUIImageView;
@@ -30,6 +32,7 @@
 @property (strong,nonatomic) UserInforCell *usernameUIView;
 @property (strong,nonatomic) UserInforCell *passwordUIView;
 @property (strong,nonatomic) UserInforCell *logoutUIView;
+@property (strong,nonatomic) UserInforCell *aboutUsUIView;
 
 -(id)initWithContext:(id)context title:(NSString*)topTitle frame:(CGRect)frame;
 @end

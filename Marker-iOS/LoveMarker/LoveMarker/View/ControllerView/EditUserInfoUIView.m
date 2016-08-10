@@ -151,6 +151,7 @@
     birthdayUIView = [[UIView alloc] init];
     birthdayUIView.translatesAutoresizingMaskIntoConstraints = NO;
     birthdayUIView.backgroundColor = [UIColor whiteColor];
+    birthdayUIView.layer.cornerRadius = 8;
     [self addSubview:birthdayUIView];
     
     datePicker = [[UIDatePicker alloc] init];

@@ -51,6 +51,7 @@ uploading = "uploading...";
 editor_page = "edit info";
 two_password_is_invalid = "the two password you inputed are different , please try again";
 are_you_sure_you_want_to_logout = "are you sure you want to logout ?";
+about_us = "about us";
 
 /*Editor Page*/
 nickname_editor = "change nickname";
@@ -97,3 +98,10 @@ publish_post_button_text = "mark";
 add_mark_hint = "add marker";
 location_hint_text = "Add location";
 
+/*关于我们页面*/
+about_us_page_title = "about us";
+app_name = "Love Marker";
+version_code = "1.0.0";
+app_description = "Let you know who did the things full of love";
+share = "share APP";
+feedback = "Feedback";

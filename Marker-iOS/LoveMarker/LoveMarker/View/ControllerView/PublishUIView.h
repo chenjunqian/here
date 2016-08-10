@@ -11,6 +11,8 @@
 
 @interface PublishUIView : UIView
 @property (strong,nonatomic) TopLayoutView* topLayoutView;
+@property (strong,nonatomic) UIScrollView* scrollView;
+@property (strong,nonatomic) UIView* contentView;
 @property (strong,nonatomic) UICollectionView* collectionView;
 @property (strong,nonatomic) UILabel* hintUILabel;
 @property (strong,nonatomic) UITextField* tagUITextField;

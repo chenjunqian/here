@@ -11,8 +11,8 @@
 
 @implementation ProfilePageView
 
-@synthesize topLayoutView , avatarUIView , avatarUIImageView , changeAvatarUILabel , myMarkerUIView , nicknameUIView , genderUIView , birthdayUIView ,
-simpleProfileUIView , simpleProfileUILabel , simpleProfileContentUILabel , longProfileUIView , longProfileUILabel , longProfileContentUILabel ,usernameUIView , passwordUIView , logoutUIView;
+@synthesize topLayoutView ,scrollView,contentView, avatarUIView , avatarUIImageView , changeAvatarUILabel , myMarkerUIView , nicknameUIView , genderUIView , birthdayUIView ,
+simpleProfileUIView , simpleProfileUILabel , simpleProfileContentUILabel , longProfileUIView , longProfileUILabel , longProfileContentUILabel ,usernameUIView , passwordUIView , logoutUIView,aboutUsUIView;
 
 -(id)initWithContext:(id)context title:(NSString*)topTitle frame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -21,10 +21,18 @@ simpleProfileUIView , simpleProfileUILabel , simpleProfileContentUILabel , longP
         topLayoutView = [[TopLayoutView alloc] initWithoutButtom:context title:topTitle andFrame:CGRectMake(0, 20, self.frame.size.width, 50)];
         [self addSubview:topLayoutView];
         
+        scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 70, frame.size.width, frame.size.height - 70 - 50)];
+        scrollView.contentSize = CGSizeMake(frame.size.width, 550);
+        [self addSubview:scrollView];
+        
+        contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 550)];
+        contentView.backgroundColor = [ColorUtil viewBackgroundGrey];
+        [scrollView addSubview:contentView];
+        
         avatarUIView  = [[ClickableUIView alloc] init];
         avatarUIView.translatesAutoresizingMaskIntoConstraints = NO;
         avatarUIView.backgroundColor = [UIColor whiteColor];
-        [self addSubview:avatarUIView];
+        [contentView addSubview:avatarUIView];
         
         avatarUIImageView = [[AvatarUIImageView alloc] init];
         avatarUIImageView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -40,30 +48,30 @@ simpleProfileUIView , simpleProfileUILabel , simpleProfileContentUILabel , longP
         myMarkerUIView.titleUILabel.text = NSLocalizedString(@"my_marker", nil);
         myMarkerUIView.parameterUILabel.hidden = YES;
         myMarkerUIView.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addSubview:myMarkerUIView];
+        [contentView addSubview:myMarkerUIView];
         
         nicknameUIView = [[UserInforCell alloc] init];
         nicknameUIView.titleUILabel.text = NSLocalizedString(@"my_nickname", nil);
         nicknameUIView.parameterUILabel.textColor = [ColorUtil textColorSubBlack];
         nicknameUIView.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addSubview:nicknameUIView];
+        [contentView addSubview:nicknameUIView];
         
         genderUIView = [[UserInforCell alloc] init];
         genderUIView.titleUILabel.text = NSLocalizedString(@"my_gender", nil);
         genderUIView.parameterUILabel.textColor = [ColorUtil textColorSubBlack];
         genderUIView.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addSubview:genderUIView];
+        [contentView addSubview:genderUIView];
         
         birthdayUIView = [[UserInforCell alloc] init];
         birthdayUIView.titleUILabel.text = NSLocalizedString(@"my_birthday", nil);
         birthdayUIView.parameterUILabel.textColor = [ColorUtil textColorSubBlack];
         birthdayUIView.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addSubview:birthdayUIView];
+        [contentView addSubview:birthdayUIView];
         
         simpleProfileUIView = [[ClickableUIView alloc] init];
         simpleProfileUIView.backgroundColor = [UIColor whiteColor];
         simpleProfileUIView.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addSubview:simpleProfileUIView];
+        [contentView addSubview:simpleProfileUIView];
         
         simpleProfileUILabel = [[UILabel alloc] init];
         simpleProfileUILabel.text = NSLocalizedString(@"my_simple_profile", nil);
@@ -81,7 +89,7 @@ simpleProfileUIView , simpleProfileUILabel , simpleProfileContentUILabel , longP
         longProfileUIView = [[ClickableUIView alloc] init];
         longProfileUIView.backgroundColor = [UIColor whiteColor];
         longProfileUIView.translatesAutoresizingMaskIntoConstraints = NO;
-        [self addSubview:longProfileUIView];
+        [contentView addSubview:longProfileUIView];
         
         longProfileUILabel = [[UILabel alloc] init];
         longProfileUILabel.text = NSLocalizedString(@"my_long_profile", nil);
@@ -100,29 +108,35 @@ simpleProfileUIView , simpleProfileUILabel , simpleProfileContentUILabel , longP
         usernameUIView.titleUILabel.text = NSLocalizedString(@"my_username", nil);
         usernameUIView.translatesAutoresizingMaskIntoConstraints = NO;
         usernameUIView.parameterUILabel.hidden = NO;
-        [self addSubview:usernameUIView];
+        [contentView addSubview:usernameUIView];
         
         passwordUIView = [[UserInforCell alloc] init];
         passwordUIView.titleUILabel.text = NSLocalizedString(@"my_password", nil);
         passwordUIView.translatesAutoresizingMaskIntoConstraints = NO;
         passwordUIView.parameterUILabel.hidden = YES;
-        [self addSubview:passwordUIView];
+        [contentView addSubview:passwordUIView];
         
         logoutUIView = [[UserInforCell alloc] init];
         logoutUIView.titleUILabel.text = NSLocalizedString(@"logout", nil);
         logoutUIView.translatesAutoresizingMaskIntoConstraints = NO;
         logoutUIView.parameterUILabel.hidden = YES;
-        [self addSubview:logoutUIView];
+        [contentView addSubview:logoutUIView];
+        
+        aboutUsUIView = [[UserInforCell alloc] init];
+        aboutUsUIView.titleUILabel.text = NSLocalizedString(@"about_us", nil);
+        aboutUsUIView.translatesAutoresizingMaskIntoConstraints = NO;
+        aboutUsUIView.parameterUILabel.hidden = YES;
+        [contentView addSubview:aboutUsUIView];
     }
     
     return self;
 }
 
 -(void)layoutSubviews{
-    NSDictionary* views = NSDictionaryOfVariableBindings(topLayoutView , avatarUIView , avatarUIImageView , changeAvatarUILabel , myMarkerUIView , nicknameUIView , genderUIView , birthdayUIView ,simpleProfileUIView , simpleProfileUILabel , simpleProfileContentUILabel , longProfileUIView , longProfileUILabel , longProfileContentUILabel , usernameUIView , passwordUIView , logoutUIView);
+    NSDictionary* views = NSDictionaryOfVariableBindings(topLayoutView , avatarUIView , avatarUIImageView , changeAvatarUILabel , myMarkerUIView , nicknameUIView , genderUIView , birthdayUIView ,simpleProfileUIView , simpleProfileUILabel , simpleProfileContentUILabel , longProfileUIView , longProfileUILabel , longProfileContentUILabel , usernameUIView , passwordUIView , logoutUIView , aboutUsUIView);
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[avatarUIView]-0-|" options:0 metrics:0 views:views]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[topLayoutView]-0-[avatarUIView]" options:0 metrics:0 views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[avatarUIView]" options:0 metrics:0 views:views]];
     
     [avatarUIView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[avatarUIImageView(70)]" options:0 metrics:0 views:views]];
     [avatarUIView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[avatarUIImageView(70)]-10-|" options:0 metrics:0 views:views]];
@@ -164,6 +178,9 @@ simpleProfileUIView , simpleProfileUILabel , simpleProfileContentUILabel , longP
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[logoutUIView]-0-|" options:0 metrics:0 views:views]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[passwordUIView]-20-[logoutUIView(30)]" options:0 metrics:0 views:views]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[aboutUsUIView]-0-|" options:0 metrics:0 views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[logoutUIView]-20-[aboutUsUIView(30)]" options:0 metrics:0 views:views]];
 }
 
 @end

@@ -11,7 +11,7 @@
 
 @implementation PublishUIView
 
-@synthesize topLayoutView , hintUILabel , collectionView , locationDescriptionUITextField , tagUITextField , locationDescriptionUILabelHolder,tagUILabelHolder,publishButton;
+@synthesize topLayoutView , scrollView , contentView , hintUILabel , collectionView , locationDescriptionUITextField , tagUITextField , locationDescriptionUILabelHolder,tagUILabelHolder,publishButton;
 
 -(id)initViewContext:(id)context title:(NSString*)title frame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -20,23 +20,31 @@
         topLayoutView = [[TopLayoutView alloc] initWithoutButtom:context title:title andFrame:CGRectMake(0, 20, self.frame.size.width, 50)];
         [self addSubview:topLayoutView];
         
+        scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 70, frame.size.width, frame.size.height - 70 - 50)];
+        scrollView.contentSize = CGSizeMake(frame.size.width, 550);
+        [self addSubview:scrollView];
+        
+        contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 550)];
+        contentView.backgroundColor = [ColorUtil viewBackgroundGrey];
+        [scrollView addSubview:contentView];
+        
         hintUILabel = [[UILabel alloc] init];
         hintUILabel.translatesAutoresizingMaskIntoConstraints = NO;
         hintUILabel.textColor = [ColorUtil textColorSubBlack];
         hintUILabel.backgroundColor = [ColorUtil viewBackgroundGrey];
         hintUILabel.text = NSLocalizedString(@"hint_label_text", nil);
-        [self addSubview:hintUILabel];
+        [contentView addSubview:hintUILabel];
         
         UICollectionViewFlowLayout* flowLayout = [[UICollectionViewFlowLayout alloc] init];
         collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, 320, 320) collectionViewLayout:flowLayout];
         collectionView.translatesAutoresizingMaskIntoConstraints =NO;
         collectionView.backgroundColor = [ColorUtil viewBackgroundGrey];
-        [self addSubview:collectionView];
+        [contentView addSubview:collectionView];
         
         locationDescriptionUILabelHolder = [[UIView alloc] init];
         locationDescriptionUILabelHolder.translatesAutoresizingMaskIntoConstraints = NO;
         locationDescriptionUILabelHolder.backgroundColor = [UIColor whiteColor];
-        [self addSubview:locationDescriptionUILabelHolder];
+        [contentView addSubview:locationDescriptionUILabelHolder];
         
         locationDescriptionUITextField = [[UITextField alloc] init];
         locationDescriptionUITextField.translatesAutoresizingMaskIntoConstraints = NO;
@@ -51,7 +59,7 @@
         tagUILabelHolder = [[UIView alloc] init];
         tagUILabelHolder.translatesAutoresizingMaskIntoConstraints = NO;
         tagUILabelHolder.backgroundColor = [UIColor whiteColor];
-        [self addSubview:tagUILabelHolder];
+        [contentView addSubview:tagUILabelHolder];
         
         tagUITextField = [[UITextField alloc] init];
         tagUITextField.translatesAutoresizingMaskIntoConstraints = NO;
@@ -70,7 +78,7 @@
         [publishButton setBackgroundColor:[ColorUtil themeColor]];
         publishButton.layer.cornerRadius = 5;
         publishButton.layer.masksToBounds = YES;
-        [self addSubview:publishButton];
+        [contentView addSubview:publishButton];
     }
     
     return self;
@@ -79,24 +87,24 @@
 
 -(void)layoutSubviews{
     NSDictionary* views = NSDictionaryOfVariableBindings(topLayoutView,hintUILabel,collectionView,locationDescriptionUILabelHolder,locationDescriptionUITextField,tagUILabelHolder,tagUITextField,publishButton);
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[topLayoutView]-10-[hintUILabel]" options:0 metrics:0 views:views]];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:hintUILabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
+    [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[hintUILabel]" options:0 metrics:0 views:views]];
+    [contentView addConstraint:[NSLayoutConstraint constraintWithItem:hintUILabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:contentView attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[collectionView]-20-|" options:0 metrics:0 views:views]];
+    [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[collectionView]-20-|" options:0 metrics:0 views:views]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[hintUILabel]-10-[collectionView(160)]" options:0 metrics:0 views:views]];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[tagUILabelHolder]-0-|" options:0 metrics:0 views:views]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[collectionView]-0-[tagUILabelHolder]" options:0 metrics:0 views:views]];
+    [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[tagUILabelHolder]-0-|" options:0 metrics:0 views:views]];
+    [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[collectionView]-0-[tagUILabelHolder]" options:0 metrics:0 views:views]];
     [tagUILabelHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-30-[tagUITextField]-30-|" options:0 metrics:0 views:views]];
     [tagUILabelHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[tagUITextField(30)]-15-|" options:0 metrics:0 views:views]];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[locationDescriptionUILabelHolder]-0-|" options:0 metrics:0 views:views]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[tagUILabelHolder]-20-[locationDescriptionUILabelHolder]" options:0 metrics:0 views:views]];
+    [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[locationDescriptionUILabelHolder]-0-|" options:0 metrics:0 views:views]];
+    [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[tagUILabelHolder]-20-[locationDescriptionUILabelHolder]" options:0 metrics:0 views:views]];
     [locationDescriptionUILabelHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-30-[locationDescriptionUITextField]-30-|" options:0 metrics:0 views:views]];
     [locationDescriptionUILabelHolder addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-15-[locationDescriptionUITextField(30)]-15-|" options:0 metrics:0 views:views]];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-40-[publishButton]-40-|" options:0 metrics:0 views:views]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[locationDescriptionUILabelHolder]-50-[publishButton(40)]" options:0 metrics:0 views:views]];
+    [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-40-[publishButton]-40-|" options:0 metrics:0 views:views]];
+    [contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[locationDescriptionUILabelHolder]-50-[publishButton(40)]" options:0 metrics:0 views:views]];
 }
 
 @end

@@ -20,6 +20,7 @@
 #import "UnitViewUtil.h"
 #import "UserInfoEditerViewController.h"
 #import "LoginViewController.h"
+#import "AboutUsViewController.h"
 
 @interface ProfilePageViewController()
 
@@ -145,6 +146,13 @@
             [self setViewBaseOnLoginStatus];
         }];
 
+    }];
+    
+    [_profilePageView.aboutUsUIView whenSingleClick:^{
+        AboutUsViewController* aboutUs = [[AboutUsViewController alloc] init];
+        [self presentViewController:aboutUs animated:YES completion:^{
+            
+        }];
     }];
 }
 

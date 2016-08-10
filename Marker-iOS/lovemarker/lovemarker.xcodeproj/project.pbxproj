@@ -46,6 +46,8 @@
 		9B6782151D1ECB9000910922 /* ColorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6782141D1ECB9000910922 /* ColorUtil.m */; };
 		9B67F9EA1D3017BC00EF4E61 /* ProfilePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B67F9E91D3017BC00EF4E61 /* ProfilePageView.m */; };
 		9B67F9ED1D301A9700EF4E61 /* UserInforCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B67F9EC1D301A9700EF4E61 /* UserInforCell.m */; };
+		9B6F1DCB1D5B02AB00F75A86 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F1DCA1D5B02AB00F75A86 /* AboutUsViewController.m */; };
+		9B6F1DCE1D5B02D300F75A86 /* AboutUsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B6F1DCD1D5B02D300F75A86 /* AboutUsView.m */; };
 		9B774B1D1D0D76C7000BF4B3 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B774B1B1D0D76C7000BF4B3 /* CoreDataModel.xcdatamodeld */; };
 		9B774B291D0D8000000BF4B3 /* MyDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B774B281D0D8000000BF4B3 /* MyDataController.m */; };
 		9B774B2C1D0F1F43000BF4B3 /* CoreDataUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B774B2B1D0F1F43000BF4B3 /* CoreDataUser.m */; };
@@ -179,6 +181,10 @@
 		9B67F9E91D3017BC00EF4E61 /* ProfilePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfilePageView.m; path = ../ProfilePageView.m; sourceTree = "<group>"; };
 		9B67F9EB1D301A9700EF4E61 /* UserInforCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInforCell.h; sourceTree = "<group>"; };
 		9B67F9EC1D301A9700EF4E61 /* UserInforCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInforCell.m; sourceTree = "<group>"; };
+		9B6F1DC91D5B02AB00F75A86 /* AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
+		9B6F1DCA1D5B02AB00F75A86 /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
+		9B6F1DCC1D5B02D300F75A86 /* AboutUsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsView.h; sourceTree = "<group>"; };
+		9B6F1DCD1D5B02D300F75A86 /* AboutUsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsView.m; sourceTree = "<group>"; };
 		9B774B1C1D0D76C7000BF4B3 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		9B774B271D0D8000000BF4B3 /* MyDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDataController.h; sourceTree = "<group>"; };
 		9B774B281D0D8000000BF4B3 /* MyDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDataController.m; sourceTree = "<group>"; };
@@ -418,6 +424,8 @@
 				9B7BD7C31D3E1B4D0088C951 /* MyMarkerUIViewController.m */,
 				9BFA3C4A1D47BBD4001F5063 /* UserInfoEditerViewController.h */,
 				9BFA3C4B1D47BBD4001F5063 /* UserInfoEditerViewController.m */,
+				9B6F1DC91D5B02AB00F75A86 /* AboutUsViewController.h */,
+				9B6F1DCA1D5B02AB00F75A86 /* AboutUsViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -512,6 +520,8 @@
 				9BF889531D522F8C0040D33E /* MainMapPageUIView.m */,
 				9BEC9E861D54A1F2002E3D15 /* PublishUIView.h */,
 				9BEC9E871D54A1F2002E3D15 /* PublishUIView.m */,
+				9B6F1DCC1D5B02D300F75A86 /* AboutUsView.h */,
+				9B6F1DCD1D5B02D300F75A86 /* AboutUsView.m */,
 			);
 			path = ControllerView;
 			sourceTree = "<group>";
@@ -671,6 +681,7 @@
 				9B53667E1D03502D008D803A /* ErrorState.m in Sources */,
 				9BB8CD0E1D4F7FA400E571C2 /* NormalPostTableViewCell.m in Sources */,
 				9B21B18D1D1C4E8300F560DF /* RegisterUserInfoViewController.m in Sources */,
+				9B6F1DCE1D5B02D300F75A86 /* AboutUsView.m in Sources */,
 				9B67F9ED1D301A9700EF4E61 /* UserInforCell.m in Sources */,
 				9BB88DC41CB25C92009A081A /* ViewController.m in Sources */,
 				9B6782151D1ECB9000910922 /* ColorUtil.m in Sources */,
@@ -705,6 +716,7 @@
 				9BF889541D522F8C0040D33E /* MainMapPageUIView.m in Sources */,
 				9B0630B51D565C6D00234569 /* PostTag.m in Sources */,
 				9B50E4F91D5072C1003D79F7 /* CurrentPostUIView.m in Sources */,
+				9B6F1DCB1D5B02AB00F75A86 /* AboutUsViewController.m in Sources */,
 				9B0CCA7F1CE61EBF00207858 /* AFURLSessionManager.m in Sources */,
 				9BFA3C401D4776F0001F5063 /* EditUserInfoUIView.m in Sources */,
 				9BEC9E881D54A1F2002E3D15 /* PublishUIView.m in Sources */,
