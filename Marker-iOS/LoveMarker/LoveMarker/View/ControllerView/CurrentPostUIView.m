@@ -23,10 +23,10 @@
     self = [super initWithFrame:frame];
     
     if (self) {
-        switchUIView = [[UIView alloc] initWithFrame:CGRectMake(0, 70, self.frame.size.width, self.frame.size.height - 120)];
+        switchUIView = [[UIView alloc] initWithFrame:CGRectMake(0, 60, self.frame.size.width, self.frame.size.height - 120)];
         [self addSubview:switchUIView];
         
-        topLayoutView = [[TopLayoutView alloc] initWithoutButtom:context title:title andFrame:CGRectMake(0, 20, self.frame.size.width, 50)];
+        topLayoutView = [[TopLayoutView alloc] initWithoutButtom:context title:title andFrame:CGRectMake(0, 20, self.frame.size.width, 40)];
         [self addSubview:topLayoutView];
         
         tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height - 120)];
@@ -38,7 +38,7 @@
         NSArray* arr = [[NSArray alloc] initWithObjects:NSLocalizedString(@"current_post_title", nil),NSLocalizedString(@"last_hour_post_title", nil), nil];
         segmentedControl = [[UISegmentedControl alloc] initWithItems:arr];
         segmentedControl.tintColor = [UIColor whiteColor];
-        segmentedControl.center = CGPointMake(frame.size.width/2, 25);
+        segmentedControl.center = CGPointMake(frame.size.width/2, 20);
         [segmentedControl setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
         topLayoutView.navigationItem.titleView = segmentedControl;
         

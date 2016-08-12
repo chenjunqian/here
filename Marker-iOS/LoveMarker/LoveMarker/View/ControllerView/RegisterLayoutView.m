@@ -33,7 +33,7 @@
     self = [super initWithFrame:frame];
     
     if (self) {
-        _topLayoutView = [[TopLayoutView alloc] initWithContext:context title:NSLocalizedString(@"register", nil) andFrame:CGRectMake(0, 20, self.frame.size.width, 50)];
+        _topLayoutView = [[TopLayoutView alloc] initWithContext:context title:NSLocalizedString(@"register", nil) andFrame:CGRectMake(0, 20, self.frame.size.width, 40)];
         [self addSubview:_topLayoutView];
         
         _nicknameTextField = [[UITextField alloc] init];

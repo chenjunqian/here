@@ -15,6 +15,7 @@
 
 @property (strong,nonatomic) TopLayoutView *topLayoutView;
 @property (strong,nonatomic) UIScrollView *scrollView;
+@property (strong,nonatomic) UIRefreshControl* refreshControl;
 @property (strong,nonatomic) UIView *contentView;
 @property (strong,nonatomic) ClickableUIView *avatarUIView;
 @property (strong,nonatomic) UILabel *changeAvatarUILabel;

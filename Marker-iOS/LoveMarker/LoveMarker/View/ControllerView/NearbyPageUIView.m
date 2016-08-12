@@ -24,10 +24,10 @@
     self = [super initWithFrame:frame];
     
     if (self) {
-        topLayoutView = [[TopLayoutView alloc] initWithoutButtom:context title:title andFrame:CGRectMake(0, 20, self.frame.size.width, 50)];
+        topLayoutView = [[TopLayoutView alloc] initWithoutButtom:context title:title andFrame:CGRectMake(0, 20, self.frame.size.width, 40)];
         [self addSubview:topLayoutView];
         
-        tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 70, self.frame.size.width, self.frame.size.height - 120)];
+        tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 60, self.frame.size.width, self.frame.size.height - 120)];
         [self addSubview:tableView];
         
         refreshControl = [[UIRefreshControl alloc] init];

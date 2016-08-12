@@ -17,6 +17,7 @@
 #import "User.h"
 #import "NSObject+ObjectMap.h"
 #import "LastHourPostViewController.h"
+#import "PostCellSelectedViewController.h"
 
 @interface CurrentPostViewController ()
 
@@ -145,6 +146,15 @@
         }
     
     return currentCell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    PostCellSelectedViewController* postCellSelectedViewController = [[PostCellSelectedViewController alloc] initWithPost:currentPostList.postList[indexPath.row]];
+    //为了半透明背景的效果
+    postCellSelectedViewController.providesPresentationContextTransitionStyle = YES;
+    postCellSelectedViewController.definesPresentationContext = YES;
+    postCellSelectedViewController.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    [self presentViewController:postCellSelectedViewController animated:NO completion:nil];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

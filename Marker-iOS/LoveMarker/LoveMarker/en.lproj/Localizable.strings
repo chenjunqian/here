@@ -90,6 +90,9 @@ indicator_is_registering = "register ....";
 current_post_title = "current";
 last_hour_post_title = "last an hour";
 there_is_no_last_hour_post = "No one had a shot last an hour yet";
+share_post = "share";
+enter_user_page = "enter homepage";
+report_post = "report";
 
 /*发帖页面*/
 publish_page_title = "marker";

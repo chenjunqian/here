@@ -17,7 +17,7 @@
     self = [super initWithFrame:frame];
     
     if (self) {
-        topLayoutView = [[TopLayoutView alloc] initWithoutButtom:context title:title andFrame:CGRectMake(0, 20, self.frame.size.width, 50)];
+        topLayoutView = [[TopLayoutView alloc] initWithoutButtom:context title:title andFrame:CGRectMake(0, 20, self.frame.size.width, 40)];
         [self addSubview:topLayoutView];
         
         scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 70, frame.size.width, frame.size.height - 70 - 50)];
@@ -32,6 +32,7 @@
         hintUILabel.translatesAutoresizingMaskIntoConstraints = NO;
         hintUILabel.textColor = [ColorUtil textColorSubBlack];
         hintUILabel.backgroundColor = [ColorUtil viewBackgroundGrey];
+        [hintUILabel setFont:[UIFont systemFontOfSize:12]];
         hintUILabel.text = NSLocalizedString(@"hint_label_text", nil);
         [contentView addSubview:hintUILabel];
         

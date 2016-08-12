@@ -253,9 +253,10 @@
 }
 
 +(void)getLastHourPostByNumberOfPost:(NSInteger)index handler:(HttpResponseHandler)handler{
+    long long currentTime = [[NSDate date] timeIntervalSince1970]*1000;
     NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionary];
     [mutableDictionary setObject:[NSString stringWithFormat:@"%ld",(long)index] forKey:@"index"];
-    [mutableDictionary setObject:[NSString stringWithFormat:@"%ld",(long)[[NSDate date] timeIntervalSince1970]*1000] forKey:@"time"];
+    [mutableDictionary setObject:[NSString stringWithFormat:@"%lld",currentTime] forKey:@"time"];
     [self BasicHttpRequestPOSTWithUrl:[HttpConfiguration getUrlUrlGetCurrentOneHourPost] andPostDictionary:mutableDictionary responseData:handler];
 }
 

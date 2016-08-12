@@ -53,6 +53,8 @@
     
     [self refreshUserInfoDataByUser:user];
     
+    [_profilePageView.refreshControl addTarget:self action:@selector(refrshControlAction:) forControlEvents:UIControlEventValueChanged];
+    
     [HttpRequest downloadAvatarWithUrl:[[LoginStatus getInstance] getUser].avatar UIImageView:_profilePageView.avatarUIImageView];
     
     [_profilePageView.myMarkerUIView whenSingleClick:^{
@@ -154,6 +156,16 @@
             
         }];
     }];
+}
+
+-(void)refrshControlAction:(id)sender{
+    [HttpRequest downloadAvatarWithUrl:[[LoginStatus getInstance] getUser].avatar UIImageView:_profilePageView.avatarUIImageView];
+    [self refreshUserInfoDataByUser:[[LoginStatus getInstance] getUser]];
+    [self performSelector:@selector(endRefreshing:) withObject:nil afterDelay:2.0];
+}
+
+-(void)endRefreshing:(id)sender{
+    [_profilePageView.refreshControl endRefreshing];
 }
 
 -(void)refreshUserInfoDataByUser:(User*)user{

@@ -11,19 +11,22 @@
 
 @implementation ProfilePageView
 
-@synthesize topLayoutView ,scrollView,contentView, avatarUIView , avatarUIImageView , changeAvatarUILabel , myMarkerUIView , nicknameUIView , genderUIView , birthdayUIView ,
+@synthesize topLayoutView ,scrollView,refreshControl,contentView, avatarUIView , avatarUIImageView , changeAvatarUILabel , myMarkerUIView , nicknameUIView , genderUIView , birthdayUIView ,
 simpleProfileUIView , simpleProfileUILabel , simpleProfileContentUILabel , longProfileUIView , longProfileUILabel , longProfileContentUILabel ,usernameUIView , passwordUIView , logoutUIView,aboutUsUIView;
 
 -(id)initWithContext:(id)context title:(NSString*)topTitle frame:(CGRect)frame{
     self = [super initWithFrame:frame];
     
     if (self) {
-        topLayoutView = [[TopLayoutView alloc] initWithoutButtom:context title:topTitle andFrame:CGRectMake(0, 20, self.frame.size.width, 50)];
+        topLayoutView = [[TopLayoutView alloc] initWithoutButtom:context title:topTitle andFrame:CGRectMake(0, 20, self.frame.size.width, 40)];
         [self addSubview:topLayoutView];
         
-        scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 70, frame.size.width, frame.size.height - 70 - 50)];
+        scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 60, frame.size.width, frame.size.height - 70 - 50)];
         scrollView.contentSize = CGSizeMake(frame.size.width, 550);
         [self addSubview:scrollView];
+        
+        refreshControl = [[UIRefreshControl alloc] init];
+        [scrollView addSubview:refreshControl];
         
         contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 550)];
         contentView.backgroundColor = [ColorUtil viewBackgroundGrey];

@@ -24,7 +24,7 @@
 -(id)initWithContext:(id)context title:(NSString *)topTitle editerType:(UserInfoEditorMode)type frame:(CGRect)frame{
     self = [super initWithFrame:frame];
     
-    topLayout = [[TopLayoutView alloc] initWithContext:context title:NSLocalizedString(@"editor_page", nil) andFrame:CGRectMake(0, 20, self.frame.size.width, 50)];
+    topLayout = [[TopLayoutView alloc] initWithContext:context title:NSLocalizedString(@"editor_page", nil) andFrame:CGRectMake(0, 20, self.frame.size.width, 40)];
     [self addSubview:topLayout];
     
     

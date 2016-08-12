@@ -90,6 +90,9 @@ indicator_is_registering = "正在注册 ....";
 current_post_title = "最近的帖子";
 last_hour_post_title = "过去一小时";
 there_is_no_last_hour_post = "最近一小时都没有来一发哦";
+share_post = "分享";
+enter_user_page = "进入主页";
+report_post = "举报";
 
 /*发帖页面*/
 publish_page_title = "爱记";
