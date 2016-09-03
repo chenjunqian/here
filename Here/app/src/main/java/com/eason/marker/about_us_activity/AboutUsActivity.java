@@ -94,7 +94,12 @@ public class AboutUsActivity extends BaseActivity{
                     GreenToast.makeText(AboutUsActivity.this,
                             getResources().getString(R.string.about_us_activity_report_content_can_not_be_empty), Toast.LENGTH_SHORT).show();
                 }else{
-                    HttpRequest.reportIssue(contentEditText.getText().toString(), LoginStatus.getUser().getUsername(),reportIssueHandler);
+                    if (LoginStatus.getIsUserMode()){
+                        HttpRequest.reportIssue(contentEditText.getText().toString(), LoginStatus.getUser().getUsername(),reportIssueHandler);
+                    }else{
+                        HttpRequest.reportIssue(contentEditText.getText().toString(), "tourist",reportIssueHandler);
+                    }
+
                 }
 
                 reportDialog.dismiss();

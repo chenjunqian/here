@@ -148,6 +148,8 @@ public class VoicePlayClickListener implements View.OnClickListener {
 	}
 
 	// show the voice playing animation
+
+	@SuppressWarnings("ResourceType")
 	private void showAnimation() {
 		// play voice, and start animation
 		if (message.direct == EMMessage.Direct.RECEIVE) {

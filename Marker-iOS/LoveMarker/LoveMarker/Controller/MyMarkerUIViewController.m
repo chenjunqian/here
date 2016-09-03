@@ -13,6 +13,8 @@
 #import "LoginStatus.h"
 #import "ErrorState.h"
 #import "Post.h"
+#import <objc/runtime.h>
+#import "GlobalActivityIndicators.h"
 
 @interface MyMarkerUIViewController ()
 
@@ -75,10 +77,27 @@
             cell.markerContentLabel.text = post.tag;
             cell.timeLabel.text = [post getTimeWithTimestamp:post.time];
             cell.locationLabel.text = post.address;
+            objc_setAssociatedObject(cell.deleteButton, @"Post", post, OBJC_ASSOCIATION_RETAIN);
+            [cell.deleteButton addTarget:self action:@selector(deletePostAction:) forControlEvents:UIControlEventTouchDown];
         }
     }
 
     return cell;
+}
+
+-(void)deletePostAction:(id)sender{
+    Post* post = objc_getAssociatedObject(sender, @"Post");
+    GlobalActivityIndicators* indicator = [[GlobalActivityIndicators alloc] initWithTitle:NSLocalizedString(@"indicator_is_registering", nil) frame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    [indicator.activityIndicatorView startAnimating];
+    [self.view addSubview:indicator];
+    [HttpRequest deletePostByPostId:post.postId username:post.username handler:^(ResponseResult *response, NSObject *resultObject) {
+        if (response && response.status == Error_Code_Correct) {
+            [_myMarkerList.postList removeObject:post];
+            [_myMarkerUIView.tableView reloadData];
+        }
+        
+        [indicator setHidden:YES];
+    }];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

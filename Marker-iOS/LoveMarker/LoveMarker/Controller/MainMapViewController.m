@@ -9,7 +9,7 @@
 #import "MainMapViewController.h"
 #import "MainMapPageUIView.h"
 
-@interface MainMapViewController () <CLLocationManagerDelegate>
+@interface MainMapViewController ()
 
 @property (strong,nonatomic) MainMapPageUIView* mainMapPageUIView;
 @property (strong,nonatomic) CLLocationManager* locationManager;
@@ -27,12 +27,21 @@
 }
 
 -(void)initView{
-    mainMapPageUIView = [[MainMapPageUIView alloc] initViewContext:self title:NSLocalizedString(@"", nil) frame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    mainMapPageUIView = [[MainMapPageUIView alloc] initViewContext:self title:NSLocalizedString(@"home_page", nil) frame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [self.view addSubview:mainMapPageUIView];
+    
+    mainMapPageUIView.mapView.userTrackingMode = MKUserTrackingModeFollow;
+    mainMapPageUIView.mapView.delegate = self;
+    mainMapPageUIView.mapView.showsUserLocation = YES;
 }
 
 -(void)initData{
     locationManager = [[CLLocationManager alloc] init];
+    if ([[UIDevice currentDevice].systemVersion doubleValue] >= 8.0) {
+        
+        [locationManager requestAlwaysAuthorization];
+    }
+    
     CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
     if (![CLLocationManager locationServicesEnabled]) {
         NSLog(@"定位服务当前可能尚未打开，请设置打开！");

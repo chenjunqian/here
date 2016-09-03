@@ -62,4 +62,8 @@ typedef void (^HttpAvatarDownloadHandler)(UIImage *image);
 +(void)getLastHourPostByNumberOfPost:(NSInteger)index handler:(HttpResponseHandler)handler;
 
 +(void)getPostTag:(HttpResponseHandler)handler;
+
++(void)deletePostByPostId:(NSString*)postId username:(NSString*)username handler:(HttpResponseHandler)handler;
+
++(void)getNearPostByLocation:(Location*)location index:(NSInteger)index handler:(HttpResponseHandler)handler;
 @end

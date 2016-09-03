@@ -100,9 +100,7 @@ import com.eason.marker.emchat.chatuidemo.widget.PasteEditText;
 import com.eason.marker.http_util.HttpRequest;
 import com.eason.marker.http_util.HttpResponseHandler;
 import com.eason.marker.main_activity.MainActivity;
-import com.eason.marker.main_activity.MenuLeftFragment;
 import com.eason.marker.model.ErroCode;
-import com.eason.marker.model.IntentUtil;
 import com.eason.marker.model.User;
 import com.eason.marker.util.WidgetUtil.GreenToast;
 
@@ -443,9 +441,9 @@ public class ChatActivity extends BaseActivity implements OnClickListener, EMEve
 
 		//将主页侧边栏的新消息提示View设为GONE
 		if (MainActivity.getInstance()!=null){
-			MenuLeftFragment menuLeftFragment = (MenuLeftFragment) ((MainActivity)MainActivity.
-					getInstance()).getFragment(IntentUtil.MENU_LEFT_FRAGMENT);
-			menuLeftFragment.setNewMessageRemindView(View.GONE);
+//			MenuLeftFragment menuLeftFragment = (MenuLeftFragment) ((MainActivity) MainActivity.
+//					getInstance()).getFragment(IntentUtil.MENU_LEFT_FRAGMENT);
+//			menuLeftFragment.setNewMessageRemindView(View.GONE);
 		}
 	}
 

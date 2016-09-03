@@ -33,10 +33,12 @@
 		9B0CCAA91CEA648E00207858 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0CCAA81CEA648E00207858 /* LoginViewController.m */; };
 		9B0D28E91D203CD800A1287D /* ClickableUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B0D28E81D203CD800A1287D /* ClickableUIView.m */; };
 		9B114F031D1563BD0098C26B /* UnitViewUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B114F021D1563BD0098C26B /* UnitViewUtil.m */; };
+		9B16A5061D6F37FE0012F1B5 /* LocationStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B16A5051D6F37FE0012F1B5 /* LocationStatus.m */; };
 		9B21B18D1D1C4E8300F560DF /* RegisterUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B21B18C1D1C4E8300F560DF /* RegisterUserInfoViewController.m */; };
 		9B21B1931D1C4F5600F560DF /* BasicLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B21B1921D1C4F5600F560DF /* BasicLayoutView.m */; };
 		9B2F01551D5E24E70002673E /* PostCellSelectedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F01541D5E24E70002673E /* PostCellSelectedViewController.m */; };
 		9B2F01581D5E25020002673E /* PostCellSelectedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B2F01571D5E25020002673E /* PostCellSelectedView.m */; };
+		9B46F9711D6CA366000FA19A /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B46F9701D6CA366000FA19A /* Location.m */; };
 		9B4FDC701CE24E5C008C0E3B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9B4FDC721CE24E5C008C0E3B /* Localizable.strings */; };
 		9B4FDC781CE38A06008C0E3B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4FDC771CE38A06008C0E3B /* User.m */; };
 		9B4FDC871CE49D82008C0E3B /* ResponseResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B4FDC861CE49D82008C0E3B /* ResponseResult.m */; };
@@ -157,6 +159,8 @@
 		9B0D28E81D203CD800A1287D /* ClickableUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickableUIView.m; sourceTree = "<group>"; };
 		9B114F011D1563BD0098C26B /* UnitViewUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitViewUtil.h; sourceTree = "<group>"; };
 		9B114F021D1563BD0098C26B /* UnitViewUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitViewUtil.m; sourceTree = "<group>"; };
+		9B16A5041D6F37FE0012F1B5 /* LocationStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationStatus.h; sourceTree = "<group>"; };
+		9B16A5051D6F37FE0012F1B5 /* LocationStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationStatus.m; sourceTree = "<group>"; };
 		9B21B18B1D1C4E8300F560DF /* RegisterUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterUserInfoViewController.h; sourceTree = "<group>"; };
 		9B21B18C1D1C4E8300F560DF /* RegisterUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterUserInfoViewController.m; sourceTree = "<group>"; };
 		9B21B1911D1C4F5600F560DF /* BasicLayoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BasicLayoutView.h; path = ../Controller/BasicLayoutView.h; sourceTree = "<group>"; };
@@ -165,6 +169,8 @@
 		9B2F01541D5E24E70002673E /* PostCellSelectedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostCellSelectedViewController.m; sourceTree = "<group>"; };
 		9B2F01561D5E25020002673E /* PostCellSelectedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostCellSelectedView.h; sourceTree = "<group>"; };
 		9B2F01571D5E25020002673E /* PostCellSelectedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostCellSelectedView.m; sourceTree = "<group>"; };
+		9B46F96F1D6CA366000FA19A /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
+		9B46F9701D6CA366000FA19A /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		9B4FDC711CE24E5C008C0E3B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9B4FDC731CE24EC0008C0E3B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		9B4FDC761CE38A06008C0E3B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -377,6 +383,10 @@
 				9B5E7A331D42869B002286A5 /* PostList.m */,
 				9B0630B31D565C6D00234569 /* PostTag.h */,
 				9B0630B41D565C6D00234569 /* PostTag.m */,
+				9B46F96F1D6CA366000FA19A /* Location.h */,
+				9B46F9701D6CA366000FA19A /* Location.m */,
+				9B16A5041D6F37FE0012F1B5 /* LocationStatus.h */,
+				9B16A5051D6F37FE0012F1B5 /* LocationStatus.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -722,6 +732,7 @@
 				9B8843DE1CEF91A600FCC077 /* BasicViewController.m in Sources */,
 				9B8843C81CEE157E00FCC077 /* ProfilePageViewController.m in Sources */,
 				9B0CCA7A1CE61EBF00207858 /* AFHTTPSessionManager.m in Sources */,
+				9B46F9711D6CA366000FA19A /* Location.m in Sources */,
 				9B07BD481D147CD8002B145E /* RegisterViewController.m in Sources */,
 				9B0CCA901CE65F7C00207858 /* TopLayoutView.m in Sources */,
 				9B8843ED1CF35DAD00FCC077 /* LoginStatus.m in Sources */,
@@ -736,6 +747,7 @@
 				9B0CCA891CE61EBF00207858 /* HttpConfiguration.m in Sources */,
 				9B0CCA7B1CE61EBF00207858 /* AFNetworkReachabilityManager.m in Sources */,
 				9B8843F01CF5CCBC00FCC077 /* AvatarUIImageView.m in Sources */,
+				9B16A5061D6F37FE0012F1B5 /* LocationStatus.m in Sources */,
 				9BFA3C4C1D47BBD4001F5063 /* UserInfoEditerViewController.m in Sources */,
 				9B21B1931D1C4F5600F560DF /* BasicLayoutView.m in Sources */,
 				9B774B291D0D8000000BF4B3 /* MyDataController.m in Sources */,

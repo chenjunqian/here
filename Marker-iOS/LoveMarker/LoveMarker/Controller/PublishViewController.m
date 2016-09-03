@@ -13,6 +13,9 @@
 #import "HttpRequest.h"
 #import "ErrorState.h"
 #import "PostTag.h"
+#import "LoginStatus.h"
+#import "UnitViewUtil.h"
+#import "LoginViewController.h"
 
 @interface PublishViewController ()
 
@@ -37,6 +40,20 @@
     publishView.collectionView.delegate = self;
     publishView.collectionView.dataSource = self;
     [publishView.collectionView registerClass:[TagCollectionViewCell class] forCellWithReuseIdentifier:@"TagCollectionViewCell"];
+    [publishView.publishButton addTarget:self action:@selector(publishPost:) forControlEvents:UIControlEventTouchDown];
+}
+
+-(IBAction)publishPost:(id)sender{
+    if (![[LoginStatus getInstance] getIsUserModel]) {
+        [UnitViewUtil showWarningAlertWithMessage:NSLocalizedString(@"have_not_login_yet_can_not_post", nil) actionOK:NSLocalizedString(@"ok", nil) actionCancle:NSLocalizedString(@"cancel", nil) context:self okButtonHandler:^{
+            
+            LoginViewController* loginViewController = [[LoginViewController alloc] init];
+            [self presentViewController:loginViewController animated:YES completion:^{
+                
+            }];
+            
+        }];
+    }
 }
 
 -(void)getPostTag{

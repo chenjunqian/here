@@ -20,7 +20,7 @@
                         <navigationItem id="b6z-gj-rG6">
                             <nil key="title"/>
                             <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="4OC-8S-Kv3">
-                                <rect key="frame" x="100" y="8" width="121" height="29"/>
+                                <rect key="frame" x="99.5" y="7.5" width="121" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES"/>
                                 <segments>
                                     <segment title="First"/>
@@ -30,6 +30,11 @@
                         </navigationItem>
                     </items>
                 </navigationBar>
+                <view contentMode="scaleToFill" id="FSP-OF-QBn">
+                    <rect key="frame" x="0.0" y="85" width="320" height="79"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <point key="canvasLocation" x="566" y="389"/>

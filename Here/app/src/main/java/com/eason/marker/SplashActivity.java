@@ -59,7 +59,7 @@ public class SplashActivity extends BaseActivity {
 
         if (!CommonUtil.isEmptyString(username)&&!CommonUtil.isEmptyString(password)){
             //登录应用
-            CommonUtil.login(username, password, "", new OnLoginListener() {
+            LoginStatus.login(username, password, "", new OnLoginListener() {
 
                 @Override
                 public void loginListener() {

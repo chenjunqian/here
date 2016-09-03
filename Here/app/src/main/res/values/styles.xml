@@ -2,13 +2,8 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- 不显示Title Bar和Action Bar. -->
-        <item name="android:windowNoTitle">true</item>
-        <item name="windowActionBar">false</item>
-        <item name="android:windowActionBar">false</item>
-
         <!-- Actionbar color -->
-        <item name="colorPrimary">@color/ColorPrimary</item>
+        <item name="colorPrimary">@color/universal_title_background_red</item>
         <!--Status bar color-->
         <item name="colorPrimaryDark">@color/ColorPrimary</item>
 
@@ -56,6 +51,9 @@
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
     <!-- 环信-->

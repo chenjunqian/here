@@ -8,8 +8,8 @@ android {
         applicationId "com.eason.marker"
         minSdkVersion 15
         targetSdkVersion 22
-        versionCode 2
-        versionName "1.0"
+        versionCode 3
+        versionName "1.0.1"
     }
     buildTypes {
         release {
@@ -23,6 +23,7 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.android.support:design:22.2.0'
     compile files('libs/Android_2DMapApi_V2.5.0.jar')
     compile files('libs/gson-2.2.4.jar')
     compile files('libs/MapApiLocation_1.3.3.jar')

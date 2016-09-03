@@ -21,7 +21,6 @@ import com.eason.marker.model.PostList;
 import com.eason.marker.util.PostListViewAdapter;
 import com.eason.marker.util.WidgetUtil.GreenToast;
 
-
 /**
  * Created by Eason on 1/13/16.
  */

@@ -9,10 +9,6 @@ import android.graphics.drawable.Drawable;
 import android.media.ExifInterface;
 import android.util.Log;
 
-import com.eason.marker.http_util.HttpRequest;
-import com.eason.marker.http_util.LoginHandler;
-import com.eason.marker.model.ErroCode;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -97,35 +93,6 @@ public class CommonUtil {
         return false;
     }
 
-    /**
-     * 登录请求
-     *
-     * @param userAccount
-     * @param userPassword
-     * @param pushKey
-     */
-    public static void login(final String userAccount, final String userPassword, String pushKey, final OnLoginListener loginListener) {
-
-        LoginHandler loginHandler = new LoginHandler() {
-            @Override
-            public void getResult() {
-                if (this.resultVO == null) {
-                    loginListener.loginFailedListener(ErroCode.ERROR_CODE_RESPONSE_NULL);
-                    return;
-                } else if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_USER_OR_PASSWORD_INVALID) {
-                    loginListener.loginFailedListener(ErroCode.ERROR_CODE_USER_OR_PASSWORD_INVALID);
-                    return;
-                } else if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT) {
-                    SharePreferencesUtil.saveUserLoginInfo(userAccount, userPassword);
-                    loginListener.loginListener();
-                }else{
-                    loginListener.loginFailedListener(ErroCode.ERROR_CODE_CLIENT_DATA_ERROR);
-                }
-            }
-        };
-
-        HttpRequest.login(userAccount, userPassword, pushKey, loginHandler);
-    }
 
     /**
      * 从给定的路径加载图片，并指定是否自动旋转方向

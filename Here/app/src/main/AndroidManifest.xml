@@ -51,7 +51,7 @@
         android:name=".MainApplication"
         android:icon="@drawable/ic_logo"
         android:label="@string/app_name"
-        android:theme="@style/Theme.AppCompat">
+        android:theme="@style/AppTheme">
 
         <!-- Amap apiKey  测试key  bc23383ffa4aebee0e8a6f03c3eb123c  正式key 4ae2316f87e0a294379e69c33e40b79e -->
         <meta-data
@@ -185,10 +185,9 @@
         </activity>
 
         <activity
-            android:name="com.eason.marker.main_activity.MainActivity"
+            android:name=".main_activity.MainActivity"
             android:label="@string/main_map_page"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
         <activity

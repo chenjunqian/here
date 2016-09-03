@@ -663,6 +663,7 @@ public class MessageAdapter extends BaseAdapter{
 				textView.setText(itemStr);
 				textView.setTextSize(15);
 				try {
+					@SuppressWarnings("ResourceType")
 					XmlPullParser xrp = context.getResources().getXml(R.drawable.menu_msg_text_color);
 					textView.setTextColor(ColorStateList.createFromXml(context.getResources(), xrp));
 				} catch (Exception e) {
@@ -986,6 +987,8 @@ public class MessageAdapter extends BaseAdapter{
 	 * @param position
 	 * @param convertView
 	 */
+
+	@SuppressWarnings("ResourceType")
 	private void handleVoiceMessage(final EMMessage message, final ViewHolder holder, final int position, View convertView) {
 		VoiceMessageBody voiceBody = (VoiceMessageBody) message.getBody();
 		int len = voiceBody.getLength();
@@ -1005,6 +1008,7 @@ public class MessageAdapter extends BaseAdapter{
 				return true;
 			}
 		});
+
 		if (((ChatActivity)activity).playMsgId != null
 				&& ((ChatActivity)activity).playMsgId.equals(message
 						.getMsgId())&&VoicePlayClickListener.isPlaying) {

@@ -16,13 +16,13 @@
 @property (strong,nonatomic) UIView *genderLayout;
 @property (strong,nonatomic) UIView *genderMiddleLineView;
 
-@property (strong,nonatomic) UILabel *maleLabel;
+@property (strong,nonatomic) UIImageView *maleImageView;
 @property (strong,nonatomic) ClickableUIView *maleView;
-@property (strong,nonatomic) UIView *maleCheckView;
+@property (strong,nonatomic) UIImageView *maleCheckView;
 
-@property (strong,nonatomic) UILabel *femaleLabel;
+@property (strong,nonatomic) UIImageView *femaleImageView;
 @property (strong,nonatomic) ClickableUIView *femaleView;
-@property (strong,nonatomic) UIView *femalCheckView;
+@property (strong,nonatomic) UIImageView *femalCheckView;
 
 @property (strong,nonatomic) UIDatePicker* datePicker;
 @property (strong,nonatomic) UIButton *nextStepButton;

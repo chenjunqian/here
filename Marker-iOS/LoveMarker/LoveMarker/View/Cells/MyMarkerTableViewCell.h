@@ -13,6 +13,7 @@
 @property (nonatomic,strong,getter=getMarkerContentLabel) UILabel *markerContentLabel;
 @property (nonatomic,strong,getter=getLocationLabel) UILabel *locationLabel;
 @property (nonatomic,strong,getter=getTimeLabel) UILabel *timeLabel;
+@property (nonatomic,strong) UIButton *deleteButton;
 
 -(NSInteger)getCellHight;
 @end

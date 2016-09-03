@@ -4,16 +4,22 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.easemob.EMCallBack;
@@ -24,31 +30,37 @@ import com.easemob.chat.EMGroupManager;
 import com.eason.marker.R;
 import com.eason.marker.about_us_activity.AboutUsActivity;
 import com.eason.marker.emchat.EMChatUtil;
+import com.eason.marker.emchat.chatuidemo.activity.EMChatMainActivity;
+import com.eason.marker.http_util.HttpConfig;
+import com.eason.marker.http_util.HttpRequest;
+import com.eason.marker.login_register.LoginActivity;
 import com.eason.marker.model.ErroCode;
 import com.eason.marker.model.IntentUtil;
 import com.eason.marker.model.LoginStatus;
 import com.eason.marker.model.Post;
 import com.eason.marker.util.LogUtil;
+import com.eason.marker.util.WidgetUtil.CircleImageView;
 import com.eason.marker.util.WidgetUtil.GreenToast;
+import com.eason.marker.util.WidgetUtil.ModelDialog;
 import com.igexin.sdk.PushManager;
 
 import java.util.List;
 
 
-public class MainActivity extends ActionBarActivity implements EMEventListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener , EMEventListener {
 
     private static Context instance;
 
-    private DrawerLayout drawerLayout;
+    private Toolbar toolbar;
     private Menu toolBarMenu;
-    private ActionBarDrawerToggle actionBarDrawerToggle;
-    private android.support.v7.widget.Toolbar toolbar;
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle toggle;
+    private NavigationView navigationView;
 
     private MainMapFragment mainMapFragment;
     private MainProfileFragment settingFragment;
     private NearUserListFragment nearUserListFragment;
     private CurrentMarkerListFragment currentPostFragment;
-    private MenuLeftFragment menuLeftFragment;
     private NotificationFragment notificationFragment;
 
     private static final int CHANGE_TOOL_BAR_TITLE_MAIN = 0x1;
@@ -115,125 +127,31 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
             }
         }
     };
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initView(savedInstanceState);
+        initView();
         initParam();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        // register the event listener when enter the foreground
-        EMChatManager.getInstance().registerEventListener(this,
-                new EMNotifierEvent.Event[]{EMNotifierEvent.Event.EventNewMessage});
-    }
-
-    /*
-            初始化控件
-         */
-    private void initView(Bundle savedInstanceState) {
-        toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.tool_bar);
+    private void initView(){
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitle(R.string.main_map_page);
-        toolbar.setTitleTextColor(getResources().getColor(R.color.universal_white));
-        drawerLayout = (DrawerLayout) findViewById(R.id.main_drawer_layout);
-
-        toolbar.setOnMenuItemClickListener(new android.support.v7.widget.Toolbar.OnMenuItemClickListener() {
-
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.main_map_page,R.string.app_name);
+        drawerLayout.setDrawerListener(toggle);
+        toggle.syncState();
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        initLoginData();
+        RelativeLayout navHeaderLayout = (RelativeLayout) findViewById(R.id.nav_header_view_layout);
+        navHeaderLayout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                switch (menuItem.getItemId()) {
-                    case R.id.action_refresh:
-
-                        mainMapFragment.getPost();
-                        break;
-
-                    case R.id.action_about_us:
-                        Intent intent = new Intent(MainActivity.this, AboutUsActivity.class);
-                        startActivity(intent);
-                        break;
-
-                    case R.id.action_notification:
-                        if (LoginStatus.getIsUserMode()) {
-                            setFragmentTransaction(IntentUtil.NOTIFICATION_FRAGMENT);
-                        } else {
-                            GreenToast.makeText(MainActivity.instance, getResources().getString(R.string.please_login_first), Toast.LENGTH_LONG).show();
-                        }
-
-                        break;
-                }
-
-                return true;
+            public void onClick(View v) {
+                setFragmentTransaction(IntentUtil.PROFLIE_FRAGMENT);
             }
         });
-
-        //将toolbar与Drawerlayout绑定起来
-        actionBarDrawerToggle = new ActionBarDrawerToggle(
-                this,
-                drawerLayout,
-                toolbar,
-                R.string.main_map_page,
-                R.string.action_settings) {
-
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                invalidateOptionsMenu();
-            }
-
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                invalidateOptionsMenu();
-            }
-        };
-
-        drawerLayout.setDrawerListener(actionBarDrawerToggle);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        toolBarMenu = menu;
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        actionBarDrawerToggle.syncState();
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        actionBarDrawerToggle.onConfigurationChanged(newConfig);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-
-        menu.clear();
-        if (isShowRefreshView){
-            getMenuInflater().inflate(R.menu.menu_main, menu);
-        }else{
-            getMenuInflater().inflate(R.menu.menu_main_without_refresh, menu);
-        }
-
-        return super.onPrepareOptionsMenu(menu);
     }
 
     /**
@@ -241,11 +159,9 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
      */
     private void initParam() {
         instance = this;
-        menuLeftFragment = (MenuLeftFragment) getFragmentManager().
-                findFragmentById(R.id.main_left_menu_fragment);
         mainMapFragment = new MainMapFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.add(R.id.main_fragment_frame_layout, mainMapFragment).commit();
+        transaction.add(R.id.content_main_fragment_layout, mainMapFragment).commit();
         EMChatUtil.autoReConnectEMChat();
         if (LoginStatus.getIsUserMode()) {
             loginEMChat(LoginStatus.getUser().getUserid(), LoginStatus.getUser().getPassword());
@@ -257,8 +173,27 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
         PushManager.getInstance().initialize(this.getApplication());
     }
 
+    /**
+     * 在用户切换登录状态时使用
+     */
+    private void initLoginData(){
+        CircleImageView circleImageView = (CircleImageView) findViewById(R.id.left_menu_avatar_image_view);
+        circleImageView.setImageResource(R.drawable.default_avatar_ori);
+        MenuItem loginItem = navigationView.getMenu().findItem(R.id.login_item_layout);
+        if (LoginStatus.getIsUserMode()){
+            loginItem.setTitle(getResources().getString(R.string.logout));
+            HttpRequest.loadImage(circleImageView, HttpConfig.String_Url_Media + LoginStatus.getUser().getAvatar(), 150, 150);
+        }else{
+            loginItem.setTitle(getResources().getString(R.string.login));
+        }
+    }
+
     public static Context getInstance(){
         return instance;
+    }
+
+    public Handler getHandler() {
+        return handler;
     }
 
     public Fragment getFragment(int type) {
@@ -271,192 +206,9 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
                 return currentPostFragment;
             case IntentUtil.PROFLIE_FRAGMENT:
                 return settingFragment;
-            case IntentUtil.MENU_LEFT_FRAGMENT:
-                return menuLeftFragment;
         }
 
         return null;
-    }
-
-    public Handler getHandler() {
-        return handler;
-    }
-
-    /**
-     * 切换fragment,切换到fragmentIndex相应的fragment
-     *
-     * @param fragmentIndex
-     */
-    public void setFragmentTransaction(int fragmentIndex) {
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        Message msg = new Message();
-        if (fragmentIndex != IntentUtil.MAIN_TO_LOGIN_PAGE) {//跳转到注册登录页面不需要切换fragment
-            hideFragment(transaction);
-        }
-
-        menuLeftFragment.setItemBackground(fragmentIndex);
-
-        switch (fragmentIndex) {
-
-            //切换到主页
-            case IntentUtil.MAIN_MAP_FRAGMENT:
-                if (mainMapFragment == null) {
-                    mainMapFragment = new MainMapFragment();
-                    transaction.add(R.id.main_fragment_frame_layout, mainMapFragment);
-                } else {
-                    transaction.show(mainMapFragment);
-                }
-
-                msg.what = CHANGE_TOOL_BAR_TITLE_MAIN;
-                isShowRefreshView = true;
-                FRAGMENT_TAG = IntentUtil.MAIN_MAP_FRAGMENT;
-                handler.sendEmptyMessage(msg.what);
-                break;
-
-            //切换到设置页面
-            case IntentUtil.PROFLIE_FRAGMENT:
-
-                if (settingFragment == null) {
-                    settingFragment = new MainProfileFragment();
-                    transaction.add(R.id.main_fragment_frame_layout, settingFragment);
-                } else {
-                    transaction.show(settingFragment);
-                }
-
-                msg.what = CHANGE_TOOL_BAR_TITLE_SETTING;
-                isShowRefreshView = false;
-                FRAGMENT_TAG = IntentUtil.PROFLIE_FRAGMENT;
-                handler.sendEmptyMessage(msg.what);
-                break;
-
-            //切换到附近事件列表显示页面
-            case IntentUtil.NEAR_USER_FRAGMENT:
-                if (nearUserListFragment == null) {
-                    nearUserListFragment = new NearUserListFragment();
-                    transaction.add(R.id.main_fragment_frame_layout, nearUserListFragment);
-                } else {
-                    transaction.show(nearUserListFragment);
-                }
-
-                FRAGMENT_TAG = IntentUtil.NEAR_USER_FRAGMENT;
-                msg.what = CHANGE_TOOL_BAR_TITLE_NEAR;
-                handler.sendEmptyMessage(msg.what);
-                isShowRefreshView = false;
-                break;
-
-            case IntentUtil.MAIN_TO_LOGIN_PAGE:
-                /**
-                 * 在这里什么都不需要做，因为只需要关闭Drawerlayout,具体的跳转操作在MainLeftFragment中
-                 */
-                break;
-
-            case IntentUtil.CHAT_MAIN_PAGE:
-                /**
-                 * 在这里什么都不需要做，因为只需要关闭Drawerlayout,具体的跳转操作在MainLeftFragment中
-                 */
-                break;
-
-            case IntentUtil.CURRENT_POST_FRAGMENT:
-                if (currentPostFragment == null) {
-                    currentPostFragment = new CurrentMarkerListFragment();
-                    transaction.add(R.id.main_fragment_frame_layout, currentPostFragment);
-                } else {
-                    transaction.show(currentPostFragment);
-                }
-
-                FRAGMENT_TAG = IntentUtil.CURRENT_POST_FRAGMENT;
-                handler.sendEmptyMessage(msg.what);
-                isShowRefreshView = false;
-                msg.what = CHANGE_TOOL_BAR_TITLE_MINE;
-                handler.sendEmptyMessage(msg.what);
-                break;
-
-            case IntentUtil.NOTIFICATION_FRAGMENT:
-                if (notificationFragment == null){
-                    notificationFragment = new NotificationFragment();
-                    transaction.add(R.id.main_fragment_frame_layout, notificationFragment);
-                }else{
-                    transaction.show(notificationFragment);
-                }
-
-                FRAGMENT_TAG = IntentUtil.NOTIFICATION_FRAGMENT;
-                handler.sendEmptyMessage(msg.what);
-                isShowRefreshView = false;
-                msg.what = CHANGE_TOOL_BAR_TITLE_NOTIFICATION;
-                handler.sendEmptyMessage(msg.what);
-                onPrepareOptionsMenu(toolBarMenu);
-                break;
-        }
-
-        drawerLayout.closeDrawers();//点击Item后关闭Drawerlayout
-        transaction.commit();
-    }
-
-    private void hideFragment(FragmentTransaction transaction) {
-        if (mainMapFragment != null) {
-            transaction.hide(mainMapFragment);
-        }
-        if (settingFragment != null) {
-            transaction.hide(settingFragment);
-        }
-        if (nearUserListFragment != null) {
-            transaction.hide(nearUserListFragment);
-        }
-        if (currentPostFragment != null) {
-            transaction.hide(currentPostFragment);
-        }
-
-        if (notificationFragment!=null){
-            transaction.hide(notificationFragment);
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode != RESULT_OK) {
-            return;
-        }
-
-        switch (requestCode) {
-            case IntentUtil.TO_PUBLISH_PAGE:
-                mainMapFragment.getPost();
-                break;
-            case IntentUtil.MAIN_TO_LOGIN_PAGE:
-                if (LoginStatus.getIsUserMode()) {
-                    loginEMChat(LoginStatus.getUser().getUserid(), LoginStatus.getUser().getPassword());
-                }
-                break;
-            case IntentUtil.CHAT_MAIN_PAGE:
-                /**
-                 * 这里是为了从聊天页面回来时显示主页
-                 */
-                setFragmentTransaction(IntentUtil.MAIN_MAP_FRAGMENT);
-                menuLeftFragment.setItemBackground(IntentUtil.MAIN_MAP_FRAGMENT);
-                break;
-        }
-
-    }
-
-    private static long touchTime = 0;
-
-    @Override
-    public void onBackPressed() {
-        long currentTime = System.currentTimeMillis();
-
-        if (FRAGMENT_TAG != IntentUtil.MAIN_MAP_FRAGMENT) {//在不是地图fragment的时候按返回键回到地图fragment
-            setFragmentTransaction(IntentUtil.MAIN_MAP_FRAGMENT);
-            menuLeftFragment.setItemBackground(IntentUtil.MAIN_MAP_FRAGMENT);
-            return;
-        } else if (currentTime - touchTime > 2000) {
-            GreenToast.makeText(MainActivity.this, getResources().getString(R.string.click_twice_finish), Toast.LENGTH_SHORT).show();
-            touchTime = System.currentTimeMillis();
-            return;
-        } else {
-            System.exit(0);
-        }
-
     }
 
     /**
@@ -500,14 +252,298 @@ public class MainActivity extends ActionBarActivity implements EMEventListener {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if (menuLeftFragment!=null){
-                            menuLeftFragment.setItemBackground(View.VISIBLE);
-                        }
+
                     }
                 });
 
                 LogUtil.e("MainActivity", "EventNewMessage !!!!!!!!!!!!!!!!!");
                 break;
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initLoginData();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode != RESULT_OK) {
+            return;
+        }
+
+        switch (requestCode) {
+            case IntentUtil.TO_PUBLISH_PAGE:
+                mainMapFragment.getPost();
+                break;
+            case IntentUtil.MAIN_TO_LOGIN_PAGE:
+                if (LoginStatus.getIsUserMode()) {
+                    loginEMChat(LoginStatus.getUser().getUserid(), LoginStatus.getUser().getPassword());
+                }
+                break;
+            case IntentUtil.CHAT_MAIN_PAGE:
+                /**
+                 * 这里是为了从聊天页面回来时显示主页
+                 */
+//                setFragmentTransaction(IntentUtil.MAIN_MAP_FRAGMENT);
+//                menuLeftFragment.setItemBackground(IntentUtil.MAIN_MAP_FRAGMENT);
+                break;
+        }
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        toolBarMenu = menu;
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem menuItem) {
+
+        int id = menuItem.getItemId();
+
+        switch (id){
+
+            case R.id.main_page_tag_layout:
+                setFragmentTransaction(IntentUtil.MAIN_MAP_FRAGMENT);
+                break;
+            case R.id.user_list_item_layout:
+                setFragmentTransaction(IntentUtil.NEAR_USER_FRAGMENT);
+                break;
+            case R.id.current_post_list_item_layout:
+                setFragmentTransaction(IntentUtil.CURRENT_POST_FRAGMENT);
+                break;
+            case R.id.enter_chat_main_page_item_layout:
+                setFragmentTransaction(IntentUtil.CHAT_MAIN_PAGE);
+                break;
+
+            case R.id.login_item_layout:
+
+                setFragmentTransaction(IntentUtil.MAIN_TO_LOGIN_PAGE);
+                break;
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    /**
+     * 切换fragment,切换到fragmentIndex相应的fragment
+     *
+     * @param fragmentIndex
+     */
+    public void setFragmentTransaction(int fragmentIndex) {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        Message msg = new Message();
+        if (fragmentIndex != IntentUtil.MAIN_TO_LOGIN_PAGE) {//跳转到注册登录页面不需要切换fragment
+            hideFragment(transaction);
+        }
+
+        switch (fragmentIndex) {
+
+            //切换到主页
+            case IntentUtil.MAIN_MAP_FRAGMENT:
+                if (mainMapFragment == null) {
+                    mainMapFragment = new MainMapFragment();
+                    transaction.add(R.id.content_main_fragment_layout, mainMapFragment);
+                } else {
+                    transaction.show(mainMapFragment);
+                }
+
+                msg.what = CHANGE_TOOL_BAR_TITLE_MAIN;
+                isShowRefreshView = true;
+                FRAGMENT_TAG = IntentUtil.MAIN_MAP_FRAGMENT;
+                handler.sendEmptyMessage(msg.what);
+                break;
+
+            //切换到设置页面
+            case IntentUtil.PROFLIE_FRAGMENT:
+                if (!LoginStatus.getIsUserMode()) {
+                    Toast.makeText(this, getResources().getString(R.string.please_login_first), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (settingFragment == null) {
+                    settingFragment = new MainProfileFragment();
+                    transaction.add(R.id.content_main_fragment_layout, settingFragment);
+                } else {
+                    transaction.show(settingFragment);
+                }
+
+                msg.what = CHANGE_TOOL_BAR_TITLE_SETTING;
+                isShowRefreshView = false;
+                FRAGMENT_TAG = IntentUtil.PROFLIE_FRAGMENT;
+                handler.sendEmptyMessage(msg.what);
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
+                break;
+
+            //切换到附近事件列表显示页面
+            case IntentUtil.NEAR_USER_FRAGMENT:
+                if (nearUserListFragment == null) {
+                    nearUserListFragment = new NearUserListFragment();
+                    transaction.add(R.id.content_main_fragment_layout, nearUserListFragment);
+                } else {
+                    transaction.show(nearUserListFragment);
+                }
+
+                FRAGMENT_TAG = IntentUtil.NEAR_USER_FRAGMENT;
+                msg.what = CHANGE_TOOL_BAR_TITLE_NEAR;
+                handler.sendEmptyMessage(msg.what);
+                isShowRefreshView = false;
+                break;
+
+            case IntentUtil.MAIN_TO_LOGIN_PAGE:
+                if (LoginStatus.getIsUserMode()) {
+
+                    final ModelDialog mDialog = new ModelDialog(this, R.layout.dialog_back, R.style.Theme_dialog);
+                    final Button btnOK, btnCancel;
+                    final TextView title;
+                    btnOK = (Button) mDialog.findViewById(R.id.ok_button);
+                    btnCancel = (Button) mDialog.findViewById(R.id.cancel_button);
+                    title = (TextView) mDialog.findViewById(R.id.alert_dialog_note_text);
+                    title.setText(getResources().getString(R.string.login_register_is_sure_logout));
+                    btnOK.setText(getResources().getString(R.string.my_profile_sure_to_delete_my_post));
+                    btnCancel.setText(getResources().getString(R.string.my_profile_cancel_delete_my_post));
+
+                    btnOK.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View arg0) {
+                            LoginStatus.logout();
+                            EMChatUtil.logoutEMChat();
+                            initLoginData();
+                            mDialog.dismiss();
+                        }
+                    });
+                    btnCancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View arg0) {
+                            mDialog.dismiss();
+                        }
+                    });
+                    mDialog.show();
+
+                    return;
+                }
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivityForResult(intent, IntentUtil.MAIN_TO_LOGIN_PAGE);
+                break;
+
+            case IntentUtil.CHAT_MAIN_PAGE:
+                if (!LoginStatus.getIsUserMode()) {
+                    Toast.makeText(this, getResources().getString(R.string.please_login_first), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Intent toChatPageIntent = new Intent(this, EMChatMainActivity.class);
+                startActivityForResult(toChatPageIntent, IntentUtil.CHAT_MAIN_PAGE);
+                break;
+
+            case IntentUtil.CURRENT_POST_FRAGMENT:
+                if (currentPostFragment == null) {
+                    currentPostFragment = new CurrentMarkerListFragment();
+                    transaction.add(R.id.content_main_fragment_layout, currentPostFragment);
+                } else {
+                    transaction.show(currentPostFragment);
+                }
+
+                FRAGMENT_TAG = IntentUtil.CURRENT_POST_FRAGMENT;
+                handler.sendEmptyMessage(msg.what);
+                isShowRefreshView = false;
+                msg.what = CHANGE_TOOL_BAR_TITLE_MINE;
+                handler.sendEmptyMessage(msg.what);
+                break;
+
+            case IntentUtil.NOTIFICATION_FRAGMENT:
+                if (notificationFragment == null){
+                    notificationFragment = new NotificationFragment();
+                    transaction.add(R.id.content_main_fragment_layout, notificationFragment);
+                }else{
+                    transaction.show(notificationFragment);
+                }
+
+                FRAGMENT_TAG = IntentUtil.NOTIFICATION_FRAGMENT;
+                handler.sendEmptyMessage(msg.what);
+                isShowRefreshView = false;
+                msg.what = CHANGE_TOOL_BAR_TITLE_NOTIFICATION;
+                handler.sendEmptyMessage(msg.what);
+                onPrepareOptionsMenu(toolBarMenu);
+                break;
+        }
+
+        transaction.commit();
+    }
+
+    private void hideFragment(FragmentTransaction transaction) {
+        if (mainMapFragment != null) {
+            transaction.hide(mainMapFragment);
+        }
+        if (settingFragment != null) {
+            transaction.hide(settingFragment);
+        }
+        if (nearUserListFragment != null) {
+            transaction.hide(nearUserListFragment);
+        }
+        if (currentPostFragment != null) {
+            transaction.hide(currentPostFragment);
+        }
+
+        if (notificationFragment!=null){
+            transaction.hide(notificationFragment);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        switch (id){
+            case R.id.action_refresh:
+                mainMapFragment.getPost();
+                break;
+            case R.id.action_notification:
+                setFragmentTransaction(IntentUtil.NOTIFICATION_FRAGMENT);
+                break;
+            case R.id.action_about_us:
+                Intent intent = new Intent(MainActivity.this, AboutUsActivity.class);
+                startActivity(intent);
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private static long touchTime = 0;
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            long currentTime = System.currentTimeMillis();
+
+            if (FRAGMENT_TAG != IntentUtil.MAIN_MAP_FRAGMENT) {//在不是地图fragment的时候按返回键回到地图fragment
+                setFragmentTransaction(IntentUtil.MAIN_MAP_FRAGMENT);
+                return;
+            } else if (currentTime - touchTime > 2000) {
+                GreenToast.makeText(MainActivity.this, getResources().getString(R.string.click_twice_finish), Toast.LENGTH_SHORT).show();
+                touchTime = System.currentTimeMillis();
+                return;
+            } else {
+                System.exit(0);
+            }
+        }
+
     }
 }

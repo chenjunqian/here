@@ -9,22 +9,18 @@
 #import "RegisterUserInfoLayoutView.h"
 #import "ColorUtil.h"
 #import "TopLayoutView.h"
+#import "UserInforCell.h"
 
 @interface RegisterUserInfoLayoutView()
 
 @property (strong,nonatomic) TopLayoutView* topLayoutView;
+@property (strong,nonatomic) UserInforCell* genderCell;
+@property (strong,nonatomic) UserInforCell* birthdayCell;
 
 @end
 
 @implementation RegisterUserInfoLayoutView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 -(id)initViewContext:(id)context title:(NSString*)title frame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -35,8 +31,19 @@
         
         _genderLayout = [[UIView alloc] init];
         _genderLayout.translatesAutoresizingMaskIntoConstraints = NO;
-        [_genderLayout setBackgroundColor:[ColorUtil viewBackgroundGrey]];
+        [_genderLayout setBackgroundColor:[UIColor whiteColor]];
+//        _genderLayout.layer.borderWidth = 0.25;
+//        _genderLayout.layer.borderColor = [[UIColor lightGrayColor] CGColor];
         [self addSubview:_genderLayout];
+        
+        _genderCell = [[UserInforCell alloc] init];
+        _genderCell.translatesAutoresizingMaskIntoConstraints = NO;
+        _genderCell.titleUILabel.text = NSLocalizedString(@"register_your_gender", nil);
+        _genderCell.titleUILabel.textColor = [ColorUtil tealBlueColor];
+        _genderCell.backgroundColor = [UIColor whiteColor];
+//        _genderCell.layer.borderWidth = 0.25;
+//        _genderCell.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+        [self addSubview:_genderCell];
         
         _maleView = [[ClickableUIView alloc] init];
         _maleView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -48,36 +55,40 @@
         
         _genderMiddleLineView = [[UIView alloc] init];
         _genderMiddleLineView.translatesAutoresizingMaskIntoConstraints = NO;
-        [_genderMiddleLineView setBackgroundColor:[UIColor blackColor]];
+        [_genderMiddleLineView setBackgroundColor:[UIColor lightGrayColor]];
         [_genderLayout addSubview:_genderMiddleLineView];
         
-        _maleLabel = [[UILabel alloc] init];
-        _maleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        [_maleLabel setText:NSLocalizedString(@"male", nil)];
-        [_maleView addSubview:_maleLabel];
+        _maleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"male_sign_24px"]];
+        _maleImageView.translatesAutoresizingMaskIntoConstraints = NO;
+        [_maleView addSubview:_maleImageView];
         
-        _maleCheckView = [[UIView alloc] init];
+        _maleCheckView = [[UIImageView alloc] init];
         _maleCheckView.translatesAutoresizingMaskIntoConstraints = NO;
-        _maleCheckView.backgroundColor = [ColorUtil themeColor];
-        _maleCheckView.layer.masksToBounds = YES;
-        _maleCheckView.layer.cornerRadius = 5;
+        [_maleCheckView setImage:[UIImage imageNamed:@"ic_check_12pt_2x"]];
         [_maleView addSubview:_maleCheckView];
         
-        _femaleLabel = [[UILabel alloc] init];
-        _femaleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        [_femaleLabel setText:NSLocalizedString(@"female", nil)];
-        [_femaleView addSubview:_femaleLabel];
+        _femaleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"female_sign_24px"]];
+        _femaleImageView.translatesAutoresizingMaskIntoConstraints = NO;
+        [_femaleView addSubview:_femaleImageView];
         
-        _femalCheckView = [[UIView alloc] init];
+        _femalCheckView = [[UIImageView alloc] init];
         _femalCheckView.translatesAutoresizingMaskIntoConstraints = NO;
-        _femalCheckView.backgroundColor = [ColorUtil themeColor];
-        _femalCheckView.layer.masksToBounds = YES;
-        _femalCheckView.layer.cornerRadius = 5;
+        [_femalCheckView setImage:[UIImage imageNamed:@"ic_check_12pt_2x"]];
         [_femaleView addSubview:_femalCheckView];
+        
+        _birthdayCell = [[UserInforCell alloc] init];
+        _birthdayCell.translatesAutoresizingMaskIntoConstraints = NO;
+        _birthdayCell.titleUILabel.text = NSLocalizedString(@"register_your_birthday", nil);
+        _birthdayCell.titleUILabel.textColor = [ColorUtil tealBlueColor];
+        _birthdayCell.backgroundColor = [UIColor whiteColor];
+//        _birthdayCell.layer.borderWidth = 0.25;
+//        _birthdayCell.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+        [self addSubview:_birthdayCell];
         
         _datePicker = [[UIDatePicker alloc] init];
         [_datePicker setDatePickerMode:UIDatePickerModeDate];
         _datePicker.translatesAutoresizingMaskIntoConstraints = NO;
+        _datePicker.backgroundColor = [UIColor whiteColor];
         NSString *stringDate = @"07/15/1995";
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
         [dateFormatter setDateFormat:@"MM/dd/yyyy"];
@@ -100,34 +111,42 @@
 }
 
 -(void)layoutSubviews{
-    NSDictionary *views = NSDictionaryOfVariableBindings(_topLayoutView,_genderLayout,_maleView,_genderMiddleLineView,_maleLabel,_maleCheckView,_femaleView,_femaleLabel,_femalCheckView,_datePicker,_nextStepButton);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_topLayoutView,_genderLayout,_maleView,_genderMiddleLineView,_maleImageView,_maleCheckView,_femaleView,_femaleImageView,_femalCheckView,_datePicker,_nextStepButton,_genderCell,_birthdayCell);
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_topLayoutView]-20-[_genderLayout]" options:0 metrics:0 views:views]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[_genderLayout(>=200)]-20-|" options:0 metrics:0 views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_topLayoutView]-10-[_genderCell(40)]" options:0 metrics:0 views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_genderCell]-0-|" options:0 metrics:0 views:views]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_genderCell]-1-[_genderLayout]" options:0 metrics:0 views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_genderLayout(>=200)]-0-|" options:0 metrics:0 views:views]];
     
     [_genderLayout addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_maleView]-0-|" options:0 metrics:0 views:views]];
     [_genderLayout addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_maleView(40)]" options:0 metrics:0 views:views]];
     
-    [_genderLayout addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_genderMiddleLineView]-0-|" options:0 metrics:0 views:views]];
-    [_genderLayout addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_maleView]-0-[_genderMiddleLineView(1)]" options:0 metrics:0 views:views]];
+    [_genderLayout addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[_genderMiddleLineView]-0-|" options:0 metrics:0 views:views]];
+    [_genderLayout addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_maleView]-0-[_genderMiddleLineView(0.25)]" options:0 metrics:0 views:views]];
     
     [_genderLayout addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_femaleView]-0-|" options:0 metrics:0 views:views]];
     [_genderLayout addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_genderMiddleLineView]-0-[_femaleView(40)]-0-|" options:0 metrics:0 views:views]];
     
-    [_maleView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-5-[_maleLabel]" options:0 metrics:0 views:views]];
-    [_maleView addConstraint:[NSLayoutConstraint constraintWithItem:_maleLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:_maleView attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+    [_maleView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[_maleImageView(20)]" options:0 metrics:0 views:views]];
+    [_maleView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_maleImageView(20)]" options:0 metrics:0 views:views]];
+    [_maleView addConstraint:[NSLayoutConstraint constraintWithItem:_maleImageView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:_maleView attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
     
-    [_maleView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_maleCheckView(10)]-15-|" options:0 metrics:0 views:views]];
-    [_maleView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_maleCheckView(10)]-15-|" options:0 metrics:0 views:views]];
+    [_maleView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_maleCheckView(15)]-15-|" options:0 metrics:0 views:views]];
+    [_maleView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_maleCheckView(15)]-15-|" options:0 metrics:0 views:views]];
     
-    [_femaleView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-5-[_femaleLabel]" options:0 metrics:0 views:views]];
-    [_femaleView addConstraint:[NSLayoutConstraint constraintWithItem:_femaleLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:_femaleView attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+    [_femaleView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[_femaleImageView(20)]" options:0 metrics:0 views:views]];
+    [_femaleView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_femaleImageView(20)]" options:0 metrics:0 views:views]];
+    [_femaleView addConstraint:[NSLayoutConstraint constraintWithItem:_femaleImageView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:_femaleView attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
     
-    [_femaleView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_femalCheckView(10)]-15-|" options:0 metrics:0 views:views]];
-    [_femaleView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_femalCheckView(10)]-15-|" options:0 metrics:0 views:views]];
+    [_femaleView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_femalCheckView(15)]-15-|" options:0 metrics:0 views:views]];
+    [_femaleView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_femalCheckView(15)]-15-|" options:0 metrics:0 views:views]];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_femaleView]-50-[_datePicker]" options:0 metrics:0 views:views]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-50-[_datePicker]-50-|" options:0 metrics:0 views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_femaleView]-30-[_birthdayCell(40)]" options:0 metrics:0 views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_birthdayCell(>=200)]-0-|" options:0 metrics:0 views:views]];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_birthdayCell]-1-[_datePicker]" options:0 metrics:0 views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_datePicker]-0-|" options:0 metrics:0 views:views]];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_datePicker]-30-[_nextStepButton(40)]" options:0 metrics:0 views:views]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-50-[_nextStepButton]-50-|" options:0 metrics:0 views:views]];

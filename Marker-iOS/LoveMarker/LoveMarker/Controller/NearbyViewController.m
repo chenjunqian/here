@@ -32,7 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initView];
-    [self getCurrentPostByIndex:self.index isLoadMore:NO];
+    [self getNearByPostByIndex:self.index isLoadMore:NO];
 }
 
 -(void) initView{
@@ -52,10 +52,10 @@
 
 -(IBAction)refreshAction:(id)sender{
     self.index = 20;
-    [self getCurrentPostByIndex:self.index isLoadMore:NO];
+    [self getNearByPostByIndex:self.index isLoadMore:NO];
 }
 
--(void)getCurrentPostByIndex:(NSInteger)index isLoadMore:(Boolean)isLoadMore{
+-(void)getNearByPostByIndex:(NSInteger)index isLoadMore:(Boolean)isLoadMore{
     if (!isLoadMore && ![nearbyPageUIView.refreshControl isRefreshing]) {
         self.index = 20;
         [nearbyPageUIView.refreshControl beginRefreshing];
@@ -77,7 +77,7 @@
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (nearbyPageUIView.tableView.contentOffset.y >= nearbyPageUIView.tableView.contentSize.height - nearbyPageUIView.tableView.frame.size.height) {
         //load more post when table view scroll to the end
-        [self getCurrentPostByIndex:self.index isLoadMore:YES];
+        [self getNearByPostByIndex:self.index isLoadMore:YES];
     }
 }
 

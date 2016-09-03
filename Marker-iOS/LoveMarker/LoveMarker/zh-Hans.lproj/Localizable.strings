@@ -83,6 +83,8 @@ please_select_gender_first = "请选择性别";
 please_select_birthday_first = "请填写生日";
 male = "男";
 female = "女";
+register_your_gender = "选择性别";
+register_your_birthday = "填写生日";
 register_info = "个人信息";
 indicator_is_registering = "正在注册 ....";
 
@@ -100,6 +102,7 @@ hint_label_text = "稍微具体的描述一下呗";
 publish_post_button_text = "标记一发";
 add_mark_hint = "添加标签";
 location_hint_text = "添加位置描述";
+have_not_login_yet_can_not_post = "要先登录才能标记，想要去登录吗？";
 
 /*关于我们页面*/
 about_us_page_title = "关于";

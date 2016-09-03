@@ -28,6 +28,7 @@
         
         containnerView = [[UIView alloc] init];
         containnerView.translatesAutoresizingMaskIntoConstraints = NO;
+        containnerView.layer.cornerRadius = 8;
         [containnerView setBackgroundColor:[ColorUtil viewBackgroundGrey]];
         [self addSubview:containnerView];
         

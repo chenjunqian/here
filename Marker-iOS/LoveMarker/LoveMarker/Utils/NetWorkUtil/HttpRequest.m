@@ -13,6 +13,7 @@
 #import "HttpConfiguration.h"
 #import "AFImageDownloader.h"
 #import "UIImageView+AFNetworking.h"
+#import "Location.h"
 
 @interface HttpRequest()
 
@@ -263,5 +264,21 @@
 +(void)getPostTag:(HttpResponseHandler)handler{
     NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionary];
     [self BasicHttpRequestPOSTWithUrl:[HttpConfiguration getUrlGetPostTag] andPostDictionary:mutableDictionary responseData:handler];
+}
+
++(void)deletePostByPostId:(NSString*)postId username:(NSString*)username handler:(HttpResponseHandler)handler{
+    NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionary];
+    [mutableDictionary setObject:postId forKey:@"postid"];
+    [mutableDictionary setObject:username forKey:@"username"];
+    [self BasicHttpRequestPOSTWithUrl:[HttpConfiguration getUrlUrlDeletePostById] andPostDictionary:mutableDictionary responseData:handler];
+}
+
++(void)getNearPostByLocation:(Location*)location index:(NSInteger)index handler:(HttpResponseHandler)handler{
+    NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionary];
+    [mutableDictionary setObject:location.longitude forKey:@"longitude"];
+    [mutableDictionary setObject:location.latitude forKey:@"latitude"];
+    [mutableDictionary setObject:location.cityName forKey:@"city"];
+    [mutableDictionary setObject:[NSString stringWithFormat:@"%ld",(long)index] forKey:@"index"];
+    [self BasicHttpRequestPOSTWithUrl:[HttpConfiguration getUrlGetPostByLocation] andPostDictionary:mutableDictionary responseData:handler];
 }
 @end

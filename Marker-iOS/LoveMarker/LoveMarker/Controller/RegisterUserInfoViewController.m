@@ -58,6 +58,7 @@
 
 -(IBAction)nextStep:(id)sender{
     GlobalActivityIndicators* indicator = [[GlobalActivityIndicators alloc] initWithTitle:NSLocalizedString(@"indicator_is_registering", nil) frame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    [self.view addSubview:indicator];
     [indicator.activityIndicatorView startAnimating];
     
     NSDate *birthday = _registerUserInfoLayoutView.datePicker.date;

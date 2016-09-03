@@ -32,63 +32,65 @@ password_length_must_bigger_than_six = "Password's length must more than six fig
 action_ok = "ok";
 
 /*Me page*/
-me = "me";
-my_marker = "my markers";
-about_me = "about me";
-you_have_not_logined = "you haven't logined yet";
-please_login_first = "please login first";
-change_avatar = "change avatar";
-my_nickname = "nickname";
-my_gender = "gender";
-my_birthday = "birthday";
-my_simple_profile = "brief introduction";
+me = "Me";
+my_marker = "My Markers";
+about_me = "About Me";
+you_have_not_logined = "Sorry, you not logging on";
+please_login_first = "Please login first";
+change_avatar = "Change avatar";
+my_nickname = "Nickname";
+my_gender = "Gender";
+my_birthday = "Birthday";
+my_simple_profile = "Brief Introduction";
 my_simple_profile_content_hint = "empty";
-my_long_profile = "detail introduction";
+my_long_profile = "Detail Introduction";
 my_long_profile_content_hint = "empty";
-my_username = "account";
-my_password = "change password";
+my_username = "Account";
+my_password = "Change Password";
 uploading = "uploading...";
-editor_page = "edit info";
-two_password_is_invalid = "the two password you inputed are different , please try again";
-are_you_sure_you_want_to_logout = "are you sure you want to logout ?";
-about_us = "about us";
+editor_page = "Edit Info";
+two_password_is_invalid = "The two password you inputed are different , please try again";
+are_you_sure_you_want_to_logout = "Are you sure you want to logout ?";
+about_us = "About Us";
 
 /*Editor Page*/
-nickname_editor = "change nickname";
-gender_editor = "change gender";
-birthday_editor = "change birthday";
-simple_profile_editor = "edit brief introduction";
-long_profile_editor = "edit detail introduction";
-password_editor = "change password";
-password_editor_place_holder = "    please input your new password";
-confirm_password_editor_place_holder = "    please confirm your password";
+nickname_editor = "Change Nickname";
+gender_editor = "Change Gender";
+birthday_editor = "Change Birthday";
+simple_profile_editor = "Edit Brief Introduction";
+long_profile_editor = "Edit Detail Introduction";
+password_editor = "Change Password";
+password_editor_place_holder = "    Please input your new password";
+confirm_password_editor_place_holder = "    Please confirm your password";
 
 /*登录界面*/
-register = "register";
-input_phone_number_or_email = "phone number or email address";
-set_password = "password,more than six figures";
+register = "Register";
+input_phone_number_or_email = "Phone number or email address";
+set_password = "Password,more than six figures";
 next_step = "next";
 indicator_is_login = "login ...";
 
 /*注册界面*/
-please_input_valid_eamil_or_phone_number = "please input valid eamail address or phone number";
-please_input_password = "please input password";
-please_input_username = "please input user account";
-please_input_nickname = "please input user nickname";
+please_input_valid_eamil_or_phone_number = "Please input valid eamail address or phone number";
+please_input_password = "Please input password";
+please_input_username = "Please input user account";
+please_input_nickname = "Please input user nickname";
 user_account_is_already_exsit = "The user account is already exsit";
-please_input_nickname = "please input nickname";
-nickname_length_should_not_bigger_than = "nickname's length too long";
-please_select_gender = "gender";
-please_select_gender_first = "please select gender";
-please_select_birthday_first = "please select birthday first";
+please_input_nickname = "Please input nickname";
+nickname_length_should_not_bigger_than = "Nickname's length too long";
+please_select_gender = "Gender";
+please_select_gender_first = "Please select gender";
+please_select_birthday_first = "Please select birthday first";
 male = "boy";
 female = "girl";
-register_info = "info";
+register_your_gender = "Your Gender";
+register_your_birthday = "Your Birthday";
+register_info = "Info";
 indicator_is_registering = "register ....";
 
 /*最新帖子界面*/
-current_post_title = "current";
-last_hour_post_title = "last an hour";
+current_post_title = "Current";
+last_hour_post_title = "Last An Hour";
 there_is_no_last_hour_post = "No one had a shot last an hour yet";
 share_post = "share";
 enter_user_page = "enter homepage";
@@ -100,11 +102,12 @@ hint_label_text = "describe your feeling";
 publish_post_button_text = "mark";
 add_mark_hint = "add marker";
 location_hint_text = "Add location";
+have_not_login_yet_can_not_post = "Sorry, you not logined and can not post marker , do you want to login ?";
 
 /*关于我们页面*/
 about_us_page_title = "about us";
 app_name = "Love Marker";
 version_code = "1.0.0";
 app_description = "Let you know who did the things full of love";
-share = "share APP";
+share = "Share APP";
 feedback = "Feedback";

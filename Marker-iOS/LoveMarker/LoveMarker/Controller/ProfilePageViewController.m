@@ -223,6 +223,7 @@
 //使用UIImagePickerController 修改头像 的回调方法
 -(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
     GlobalActivityIndicators* indicator = [[GlobalActivityIndicators alloc] initWithTitle:NSLocalizedString(@"uploading", nil) frame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    [self.view addSubview:indicator];
     [indicator.activityIndicatorView startAnimating];
     
     UIImage* image = [info objectForKey:@"UIImagePickerControllerEditedImage"];

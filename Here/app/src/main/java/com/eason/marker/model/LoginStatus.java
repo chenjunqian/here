@@ -2,6 +2,11 @@ package com.eason.marker.model;
 
 import android.content.Context;
 
+import com.eason.marker.http_util.HttpRequest;
+import com.eason.marker.http_util.LoginHandler;
+import com.eason.marker.util.OnLoginListener;
+import com.eason.marker.util.SharePreferencesUtil;
+
 /**
  * 用户的登录状态
  *
@@ -31,10 +36,6 @@ public class LoginStatus {
         LoginStatus.pushKey = pushKey;
     }
 
-    public static void logout(){
-        user = null;
-    }
-
     public static void init(Context context){
         LoginStatus.context = context;
     }
@@ -51,5 +52,38 @@ public class LoginStatus {
             return false;
         }
     }
+    /**
+     * 登录请求
+     *
+     * @param userAccount
+     * @param userPassword
+     * @param pushKey
+     */
+    public static void login(final String userAccount, final String userPassword, String pushKey, final OnLoginListener loginListener) {
 
+        LoginHandler loginHandler = new LoginHandler() {
+            @Override
+            public void getResult() {
+                if (this.resultVO == null) {
+                    loginListener.loginFailedListener(ErroCode.ERROR_CODE_RESPONSE_NULL);
+                    return;
+                } else if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_USER_OR_PASSWORD_INVALID) {
+                    loginListener.loginFailedListener(ErroCode.ERROR_CODE_USER_OR_PASSWORD_INVALID);
+                    return;
+                } else if (this.resultVO.getStatus() == ErroCode.ERROR_CODE_CORRECT) {
+                    SharePreferencesUtil.saveUserLoginInfo(userAccount, userPassword);
+                    loginListener.loginListener();
+                }else{
+                    loginListener.loginFailedListener(ErroCode.ERROR_CODE_CLIENT_DATA_ERROR);
+                }
+            }
+        };
+
+        HttpRequest.login(userAccount, userPassword, pushKey, loginHandler);
+    }
+
+    public static void logout(){
+        user = null;
+        SharePreferencesUtil.saveUserLoginInfo("","");
+    }
 }

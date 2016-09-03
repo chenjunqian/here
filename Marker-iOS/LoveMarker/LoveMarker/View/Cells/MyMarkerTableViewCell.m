@@ -12,7 +12,6 @@
 @interface MyMarkerTableViewCell()
 @property (nonatomic,strong) UIImageView *heartImageView;
 @property (nonatomic,strong) UIImageView *locationImageView;
-@property (nonatomic,strong) UIButton *deleteButton;;
 @property (nonatomic,strong) UIView *bottomLine;;
 @end
 

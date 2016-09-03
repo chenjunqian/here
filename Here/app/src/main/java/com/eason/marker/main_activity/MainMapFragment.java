@@ -6,10 +6,10 @@ import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -76,7 +76,7 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
     private Double geoLat;
     private Double geoLon;
 
-    private ImageButton publishButton;
+    private FloatingActionButton publishButton;
 
     private boolean isFirstGetPost = true;
 
@@ -116,7 +116,7 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
         aMap = mapView.getMap();
         initMap();
         //跳转至发帖页
-        publishButton = (ImageButton) rootView.findViewById(R.id.main_map_publish_button);
+        publishButton = (FloatingActionButton) rootView.findViewById(R.id.main_map_publish_button);
         publishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
