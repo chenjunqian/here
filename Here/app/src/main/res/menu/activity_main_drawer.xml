@@ -5,19 +5,19 @@
         <item
             android:id="@+id/main_page_tag_layout"
             android:title="@string/main_map_page"
-            android:icon="@drawable/ic_home"/>
+            android:icon="@android:drawable/ic_dialog_map"/>
         <item
             android:id="@+id/user_list_item_layout"
             android:title="@string/near_list_page_title"
-            android:icon="@drawable/ic_view_list" />
+            android:icon="@android:drawable/ic_menu_mylocation" />
         <item
             android:id="@+id/current_post_list_item_layout"
             android:title="@string/current_list_page_title"
-            android:icon="@drawable/ic_history_black_18dp"/>
+            android:icon="@android:drawable/ic_menu_recent_history"/>
         <item
             android:id="@+id/enter_chat_main_page_item_layout"
             android:title="@string/enter_chat_page_page_title"
-            android:icon="@drawable/ic_speaker_notes_blue_24dp"/>
+            android:icon="@android:drawable/stat_notify_chat"/>
     </group>
 
     <item
@@ -26,7 +26,7 @@
             <item
                 android:id="@+id/login_item_layout"
                 android:title="登录"
-                android:icon="@drawable/ic_lock_36pt_2x" />
+                android:icon="@android:drawable/ic_lock_idle_lock" />
         </menu>
     </item>
 

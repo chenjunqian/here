@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -47,7 +48,7 @@ import com.igexin.sdk.PushManager;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener , EMEventListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, EMEventListener {
 
     private static Context instance;
 
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final int CHANGE_TOOL_BAR_TITLE_MINE = 0X5;
     public static final int NONE_VALID_MORE_POST = 0x6;
     private static final int CHANGE_TOOL_BAR_TITLE_NOTIFICATION = 0x7;
+    private static final int INIT_DRAWER_LOGIN_STATUS = 0x8;
 
     /**
      * 判断toolbar是否要显示刷新按键
@@ -124,9 +126,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 case ErroCode.ERROR_CODE_REQUEST_FORM_INVALID:
                     GreenToast.makeText(MainActivity.this, getResources().getString(R.string.main_map_some_problem_happen), Toast.LENGTH_LONG).show();
                     break;
+
+                case INIT_DRAWER_LOGIN_STATUS:
+                    CircleImageView circleImageView = (CircleImageView) findViewById(R.id.left_menu_avatar_image_view);
+                    circleImageView.setImageResource(R.drawable.default_avatar_ori);
+                    MenuItem loginItem = navigationView.getMenu().findItem(R.id.login_item_layout);
+                    if (LoginStatus.getIsUserMode()) {
+                        loginItem.setTitle(R.string.logout);
+                        HttpRequest.loadImage(circleImageView, HttpConfig.String_Url_Media + LoginStatus.getUser().getAvatar(), 150, 150);
+                    } else {
+                        loginItem.setTitle(R.string.login);
+                    }
+                    break;
             }
         }
     };
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -135,16 +150,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         initParam();
     }
 
-    private void initView(){
+    private void initView() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.main_map_page,R.string.app_name);
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.main_map_page, R.string.app_name);
         drawerLayout.setDrawerListener(toggle);
         toggle.syncState();
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        initLoginData();
+        handler.sendEmptyMessage(new Message().what = INIT_DRAWER_LOGIN_STATUS);
         RelativeLayout navHeaderLayout = (RelativeLayout) findViewById(R.id.nav_header_view_layout);
         navHeaderLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,22 +188,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         PushManager.getInstance().initialize(this.getApplication());
     }
 
-    /**
-     * 在用户切换登录状态时使用
-     */
-    private void initLoginData(){
-        CircleImageView circleImageView = (CircleImageView) findViewById(R.id.left_menu_avatar_image_view);
-        circleImageView.setImageResource(R.drawable.default_avatar_ori);
-        MenuItem loginItem = navigationView.getMenu().findItem(R.id.login_item_layout);
-        if (LoginStatus.getIsUserMode()){
-            loginItem.setTitle(getResources().getString(R.string.logout));
-            HttpRequest.loadImage(circleImageView, HttpConfig.String_Url_Media + LoginStatus.getUser().getAvatar(), 150, 150);
-        }else{
-            loginItem.setTitle(getResources().getString(R.string.login));
-        }
-    }
-
-    public static Context getInstance(){
+    public static Context getInstance() {
         return instance;
     }
 
@@ -264,7 +264,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onResume() {
         super.onResume();
-        initLoginData();
+        handler.sendEmptyMessage(new Message().what = INIT_DRAWER_LOGIN_STATUS);
     }
 
     @Override
@@ -303,12 +303,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    private void revertMenuIconColor(){
+        MenuItem mapItem = navigationView.getMenu().findItem(R.id.main_page_tag_layout);
+        mapItem.getIcon().setColorFilter(getResources().
+                getColor(android.support.design.R.color.material_blue_grey_800), PorterDuff.Mode.MULTIPLY);
+
+        MenuItem nearItem = navigationView.getMenu().findItem(R.id.user_list_item_layout);
+        nearItem.getIcon().setColorFilter(getResources().
+                getColor(android.support.design.R.color.material_blue_grey_800), PorterDuff.Mode.MULTIPLY);
+
+        MenuItem currentPostItem = navigationView.getMenu().findItem(R.id.current_post_list_item_layout);
+        currentPostItem.getIcon().setColorFilter(getResources().
+                getColor(android.support.design.R.color.material_blue_grey_800), PorterDuff.Mode.MULTIPLY);
+
+        MenuItem enterChatItem = navigationView.getMenu().findItem(R.id.enter_chat_main_page_item_layout);
+        enterChatItem.getIcon().setColorFilter(getResources().
+                getColor(android.support.design.R.color.material_blue_grey_800), PorterDuff.Mode.MULTIPLY);
+    }
+
     @Override
     public boolean onNavigationItemSelected(MenuItem menuItem) {
 
         int id = menuItem.getItemId();
-
-        switch (id){
+        revertMenuIconColor();
+        if (id != R.id.enter_chat_main_page_item_layout){
+            menuItem.getIcon().setColorFilter(getResources().getColor(R.color.universal_title_background_red), PorterDuff.Mode.MULTIPLY);
+        }
+        switch (id) {
 
             case R.id.main_page_tag_layout:
                 setFragmentTransaction(IntentUtil.MAIN_MAP_FRAGMENT);
@@ -417,9 +438,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     btnOK.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View arg0) {
+                            handler.sendEmptyMessage(new Message().what = INIT_DRAWER_LOGIN_STATUS);
                             LoginStatus.logout();
                             EMChatUtil.logoutEMChat();
-                            initLoginData();
                             mDialog.dismiss();
                         }
                     });
@@ -462,10 +483,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case IntentUtil.NOTIFICATION_FRAGMENT:
-                if (notificationFragment == null){
+                if (notificationFragment == null) {
                     notificationFragment = new NotificationFragment();
                     transaction.add(R.id.content_main_fragment_layout, notificationFragment);
-                }else{
+                } else {
                     transaction.show(notificationFragment);
                 }
 
@@ -495,7 +516,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             transaction.hide(currentPostFragment);
         }
 
-        if (notificationFragment!=null){
+        if (notificationFragment != null) {
             transaction.hide(notificationFragment);
         }
     }
@@ -507,7 +528,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        switch (id){
+        switch (id) {
             case R.id.action_refresh:
                 mainMapFragment.getPost();
                 break;
