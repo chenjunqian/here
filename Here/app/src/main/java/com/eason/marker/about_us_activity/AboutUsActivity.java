@@ -14,8 +14,8 @@ import com.eason.marker.http_util.HttpResponseHandler;
 import com.eason.marker.model.ErroCode;
 import com.eason.marker.model.LoginStatus;
 import com.eason.marker.util.CommonUtil;
-import com.eason.marker.util.WidgetUtil.GreenToast;
-import com.eason.marker.util.WidgetUtil.ModelDialog;
+import com.eason.marker.view.GreenToast;
+import com.eason.marker.view.ModelDialog;
 
 /**
  * Created by Eason on 12/23/15.

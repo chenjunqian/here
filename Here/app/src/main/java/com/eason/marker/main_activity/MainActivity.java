@@ -40,9 +40,10 @@ import com.eason.marker.model.IntentUtil;
 import com.eason.marker.model.LoginStatus;
 import com.eason.marker.model.Post;
 import com.eason.marker.util.LogUtil;
-import com.eason.marker.util.WidgetUtil.CircleImageView;
-import com.eason.marker.util.WidgetUtil.GreenToast;
-import com.eason.marker.util.WidgetUtil.ModelDialog;
+import com.eason.marker.util.SharePreferencesUtil;
+import com.eason.marker.view.CircleImageView;
+import com.eason.marker.view.GreenToast;
+import com.eason.marker.view.ModelDialog;
 import com.igexin.sdk.PushManager;
 
 import java.util.List;
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static final int NONE_VALID_MORE_POST = 0x6;
     private static final int CHANGE_TOOL_BAR_TITLE_NOTIFICATION = 0x7;
     private static final int INIT_DRAWER_LOGIN_STATUS = 0x8;
+    private static final int HAS_CHAT_MESSAGE = 0x9;
 
     /**
      * 判断toolbar是否要显示刷新按键
@@ -138,6 +140,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         loginItem.setTitle(R.string.login);
                     }
                     break;
+
+                case HAS_CHAT_MESSAGE:
+                    MenuItem enterChatItem = navigationView.getMenu().findItem(R.id.enter_chat_main_page_item_layout);
+                    enterChatItem.getIcon().setColorFilter(getResources().
+                            getColor(R.color.universal_title_background_red), PorterDuff.Mode.MULTIPLY);
+                    break;
             }
         }
     };
@@ -165,6 +173,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 setFragmentTransaction(IntentUtil.PROFLIE_FRAGMENT);
+                revertMenuIconColor();
             }
         });
     }
@@ -252,7 +261,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-
+                        handler.sendEmptyMessage(new Message().what = HAS_CHAT_MESSAGE);
+                        SharePreferencesUtil.saveEMChatNewMessegeStatus(true);
                     }
                 });
 
@@ -303,7 +313,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    private void revertMenuIconColor(){
+    private void revertMenuIconColor() {
         MenuItem mapItem = navigationView.getMenu().findItem(R.id.main_page_tag_layout);
         mapItem.getIcon().setColorFilter(getResources().
                 getColor(android.support.design.R.color.material_blue_grey_800), PorterDuff.Mode.MULTIPLY);
@@ -316,9 +326,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         currentPostItem.getIcon().setColorFilter(getResources().
                 getColor(android.support.design.R.color.material_blue_grey_800), PorterDuff.Mode.MULTIPLY);
 
-        MenuItem enterChatItem = navigationView.getMenu().findItem(R.id.enter_chat_main_page_item_layout);
-        enterChatItem.getIcon().setColorFilter(getResources().
-                getColor(android.support.design.R.color.material_blue_grey_800), PorterDuff.Mode.MULTIPLY);
+        if (!SharePreferencesUtil.getEMChatNewMessegeStatus()){
+            MenuItem enterChatItem = navigationView.getMenu().findItem(R.id.enter_chat_main_page_item_layout);
+            enterChatItem.getIcon().setColorFilter(getResources().
+                    getColor(android.support.design.R.color.material_blue_grey_800), PorterDuff.Mode.MULTIPLY);
+        }
+
     }
 
     @Override
@@ -326,7 +339,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         int id = menuItem.getItemId();
         revertMenuIconColor();
-        if (id != R.id.enter_chat_main_page_item_layout){
+        if (id != R.id.enter_chat_main_page_item_layout) {
             menuItem.getIcon().setColorFilter(getResources().getColor(R.color.universal_title_background_red), PorterDuff.Mode.MULTIPLY);
         }
         switch (id) {

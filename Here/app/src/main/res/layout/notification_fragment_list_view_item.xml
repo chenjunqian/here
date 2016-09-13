@@ -32,7 +32,7 @@
             android:textSize="15sp" />
     </LinearLayout>
 
-    <com.eason.marker.util.WidgetUtil.CircleImageView
+    <com.eason.marker.view.CircleImageView
         android:id="@+id/notification_message_avatar"
         android:layout_width="45dp"
         android:layout_height="45dp"

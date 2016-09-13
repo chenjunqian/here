@@ -17,8 +17,8 @@ import com.eason.marker.model.ErroCode;
 import com.eason.marker.model.IntentUtil;
 import com.eason.marker.util.CommonUtil;
 import com.eason.marker.util.SharePreferencesUtil;
-import com.eason.marker.util.WidgetUtil.GreenToast;
-import com.eason.marker.util.WidgetUtil.ProgressDialog;
+import com.eason.marker.view.GreenToast;
+import com.eason.marker.view.ProgressDialog;
 
 /**
  * Created by Eason on 8/21/15.

@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:background="@color/universal_white">
 
-        <com.eason.marker.util.WidgetUtil.CircleImageView
+        <com.eason.marker.view.CircleImageView
             android:id="@+id/profile_activity_avatar_circle_view"
             android:layout_width="70dp"
             android:layout_height="70dp"
@@ -43,6 +43,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="@dimen/universal_20dp"
             android:scaleType="fitXY"
+            android:transitionName="avatar"
             android:src="@drawable/default_avatar_ori" />
 
         <TextView

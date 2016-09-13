@@ -31,7 +31,7 @@ import com.eason.marker.R;
 import com.eason.marker.emchat.applib.controller.HXSDKHelper;
 import com.eason.marker.MainApplication;
 import com.eason.marker.emchat.chatuidemo.DemoHXSDKHelper;
-import com.eason.marker.util.WidgetUtil.GreenToast;
+import com.eason.marker.view.GreenToast;
 
 public class AddContactActivity extends BaseActivity{
 	private EditText editText;

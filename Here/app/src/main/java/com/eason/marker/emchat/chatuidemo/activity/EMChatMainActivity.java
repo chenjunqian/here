@@ -61,7 +61,7 @@ import com.eason.marker.emchat.chatuidemo.domain.InviteMessage;
 import com.eason.marker.emchat.chatuidemo.domain.InviteMessage.InviteMesageStatus;
 import com.eason.marker.main_activity.MainActivity;
 import com.eason.marker.util.LogUtil;
-import com.eason.marker.util.WidgetUtil.GreenToast;
+import com.eason.marker.view.GreenToast;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,5 +1,8 @@
-package com.eason.marker.util.WidgetUtil;
+package com.eason.marker.view;
 
+import android.annotation.TargetApi;
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -40,14 +43,17 @@ public class ListItemDialog extends Dialog implements View.OnClickListener {
     private EditText otherEditView;
     private LinearLayout rubbishPostLayout, illegalPostLayout, notForPublicationPostLayout, otherPostLayout;
     private String reportContent;
+    private View shareView;
 
-    public ListItemDialog(Context context, Post post, User user) {
+    public ListItemDialog(Context context, Post post, User user , View shareView) {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
         this.context = context;
         this.post = post;
         this.user = user;
+        this.shareView = shareView;
     }
 
+    @TargetApi(21)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +75,8 @@ public class ListItemDialog extends Dialog implements View.OnClickListener {
             public void onClick(View v) {
                 Intent intent = new Intent(context, ProfileActivity.class);
                 intent.putExtra("username", user.getUsername());
-                context.startActivity(intent);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context,shareView,"avatar");
+                context.startActivity(intent,options.toBundle());
                 ListItemDialog.this.dismiss();
             }
         });

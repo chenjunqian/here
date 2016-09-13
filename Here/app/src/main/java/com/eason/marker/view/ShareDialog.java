@@ -1,4 +1,4 @@
-package com.eason.marker.util.WidgetUtil;
+package com.eason.marker.view;
 
 import android.app.Dialog;
 import android.content.ComponentName;

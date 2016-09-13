@@ -39,7 +39,7 @@ import com.easemob.util.NetUtils;
 import com.eason.marker.R;
 import com.eason.marker.emchat.chatuidemo.utils.UserUtils;
 import com.eason.marker.emchat.chatuidemo.widget.ExpandGridView;
-import com.eason.marker.util.WidgetUtil.GreenToast;
+import com.eason.marker.view.GreenToast;
 
 import java.util.ArrayList;
 import java.util.List;

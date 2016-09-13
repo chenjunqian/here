@@ -18,8 +18,8 @@ import com.eason.marker.http_util.HttpRequest;
 import com.eason.marker.http_util.HttpResponseHandler;
 import com.eason.marker.model.ErroCode;
 import com.eason.marker.model.PostList;
-import com.eason.marker.util.PostListViewAdapter;
-import com.eason.marker.util.WidgetUtil.GreenToast;
+import com.eason.marker.view.PostListViewAdapter;
+import com.eason.marker.view.GreenToast;
 
 /**
  * Created by Eason on 1/13/16.

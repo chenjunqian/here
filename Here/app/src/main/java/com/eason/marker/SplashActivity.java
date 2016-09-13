@@ -12,7 +12,7 @@ import com.eason.marker.model.LoginStatus;
 import com.eason.marker.util.CommonUtil;
 import com.eason.marker.util.OnLoginListener;
 import com.eason.marker.util.SharePreferencesUtil;
-import com.eason.marker.util.WidgetUtil.GreenToast;
+import com.eason.marker.view.GreenToast;
 
 import java.util.Timer;
 import java.util.TimerTask;

@@ -25,8 +25,8 @@ import com.eason.marker.model.Post;
 import com.eason.marker.model.PostTag;
 import com.eason.marker.util.CommonUtil;
 import com.eason.marker.util.LogUtil;
-import com.eason.marker.util.WidgetUtil.GreenToast;
-import com.eason.marker.util.WidgetUtil.ModelDialog;
+import com.eason.marker.view.GreenToast;
+import com.eason.marker.view.ModelDialog;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.eason.marker.util.WidgetUtil;
+package com.eason.marker.view;
 
 /**
  * Created by Eason on 9/23/15.

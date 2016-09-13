@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.easemob.chat.EMContactManager;
 import com.easemob.exceptions.EaseMobException;
 import com.eason.marker.R;
-import com.eason.marker.util.WidgetUtil.GreenToast;
+import com.eason.marker.view.GreenToast;
 
 import java.util.Collections;
 import java.util.List;

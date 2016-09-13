@@ -53,7 +53,7 @@ import com.eason.marker.emchat.chatuidemo.db.InviteMessgeDao;
 import com.eason.marker.emchat.chatuidemo.db.UserDao;
 import com.eason.marker.emchat.chatuidemo.domain.EMUser;
 import com.eason.marker.emchat.chatuidemo.widget.Sidebar;
-import com.eason.marker.util.WidgetUtil.GreenToast;
+import com.eason.marker.view.GreenToast;
 
 import java.util.ArrayList;
 import java.util.Collections;

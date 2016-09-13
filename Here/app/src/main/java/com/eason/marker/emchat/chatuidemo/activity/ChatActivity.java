@@ -102,7 +102,7 @@ import com.eason.marker.http_util.HttpResponseHandler;
 import com.eason.marker.main_activity.MainActivity;
 import com.eason.marker.model.ErroCode;
 import com.eason.marker.model.User;
-import com.eason.marker.util.WidgetUtil.GreenToast;
+import com.eason.marker.view.GreenToast;
 
 import java.io.File;
 import java.io.FileOutputStream;

@@ -37,7 +37,7 @@ import com.eason.marker.emchat.chatuidemo.DemoHXSDKHelper;
 import com.eason.marker.emchat.chatuidemo.db.UserDao;
 import com.eason.marker.emchat.chatuidemo.domain.EMUser;
 import com.eason.marker.emchat.chatuidemo.utils.CommonUtils;
-import com.eason.marker.util.WidgetUtil.GreenToast;
+import com.eason.marker.view.GreenToast;
 
 import java.util.ArrayList;
 import java.util.HashMap;

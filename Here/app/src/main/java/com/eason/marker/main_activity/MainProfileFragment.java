@@ -33,10 +33,10 @@ import com.eason.marker.util.CommonUtil;
 import com.eason.marker.util.ImageProcessParams;
 import com.eason.marker.util.ImageScan.ImageScanMainActivity;
 import com.eason.marker.util.LogUtil;
-import com.eason.marker.util.WidgetUtil.CircleImageView;
-import com.eason.marker.util.WidgetUtil.GreenToast;
-import com.eason.marker.util.WidgetUtil.ModelDialog;
-import com.eason.marker.util.WidgetUtil.ProgressDialog;
+import com.eason.marker.view.CircleImageView;
+import com.eason.marker.view.GreenToast;
+import com.eason.marker.view.ModelDialog;
+import com.eason.marker.view.ProgressDialog;
 
 /**
  * Created by Eason on 9/6/15.

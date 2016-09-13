@@ -12,7 +12,7 @@
         android:layout_alignParentTop="true"
         android:background="@drawable/bg_drawer_layout_info">
 
-        <com.eason.marker.util.WidgetUtil.CircleImageView
+        <com.eason.marker.view.CircleImageView
             android:id="@+id/left_menu_avatar_image_view"
             android:layout_width="70dp"
             android:layout_height="70dp"

@@ -1,5 +1,6 @@
 package com.eason.marker.profile_activity;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,10 +33,10 @@ import com.eason.marker.model.Post;
 import com.eason.marker.model.PostList;
 import com.eason.marker.model.User;
 import com.eason.marker.util.CommonUtil;
-import com.eason.marker.util.WidgetUtil.CircleImageView;
-import com.eason.marker.util.WidgetUtil.GreenToast;
-import com.eason.marker.util.WidgetUtil.ImageViewDialog;
-import com.eason.marker.util.WidgetUtil.ModelDialog;
+import com.eason.marker.view.CircleImageView;
+import com.eason.marker.view.GreenToast;
+import com.eason.marker.view.ImageViewDialog;
+import com.eason.marker.view.ModelDialog;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -216,6 +217,12 @@ public class ProfileActivity extends BaseActivity implements View.OnClickListene
         }
     }
 
+    @Override
+    @TargetApi(21)
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAfterTransition();
+    }
 
     private class ListViewAdapter extends BaseAdapter{
 

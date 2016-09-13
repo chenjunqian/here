@@ -21,7 +21,7 @@ import com.eason.marker.model.ErroCode;
 import com.eason.marker.model.NotificationMessage;
 import com.eason.marker.model.NotificationMessageList;
 import com.eason.marker.model.User;
-import com.eason.marker.util.WidgetUtil.CircleImageView;
+import com.eason.marker.view.CircleImageView;
 
 import java.util.List;
 

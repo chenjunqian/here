@@ -33,7 +33,7 @@ import com.eason.marker.R;
 import com.eason.marker.emchat.chatuidemo.db.InviteMessgeDao;
 import com.eason.marker.emchat.chatuidemo.domain.InviteMessage;
 import com.eason.marker.emchat.chatuidemo.domain.InviteMessage.InviteMesageStatus;
-import com.eason.marker.util.WidgetUtil.GreenToast;
+import com.eason.marker.view.GreenToast;
 
 import java.util.List;
 

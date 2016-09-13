@@ -18,7 +18,7 @@ import com.eason.marker.model.IntentUtil;
 import com.eason.marker.model.LocationInfo;
 import com.eason.marker.model.Post;
 import com.eason.marker.model.PostList;
-import com.eason.marker.util.PostListViewAdapter;
+import com.eason.marker.view.PostListViewAdapter;
 
 import java.util.Collections;
 import java.util.Comparator;

@@ -1,4 +1,4 @@
-package com.eason.marker.util;
+package com.eason.marker.view;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -15,9 +15,7 @@ import com.eason.marker.http_util.HttpResponseHandler;
 import com.eason.marker.model.ErroCode;
 import com.eason.marker.model.Post;
 import com.eason.marker.model.User;
-import com.eason.marker.util.WidgetUtil.CircleImageView;
-import com.eason.marker.util.WidgetUtil.ImageViewDialog;
-import com.eason.marker.util.WidgetUtil.ListItemDialog;
+import com.eason.marker.util.CommonUtil;
 
 import java.util.List;
 
@@ -125,7 +123,7 @@ public class PostListViewAdapter extends BaseAdapter {
                 @Override
                 public void onClick(View v) {
                     if (post==null||user==null)return;
-                    ListItemDialog listItemDialog = new ListItemDialog(context,post,user);
+                    ListItemDialog listItemDialog = new ListItemDialog(context,post,user,avatarView);
                     listItemDialog.show();
                 }
             });

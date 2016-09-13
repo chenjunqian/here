@@ -1,5 +1,7 @@
 package com.eason.marker.main_activity;
 
+import android.annotation.TargetApi;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Color;
 import android.location.Location;
@@ -49,9 +51,9 @@ import com.eason.marker.model.User;
 import com.eason.marker.profile_activity.ProfileActivity;
 import com.eason.marker.publish_location_activity.PublishActivity;
 import com.eason.marker.util.CommonUtil;
-import com.eason.marker.util.WidgetUtil.CircleImageView;
-import com.eason.marker.util.WidgetUtil.GreenToast;
-import com.eason.marker.util.WidgetUtil.ProgressDialog;
+import com.eason.marker.view.CircleImageView;
+import com.eason.marker.view.GreenToast;
+import com.eason.marker.view.ProgressDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -462,6 +464,7 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
      * @param marker
      * @param view
      */
+    @TargetApi(21)
     private void renderInfoWindow(Marker marker, View view) {
         RelativeLayout infoWindowLayout = (RelativeLayout) view.findViewById(R.id.info_window_avatar_layout);
         final CircleImageView avatar = (CircleImageView) view.findViewById(R.id.info_window_avatar);
@@ -511,7 +514,8 @@ public class MainMapFragment extends BaseFragment implements LocationSource, AMa
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ProfileActivity.class);
                 intent.putExtra("username", title);
-                getActivity().startActivity(intent);
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(),avatar,"avatar");
+                getActivity().startActivity(intent,options.toBundle());
             }
         });
     }

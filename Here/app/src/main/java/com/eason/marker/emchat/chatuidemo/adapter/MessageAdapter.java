@@ -85,7 +85,7 @@ import com.eason.marker.model.IntentUtil;
 import com.eason.marker.model.LoginStatus;
 import com.eason.marker.model.User;
 import com.eason.marker.profile_activity.ProfileActivity;
-import com.eason.marker.util.WidgetUtil.GreenToast;
+import com.eason.marker.view.GreenToast;
 
 import org.json.JSONArray;
 import org.json.JSONException;

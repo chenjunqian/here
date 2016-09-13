@@ -25,7 +25,7 @@ import com.easemob.chat.EMChatManager;
 import com.easemob.exceptions.EaseMobException;
 import com.eason.marker.R;
 import com.eason.marker.MainApplication;
-import com.eason.marker.util.WidgetUtil.GreenToast;
+import com.eason.marker.view.GreenToast;
 
 /**
  * 注册页

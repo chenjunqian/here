@@ -30,7 +30,7 @@ import com.eason.marker.R;
 import com.eason.marker.emchat.chatuidemo.Constant;
 import com.eason.marker.emchat.chatuidemo.adapter.ChatAllHistoryAdapter;
 import com.eason.marker.emchat.chatuidemo.db.InviteMessgeDao;
-import com.eason.marker.util.WidgetUtil.GreenToast;
+import com.eason.marker.view.GreenToast;
 
 import java.util.ArrayList;
 import java.util.Collections;
