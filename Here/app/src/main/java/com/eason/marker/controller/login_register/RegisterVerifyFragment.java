@@ -1,4 +1,4 @@
-package com.eason.marker.login_register;
+package com.eason.marker.controller.login_register;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.eason.marker.BaseFragment;
+import com.eason.marker.controller.BaseFragment;
 import com.eason.marker.http_util.HttpRequest;
 import com.eason.marker.http_util.HttpResponseHandler;
 import com.eason.marker.R;

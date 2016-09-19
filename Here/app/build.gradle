@@ -10,7 +10,20 @@ android {
         targetSdkVersion 22
         versionCode 3
         versionName "1.2.0"
+
+//        ndk {
+//            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "mips", "mips64", "x86", "x86_64"
+//        }
+//
+//        //参数说明
+//        manifestPlaceholders = [
+//                GETUI_APP_ID : "fa65x2WVTBA424hoxckGjA",
+//                GETUI_APP_KEY : "xKPKwTPtw88AbxxBJK6uIA",
+//                GETUI_APP_SECRET : "cPpKWrnnfQ8qajD0dOvJv5",
+//                PACKAGE_NAME : applicationId
+//        ]
     }
+
     buildTypes {
         release {
             minifyEnabled false

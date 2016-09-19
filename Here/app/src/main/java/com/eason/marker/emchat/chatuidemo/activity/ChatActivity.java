@@ -99,7 +99,7 @@ import com.eason.marker.emchat.chatuidemo.widget.ExpandGridView;
 import com.eason.marker.emchat.chatuidemo.widget.PasteEditText;
 import com.eason.marker.http_util.HttpRequest;
 import com.eason.marker.http_util.HttpResponseHandler;
-import com.eason.marker.main_activity.MainActivity;
+import com.eason.marker.controller.main_activity.MainActivity;
 import com.eason.marker.model.ErroCode;
 import com.eason.marker.model.User;
 import com.eason.marker.view.GreenToast;

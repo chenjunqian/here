@@ -1,4 +1,4 @@
-package com.eason.marker.main_activity;
+package com.eason.marker.controller.main_activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,7 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.eason.marker.BaseFragment;
+import com.eason.marker.controller.BaseFragment;
 import com.eason.marker.R;
 import com.eason.marker.http_util.HttpRequest;
 import com.eason.marker.http_util.HttpResponseHandler;

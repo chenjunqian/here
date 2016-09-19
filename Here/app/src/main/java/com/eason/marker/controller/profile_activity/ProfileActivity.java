@@ -1,4 +1,4 @@
-package com.eason.marker.profile_activity;
+package com.eason.marker.controller.profile_activity;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -17,7 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.eason.marker.BaseActivity;
+import com.eason.marker.controller.BaseActivity;
 import com.eason.marker.MainApplication;
 import com.eason.marker.R;
 import com.eason.marker.emchat.EMChatUtil;

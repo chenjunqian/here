@@ -1,4 +1,4 @@
-package com.eason.marker.main_activity;
+package com.eason.marker.controller.main_activity;
 
 import android.annotation.TargetApi;
 import android.app.ActivityOptions;
@@ -36,7 +36,7 @@ import com.amap.api.services.geocoder.GeocodeResult;
 import com.amap.api.services.geocoder.GeocodeSearch;
 import com.amap.api.services.geocoder.RegeocodeQuery;
 import com.amap.api.services.geocoder.RegeocodeResult;
-import com.eason.marker.BaseFragment;
+import com.eason.marker.controller.BaseFragment;
 import com.eason.marker.R;
 import com.eason.marker.http_util.HttpConfig;
 import com.eason.marker.http_util.HttpRequest;
@@ -48,8 +48,8 @@ import com.eason.marker.model.LoginStatus;
 import com.eason.marker.model.Post;
 import com.eason.marker.model.PostList;
 import com.eason.marker.model.User;
-import com.eason.marker.profile_activity.ProfileActivity;
-import com.eason.marker.publish_location_activity.PublishActivity;
+import com.eason.marker.controller.profile_activity.ProfileActivity;
+import com.eason.marker.controller.publish_location_activity.PublishActivity;
 import com.eason.marker.util.CommonUtil;
 import com.eason.marker.view.CircleImageView;
 import com.eason.marker.view.GreenToast;

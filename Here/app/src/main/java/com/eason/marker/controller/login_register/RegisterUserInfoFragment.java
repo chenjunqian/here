@@ -1,4 +1,4 @@
-package com.eason.marker.login_register;
+package com.eason.marker.controller.login_register;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.eason.marker.BaseFragment;
+import com.eason.marker.controller.BaseFragment;
 import com.eason.marker.R;
 import com.eason.marker.model.IntentUtil;
 import com.eason.marker.util.CommonUtil;

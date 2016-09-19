@@ -59,7 +59,7 @@ import com.eason.marker.emchat.chatuidemo.db.UserDao;
 import com.eason.marker.emchat.chatuidemo.domain.EMUser;
 import com.eason.marker.emchat.chatuidemo.domain.InviteMessage;
 import com.eason.marker.emchat.chatuidemo.domain.InviteMessage.InviteMesageStatus;
-import com.eason.marker.main_activity.MainActivity;
+import com.eason.marker.controller.main_activity.MainActivity;
 import com.eason.marker.util.LogUtil;
 import com.eason.marker.view.GreenToast;
 

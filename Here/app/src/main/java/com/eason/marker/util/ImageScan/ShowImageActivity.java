@@ -8,7 +8,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.GridView;
 
-import com.eason.marker.BaseActivity;
+import com.eason.marker.controller.BaseActivity;
 import com.eason.marker.R;
 import com.eason.marker.util.ImageProcessParams;
 

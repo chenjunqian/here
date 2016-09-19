@@ -1,4 +1,4 @@
-package com.eason.marker.login_register;
+package com.eason.marker.controller.login_register;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.eason.marker.BaseActivity;
+import com.eason.marker.controller.BaseActivity;
 import com.eason.marker.http_util.HttpRequest;
 import com.eason.marker.http_util.LoginHandler;
 import com.eason.marker.R;

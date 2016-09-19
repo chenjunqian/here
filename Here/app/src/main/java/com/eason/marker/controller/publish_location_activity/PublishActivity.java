@@ -1,4 +1,4 @@
-package com.eason.marker.publish_location_activity;
+package com.eason.marker.controller.publish_location_activity;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,7 +14,7 @@ import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.eason.marker.BaseActivity;
+import com.eason.marker.controller.BaseActivity;
 import com.eason.marker.http_util.HttpRequest;
 import com.eason.marker.http_util.HttpResponseHandler;
 import com.eason.marker.R;

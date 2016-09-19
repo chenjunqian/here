@@ -22,7 +22,7 @@ import com.eason.marker.model.ErroCode;
 import com.eason.marker.model.LoginStatus;
 import com.eason.marker.model.Post;
 import com.eason.marker.model.User;
-import com.eason.marker.profile_activity.ProfileActivity;
+import com.eason.marker.controller.profile_activity.ProfileActivity;
 import com.eason.marker.util.CommonUtil;
 
 /**

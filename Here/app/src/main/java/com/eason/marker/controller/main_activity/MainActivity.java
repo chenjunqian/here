@@ -1,4 +1,4 @@
-package com.eason.marker.main_activity;
+package com.eason.marker.controller.main_activity;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -29,12 +29,12 @@ import com.easemob.EMNotifierEvent;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMGroupManager;
 import com.eason.marker.R;
-import com.eason.marker.about_us_activity.AboutUsActivity;
+import com.eason.marker.controller.about_us_activity.AboutUsActivity;
 import com.eason.marker.emchat.EMChatUtil;
 import com.eason.marker.emchat.chatuidemo.activity.EMChatMainActivity;
 import com.eason.marker.http_util.HttpConfig;
 import com.eason.marker.http_util.HttpRequest;
-import com.eason.marker.login_register.LoginActivity;
+import com.eason.marker.controller.login_register.LoginActivity;
 import com.eason.marker.model.ErroCode;
 import com.eason.marker.model.IntentUtil;
 import com.eason.marker.model.LoginStatus;

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/universal_layout_background_color"
     android:orientation="vertical"
-    tools:context=".login_register.RegisterActivity">
+    tools:context=".controller.login_register.RegisterActivity">
 
     <RelativeLayout
         android:background="@color/universal_title_background_red"

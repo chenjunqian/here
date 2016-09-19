@@ -1,4 +1,4 @@
-package com.eason.marker.main_activity;
+package com.eason.marker.controller.main_activity;
 
 import android.os.Bundle;
 import android.os.Message;
@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ListView;
 
-import com.eason.marker.BaseFragment;
+import com.eason.marker.controller.BaseFragment;
 import com.eason.marker.R;
 import com.eason.marker.http_util.HttpRequest;
 import com.eason.marker.http_util.HttpResponseHandler;

@@ -1,4 +1,4 @@
-package com.eason.marker.about_us_activity;
+package com.eason.marker.controller.about_us_activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.eason.marker.BaseActivity;
+import com.eason.marker.controller.BaseActivity;
 import com.eason.marker.R;
 import com.eason.marker.http_util.HttpRequest;
 import com.eason.marker.http_util.HttpResponseHandler;

@@ -30,6 +30,8 @@
     <uses-sdk
         android:minSdkVersion="15"
         android:targetSdkVersion="22" />
+
+
     <!-- 个推SDK权限配置开始 -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <!-- ibeancon 需要蓝牙权限 -->
@@ -173,7 +175,7 @@
 
 
         <activity
-            android:name="com.eason.marker.SplashActivity"
+            android:name=".controller.SplashActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
@@ -185,26 +187,26 @@
         </activity>
 
         <activity
-            android:name=".main_activity.MainActivity"
+            android:name=".controller.main_activity.MainActivity"
             android:label="@string/main_map_page"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
         <activity
-            android:name="com.eason.marker.login_register.LoginActivity"
+            android:name=".controller.login_register.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">>
 
         </activity>
         <activity
-            android:name="com.eason.marker.login_register.RegisterActivity"
+            android:name=".controller.login_register.RegisterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">>
 
         </activity>
 
         <activity
-            android:name="com.eason.marker.publish_location_activity.PublishActivity"
+            android:name=".controller.publish_location_activity.PublishActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|stateVisible|adjustPan"
             android:theme="@style/AppTheme">>
@@ -226,14 +228,14 @@
         </activity>
 
         <activity
-            android:name="com.eason.marker.profile_activity.ProfileActivity"
+            android:name=".controller.profile_activity.ProfileActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">>
 
         </activity>
 
         <activity
-            android:name="com.eason.marker.about_us_activity.AboutUsActivity"
+            android:name=".controller.about_us_activity.AboutUsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">>
 

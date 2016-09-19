@@ -1,4 +1,4 @@
-package com.eason.marker.main_activity;
+package com.eason.marker.controller.main_activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -19,7 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.eason.marker.BaseFragment;
+import com.eason.marker.controller.BaseFragment;
 import com.eason.marker.http_util.HttpConfig;
 import com.eason.marker.http_util.HttpRequest;
 import com.eason.marker.http_util.HttpResponseHandler;
@@ -28,7 +28,7 @@ import com.eason.marker.model.ErroCode;
 import com.eason.marker.model.IntentUtil;
 import com.eason.marker.model.LoginStatus;
 import com.eason.marker.model.User;
-import com.eason.marker.profile_activity.ProfileActivity;
+import com.eason.marker.controller.profile_activity.ProfileActivity;
 import com.eason.marker.util.CommonUtil;
 import com.eason.marker.util.ImageProcessParams;
 import com.eason.marker.util.ImageScan.ImageScanMainActivity;

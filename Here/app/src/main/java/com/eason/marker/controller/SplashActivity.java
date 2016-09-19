@@ -1,13 +1,14 @@
-package com.eason.marker;
+package com.eason.marker.controller;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.eason.marker.R;
 import com.eason.marker.emchat.EMChatUtil;
 import com.eason.marker.http_util.HttpRequest;
-import com.eason.marker.main_activity.MainActivity;
+import com.eason.marker.controller.main_activity.MainActivity;
 import com.eason.marker.model.LoginStatus;
 import com.eason.marker.util.CommonUtil;
 import com.eason.marker.util.OnLoginListener;
