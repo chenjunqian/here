@@ -339,7 +339,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         int id = menuItem.getItemId();
         revertMenuIconColor();
-        if (id != R.id.enter_chat_main_page_item_layout) {
+        if (id != R.id.login_item_layout) {
             menuItem.getIcon().setColorFilter(getResources().getColor(R.color.universal_title_background_red), PorterDuff.Mode.MULTIPLY);
         }
         switch (id) {
