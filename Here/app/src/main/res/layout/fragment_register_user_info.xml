@@ -19,21 +19,20 @@
             android:textSize="@dimen/universal_title_text_size" />
     </RelativeLayout>
 
-    <LinearLayout
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/universal_title_height"
         android:layout_marginTop="25dp"
-        android:background="@color/universal_white"
+        android:layout_marginLeft="28dp"
+        android:layout_marginRight="28dp"
         android:orientation="horizontal">
 
         <EditText
             android:id="@+id/register_user_info_edit_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="28dp"
-            android:background="@null"
             android:hint="@string/register_user_info_edit_text_hint" />
-    </LinearLayout>
+    </android.support.design.widget.TextInputLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"

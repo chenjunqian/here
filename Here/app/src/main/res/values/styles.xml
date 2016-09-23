@@ -222,4 +222,5 @@
         <item name="android:includeFontPadding">false</item>
         <item name="android:background">@drawable/edit_text_bg</item>
     </style>
+
 </resources>
