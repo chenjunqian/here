@@ -2,8 +2,8 @@ package com.eason.marker.model;
 
 import android.content.Context;
 
-import com.eason.marker.http_util.HttpRequest;
-import com.eason.marker.http_util.LoginHandler;
+import com.eason.marker.network.HttpRequest;
+import com.eason.marker.network.LoginHandler;
 import com.eason.marker.util.OnLoginListener;
 import com.eason.marker.util.SharePreferencesUtil;
 

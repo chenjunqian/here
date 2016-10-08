@@ -43,9 +43,9 @@ import com.eason.marker.emchat.chatuidemo.domain.RobotUser;
 import com.eason.marker.emchat.chatuidemo.utils.DateUtils;
 import com.eason.marker.emchat.chatuidemo.utils.SmileUtils;
 import com.eason.marker.emchat.chatuidemo.utils.UserUtils;
-import com.eason.marker.http_util.HttpConfig;
-import com.eason.marker.http_util.HttpRequest;
-import com.eason.marker.http_util.HttpResponseHandler;
+import com.eason.marker.network.HttpConfig;
+import com.eason.marker.network.HttpRequest;
+import com.eason.marker.network.HttpResponseHandler;
 import com.eason.marker.model.ErroCode;
 import com.eason.marker.model.User;
 

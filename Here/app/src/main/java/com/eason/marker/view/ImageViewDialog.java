@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.eason.marker.http_util.HttpConfig;
-import com.eason.marker.http_util.HttpRequest;
+import com.eason.marker.network.HttpConfig;
+import com.eason.marker.network.HttpRequest;
 import com.eason.marker.R;
 import com.eason.marker.util.CommonUtil;
 

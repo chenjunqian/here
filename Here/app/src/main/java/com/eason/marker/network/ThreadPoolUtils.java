@@ -1,4 +1,4 @@
-package com.eason.marker.http_util;
+package com.eason.marker.network;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;

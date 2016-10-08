@@ -1,4 +1,4 @@
-package com.eason.marker.http_util;
+package com.eason.marker.network;
 
 import com.eason.marker.model.ErroCode;
 import com.eason.marker.model.LoginStatus;

@@ -9,9 +9,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.eason.marker.R;
-import com.eason.marker.http_util.HttpConfig;
-import com.eason.marker.http_util.HttpRequest;
-import com.eason.marker.http_util.HttpResponseHandler;
+import com.eason.marker.network.HttpConfig;
+import com.eason.marker.network.HttpRequest;
+import com.eason.marker.network.HttpResponseHandler;
 import com.eason.marker.model.ErroCode;
 import com.eason.marker.model.Post;
 import com.eason.marker.model.User;

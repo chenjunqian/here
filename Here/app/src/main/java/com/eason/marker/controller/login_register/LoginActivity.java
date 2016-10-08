@@ -10,8 +10,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.eason.marker.controller.BaseActivity;
-import com.eason.marker.http_util.HttpRequest;
-import com.eason.marker.http_util.LoginHandler;
+import com.eason.marker.network.HttpRequest;
+import com.eason.marker.network.LoginHandler;
 import com.eason.marker.R;
 import com.eason.marker.model.ErroCode;
 import com.eason.marker.model.IntentUtil;

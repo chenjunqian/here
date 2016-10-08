@@ -9,8 +9,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.eason.marker.controller.BaseFragment;
-import com.eason.marker.http_util.HttpRequest;
-import com.eason.marker.http_util.HttpResponseHandler;
+import com.eason.marker.network.HttpRequest;
+import com.eason.marker.network.HttpResponseHandler;
 import com.eason.marker.R;
 import com.eason.marker.model.IntentUtil;
 import com.eason.marker.util.CommonUtil;

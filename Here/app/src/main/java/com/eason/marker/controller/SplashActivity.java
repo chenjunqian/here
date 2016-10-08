@@ -6,10 +6,10 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.eason.marker.R;
-import com.eason.marker.emchat.EMChatUtil;
-import com.eason.marker.http_util.HttpRequest;
 import com.eason.marker.controller.main_activity.MainActivity;
+import com.eason.marker.emchat.EMChatUtil;
 import com.eason.marker.model.LoginStatus;
+import com.eason.marker.network.HttpRequest;
 import com.eason.marker.util.CommonUtil;
 import com.eason.marker.util.OnLoginListener;
 import com.eason.marker.util.SharePreferencesUtil;
@@ -22,11 +22,13 @@ import java.util.TimerTask;
  * Created by Eason on 9/22/15.
  */
 public class SplashActivity extends BaseActivity {
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_layout);
-        initAppUtil(SplashActivity.this);
+        initAppUtil(getApplicationContext());
         autoLogin();
     }
 
@@ -45,7 +47,6 @@ public class SplashActivity extends BaseActivity {
      * 自动登录，如果没有登录过就，定时跳转
      */
     private void autoLogin(){
-
         String username = SharePreferencesUtil.getUserLoginUsername();
         String password = SharePreferencesUtil.getUserLoginPassword();
 
@@ -58,25 +59,25 @@ public class SplashActivity extends BaseActivity {
             }
         };
 
+        new Timer().schedule(task,2000);
+
         if (!CommonUtil.isEmptyString(username)&&!CommonUtil.isEmptyString(password)){
             //登录应用
             LoginStatus.login(username, password, "", new OnLoginListener() {
 
                 @Override
                 public void loginListener() {
-                    new Timer().schedule(task,2000);
+
                 }
 
                 @Override
                 public void loginFailedListener(int info) {
                     GreenToast.makeText(SplashActivity.this,getResources().getString(R.string.login_failed), Toast.LENGTH_SHORT).show();
-                    new Timer().schedule(task,2000);
                 }
             });
 
-        }else{
-            new Timer().schedule(task,2000);
         }
+
 
 
     }

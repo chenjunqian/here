@@ -15,8 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.eason.marker.controller.BaseActivity;
-import com.eason.marker.http_util.HttpRequest;
-import com.eason.marker.http_util.HttpResponseHandler;
+import com.eason.marker.network.HttpRequest;
+import com.eason.marker.network.HttpResponseHandler;
 import com.eason.marker.R;
 import com.eason.marker.model.ErroCode;
 import com.eason.marker.model.LocationInfo;

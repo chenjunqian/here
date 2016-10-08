@@ -32,8 +32,8 @@ import com.eason.marker.R;
 import com.eason.marker.controller.about_us_activity.AboutUsActivity;
 import com.eason.marker.emchat.EMChatUtil;
 import com.eason.marker.emchat.chatuidemo.activity.EMChatMainActivity;
-import com.eason.marker.http_util.HttpConfig;
-import com.eason.marker.http_util.HttpRequest;
+import com.eason.marker.network.HttpConfig;
+import com.eason.marker.network.HttpRequest;
 import com.eason.marker.controller.login_register.LoginActivity;
 import com.eason.marker.model.ErroCode;
 import com.eason.marker.model.IntentUtil;
@@ -136,6 +136,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     if (LoginStatus.getIsUserMode()) {
                         loginItem.setTitle(R.string.logout);
                         HttpRequest.loadImage(circleImageView, HttpConfig.String_Url_Media + LoginStatus.getUser().getAvatar(), 150, 150);
+                        TextView drawerLayoutUsernameTextView = (TextView) findViewById(R.id.left_menu_avatar_nickname_text_view);
+                        drawerLayoutUsernameTextView.setText(LoginStatus.getUser().getNickname());
                     } else {
                         loginItem.setTitle(R.string.login);
                     }

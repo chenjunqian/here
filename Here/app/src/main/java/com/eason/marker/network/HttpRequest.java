@@ -1,4 +1,4 @@
-package com.eason.marker.http_util;
+package com.eason.marker.network;
 
 import android.content.Context;
 import android.graphics.Bitmap;

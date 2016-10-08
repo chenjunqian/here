@@ -5,8 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.eason.marker.http_util.HttpRequest;
-import com.eason.marker.http_util.HttpResponseHandler;
+import com.eason.marker.network.HttpRequest;
+import com.eason.marker.network.HttpResponseHandler;
 import com.eason.marker.model.LoginStatus;
 import com.eason.marker.util.LogUtil;
 import com.igexin.sdk.PushConsts;
