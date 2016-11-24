@@ -1,12 +1,12 @@
 # LoveMarker
 
-LoveMarker is an app that user share where they have sex at somewhere and satisfy the curious one.
+LoveMarker is a real-time map application that user share couples’ feeling and mark on the map and satisfy the curious one.
 
 The idea from the movie Amelie 
 
 ![image](https://github.com/chenjunqian/here/blob/master/readme-image/orgasm-amelie.png)
 
-There are some screenshot here,and now there is only Chinese version.
+There are some screenshot here.
 
 ![image](https://github.com/chenjunqian/here/blob/master/readme-image/Screenshot_2016-01-11-23-03-16.png)
 
