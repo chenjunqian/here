@@ -52,7 +52,29 @@ def register(request):
 	else:
 		httpResultResponse.errorMessage = ErrorMessage.POST_FAILED
 		httpResultResponse.status = "8001"
-		return HttpResponse("POST failed")
+		return HttpResponse(ErrorMessage.POST_FAILED)
 
 def login(request):
-	pass
+    httpResultResponse = HttpResultResponse()
+	if request.method == 'POST':
+		username = request.POST.get('username')
+		password = request.POST.get('password')
+		gender = request.POST.get('gender')
+		pushKey = request.POST.get('pushKey')
+		user = User.objects.get(username = username, password = password)
+		if user:
+			httpResultResponse.errorMessage = ErrorMessage.LOGIN_SUCCESS
+			httpResultResponse.errorMessage = "0"
+			httpResultResponse.resultData = user
+			user.pushKey = pushKey
+			user.save()
+		else:
+    		httpResultResponse.errorMessage = ErrorMessage.NO_SUCH_USER_OR_PASSWORD_IS_INVALID
+			httpResultResponse.status = "8003"
+		json = simplejson.dumps(dict)
+		return HttpResponse(json)
+	else:
+		httpResultResponse.errorMessage = ErrorMessage.POST_FAILED
+		httpResultResponse.status = "8003"
+		json  = simplejson.dumps(dict)
+		return HttpResponse(ErrorMessage.POST_FAILED)

@@ -2,8 +2,7 @@
 import json as simplejson
 
 class HttpResultResponse(object):
-
-	def __init__(self):
+    def __init__(self):
 		self.jsonResult = {}
 		self.status = ""
 		self.resultData = {}
@@ -19,9 +18,11 @@ class HttpResultResponse(object):
 
 class ErrorMessage(object):
 	USERNAME_OR_PASSWORD_INVALID = "USERNAME_OR_PASSWORD_INVALID"
+	NO_SUCH_USER_OR_PASSWORD_IS_INVALID = "NO_SUCH_USER_OR_PASSWORD_IS_INVALID"
 	USERNAME_IS_EXIST = "USERNAME_IS_EXIST"
 	REGISTER_SUCCESS = "REGISTER_SUCCESS"
 	POST_FAILED = "POST_FAILED"
+	LOGIN_SUCCESS = "LOGIN_SUCCESS"
 
 	"""docstring for ErrorMessage"""
 	def __init__(self):
