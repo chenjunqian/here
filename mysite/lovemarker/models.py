@@ -14,4 +14,4 @@ class User(models.Model):
 	birthday = models.CharField(max_length=30,blank = True)
 	simpleProfile = models.CharField(max_length=30,blank=True)
 	longProfile = models.CharField(max_length=300,blank=True)
-	created = models.DateTimeField(auto_now_add = True)
+	created = models.DateTimeField(auto_now_add = True)		

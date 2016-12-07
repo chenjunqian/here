@@ -1,5 +1,6 @@
 #coding=utf-8
 import json as simplejson
+from json import JSONEncoder
 
 class HttpResultResponse(object):
     def __init__(self):
@@ -8,13 +9,16 @@ class HttpResultResponse(object):
 		self.resultData = {}
 		self.errorMessage = ""
 		
-	def getJsonResult(self):
+    def getJsonResult(self):
 		self.jsonResult['resultData'] = self.resultData
 		self.jsonResult['errorMessage'] = self.errorMessage
 		self.jsonResult['status'] = self.status
 		self.json = simplejson.dumps(self.jsonResult)
 		return self.json
 
+class MyEncode(JSONEncoder):
+	def default(self,obj):
+		return obj.__dict__
 
 class ErrorMessage(object):
 	USERNAME_OR_PASSWORD_INVALID = "USERNAME_OR_PASSWORD_INVALID"
@@ -23,6 +27,9 @@ class ErrorMessage(object):
 	REGISTER_SUCCESS = "REGISTER_SUCCESS"
 	POST_FAILED = "POST_FAILED"
 	LOGIN_SUCCESS = "LOGIN_SUCCESS"
+	USER_IS_EXIST = "USER_IS_EXIST"
+	USER_IS_NOT_EXIST = "USER_IS_NOT_EXIST"
+	USERNAME_IS_NULL = "USERNAME_IS_NULL"
 
 	"""docstring for ErrorMessage"""
 	def __init__(self):
