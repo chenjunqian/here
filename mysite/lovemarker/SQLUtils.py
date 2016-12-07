@@ -1,14 +1,13 @@
 #coding=utf-8
 from django.db import connection
-import json
 import MySQLdb
 
-def SelectUserByUsernamePassword(username,password):
+def SelectUserByUsernamePassword(username, password):
     cur = connection.cursor()
     resultData = {}
     query = 'select * from lovemarker_user where username = %s and password = %s'
-    value = [username,password]
-    cur.execute(query,value)
+    value = [username, password]
+    cur.execute(query, value)
     user = cur.fetchall()
     if user:
         resultData['userid'] = user[0][0]
