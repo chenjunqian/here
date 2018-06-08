@@ -114,6 +114,22 @@ REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'mysite.lovemarker.utils.custom_exception_handler',
 }
 
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "CONNECTION_POOL_KWARGS": {"max_connections": 100}
+            "SOCKET_CONNECT_TIMEOUT": 10,  # in seconds
+            "SOCKET_TIMEOUT": 10,  # in seconds
+        }
+    }
+}
+
+CACHE_TTL = 60 * 15
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_CACHE_ALIAS = "default"
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
